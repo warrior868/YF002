@@ -25,6 +25,11 @@
 		AB5BB7961B0CBDFA00CB1FA8 /* YFSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB7831B0CBDFA00CB1FA8 /* YFSettingViewController.m */; };
 		AB5BB7971B0CBDFA00CB1FA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB7871B0CBDFA00CB1FA8 /* main.m */; };
 		AB5BB7981B0CBDFA00CB1FA8 /* YFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB7891B0CBDFA00CB1FA8 /* YFAppDelegate.m */; };
+		ABAB51A71B10DF00001663D2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABAB51A41B10DF00001663D2 /* Info.plist */; };
+		ABAB51A81B10DF00001663D2 /* MZTimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB51A61B10DF00001663D2 /* MZTimerLabel.m */; };
+		ABB43DEA1B134783000C83AA /* YFTreatParameterItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB43DE91B134783000C83AA /* YFTreatParameterItem.m */; };
+		ABE9BE6E1B117C3000C7D5B8 /* JKSideSlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE9BE671B117C3000C7D5B8 /* JKSideSlipView.m */; };
+		ABE9BE721B117C3000C7D5B8 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE9BE6D1B117C3000C7D5B8 /* MenuView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +76,14 @@
 		AB5BB7871B0CBDFA00CB1FA8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB5BB7881B0CBDFA00CB1FA8 /* YFAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFAppDelegate.h; sourceTree = "<group>"; };
 		AB5BB7891B0CBDFA00CB1FA8 /* YFAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFAppDelegate.m; sourceTree = "<group>"; };
+		ABAB51A41B10DF00001663D2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABAB51A51B10DF00001663D2 /* MZTimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimerLabel.h; sourceTree = "<group>"; };
+		ABAB51A61B10DF00001663D2 /* MZTimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTimerLabel.m; sourceTree = "<group>"; };
+		ABB43DE81B134783000C83AA /* YFTreatParameterItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFTreatParameterItem.h; sourceTree = "<group>"; };
+		ABB43DE91B134783000C83AA /* YFTreatParameterItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFTreatParameterItem.m; sourceTree = "<group>"; };
+		ABE9BE661B117C3000C7D5B8 /* JKSideSlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSideSlipView.h; sourceTree = "<group>"; };
+		ABE9BE671B117C3000C7D5B8 /* JKSideSlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSideSlipView.m; sourceTree = "<group>"; };
+		ABE9BE6D1B117C3000C7D5B8 /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +187,8 @@
 		AB5BB74B1B0CB6C500CB1FA8 /* library */ = {
 			isa = PBXGroup;
 			children = (
+				ABE9BE651B117C3000C7D5B8 /* JKSideSlipView */,
+				ABAB51A31B10DF00001663D2 /* MZTimerLabel */,
 				AB5BB74C1B0CB6C500CB1FA8 /* AKPickerView */,
 			);
 			path = library;
@@ -294,6 +309,8 @@
 		AB5BB7721B0CBDFA00CB1FA8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ABB43DE81B134783000C83AA /* YFTreatParameterItem.h */,
+				ABB43DE91B134783000C83AA /* YFTreatParameterItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -414,6 +431,26 @@
 			path = "6Other(其他)";
 			sourceTree = "<group>";
 		};
+		ABAB51A31B10DF00001663D2 /* MZTimerLabel */ = {
+			isa = PBXGroup;
+			children = (
+				ABAB51A41B10DF00001663D2 /* Info.plist */,
+				ABAB51A51B10DF00001663D2 /* MZTimerLabel.h */,
+				ABAB51A61B10DF00001663D2 /* MZTimerLabel.m */,
+			);
+			path = MZTimerLabel;
+			sourceTree = "<group>";
+		};
+		ABE9BE651B117C3000C7D5B8 /* JKSideSlipView */ = {
+			isa = PBXGroup;
+			children = (
+				ABE9BE661B117C3000C7D5B8 /* JKSideSlipView.h */,
+				ABE9BE671B117C3000C7D5B8 /* JKSideSlipView.m */,
+				ABE9BE6D1B117C3000C7D5B8 /* MenuView.xib */,
+			);
+			path = JKSideSlipView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -494,6 +531,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABAB51A71B10DF00001663D2 /* Info.plist in Resources */,
+				ABE9BE721B117C3000C7D5B8 /* MenuView.xib in Resources */,
 				AB4C85781AE5219800D67565 /* Main.storyboard in Resources */,
 				AB4C857D1AE5219800D67565 /* LaunchScreen.xib in Resources */,
 				AB4C857A1AE5219800D67565 /* Images.xcassets in Resources */,
@@ -514,7 +553,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABB43DEA1B134783000C83AA /* YFTreatParameterItem.m in Sources */,
 				AB5BB7941B0CBDFA00CB1FA8 /* YFRecordViewController.m in Sources */,
+				ABE9BE6E1B117C3000C7D5B8 /* JKSideSlipView.m in Sources */,
+				ABAB51A81B10DF00001663D2 /* MZTimerLabel.m in Sources */,
 				AB5BB7951B0CBDFA00CB1FA8 /* YFHistoryViewController.m in Sources */,
 				AB5BB7981B0CBDFA00CB1FA8 /* YFAppDelegate.m in Sources */,
 				AB5BB7961B0CBDFA00CB1FA8 /* YFSettingViewController.m in Sources */,

@@ -75,6 +75,7 @@
 	self = [super initWithFrame:frame];
 	if (self) {
 		[self initialize];
+        
 	}
 	return self;
 }

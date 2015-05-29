@@ -18,17 +18,38 @@
     JKSideSlipView *_sideSlipView;
 }
 
+
+
+
+@property(copy,nonatomic)void (^transTreatItemToTableView)(YFTreatParameterItem *treatParaMeter);
+//其中void为返回值的类型
+//1：需要传值的类中.h文件中进行声明block方法：，记住是copy;
+//
+//2：在该类.m文件中进行判断指针不为空即可
+
+if (self.transTreatItemToTableView) {
+
+self.transTreatItemToTableView(_treatParameterItem);
+
+};
+//3：接受传值的类中接收
+//
+//传值类对象.声明block的名称=^(传值的类型传值的变量名){
+//    
+//    接受传值=传值变量名；
+//    
+//}；
 @property (nonatomic, strong) AKPickerView *treatTimePickerView;
-@property (nonatomic, strong) AKPickerView *treatStregthPickerView;
+@property (nonatomic, strong) AKPickerView *treatStrengthPickerView;
 @property (nonatomic, strong) AKPickerView *treatWavePickerView;
 @property (nonatomic, strong) AKPickerView *treatModelPickerView;
 
 @property (nonatomic, strong) NSArray *treatTimePickerViewArray;
-@property (nonatomic, strong) NSArray *treatStregthPickerViewArray;
+@property (nonatomic, strong) NSArray *treatStrengthPickerViewArray;
 @property (nonatomic, strong) NSArray *treatWavePickerViewArray;
 @property (nonatomic, strong) NSArray *treatModelPickerViewArray;
 
-@property (nonatomic, strong) YFTreatParameterItem *defaultTreatItem;
+@property (nonatomic, strong) YFTreatParameterItem *treatParameterItem;
 //@property (nonatomic,strong) UIView *aview;
 
 
@@ -48,14 +69,16 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-//    初始化治疗参数
-    _defaultTreatItem = [[YFTreatParameterItem alloc] init];
+//  初始化治疗参数
+    _treatParameterItem = [[YFTreatParameterItem alloc] init];
     
-//    初始化pickerView
-    [self treatTimePickerViewLoad];
-    [self treatStregthPickerViewLoad];
-    [self treatWavePickerViewLoad];
-    [self treatModelPickerViewLoad];
+//   初始化pickerView
+//   第一个pickview X轴xPickerView,y轴yPickerView,y轴增加值xAddPickerView
+     NSInteger xPickerView = 70,yPickerView = 60,yAddPickerView = 57;
+    [self treatTimePickerViewLoad:CGRectMake(xPickerView, yPickerView, 200, 60)];
+    [self treatStrengthPickerViewLoad:CGRectMake(xPickerView,(yPickerView+yAddPickerView) , 200, 60)];
+    [self treatWavePickerViewLoad:CGRectMake(xPickerView, (yPickerView+2*yAddPickerView), 200, 60)];
+    [self treatModelPickerViewLoad:CGRectMake(xPickerView,(yPickerView+3*yAddPickerView), 200, 60)];
     
 //  设置navigationBar 左侧栏的名称
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"状态" style:UIBarButtonItemStyleBordered                                                                            target:self                                                                            action:@selector(switchTouched)];
@@ -66,19 +89,27 @@
     [_resetBtn setEnabled:NO];
 
 //  设置sideView
-    _sideSlipView = [[JKSideSlipView alloc]initWithSender:self withTreatItem:_defaultTreatItem withBlueToothStatus:NO withPowerStatus:50];
-    _sideSlipView.backgroundColor = [UIColor redColor];
-    
-  //  [_sideSlipView setContentView:menu];
+    _sideSlipView = [[JKSideSlipView alloc]initWithSender:self withTreatItem:_treatParameterItem withBlueToothStatus:NO withPowerStatus:50];
+   
     [self.view addSubview:_sideSlipView];
     
     
    
 }
 
+
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+-(IBAction)unwind:(UIStoryboardSegue *) segue{
+    
 }
 
 #pragma mark - AKPickerViewDataSource
@@ -91,9 +122,9 @@
         return [_treatTimePickerViewArray count];
     }
     
-    else if([pickerView isEqual:_treatStregthPickerView])
+    else if([pickerView isEqual:_treatStrengthPickerView])
     {
-        return [_treatStregthPickerViewArray count];
+        return [_treatStrengthPickerViewArray count];
     }
     else if([pickerView isEqual:_treatWavePickerView])
     {
@@ -106,35 +137,35 @@
 }
 
 #pragma mark - AKPickerViewDataSource 选择器初始化
-- (void)treatTimePickerViewLoad{
-    _treatTimePickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(70, 60, 200, 60)];
+- (void)treatTimePickerViewLoad:(CGRect )pickerViewCGRect{
+    _treatTimePickerView = [[AKPickerView alloc] initWithFrame:pickerViewCGRect];
     
     [self pickerViewParameterLoad:_treatTimePickerView];
-    
-    _treatTimePickerViewArray = @[@"1分钟",@"5分钟",@"10分钟",@"15分钟",@"20分钟",];
+    //取出数据模型中关于treatTime的plist中数组
+    _treatTimePickerViewArray = [_treatParameterItem.datafromTreatItemList objectForKey:@"treatTime"];
     [_treatTimePickerView reloadData];
 }
-- (void)treatStregthPickerViewLoad{
-    _treatStregthPickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(70, 118, 200, 60)];
+- (void)treatStrengthPickerViewLoad:(CGRect )pickerViewCGRect{
+    _treatStrengthPickerView = [[AKPickerView alloc] initWithFrame:pickerViewCGRect];
     
-    [self pickerViewParameterLoad:_treatStregthPickerView];
-    
-    _treatStregthPickerViewArray = @[@"M1",@"M2", @"M3",@"M4",];
-    [_treatStregthPickerView reloadData];
+    [self pickerViewParameterLoad:_treatStrengthPickerView];
+    //取出数据模型中关于treatStrength的plist中数组
+    _treatStrengthPickerViewArray =[_treatParameterItem.datafromTreatItemList objectForKey:@"treatStrength"];
+    [_treatStrengthPickerView reloadData];
 }
-- (void)treatWavePickerViewLoad{
-    _treatWavePickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(70, 175, 200, 60)];
+- (void)treatWavePickerViewLoad:(CGRect )pickerViewCGRect{
+    _treatWavePickerView = [[AKPickerView alloc] initWithFrame:pickerViewCGRect];
     //self.view.bounds
     [self pickerViewParameterLoad:_treatWavePickerView];
-    _treatWavePickerViewArray = @[@"Chiba", @"Tokyo",@"Osaka",@"Aichi",];
-    
-    
+    //取出数据模型中关于treatWave的plist中数组
+    _treatWavePickerViewArray = [_treatParameterItem.datafromTreatItemList objectForKey:@"treatWave"];
     [_treatWavePickerView reloadData];
 }
-- (void)treatModelPickerViewLoad{
-    _treatModelPickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(70, 228, 200, 60)];
+- (void)treatModelPickerViewLoad:(CGRect )pickerViewCGRect{
+    _treatModelPickerView = [[AKPickerView alloc] initWithFrame:pickerViewCGRect];
     [self pickerViewParameterLoad:_treatModelPickerView];
-     _treatModelPickerViewArray = @[@"左侧",@"右侧",@"两侧",];
+    //取出数据模型中关于treatModel的plist中数组
+     _treatModelPickerViewArray = [_treatParameterItem.datafromTreatItemList objectForKey:@"treatModel"];
     [_treatModelPickerView reloadData];
 }
 
@@ -161,9 +192,9 @@
         return _treatTimePickerViewArray[item];
     }
     
-    else if([pickerView isEqual:_treatStregthPickerView])
+    else if([pickerView isEqual:_treatStrengthPickerView])
     {
-        return _treatStregthPickerViewArray[item];
+        return _treatStrengthPickerViewArray[item];
     }
     else if([pickerView isEqual:_treatWavePickerView])
     {
@@ -183,35 +214,55 @@
 //    return [UIImage imageNamed:_treatWavePickerViewArray[item]];
 //}
 #pragma mark - pickerView 选择的项目
+
+- (NSUInteger)nnumberOfItemsInPickerView:(AKPickerView *)pickerView{
+    if([pickerView isEqual:_treatTimePickerView])
+    {
+        return 2;
+    }
+    
+    else if([pickerView isEqual:_treatStrengthPickerView])
+    {   return 2;
+    }
+    else if([pickerView isEqual:_treatWavePickerView])
+    {   return 3;
+    }
+    else
+        return 3;
+}
+
+
 - (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item
 {
     
         if([pickerView isEqual:_treatTimePickerView])
         {
-            //设置时间
-            NSInteger  setTime = item*5*60;
-            if (setTime == 0) {
-                setTime =1*60;
-            }
-            [timer setCountDownTime:setTime];
-            self.defaultTreatItem.treatTime = [NSString stringWithFormat:@"%d", setTime];
-            NSLog(@"Time_%@", _defaultTreatItem.treatTime);
+            //读取数组中的值设置时间
+            NSString *treatTimeSelect =_treatTimePickerViewArray[item];
+            //字符串转化成整数
+            NSInteger  setTime = [treatTimeSelect integerValue];
+            //设置计时时间
+            [timer setCountDownTime:setTime*60];
+            //设置模型中treatTime的值，以便保存；
+            _treatParameterItem.treatTime = treatTimeSelect;
+            NSLog(@"Time_%@", _treatParameterItem.treatTime);
         }
         
-        else if([pickerView isEqual:_treatStregthPickerView])
+        else if([pickerView isEqual:_treatStrengthPickerView])
         {
-            self.defaultTreatItem.treatStrength = _treatStregthPickerViewArray[item];
-            NSLog(@"Stregth_%@",_treatStregthPickerViewArray[item]);
+            //读取数组中的值设置时间，设置模型中treatStrength的值，以便保存
+            _treatParameterItem.treatTime = _treatStrengthPickerViewArray[item];
         }
         else if([pickerView isEqual:_treatWavePickerView])
         {
-            self.defaultTreatItem.treatWave = _treatWavePickerViewArray[item];
-            NSLog(@"Wave_%@",_treatWavePickerViewArray[item]);
+           //读取数组中的值设置时间，设置模型中treatWave的值，以便保存
+            _treatParameterItem.treatWave = _treatWavePickerViewArray[item];
+
         }
         else
         {
-            self.defaultTreatItem.treatModel = _treatModelPickerViewArray[item];
-            NSLog(@"Model_%@",_treatModelPickerViewArray[item]);
+            //读取数组中的值设置时间，设置模型中treatModel的值，以便保存
+            _treatParameterItem.treatModel = _treatModelPickerViewArray[item];
         }
     
         
@@ -220,11 +271,11 @@
 
 #pragma mark - 保存参数按钮
 - (IBAction)saveTreatPamameterItem:(id)sender{
-    NSString *string1 = [NSString stringWithFormat:@"%@-%@-%@-%@",_defaultTreatItem.treatTime,_defaultTreatItem.treatStrength,_defaultTreatItem.treatWave,_defaultTreatItem.treatModel];
+    NSString *string1 = [NSString stringWithFormat:@"%@-%@-%@-%@",_treatParameterItem.treatTime,_treatParameterItem.treatStrength,_treatParameterItem.treatWave,_treatParameterItem.treatModel];
     UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"提示" message:string1 delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
     
     [myAlertView show];
-    [_sideSlipView reloadTreatItem:_defaultTreatItem withBlueToothStatus:YES withPowerStatus:40];
+    [_sideSlipView reloadTreatItem:_treatParameterItem withBlueToothStatus:YES withPowerStatus:40];
     
 }
 #pragma mark - MZTimerlabel 开始 暂停 重置按钮的方法

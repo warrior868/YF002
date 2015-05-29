@@ -9,10 +9,19 @@
 #define SLIP_WIDTH 220
 
 #import "JKSideSlipView.h"
+#import "YFTreatParameterItem.h"
 #import <Accelerate/Accelerate.h>
 
 @implementation JKSideSlipView
 
+
+-(instancetype)initWithName:(YFTreatParameterItem *)treatParameterItem withBlueToothStatus:(BOOL)blueToothStatus withPowerStatus:(NSInteger)powerStatus{
+    if(self = [super init]){
+        [self reloadTreatItem:treatParameterItem withBlueToothStatus:blueToothStatus withPowerStatus:powerStatus];
+        
+    }
+    return self;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -21,6 +30,15 @@
     }
     return self;
     
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        //        [self setup];
+    }
+    return self;
 }
 
 - (instancetype)initWithSender:(UIViewController*)sender withTreatItem:(YFTreatParameterItem *)treatParameterItem withBlueToothStatus:(BOOL)blueToothStatus withPowerStatus:(NSInteger)powerStatus{
@@ -35,34 +53,32 @@
     
     [self addSubview:demoView];
     [self reloadTreatItem:treatParameterItem withBlueToothStatus:blueToothStatus withPowerStatus:powerStatus];
+    
+    
     //((UIScrollView *)self.view).contentSize = CGSizeMake(self.view.frame.size.width, demoView.frame.size.height);
     return self;
 }
 
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-//        [self setup];
-    }
-    return self;
-}
+
+
 
 - (void)reloadTreatItem:(YFTreatParameterItem *)treatParameterItem withBlueToothStatus:(BOOL)blueToothStatus withPowerStatus:(NSInteger)powerStatus{
     if (blueToothStatus) {
-        _powerRemain.text = [NSString stringWithFormat:@"%ld%%",(long)powerStatus];
-        _treatTimeLabel.text = treatParameterItem.treatTime;
-        _treatStrengthLabel.text = treatParameterItem.treatStrength;
-        _treatWaveLabel.text = treatParameterItem.treatWave;
-        _treatModelLabel.text = treatParameterItem.treatModel;
+        self.isBlueToothConnect.text = @"蓝牙已经连接";
+        self.powerRemain.text = [NSString stringWithFormat:@"%ld%%",(long)powerStatus];
+        self.treatTimeLabel.text = treatParameterItem.treatTime;
+        self.treatStrengthLabel.text = treatParameterItem.treatStrength;
+        self.treatWaveLabel.text = treatParameterItem.treatWave;
+        self.treatModelLabel.text = treatParameterItem.treatModel;
     }
     else{
-        _powerRemain.text = @"-";
-        _treatTimeLabel.text = @"-";
-        _treatStrengthLabel.text = @"-";
-        _treatWaveLabel.text = @"-";
-        _treatModelLabel.text = @"-";
+        self.isBlueToothConnect.text = @"蓝牙未连接";
+        self.powerRemain.text = @"-";
+        self.treatTimeLabel.text = @"-";
+        self.treatStrengthLabel.text = @"-";
+        self.treatWaveLabel.text = @"-";
+        self.treatModelLabel.text = @"-";
        }
 }
 
@@ -72,7 +88,7 @@
 //    点击tableview中的行
 //    [_sender.view addGestureRecognizer:_tap];
 //    _tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(switchMenu)];
-    _tap.numberOfTapsRequired = 1;
+//    _tap.numberOfTapsRequired = 1;
  //    手势操作
     _leftSwipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(hide)];
     _leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
@@ -95,15 +111,15 @@
     
 }
 
--(void)setContentView:(UIView*)contentView{
-     
-    if (contentView) {
-        _contentView = contentView;
-    }
-   // _contentView.bounds = CGRectMake(0, 0, 180, 480);
-  //  [self addSubview:_contentView];
-
-}
+//-(void)setContentView:(UIView*)contentView{
+//     
+//    if (contentView) {
+//        _contentView = contentView;
+//    }
+//   // _contentView.bounds = CGRectMake(0, 0, 180, 480);
+//  //  [self addSubview:_contentView];
+//
+//}
 -(void)show:(BOOL)show{
     UIImage *image =  [self imageFromView:_sender.view];
    

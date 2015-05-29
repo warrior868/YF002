@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>推荐2</key>
+	<dict>
+		<key>treatModel</key>
+		<string>right</string>
+		<key>treatWave</key>
+		<string>W4</string>
+		<key>treatTime</key>
+		<string>15</string>
+		<key>treatStrength</key>
+		<string>S2</string>
+	</dict>
+	<key>推荐1</key>
+	<dict>
+		<key>treatModel</key>
+		<string>left</string>
+		<key>treatWave</key>
+		<string>W4</string>
+		<key>treatTime</key>
+		<string>10</string>
+		<key>treatStrength</key>
+		<string>S2</string>
+	</dict>
+	<key>上次使用参数</key>
+	<dict>
+		<key>treatModel</key>
+		<string>both</string>
+		<key>treatWave</key>
+		<string>W1</string>
+		<key>treatTime</key>
+		<string>1</string>
+		<key>treatStrength</key>
+		<string>S3</string>
+	</dict>
+</dict>
+</plist>

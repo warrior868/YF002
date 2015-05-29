@@ -42,6 +42,35 @@
             </objects>
             <point key="canvasLocation" x="1031" y="470"/>
         </scene>
+        <!--参数-->
+        <scene sceneID="Fb2-cI-r2R">
+            <objects>
+                <tableViewController id="f3J-qg-uSV" customClass="YFPamameterItemTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cPB-JU-xem">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="uQM-O8-5JH">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uQM-O8-5JH" id="sdZ-km-VkI">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="f3J-qg-uSV" id="ngl-Eh-vo1"/>
+                            <outlet property="delegate" destination="f3J-qg-uSV" id="33K-IE-Tau"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="参数" id="mcw-UM-RQW">
+                        <barButtonItem key="rightBarButtonItem" title="编辑" id="gQr-kW-meU"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SCh-Qu-Haw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1389" y="-262"/>
+        </scene>
         <!--主页-->
         <scene sceneID="GtN-2e-OaJ">
             <objects>
@@ -160,7 +189,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="主页" id="aJr-3y-SEq">
-                        <barButtonItem key="rightBarButtonItem" title="参数" id="2PC-uI-R05"/>
+                        <barButtonItem key="rightBarButtonItem" title="参数" id="2PC-uI-R05">
+                            <connections>
+                                <segue destination="f3J-qg-uSV" kind="push" id="PM6-wQ-6pP"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -172,7 +205,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KVP-rU-SfO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1037" y="-202"/>
+            <point key="canvasLocation" x="948" y="-262"/>
         </scene>
         <!--Newfeature View Controller-->
         <scene sceneID="BVI-cv-VPJ">

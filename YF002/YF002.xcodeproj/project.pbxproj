@@ -10,6 +10,7 @@
 		AB2B1EB51B0B7A500038A3E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2B1EB41B0B7A500038A3E0 /* UIKit.framework */; };
 		AB2B1EB81B0B7B5B0038A3E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2B1EB71B0B7B5B0038A3E0 /* Foundation.framework */; };
 		AB2B1EBA1B0B7B890038A3E0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2B1EB91B0B7B890038A3E0 /* CoreGraphics.framework */; };
+		AB4750FF1B1899470033B878 /* treatItem.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB4750FE1B1899470033B878 /* treatItem.plist */; };
 		AB4C85781AE5219800D67565 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB4C85761AE5219800D67565 /* Main.storyboard */; };
 		AB4C857A1AE5219800D67565 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB4C85791AE5219800D67565 /* Images.xcassets */; };
 		AB4C857D1AE5219800D67565 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB4C857B1AE5219800D67565 /* LaunchScreen.xib */; };
@@ -28,6 +29,10 @@
 		ABAB51A71B10DF00001663D2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABAB51A41B10DF00001663D2 /* Info.plist */; };
 		ABAB51A81B10DF00001663D2 /* MZTimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB51A61B10DF00001663D2 /* MZTimerLabel.m */; };
 		ABB43DEA1B134783000C83AA /* YFTreatParameterItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB43DE91B134783000C83AA /* YFTreatParameterItem.m */; };
+		ABB43DEC1B147EB9000C83AA /* treatItemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABB43DEB1B147EB9000C83AA /* treatItemList.plist */; };
+		ABB43DEF1B15E7DF000C83AA /* YFPamameterItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB43DEE1B15E7DF000C83AA /* YFPamameterItemTableViewController.m */; };
+		ABB43DF71B15EBA8000C83AA /* treatParameterItemsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB43DF51B15EBA8000C83AA /* treatParameterItemsViewCell.m */; };
+		ABB43DF81B15EBA8000C83AA /* treatParameterItemsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB43DF61B15EBA8000C83AA /* treatParameterItemsViewCell.xib */; };
 		ABE9BE6E1B117C3000C7D5B8 /* JKSideSlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE9BE671B117C3000C7D5B8 /* JKSideSlipView.m */; };
 		ABE9BE721B117C3000C7D5B8 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE9BE6D1B117C3000C7D5B8 /* MenuView.xib */; };
 /* End PBXBuildFile section */
@@ -47,6 +52,7 @@
 		AB2B1EB71B0B7B5B0038A3E0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB2B1EB91B0B7B890038A3E0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AB2B1EDF1B0B7DF70038A3E0 /* headTerm-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "headTerm-Prefix.pch"; sourceTree = "<group>"; };
+		AB4750FE1B1899470033B878 /* treatItem.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = treatItem.plist; sourceTree = "<group>"; };
 		AB4C85691AE5219800D67565 /* YF002.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YF002.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB4C856D1AE5219800D67565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB4C85771AE5219800D67565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +87,12 @@
 		ABAB51A61B10DF00001663D2 /* MZTimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTimerLabel.m; sourceTree = "<group>"; };
 		ABB43DE81B134783000C83AA /* YFTreatParameterItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFTreatParameterItem.h; sourceTree = "<group>"; };
 		ABB43DE91B134783000C83AA /* YFTreatParameterItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFTreatParameterItem.m; sourceTree = "<group>"; };
+		ABB43DEB1B147EB9000C83AA /* treatItemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = treatItemList.plist; sourceTree = "<group>"; };
+		ABB43DED1B15E7DF000C83AA /* YFPamameterItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFPamameterItemTableViewController.h; sourceTree = "<group>"; };
+		ABB43DEE1B15E7DF000C83AA /* YFPamameterItemTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFPamameterItemTableViewController.m; sourceTree = "<group>"; };
+		ABB43DF41B15EBA8000C83AA /* treatParameterItemsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = treatParameterItemsViewCell.h; sourceTree = "<group>"; };
+		ABB43DF51B15EBA8000C83AA /* treatParameterItemsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = treatParameterItemsViewCell.m; sourceTree = "<group>"; };
+		ABB43DF61B15EBA8000C83AA /* treatParameterItemsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = treatParameterItemsViewCell.xib; sourceTree = "<group>"; };
 		ABE9BE661B117C3000C7D5B8 /* JKSideSlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSideSlipView.h; sourceTree = "<group>"; };
 		ABE9BE671B117C3000C7D5B8 /* JKSideSlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSideSlipView.m; sourceTree = "<group>"; };
 		ABE9BE6D1B117C3000C7D5B8 /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
@@ -111,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				AB4C85791AE5219800D67565 /* Images.xcassets */,
+				ABB43DEB1B147EB9000C83AA /* treatItemList.plist */,
+				AB4750FE1B1899470033B878 /* treatItem.plist */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -302,6 +316,8 @@
 			children = (
 				AB5BB76C1B0CBDFA00CB1FA8 /* YFHomeViewController.h */,
 				AB5BB76D1B0CBDFA00CB1FA8 /* YFHomeViewController.m */,
+				ABB43DED1B15E7DF000C83AA /* YFPamameterItemTableViewController.h */,
+				ABB43DEE1B15E7DF000C83AA /* YFPamameterItemTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -318,6 +334,9 @@
 		AB5BB7731B0CBDFA00CB1FA8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ABB43DF41B15EBA8000C83AA /* treatParameterItemsViewCell.h */,
+				ABB43DF51B15EBA8000C83AA /* treatParameterItemsViewCell.m */,
+				ABB43DF61B15EBA8000C83AA /* treatParameterItemsViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -531,10 +550,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB4750FF1B1899470033B878 /* treatItem.plist in Resources */,
 				ABAB51A71B10DF00001663D2 /* Info.plist in Resources */,
 				ABE9BE721B117C3000C7D5B8 /* MenuView.xib in Resources */,
+				ABB43DEC1B147EB9000C83AA /* treatItemList.plist in Resources */,
 				AB4C85781AE5219800D67565 /* Main.storyboard in Resources */,
 				AB4C857D1AE5219800D67565 /* LaunchScreen.xib in Resources */,
+				ABB43DF81B15EBA8000C83AA /* treatParameterItemsViewCell.xib in Resources */,
 				AB4C857A1AE5219800D67565 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,9 +581,11 @@
 				ABAB51A81B10DF00001663D2 /* MZTimerLabel.m in Sources */,
 				AB5BB7951B0CBDFA00CB1FA8 /* YFHistoryViewController.m in Sources */,
 				AB5BB7981B0CBDFA00CB1FA8 /* YFAppDelegate.m in Sources */,
+				ABB43DF71B15EBA8000C83AA /* treatParameterItemsViewCell.m in Sources */,
 				AB5BB7961B0CBDFA00CB1FA8 /* YFSettingViewController.m in Sources */,
 				AB5BB78A1B0CBDFA00CB1FA8 /* YFNavigationController.m in Sources */,
 				AB5BB7911B0CBDFA00CB1FA8 /* YFHomeViewController.m in Sources */,
+				ABB43DEF1B15E7DF000C83AA /* YFPamameterItemTableViewController.m in Sources */,
 				AB5BB7971B0CBDFA00CB1FA8 /* main.m in Sources */,
 				AB5BB78B1B0CBDFA00CB1FA8 /* YFTabBarViewController.m in Sources */,
 				AB5BB78F1B0CBDFA00CB1FA8 /* YFNewfeatureViewController.m in Sources */,

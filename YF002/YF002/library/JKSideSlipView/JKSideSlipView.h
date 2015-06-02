@@ -25,19 +25,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *treatStrengthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *treatWaveLabel;
 @property (weak, nonatomic) IBOutlet UILabel *treatModelLabel;
+@property (weak, nonatomic) IBOutlet UIView *aView;
 
-- (instancetype)initWithSender:(UIViewController*)sender
-                 withTreatItem:(YFTreatParameterItem *)treatParameterItem
-           withBlueToothStatus:(BOOL)blueToothStatus
-               withPowerStatus:(NSInteger)powerStatus;
+
+- (instancetype)initWithSender:(UIViewController *)sender;
 
 - (void)reloadTreatItem:(YFTreatParameterItem *)treatParameterItem
     withBlueToothStatus:(BOOL)blueToothStatus
         withPowerStatus:(NSInteger)powerStatus;
+-(instancetype)initWithName:(YFTreatParameterItem *)treatParameterItem withBlueToothStatus:(BOOL)blueToothStatus
+            withPowerStatus:(NSInteger)powerStatus;
 
+- (instancetype)initWithSender:(UIViewController*)sender;
 -(void)show;
 -(void)hide;
 -(void)switchMenu;
--(void)setContentView:(UIView*)contentView;
+-(id)initWithCoder:(NSCoder *)aDecoder;
+//-(void)setContentView:(UIView*)contentView;
 
 @end

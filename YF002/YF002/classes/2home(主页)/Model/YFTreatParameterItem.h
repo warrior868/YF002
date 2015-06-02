@@ -10,15 +10,16 @@
 
 @interface YFTreatParameterItem : NSObject
 
-@property (nonatomic, strong) NSString *treatTime;
-@property (nonatomic, strong) NSString *treatStrength;
-@property (nonatomic, strong) NSString *treatWave;
-@property (nonatomic, strong) NSString *treatModel;
-@property (nonatomic, strong) NSString *treatItemName;
+@property (nonatomic, copy) NSString *treatTime;
+@property (nonatomic, copy) NSString *treatStrength;
+@property (nonatomic, copy) NSString *treatWave;
+@property (nonatomic, copy) NSString *treatModel;
+@property (nonatomic, copy) NSString *treatName;
 
-@property (nonatomic, strong) NSMutableDictionary *defaultTreatItem;
+@property (nonatomic, strong) NSDictionary *defaultTreatItem;
 //从treatItem读取的数据
-@property (nonatomic, strong) NSMutableDictionary *datafromTreatItem;
+@property (nonatomic, strong) NSArray *datafromTreatItem;
 //从treatItemList读取的数据
-@property (nonatomic, strong) NSMutableDictionary *datafromTreatItemList;
+@property (nonatomic, strong) NSDictionary *datafromTreatItemList;
+-(instancetype)initWithIndex:(NSInteger) item;
 @end

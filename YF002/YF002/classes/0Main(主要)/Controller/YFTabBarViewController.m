@@ -9,9 +9,9 @@
 #import "YFTabBarViewController.h"
 #import "YFNewfeatureViewController.h"
 #import "YFHomeViewController.h"
-#import "YFRecordViewController.h"
-#import "YFHistoryViewController.h"
-#import "YFSettingViewController.h"
+#import "YFRecordTVC.h"
+#import "YFHistoryVC.h"
+#import "YFSettingTableViewController.h"
 #import "YFNavigationController.h"
 
 

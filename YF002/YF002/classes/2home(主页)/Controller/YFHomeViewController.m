@@ -8,37 +8,21 @@
 
 #import "YFHomeViewController.h"
 #import "YFTreatParameterItem.h"
+#import "YFPamameterItemTableViewController.h"
 
 #import "AKPickerView.h"
 #import "MZTimerLabel.h"
 #import "JKSideSlipView.h"
 
-@interface YFHomeViewController () <AKPickerViewDataSource,AKPickerViewDelegate>{
-    MZTimerLabel *timer;
+
+
+@interface YFHomeViewController () <AKPickerViewDataSource,AKPickerViewDelegate,YFPamameterItemTVCDelegate,MZTimerLabelDelegate>{
+    MZTimerLabel *_timer;
     JKSideSlipView *_sideSlipView;
 }
 
 
 
-
-@property(copy,nonatomic)void (^transTreatItemToTableView)(YFTreatParameterItem *treatParaMeter);
-//其中void为返回值的类型
-//1：需要传值的类中.h文件中进行声明block方法：，记住是copy;
-//
-//2：在该类.m文件中进行判断指针不为空即可
-
-if (self.transTreatItemToTableView) {
-
-self.transTreatItemToTableView(_treatParameterItem);
-
-};
-//3：接受传值的类中接收
-//
-//传值类对象.声明block的名称=^(传值的类型传值的变量名){
-//    
-//    接受传值=传值变量名；
-//    
-//}；
 @property (nonatomic, strong) AKPickerView *treatTimePickerView;
 @property (nonatomic, strong) AKPickerView *treatStrengthPickerView;
 @property (nonatomic, strong) AKPickerView *treatWavePickerView;
@@ -70,31 +54,46 @@ self.transTreatItemToTableView(_treatParameterItem);
     
     [super viewDidLoad];
 //  初始化治疗参数
-    _treatParameterItem = [[YFTreatParameterItem alloc] init];
-    
+    _treatParameterItem = [[YFTreatParameterItem alloc] initWithIndex:2];
+    NSLog(@"%@", _treatParameterItem.datafromTreatItem);
 //   初始化pickerView
 //   第一个pickview X轴xPickerView,y轴yPickerView,y轴增加值xAddPickerView
-     NSInteger xPickerView = 70,yPickerView = 60,yAddPickerView = 57;
+     NSInteger xPickerView = 70,yPickerView = 60,yAddPickerView = 50;
     [self treatTimePickerViewLoad:CGRectMake(xPickerView, yPickerView, 200, 60)];
     [self treatStrengthPickerViewLoad:CGRectMake(xPickerView,(yPickerView+yAddPickerView) , 200, 60)];
     [self treatWavePickerViewLoad:CGRectMake(xPickerView, (yPickerView+2*yAddPickerView), 200, 60)];
     [self treatModelPickerViewLoad:CGRectMake(xPickerView,(yPickerView+3*yAddPickerView), 200, 60)];
-    
-//  设置navigationBar 左侧栏的名称
+    [self pickerView:_treatTimePickerView didSelectItem:2];
+    [_treatTimePickerView selectItem:2 animated:NO];
+    [_treatStrengthPickerView selectItem:2 animated:NO];
+    [_treatWavePickerView selectItem:2 animated:NO];
+    [_treatModelPickerView selectItem:2 animated:NO];
+//  设置navigationBar 左侧栏的名称以及按键调用的方法
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"状态" style:UIBarButtonItemStyleBordered                                                                            target:self                                                                            action:@selector(switchTouched)];
     
-//  设置倒计时 时间 按钮
-    timer = [[MZTimerLabel alloc] initWithLabel:_timerCountDownLabel andTimerType:MZTimerLabelTypeTimer];
-    [timer setCountDownTime:60];
+//  设置MZTimerLabel倒计时  按钮
+    _timer = [[MZTimerLabel alloc] initWithLabel:_timerCountDownLabel andTimerType:MZTimerLabelTypeTimer];
+    [_timer setCountDownTime:60];
     [_resetBtn setEnabled:NO];
+    _timer.resetTimerAfterFinish = YES;
+    _timer.delegate = self;
 
 //  设置sideView
-    _sideSlipView = [[JKSideSlipView alloc]initWithSender:self withTreatItem:_treatParameterItem withBlueToothStatus:NO withPowerStatus:50];
-   
+    _sideSlipView = [[JKSideSlipView alloc] initWithSender:self];
+    _sideSlipView.treatTimeLabel.text =_treatParameterItem.treatTime;
     [self.view addSubview:_sideSlipView];
-    
+  
+ 
+//// 设置代理与ViewController
+
+//    YFPamameterItemTableViewController *parameterItemTVC = [[YFPamameterItemTableViewController alloc] init];
+//    parameterItemTVC.delegate = self;
+
     
    
+    // you could also define multiple intervals
+    //self.sfProgressCounterView.intervals = @[interval, interval, interval];
+    
 }
 
 
@@ -105,14 +104,23 @@ self.transTreatItemToTableView(_treatParameterItem);
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - YFPamameterItemTableViewController Delegate
 
+- (void)sendSelectedItemToHomeVC:(NSInteger)item{
+    // 选中的列表第几个值后，重新赋值给_YFTreatItem;
+}
 
-
+- (NSArray *)getArrayHomeVC{
+    
+  //  self.delegate.tableViewArray = self.treatParameterItem.datafromTreatItem;
+    return _treatParameterItem.datafromTreatItem;
+}
+#pragma mark - 跳转链接segue
 -(IBAction)unwind:(UIStoryboardSegue *) segue{
     
 }
 
-#pragma mark - AKPickerViewDataSource
+#pragma mark - AKPickerView DataSource
 
 - (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView
 {
@@ -168,7 +176,6 @@ self.transTreatItemToTableView(_treatParameterItem);
      _treatModelPickerViewArray = [_treatParameterItem.datafromTreatItemList objectForKey:@"treatModel"];
     [_treatModelPickerView reloadData];
 }
-
 - (void)pickerViewParameterLoad:(AKPickerView *)pickerView{
     pickerView.delegate = self;
     pickerView.dataSource = self;
@@ -242,7 +249,7 @@ self.transTreatItemToTableView(_treatParameterItem);
             //字符串转化成整数
             NSInteger  setTime = [treatTimeSelect integerValue];
             //设置计时时间
-            [timer setCountDownTime:setTime*60];
+            [_timer setCountDownTime:setTime*2];
             //设置模型中treatTime的值，以便保存；
             _treatParameterItem.treatTime = treatTimeSelect;
             NSLog(@"Time_%@", _treatParameterItem.treatTime);
@@ -281,8 +288,8 @@ self.transTreatItemToTableView(_treatParameterItem);
 #pragma mark - MZTimerlabel 开始 暂停 重置按钮的方法
 - (IBAction)startOrResumeCountDown:(id)sender {
     
-    if([timer counting]){
-        [timer pause];
+    if([_timer counting]){
+        [_timer pause];
         
         [_startPauseBtn setTitle:@"继续" forState:UIControlStateNormal];
         
@@ -291,25 +298,38 @@ self.transTreatItemToTableView(_treatParameterItem);
         
     }else{
         
-        [timer start];
+        [_timer start];
         [_startPauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
         [_saveTreatPamameterItem setEnabled:NO];
     }
     
 }
 
+
 - (IBAction)resetCountDown:(id)sender {
-    [timer reset];
+    [_timer reset];
     
-    if(![timer counting]){
+    if(![_timer counting]){
         [_startPauseBtn setTitle:@"开始" forState:UIControlStateNormal];
     }
      [_resetBtn setEnabled:NO];
 }
 
+
+- (void)timerLabel:(MZTimerLabel*)timerLabel finshedCountDownTimerWithTime:(NSTimeInterval)countTime{
+    //设置结束后，按钮设置成开始；
+    [_startPauseBtn setTitle:@"开始" forState:UIControlStateNormal];
+    //提示用户结束治疗
+    NSString *msg = @"您已经完成治疗";
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil];
+    [alertView show];
+}
+
+
 #pragma mark - sideView 按钮方法
 - (void)switchTouched{
     [_sideSlipView switchMenu];
+    [_sideSlipView reloadTreatItem:_treatParameterItem withBlueToothStatus:YES withPowerStatus:50]  ;
     
 }
 
@@ -358,13 +378,12 @@ self.transTreatItemToTableView(_treatParameterItem);
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+ YFPamameterItemTableViewController *yfAddToDo = [segue destinationViewController];
+ yfAddToDo.delegate = self;
+ }
 @end

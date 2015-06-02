@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YFTreatParameterItem.h"
+#import "treatParameterItemsViewCell.h"
+@protocol YFPamameterItemTVCDelegate <NSObject>
+
+- (void)sendSelectedItemToHomeVC:(NSInteger) item;
+- (NSArray *)getArrayHomeVC;
+
+@end
+
 
 @interface YFPamameterItemTableViewController : UITableViewController
+
+@property (nonatomic,weak) id <YFPamameterItemTVCDelegate> delegate;
+@property (strong,nonatomic) YFTreatParameterItem      *treatParameterItemTV;
+@property (strong,nonatomic) NSArray                   *tableViewArray;
 
 @end

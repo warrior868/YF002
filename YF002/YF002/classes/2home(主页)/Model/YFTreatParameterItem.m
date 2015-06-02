@@ -12,50 +12,55 @@
 @implementation YFTreatParameterItem
 
 //一个初始化方法
--(instancetype)init{
-    if(self = [super init]){
 
+
+-(instancetype)initWithIndex:(NSInteger) item{
+    if(self = [super init]){
+        
         [self readFromTreatItemList];
-        [self readFromTreatItemOrSelectItem:0];
-         _treatTime = [_defaultTreatItem objectForKey:@"treatTime"];
-         _treatStrength = [_defaultTreatItem objectForKey:@"treatStrength"];
-         _treatWave = [_defaultTreatItem objectForKey:@"treatWave"];
-         _treatModel = [_defaultTreatItem objectForKey:@"treatModel"];
+        [self readFromTreatItem];
+        NSDictionary *dic = [_datafromTreatItem objectAtIndex:item];
+        _treatTime = [dic objectForKey:@"treatTime"];
+        _treatStrength = [dic objectForKey:@"treatStrength"];
+        _treatWave = [dic objectForKey:@"treatWave"];
+        _treatModel = [dic objectForKey:@"treatModel"];
+        _treatName = [dic objectForKey:@"treatName"];
     }
     return self;
 }
+
 
 /**  read from treatTtem.plist
 *
 *  @return property  _datafromTreatItem  about treatTtem
 */
--(NSMutableDictionary *)readFromTreatItemOrSelectItem:(NSInteger)item{
+-(void)readFromTreatItem{
     //读取plist,生成第一级别的dictionary
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"treatItem" ofType:@"plist"];
-    _datafromTreatItem = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    NSString *plistPath1 = [[NSBundle mainBundle] pathForResource:@"treatItem" ofType:@"plist"];
+   _datafromTreatItem = [[NSArray alloc] initWithContentsOfFile:plistPath1];
+    
     
     //取出第一级别的dictionary中的第item个treatItem 生成新的_defaultTreatItem
-    _defaultTreatItem =[_datafromTreatItem objectForKey:@"上次使用参数"] ;
+   // _defaultTreatItem =[_datafromTreatItem objectForKey:@"上次使用参数"] ;
     
     
     
     //   [mySettingData synchronize];
     
-    return  _datafromTreatItem;
-}
+    }
 
 /**
  *  read from treatTtemList.plist
  *
  *  @return property  _datafromTreatItemList  about treatTtem
  */
--(NSMutableDictionary *)readFromTreatItemList{
+-(void)readFromTreatItemList{
  //读取plist
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"treatItemList" ofType:@"plist"];
-    _datafromTreatItemList = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    NSString *plistPath2 = [[NSBundle mainBundle] pathForResource:@"treatItemList" ofType:@"plist"];
+    _datafromTreatItemList = [[NSDictionary alloc] initWithContentsOfFile:plistPath2];
     
  //   [mySettingData synchronize];
     
-    return  _datafromTreatItemList;
+    
 }
 @end

@@ -10,6 +10,9 @@
 		AB2B1EB51B0B7A500038A3E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2B1EB41B0B7A500038A3E0 /* UIKit.framework */; };
 		AB2B1EB81B0B7B5B0038A3E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2B1EB71B0B7B5B0038A3E0 /* Foundation.framework */; };
 		AB2B1EBA1B0B7B890038A3E0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2B1EB91B0B7B890038A3E0 /* CoreGraphics.framework */; };
+		AB454D351B1BD1DF00FC10CD /* YFRecordTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AB454D341B1BD1DF00FC10CD /* YFRecordTVC.m */; };
+		AB454D391B1BD1F100FC10CD /* YFHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AB454D381B1BD1F100FC10CD /* YFHistoryVC.m */; };
+		AB454D3D1B1BD20100FC10CD /* YFSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB454D3C1B1BD20100FC10CD /* YFSettingTableViewController.m */; };
 		AB4750FF1B1899470033B878 /* treatItem.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB4750FE1B1899470033B878 /* treatItem.plist */; };
 		AB4C85781AE5219800D67565 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB4C85761AE5219800D67565 /* Main.storyboard */; };
 		AB4C857A1AE5219800D67565 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB4C85791AE5219800D67565 /* Images.xcassets */; };
@@ -21,9 +24,6 @@
 		AB5BB78F1B0CBDFA00CB1FA8 /* YFNewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB7651B0CBDFA00CB1FA8 /* YFNewfeatureViewController.m */; };
 		AB5BB7901B0CBDFA00CB1FA8 /* YFPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB7691B0CBDFA00CB1FA8 /* YFPageControl.m */; };
 		AB5BB7911B0CBDFA00CB1FA8 /* YFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB76D1B0CBDFA00CB1FA8 /* YFHomeViewController.m */; };
-		AB5BB7941B0CBDFA00CB1FA8 /* YFRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB7771B0CBDFA00CB1FA8 /* YFRecordViewController.m */; };
-		AB5BB7951B0CBDFA00CB1FA8 /* YFHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB77D1B0CBDFA00CB1FA8 /* YFHistoryViewController.m */; };
-		AB5BB7961B0CBDFA00CB1FA8 /* YFSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB7831B0CBDFA00CB1FA8 /* YFSettingViewController.m */; };
 		AB5BB7971B0CBDFA00CB1FA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB7871B0CBDFA00CB1FA8 /* main.m */; };
 		AB5BB7981B0CBDFA00CB1FA8 /* YFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB7891B0CBDFA00CB1FA8 /* YFAppDelegate.m */; };
 		ABAB51A71B10DF00001663D2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABAB51A41B10DF00001663D2 /* Info.plist */; };
@@ -33,8 +33,19 @@
 		ABB43DEF1B15E7DF000C83AA /* YFPamameterItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB43DEE1B15E7DF000C83AA /* YFPamameterItemTableViewController.m */; };
 		ABB43DF71B15EBA8000C83AA /* treatParameterItemsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB43DF51B15EBA8000C83AA /* treatParameterItemsViewCell.m */; };
 		ABB43DF81B15EBA8000C83AA /* treatParameterItemsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB43DF61B15EBA8000C83AA /* treatParameterItemsViewCell.xib */; };
+		ABD3FE3B1B1ABBCD00190AE5 /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD3FE301B1ABBCD00190AE5 /* UUBar.m */; };
+		ABD3FE3C1B1ABBCD00190AE5 /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD3FE321B1ABBCD00190AE5 /* UUBarChart.m */; };
+		ABD3FE3D1B1ABBCD00190AE5 /* UUChart.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD3FE341B1ABBCD00190AE5 /* UUChart.m */; };
+		ABD3FE3E1B1ABBCD00190AE5 /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD3FE361B1ABBCD00190AE5 /* UUChartLabel.m */; };
+		ABD3FE3F1B1ABBCD00190AE5 /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD3FE381B1ABBCD00190AE5 /* UUColor.m */; };
+		ABD3FE401B1ABBCD00190AE5 /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD3FE3A1B1ABBCD00190AE5 /* UULineChart.m */; };
+		ABD3FE441B1ABBF200190AE5 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD3FE421B1ABBF200190AE5 /* TableViewCell.m */; };
+		ABD3FE451B1ABBF200190AE5 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD3FE431B1ABBF200190AE5 /* TableViewCell.xib */; };
+		ABD3FE4C1B1B19F100190AE5 /* treatHistory.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABD3FE4B1B1B19F100190AE5 /* treatHistory.plist */; };
+		ABD3FE531B1B1D1900190AE5 /* treatRecordTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD3FE511B1B1D1900190AE5 /* treatRecordTVCell.m */; };
+		ABD3FE541B1B1D1900190AE5 /* treatRecordTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD3FE521B1B1D1900190AE5 /* treatRecordTVCell.xib */; };
+		ABD3FE5B1B1B4D7900190AE5 /* JKSideSlipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD3FE5A1B1B4D7900190AE5 /* JKSideSlipView.xib */; };
 		ABE9BE6E1B117C3000C7D5B8 /* JKSideSlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE9BE671B117C3000C7D5B8 /* JKSideSlipView.m */; };
-		ABE9BE721B117C3000C7D5B8 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE9BE6D1B117C3000C7D5B8 /* MenuView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +63,12 @@
 		AB2B1EB71B0B7B5B0038A3E0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB2B1EB91B0B7B890038A3E0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AB2B1EDF1B0B7DF70038A3E0 /* headTerm-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "headTerm-Prefix.pch"; sourceTree = "<group>"; };
+		AB454D331B1BD1DF00FC10CD /* YFRecordTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFRecordTVC.h; sourceTree = "<group>"; };
+		AB454D341B1BD1DF00FC10CD /* YFRecordTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFRecordTVC.m; sourceTree = "<group>"; };
+		AB454D371B1BD1F100FC10CD /* YFHistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFHistoryVC.h; sourceTree = "<group>"; };
+		AB454D381B1BD1F100FC10CD /* YFHistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFHistoryVC.m; sourceTree = "<group>"; };
+		AB454D3B1B1BD20100FC10CD /* YFSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFSettingTableViewController.h; sourceTree = "<group>"; };
+		AB454D3C1B1BD20100FC10CD /* YFSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFSettingTableViewController.m; sourceTree = "<group>"; };
 		AB4750FE1B1899470033B878 /* treatItem.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = treatItem.plist; sourceTree = "<group>"; };
 		AB4C85691AE5219800D67565 /* YF002.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YF002.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB4C856D1AE5219800D67565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,12 +90,6 @@
 		AB5BB7691B0CBDFA00CB1FA8 /* YFPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFPageControl.m; sourceTree = "<group>"; };
 		AB5BB76C1B0CBDFA00CB1FA8 /* YFHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFHomeViewController.h; sourceTree = "<group>"; };
 		AB5BB76D1B0CBDFA00CB1FA8 /* YFHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFHomeViewController.m; sourceTree = "<group>"; };
-		AB5BB7761B0CBDFA00CB1FA8 /* YFRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFRecordViewController.h; sourceTree = "<group>"; };
-		AB5BB7771B0CBDFA00CB1FA8 /* YFRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFRecordViewController.m; sourceTree = "<group>"; };
-		AB5BB77C1B0CBDFA00CB1FA8 /* YFHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFHistoryViewController.h; sourceTree = "<group>"; };
-		AB5BB77D1B0CBDFA00CB1FA8 /* YFHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFHistoryViewController.m; sourceTree = "<group>"; };
-		AB5BB7821B0CBDFA00CB1FA8 /* YFSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFSettingViewController.h; sourceTree = "<group>"; };
-		AB5BB7831B0CBDFA00CB1FA8 /* YFSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFSettingViewController.m; sourceTree = "<group>"; };
 		AB5BB7871B0CBDFA00CB1FA8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB5BB7881B0CBDFA00CB1FA8 /* YFAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFAppDelegate.h; sourceTree = "<group>"; };
 		AB5BB7891B0CBDFA00CB1FA8 /* YFAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFAppDelegate.m; sourceTree = "<group>"; };
@@ -93,9 +104,28 @@
 		ABB43DF41B15EBA8000C83AA /* treatParameterItemsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = treatParameterItemsViewCell.h; sourceTree = "<group>"; };
 		ABB43DF51B15EBA8000C83AA /* treatParameterItemsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = treatParameterItemsViewCell.m; sourceTree = "<group>"; };
 		ABB43DF61B15EBA8000C83AA /* treatParameterItemsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = treatParameterItemsViewCell.xib; sourceTree = "<group>"; };
+		ABD3FE2F1B1ABBCD00190AE5 /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
+		ABD3FE301B1ABBCD00190AE5 /* UUBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBar.m; sourceTree = "<group>"; };
+		ABD3FE311B1ABBCD00190AE5 /* UUBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBarChart.h; sourceTree = "<group>"; };
+		ABD3FE321B1ABBCD00190AE5 /* UUBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBarChart.m; sourceTree = "<group>"; };
+		ABD3FE331B1ABBCD00190AE5 /* UUChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChart.h; sourceTree = "<group>"; };
+		ABD3FE341B1ABBCD00190AE5 /* UUChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChart.m; sourceTree = "<group>"; };
+		ABD3FE351B1ABBCD00190AE5 /* UUChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChartLabel.h; sourceTree = "<group>"; };
+		ABD3FE361B1ABBCD00190AE5 /* UUChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChartLabel.m; sourceTree = "<group>"; };
+		ABD3FE371B1ABBCD00190AE5 /* UUColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUColor.h; sourceTree = "<group>"; };
+		ABD3FE381B1ABBCD00190AE5 /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
+		ABD3FE391B1ABBCD00190AE5 /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
+		ABD3FE3A1B1ABBCD00190AE5 /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
+		ABD3FE411B1ABBF200190AE5 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		ABD3FE421B1ABBF200190AE5 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		ABD3FE431B1ABBF200190AE5 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		ABD3FE4B1B1B19F100190AE5 /* treatHistory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = treatHistory.plist; sourceTree = "<group>"; };
+		ABD3FE501B1B1D1900190AE5 /* treatRecordTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = treatRecordTVCell.h; sourceTree = "<group>"; };
+		ABD3FE511B1B1D1900190AE5 /* treatRecordTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = treatRecordTVCell.m; sourceTree = "<group>"; };
+		ABD3FE521B1B1D1900190AE5 /* treatRecordTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = treatRecordTVCell.xib; sourceTree = "<group>"; };
+		ABD3FE5A1B1B4D7900190AE5 /* JKSideSlipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JKSideSlipView.xib; sourceTree = "<group>"; };
 		ABE9BE661B117C3000C7D5B8 /* JKSideSlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSideSlipView.h; sourceTree = "<group>"; };
 		ABE9BE671B117C3000C7D5B8 /* JKSideSlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSideSlipView.m; sourceTree = "<group>"; };
-		ABE9BE6D1B117C3000C7D5B8 /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +155,7 @@
 				AB4C85791AE5219800D67565 /* Images.xcassets */,
 				ABB43DEB1B147EB9000C83AA /* treatItemList.plist */,
 				AB4750FE1B1899470033B878 /* treatItem.plist */,
+				ABD3FE4B1B1B19F100190AE5 /* treatHistory.plist */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -138,6 +169,33 @@
 			);
 			name = Frameworks;
 			path = YF002;
+			sourceTree = "<group>";
+		};
+		AB454D321B1BD1DF00FC10CD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AB454D331B1BD1DF00FC10CD /* YFRecordTVC.h */,
+				AB454D341B1BD1DF00FC10CD /* YFRecordTVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AB454D361B1BD1F100FC10CD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AB454D371B1BD1F100FC10CD /* YFHistoryVC.h */,
+				AB454D381B1BD1F100FC10CD /* YFHistoryVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AB454D3A1B1BD20100FC10CD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AB454D3B1B1BD20100FC10CD /* YFSettingTableViewController.h */,
+				AB454D3C1B1BD20100FC10CD /* YFSettingTableViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		AB4C85601AE5219800D67565 = {
@@ -201,7 +259,7 @@
 		AB5BB74B1B0CB6C500CB1FA8 /* library */ = {
 			isa = PBXGroup;
 			children = (
-				ABE9BE651B117C3000C7D5B8 /* JKSideSlipView */,
+				ABD3FE2E1B1ABBCD00190AE5 /* UUChart */,
 				ABAB51A31B10DF00001663D2 /* MZTimerLabel */,
 				AB5BB74C1B0CB6C500CB1FA8 /* AKPickerView */,
 			);
@@ -334,6 +392,7 @@
 		AB5BB7731B0CBDFA00CB1FA8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ABE9BE651B117C3000C7D5B8 /* JKSideSlipView */,
 				ABB43DF41B15EBA8000C83AA /* treatParameterItemsViewCell.h */,
 				ABB43DF51B15EBA8000C83AA /* treatParameterItemsViewCell.m */,
 				ABB43DF61B15EBA8000C83AA /* treatParameterItemsViewCell.xib */,
@@ -344,20 +403,11 @@
 		AB5BB7741B0CBDFA00CB1FA8 /* 3record(记录) */ = {
 			isa = PBXGroup;
 			children = (
-				AB5BB7751B0CBDFA00CB1FA8 /* Controller */,
+				AB454D321B1BD1DF00FC10CD /* Controller */,
 				AB5BB7781B0CBDFA00CB1FA8 /* Model */,
 				AB5BB7791B0CBDFA00CB1FA8 /* View */,
 			);
 			path = "3record(记录)";
-			sourceTree = "<group>";
-		};
-		AB5BB7751B0CBDFA00CB1FA8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				AB5BB7761B0CBDFA00CB1FA8 /* YFRecordViewController.h */,
-				AB5BB7771B0CBDFA00CB1FA8 /* YFRecordViewController.m */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		AB5BB7781B0CBDFA00CB1FA8 /* Model */ = {
@@ -370,6 +420,9 @@
 		AB5BB7791B0CBDFA00CB1FA8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ABD3FE501B1B1D1900190AE5 /* treatRecordTVCell.h */,
+				ABD3FE511B1B1D1900190AE5 /* treatRecordTVCell.m */,
+				ABD3FE521B1B1D1900190AE5 /* treatRecordTVCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -377,20 +430,11 @@
 		AB5BB77A1B0CBDFA00CB1FA8 /* 4history(历史) */ = {
 			isa = PBXGroup;
 			children = (
-				AB5BB77B1B0CBDFA00CB1FA8 /* Controller */,
+				AB454D361B1BD1F100FC10CD /* Controller */,
 				AB5BB77E1B0CBDFA00CB1FA8 /* Model */,
 				AB5BB77F1B0CBDFA00CB1FA8 /* View */,
 			);
 			path = "4history(历史)";
-			sourceTree = "<group>";
-		};
-		AB5BB77B1B0CBDFA00CB1FA8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				AB5BB77C1B0CBDFA00CB1FA8 /* YFHistoryViewController.h */,
-				AB5BB77D1B0CBDFA00CB1FA8 /* YFHistoryViewController.m */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		AB5BB77E1B0CBDFA00CB1FA8 /* Model */ = {
@@ -403,6 +447,9 @@
 		AB5BB77F1B0CBDFA00CB1FA8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ABD3FE411B1ABBF200190AE5 /* TableViewCell.h */,
+				ABD3FE421B1ABBF200190AE5 /* TableViewCell.m */,
+				ABD3FE431B1ABBF200190AE5 /* TableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -410,20 +457,11 @@
 		AB5BB7801B0CBDFA00CB1FA8 /* 5setting(设置) */ = {
 			isa = PBXGroup;
 			children = (
-				AB5BB7811B0CBDFA00CB1FA8 /* Controller */,
+				AB454D3A1B1BD20100FC10CD /* Controller */,
 				AB5BB7841B0CBDFA00CB1FA8 /* Model */,
 				AB5BB7851B0CBDFA00CB1FA8 /* View */,
 			);
 			path = "5setting(设置)";
-			sourceTree = "<group>";
-		};
-		AB5BB7811B0CBDFA00CB1FA8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				AB5BB7821B0CBDFA00CB1FA8 /* YFSettingViewController.h */,
-				AB5BB7831B0CBDFA00CB1FA8 /* YFSettingViewController.m */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		AB5BB7841B0CBDFA00CB1FA8 /* Model */ = {
@@ -460,14 +498,34 @@
 			path = MZTimerLabel;
 			sourceTree = "<group>";
 		};
+		ABD3FE2E1B1ABBCD00190AE5 /* UUChart */ = {
+			isa = PBXGroup;
+			children = (
+				ABD3FE2F1B1ABBCD00190AE5 /* UUBar.h */,
+				ABD3FE301B1ABBCD00190AE5 /* UUBar.m */,
+				ABD3FE311B1ABBCD00190AE5 /* UUBarChart.h */,
+				ABD3FE321B1ABBCD00190AE5 /* UUBarChart.m */,
+				ABD3FE331B1ABBCD00190AE5 /* UUChart.h */,
+				ABD3FE341B1ABBCD00190AE5 /* UUChart.m */,
+				ABD3FE351B1ABBCD00190AE5 /* UUChartLabel.h */,
+				ABD3FE361B1ABBCD00190AE5 /* UUChartLabel.m */,
+				ABD3FE371B1ABBCD00190AE5 /* UUColor.h */,
+				ABD3FE381B1ABBCD00190AE5 /* UUColor.m */,
+				ABD3FE391B1ABBCD00190AE5 /* UULineChart.h */,
+				ABD3FE3A1B1ABBCD00190AE5 /* UULineChart.m */,
+			);
+			path = UUChart;
+			sourceTree = "<group>";
+		};
 		ABE9BE651B117C3000C7D5B8 /* JKSideSlipView */ = {
 			isa = PBXGroup;
 			children = (
 				ABE9BE661B117C3000C7D5B8 /* JKSideSlipView.h */,
 				ABE9BE671B117C3000C7D5B8 /* JKSideSlipView.m */,
-				ABE9BE6D1B117C3000C7D5B8 /* MenuView.xib */,
+				ABD3FE5A1B1B4D7900190AE5 /* JKSideSlipView.xib */,
 			);
-			path = JKSideSlipView;
+			name = JKSideSlipView;
+			path = ../../../library/JKSideSlipView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -552,10 +610,13 @@
 			files = (
 				AB4750FF1B1899470033B878 /* treatItem.plist in Resources */,
 				ABAB51A71B10DF00001663D2 /* Info.plist in Resources */,
-				ABE9BE721B117C3000C7D5B8 /* MenuView.xib in Resources */,
 				ABB43DEC1B147EB9000C83AA /* treatItemList.plist in Resources */,
+				ABD3FE5B1B1B4D7900190AE5 /* JKSideSlipView.xib in Resources */,
+				ABD3FE4C1B1B19F100190AE5 /* treatHistory.plist in Resources */,
+				ABD3FE451B1ABBF200190AE5 /* TableViewCell.xib in Resources */,
 				AB4C85781AE5219800D67565 /* Main.storyboard in Resources */,
 				AB4C857D1AE5219800D67565 /* LaunchScreen.xib in Resources */,
+				ABD3FE541B1B1D1900190AE5 /* treatRecordTVCell.xib in Resources */,
 				ABB43DF81B15EBA8000C83AA /* treatParameterItemsViewCell.xib in Resources */,
 				AB4C857A1AE5219800D67565 /* Images.xcassets in Resources */,
 			);
@@ -576,19 +637,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABB43DEA1B134783000C83AA /* YFTreatParameterItem.m in Sources */,
-				AB5BB7941B0CBDFA00CB1FA8 /* YFRecordViewController.m in Sources */,
+				ABD3FE3E1B1ABBCD00190AE5 /* UUChartLabel.m in Sources */,
+				ABD3FE441B1ABBF200190AE5 /* TableViewCell.m in Sources */,
 				ABE9BE6E1B117C3000C7D5B8 /* JKSideSlipView.m in Sources */,
 				ABAB51A81B10DF00001663D2 /* MZTimerLabel.m in Sources */,
-				AB5BB7951B0CBDFA00CB1FA8 /* YFHistoryViewController.m in Sources */,
+				ABD3FE3B1B1ABBCD00190AE5 /* UUBar.m in Sources */,
+				ABD3FE3D1B1ABBCD00190AE5 /* UUChart.m in Sources */,
 				AB5BB7981B0CBDFA00CB1FA8 /* YFAppDelegate.m in Sources */,
 				ABB43DF71B15EBA8000C83AA /* treatParameterItemsViewCell.m in Sources */,
-				AB5BB7961B0CBDFA00CB1FA8 /* YFSettingViewController.m in Sources */,
+				ABD3FE3C1B1ABBCD00190AE5 /* UUBarChart.m in Sources */,
+				AB454D391B1BD1F100FC10CD /* YFHistoryVC.m in Sources */,
+				ABD3FE3F1B1ABBCD00190AE5 /* UUColor.m in Sources */,
 				AB5BB78A1B0CBDFA00CB1FA8 /* YFNavigationController.m in Sources */,
 				AB5BB7911B0CBDFA00CB1FA8 /* YFHomeViewController.m in Sources */,
 				ABB43DEF1B15E7DF000C83AA /* YFPamameterItemTableViewController.m in Sources */,
+				ABD3FE531B1B1D1900190AE5 /* treatRecordTVCell.m in Sources */,
 				AB5BB7971B0CBDFA00CB1FA8 /* main.m in Sources */,
 				AB5BB78B1B0CBDFA00CB1FA8 /* YFTabBarViewController.m in Sources */,
+				AB454D3D1B1BD20100FC10CD /* YFSettingTableViewController.m in Sources */,
 				AB5BB78F1B0CBDFA00CB1FA8 /* YFNewfeatureViewController.m in Sources */,
+				AB454D351B1BD1DF00FC10CD /* YFRecordTVC.m in Sources */,
+				ABD3FE401B1ABBCD00190AE5 /* UULineChart.m in Sources */,
 				AB5BB74F1B0CB6C500CB1FA8 /* AKPickerView.m in Sources */,
 				AB5BB7901B0CBDFA00CB1FA8 /* YFPageControl.m in Sources */,
 			);

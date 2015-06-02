@@ -11,8 +11,8 @@
 @interface treatParameterItemsViewCell: UITableViewCell
 
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView withTreatItem:(YFTreatParameterItem *)treatParameterItem;
++ (instancetype)cellWithTableView:(UITableView *)tableView withTreatItem:(NSDictionary *)treatParameterItem;
 
-@property (nonatomic, strong) YFTreatParameterItem *TreatParameterItem;
+@property (nonatomic, strong) YFTreatParameterItem *treatParameterItem;
 
 @end

@@ -1,67 +1,40 @@
 //
-//  YFPamameterItemTableViewController.m
+//  YFRecordTVC.m
 //  YF002
 //
-//  Created by Mushroom on 5/27/15.
+//  Created by Mushroom on 5/31/15.
 //  Copyright (c) 2015 Mushroom. All rights reserved.
 //
 
-#import "YFPamameterItemTableViewController.h"
+#import "YFRecordTVC.h"
 
-
-@interface YFPamameterItemTableViewController ()
-<UITableViewDataSource,UITabBarDelegate>
-
-
-
+@interface YFRecordTVC ()
 
 @end
 
-@implementation YFPamameterItemTableViewController
+@implementation YFRecordTVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self delegateMethodGetArrayFromHomeCV];
+    
+    
+    //读取plist,生成第一级别的dictionary
+    NSString *plistPath1 = [[NSBundle mainBundle] pathForResource:@"treatHistory" ofType:@"plist"];
+    _recordArray = [[NSArray alloc] initWithContentsOfFile:plistPath1];
 
-    NSLog(@"tre %@",_tableViewArray);
-   
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-//从代理那边拿到tableView 显示的数组
-- (void)delegateMethodGetArrayFromHomeCV {
-    
-     _tableViewArray =    [self.delegate getArrayHomeVC];  
-    
-}
-
-
 
 #pragma mark - Table view data source
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSIndexPath *path =  [tableView indexPathForSelectedRow];
-    NSLog(@"%@",path );
-    UITableViewCell *cell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    if(cell.tag == 0){
-        //注销cell单击事件
-        cell.selected = NO;
-    }else {
-        //取消选中项
-        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
-        
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-
-{       //设置cell的高度
-        return 100.0;
-    }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Potentially incomplete method implementation.
@@ -72,35 +45,37 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [_tableViewArray count];
+    return [_recordArray count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+
+{       //设置cell的高度
+    return 100.0;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //创建cell
-     NSDictionary *dicInCell = _tableViewArray[indexPath.row];
-    treatParameterItemsViewCell *cell = [treatParameterItemsViewCell cellWithTableView:tableView withTreatItem:dicInCell];
+    NSDictionary *dicInCell = _recordArray[indexPath.row];
+    treatRecordTVCell *cell = [treatRecordTVCell cellWithTableView:tableView withTreatItem:dicInCell];
     // 隔行显示颜色
     if ((indexPath.row % 2) == 1) {
         cell.backgroundColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:245.0/255 alpha:1];
     }
-    cell.selectedBackgroundView.backgroundColor = [UIColor redColor ];
-
-    // 2.给cell传递模型数据
-    
-    //cell= self.tableViewArray[indexPath.row];
-    
+   // cell.selectedBackgroundView.backgroundColor = [UIColor redColor ];
     return cell;
 }
 
 
-
+/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
+*/
 
+/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -110,7 +85,7 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-
+*/
 
 /*
 // Override to support rearranging the table view.
@@ -126,13 +101,14 @@
 }
 */
 
-
+/*
 #pragma mark - Navigation
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-
+*/
 
 @end

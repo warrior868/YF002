@@ -227,7 +227,6 @@
     {
         return 2;
     }
-    
     else if([pickerView isEqual:_treatStrengthPickerView])
     {   return 2;
     }

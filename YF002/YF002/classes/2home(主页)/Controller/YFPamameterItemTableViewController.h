@@ -21,6 +21,6 @@
 
 @property (nonatomic,weak) id <YFPamameterItemTVCDelegate> delegate;
 @property (strong,nonatomic) YFTreatParameterItem      *treatParameterItemTV;
-@property (strong,nonatomic) NSArray                   *tableViewArray;
+@property (strong,nonatomic) NSMutableArray                   *tableViewArray;
 
 @end

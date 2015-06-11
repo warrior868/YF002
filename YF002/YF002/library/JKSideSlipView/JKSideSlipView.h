@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YFTreatParameterItem.h"
 
 @interface JKSideSlipView : UIView
 {
@@ -18,29 +17,10 @@
     UIViewController *_sender;
     UIView *_contentView;
 }
-
-@property (weak, nonatomic) IBOutlet UILabel *isBlueToothConnect;
-@property (weak, nonatomic) IBOutlet UILabel *powerRemain;
-@property (weak, nonatomic) IBOutlet UILabel *treatTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *treatStrengthLabel;
-@property (weak, nonatomic) IBOutlet UILabel *treatWaveLabel;
-@property (weak, nonatomic) IBOutlet UILabel *treatModelLabel;
-@property (weak, nonatomic) IBOutlet UIView *aView;
-
-
-- (instancetype)initWithSender:(UIViewController *)sender;
-
-- (void)reloadTreatItem:(YFTreatParameterItem *)treatParameterItem
-    withBlueToothStatus:(BOOL)blueToothStatus
-        withPowerStatus:(NSInteger)powerStatus;
--(instancetype)initWithName:(YFTreatParameterItem *)treatParameterItem withBlueToothStatus:(BOOL)blueToothStatus
-            withPowerStatus:(NSInteger)powerStatus;
-
 - (instancetype)initWithSender:(UIViewController*)sender;
 -(void)show;
 -(void)hide;
 -(void)switchMenu;
--(id)initWithCoder:(NSCoder *)aDecoder;
-//-(void)setContentView:(UIView*)contentView;
+-(void)setContentView:(UIView*)contentView;
 
 @end

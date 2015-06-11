@@ -17,9 +17,11 @@
 @property (nonatomic, copy) NSString *treatName;
 
 @property (nonatomic, strong) NSDictionary *defaultTreatItem;
-//从treatItem读取的数据
-@property (nonatomic, strong) NSArray *datafromTreatItem;
+//从treatItem.plist中读取的治疗参数库
+@property (nonatomic, strong) NSMutableArray *datafromTreatItem;
 //从treatItemList读取的数据
 @property (nonatomic, strong) NSDictionary *datafromTreatItemList;
+//从treatHistory读取的数据
+@property (nonatomic, strong) NSMutableArray *datafromTreatHistory;
 -(instancetype)initWithIndex:(NSInteger) item;
 @end

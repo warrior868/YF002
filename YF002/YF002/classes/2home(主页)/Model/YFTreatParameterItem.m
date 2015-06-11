@@ -19,6 +19,7 @@
         
         [self readFromTreatItemList];
         [self readFromTreatItem];
+        [self readFromTreatHistory];
         NSDictionary *dic = [_datafromTreatItem objectAtIndex:item];
         _treatTime = [dic objectForKey:@"treatTime"];
         _treatStrength = [dic objectForKey:@"treatStrength"];
@@ -36,8 +37,13 @@
 */
 -(void)readFromTreatItem{
     //读取plist,生成第一级别的dictionary
-    NSString *plistPath1 = [[NSBundle mainBundle] pathForResource:@"treatItem" ofType:@"plist"];
-   _datafromTreatItem = [[NSArray alloc] initWithContentsOfFile:plistPath1];
+    NSString *plistPath;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+   plistPath = [rootPath stringByAppendingPathComponent:@"treatItem.plist"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+    plistPath = [[NSBundle mainBundle] pathForResource:@"treatItem" ofType:@"plist"];
+    }
+   _datafromTreatItem = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
     
     
     //取出第一级别的dictionary中的第item个treatItem 生成新的_defaultTreatItem
@@ -56,10 +62,33 @@
  */
 -(void)readFromTreatItemList{
  //读取plist
-    NSString *plistPath2 = [[NSBundle mainBundle] pathForResource:@"treatItemList" ofType:@"plist"];
-    _datafromTreatItemList = [[NSDictionary alloc] initWithContentsOfFile:plistPath2];
+    NSString *plistPath1;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+    plistPath1 = [rootPath stringByAppendingPathComponent:@"treatItemList.plist"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath1]) {
+        plistPath1 =  [[NSBundle mainBundle] pathForResource:@"treatItemList" ofType:@"plist"];
+    }
+    
+    NSLog(@"%d",[[NSFileManager defaultManager] fileExistsAtPath:plistPath1] );
+    _datafromTreatItemList = [[NSDictionary alloc] initWithContentsOfFile:plistPath1];
     
  //   [mySettingData synchronize];
+    
+    
+}
+-(void)readFromTreatHistory{
+    //读取plist
+    NSString *plistPath1;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+    plistPath1 = [rootPath stringByAppendingPathComponent:@"treatHistory.plist"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath1]) {
+        plistPath1 =  [[NSBundle mainBundle] pathForResource:@"treatHistory" ofType:@"plist"];
+    }
+    
+    NSLog(@"%d",[[NSFileManager defaultManager] fileExistsAtPath:plistPath1] );
+    _datafromTreatHistory = [[NSMutableArray alloc] initWithContentsOfFile:plistPath1];
+    
+    //   [mySettingData synchronize];
     
     
 }

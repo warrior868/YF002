@@ -5,7 +5,7 @@
 //  Created by Mushroom on 6/3/15.
 //  Copyright (c) 2015 Mushroom. All rights reserved.
 //
-
+#import <Foundation/Foundation.h>
 #import "YFCalendarVC.h"
 
 @interface YFCalendarVC (){
@@ -19,59 +19,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    VRGCalendarView *calendar = [[VRGCalendarView alloc] init];
+    calendar.delegate=self;
+    calendar.frame = CGRectMake(0, 60, 320, 320);
+    [self.view addSubview:calendar];
     
     // Do any additional setup after loading the view.
-    self.calendar = [JTCalendar new];
-    [self.calendar setMenuMonthsView:self.calendarMenuView];
-    [self.calendar setContentView:self.calendarContentView];
-    [self.calendar setDataSource:self];
     
-    [self createRandomEvents];
-    
-    [self.calendar reloadData];
 
 }
+
+#pragma mark - calendarDelegate
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidLayoutSubviews
-{
-    [self.calendar repositionViews];
-}
-
-#pragma mark - JTCalendarDataSource
-
-- (BOOL)calendarHaveEvent:(JTCalendar *)calendar date:(NSDate *)date
-{
-    NSString *key = [[self dateFormatter] stringFromDate:date];
+-(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(int)month targetHeight:(float)targetHeight animated:(BOOL)animated {
     
-    if(eventsByDate[key] && [eventsByDate[key] count] > 0){
-        return YES;
-    }
+        NSArray *dates = [NSArray arrayWithObjects:[NSNumber numberWithInt:1],[NSNumber numberWithInt:2], nil];
+        [calendarView markDates:dates];
     
-    return NO;
 }
 
-- (void)calendarDidDateSelected:(JTCalendar *)calendar date:(NSDate *)date
-{
-    NSString *key = [[self dateFormatter] stringFromDate:date];
-    NSArray *events = eventsByDate[key];
-    
-    NSLog(@"Date: %@ - %ld events", date, [events count]);
-}
-
-- (void)calendarDidLoadPreviousPage
-{
-    NSLog(@"Previous page loaded");
-}
-
-- (void)calendarDidLoadNextPage
-{
-    NSLog(@"Next page loaded");
+-(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date {
+    NSLog(@"Selected date = %@",date);
 }
 
 #pragma mark - Transition examples

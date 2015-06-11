@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YFTreatParameterItem.h"
+typedef void (^didSelectRowAtIndexPath)(id cell, NSIndexPath *indexPath);
 
-
-@interface MenuView : UIView
-
-+(instancetype)menuViewWith:(YFTreatParameterItem *) treatPamameterItem withBlueToothStutas:(BOOL) blueToothStutas;
-
-
-
+@interface MenuView : UIView<UITableViewDelegate,UITableViewDataSource>
+{
+    didSelectRowAtIndexPath _didSelectRowAtIndexPath;
+}
++(instancetype)menuView;
+@property (weak, nonatomic) IBOutlet UITableView *myTableView;
+@property (nonatomic, strong) NSArray *items;
+-(void)didSelectRowAtIndexPath:(void (^)(id cell, NSIndexPath *indexPath))didSelectRowAtIndexPath;
 @end

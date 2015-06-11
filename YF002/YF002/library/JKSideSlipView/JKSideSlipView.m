@@ -5,11 +5,9 @@
 //  Created by Jakey on 15/1/10.
 //  Copyright (c) 2015年 www.skyfox.org. All rights reserved.
 //
-//slip distance
-#define SLIP_WIDTH 220
+#define SLIP_WIDTH 200
 
 #import "JKSideSlipView.h"
-#import "YFTreatParameterItem.h"
 #import <Accelerate/Accelerate.h>
 
 @implementation JKSideSlipView
@@ -23,49 +21,31 @@
     return self;
     
 }
-//- (void)initWithSender:(UIViewController*)sender
-//         withTreatItem:(YFTreatParameterItem *)treatParameterItem
-//   withBlueToothStatus:(BOOL)blueToothStatus
-//       withPowerStatus:(NSInteger)powerStatus
-- (instancetype)initWithSender:(UIViewController *)sender {
-   
+
+- (instancetype)initWithSender:(UIViewController*)sender{
     CGRect bounds = [UIScreen mainScreen].bounds;
     CGRect frame = CGRectMake(-SLIP_WIDTH, 0, SLIP_WIDTH, bounds.size.height);
     self = [super initWithFrame:frame];
     if (self) {
         [self buildViews:sender];
-        NSArray* demoNib = [[NSBundle mainBundle] loadNibNamed:@"JKSideSlipView" owner:self options:nil];
-        _aView = [demoNib lastObject];
-        
-//        _aView.bounds = CGRectMake(0, 0, 180, 480);
-        [self addSubview:_aView ];
     }
     return self;
 }
-
-- (void)awakeFromNib {
-    // 视图内容布局
-//    self.backgroundColor = [UIColor yellowColor];
-    //    self.titleLabel.textColor = [UIColor whiteColor];
-    self.treatTimeLabel.text = @"星期天";
-   
-}
-
 -(void)buildViews:(UIViewController*)sender{
     _sender = sender;
-    //    点击tableview中的行
-    //    _tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(switchMenu)];
-    _tap.numberOfTapsRequired = 1;
-    //    手势操作
+    //_tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(switchMenu)];
+    //_tap.numberOfTapsRequired = 1;
+    
     _leftSwipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(hide)];
     _leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
     
-    //    [_sender.view addGestureRecognizer:_rightSwipe];
-    //    _rightSwipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(show)];
+    _rightSwipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(show)];
     _rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
     
-    //    [_sender.view addGestureRecognizer:_tap];
+    //[_sender.view addGestureRecognizer:_tap];
     [_sender.view addGestureRecognizer:_leftSwipe];
+    [_sender.view addGestureRecognizer:_rightSwipe];
+    
     
     _blurImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SLIP_WIDTH, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     _blurImageView.userInteractionEnabled = NO;
@@ -76,90 +56,20 @@
     [self addSubview:_blurImageView];
     
 }
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        //        [self setup];
-        
-    }
-    return self;
-}
-
-
-
-//- (void)initWithSender:(UIViewController*)sender withTreatItem:(YFTreatParameterItem *)treatParameterItem withBlueToothStatus:(BOOL)blueToothStatus withPowerStatus:(NSInteger)powerStatus{
-//    
-//
-//    
-//    self.treatTimeLabel.text = _treatItemSSV.treatTime;
-////    NSLog(@"_treatItemSSV.treatTime--%@",_treatItemSSV.treatTime);
-////    NSLog(@"self.treatTimeLabel.text--%@",self.treatTimeLabel.text);
-//    self.treatStrengthLabel.text = _treatItemSSV.treatStrength;
-//    
-//   
-//    [self reloadTreatItem:treatParameterItem withBlueToothStatus:blueToothStatus withPowerStatus:powerStatus];
-//    
-//    
-//    //((UIScrollView *)self.view).contentSize = CGSizeMake(self.view.frame.size.width, demoView.frame.size.height);
-//    
-//}
-
-
-
-
-
-- (void)reloadTreatItem:(YFTreatParameterItem *)treatParameterItem withBlueToothStatus:(BOOL)blueToothStatus withPowerStatus:(NSInteger)powerStatus {
-//    if (blueToothStatus) {
-//        _treatItemSSV = treatParameterItem;
-//        self.isBlueToothConnect.text = @"蓝牙已经连接";
-//        self.powerRemain.text = [NSString stringWithFormat:@"%ld%%",(long)powerStatus];
-//        self.treatTimeLabel.text = _treatItemSSV.treatTime;
-//        self.treatStrengthLabel.text = _treatItemSSV.treatStrength;
-//        self.treatWaveLabel.text = _treatItemSSV.treatWave;
-//        self.treatModelLabel.text = _treatItemSSV.treatModel;
-//        NSLog(@"reload treatParameterItem.treatTime--%@",_treatItemSSV.treatTime);
-//    }
-//    else{
-//        self.isBlueToothConnect.text = @"蓝牙未连接";
-//        self.powerRemain.text = @"-";
-//        self.treatTimeLabel.text = @"-";
-//        self.treatStrengthLabel.text = @"-";
-//        self.treatWaveLabel.text = @"-";
-//        self.treatModelLabel.text = @"-";
-//       }
-    _blurImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SLIP_WIDTH, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-    _blurImageView.userInteractionEnabled = NO;
-    _blurImageView.alpha = 0;
-    _blurImageView.backgroundColor = [UIColor grayColor];
-    //_blurImageView.layer.borderWidth = 5;
-    //_blurImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    [self addSubview:_blurImageView];
-//    NSLog(@"treatParameterItem.treatTime--%@",treatParameterItem.treatTime);
-//    NSLog(@"self.treatTimeLabel.text--%@",self.treatTimeLabel.text);
-}
-
-
-
 
 -(void)setContentView:(UIView*)contentView{
-     
     if (contentView) {
         _contentView = contentView;
     }
-    
-//    NSArray* demoNib = [[NSBundle mainBundle] loadNibNamed:@"JKSideSlipView" owner:self options:nil];
-//    _aView = [demoNib lastObject];
-//    _aView.bounds = CGRectMake(0, 0, 180, 480);
-    [self addSubview:_aView];
+    _contentView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [self addSubview:_contentView];
 
 }
 -(void)show:(BOOL)show{
     UIImage *image =  [self imageFromView:_sender.view];
    
     if (!isOpen) {
-        _blurImageView.alpha = 0;
+        _blurImageView.alpha = 1;
 
     }
     
@@ -188,14 +98,14 @@
     [self show:!isOpen];
 }
 -(void)show{
-    
     [self show:YES];
-   
+
 }
 
 -(void)hide {
     [self show:NO];
 }
+
 
 #pragma mark - shot
 - (UIImage *)imageFromView:(UIView *)theView
@@ -272,7 +182,5 @@
     
     return returnImage;
 }
-
-
 
 @end

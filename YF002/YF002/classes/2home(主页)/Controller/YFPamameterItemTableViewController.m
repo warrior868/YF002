@@ -34,7 +34,7 @@
 //从代理那边拿到tableView 显示的数组
 - (void)delegateMethodGetArrayFromHomeCV {
     
-     _tableViewArray =    [self.delegate getArrayHomeVC];  
+     _tableViewArray = (NSMutableArray *)   [self.delegate getArrayHomeVC];
     
 }
 
@@ -105,7 +105,20 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [_tableViewArray removeObjectAtIndex:indexPath.row ];
+        [tableView reloadData];
+        NSString *plistPath1;
+        NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+        plistPath1 = [rootPath stringByAppendingPathComponent:@"treatItem.plist"];
+//        if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath1] == NO) {
+//            NSFileManager *fm = [NSFileManager defaultManager];
+//            [fm createFileAtPath:plistPath1 contents:nil attributes:nil];
+//        }
+        //        NSLog(@"applist %@", applist);
+        
+        //把数组加入到文件中
+        [_tableViewArray writeToFile:plistPath1 atomically:YES];
+//        [tableView  deleteRowsAtIndexPaths:indexPath withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   

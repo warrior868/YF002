@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "treatRecordTVCell.h"
+@protocol YFRecordTVCDelegate <NSObject>
+
+
+- (NSArray *)ArrayToRecordTVC;
+
+@end
 
 @interface YFRecordTVC : UITableViewController
 
 
-@property (strong,nonatomic) NSArray                   *recordArray;
+@property (strong,nonatomic) NSArray            *recordArray;
+@property (nonatomic,weak) id <YFRecordTVCDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+
+
 @end

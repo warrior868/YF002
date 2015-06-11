@@ -38,53 +38,5 @@
 		<key>treatStrength</key>
 		<string>S2</string>
 	</dict>
-	<dict>
-		<key>treatName</key>
-		<string>推荐3</string>
-		<key>treatModel</key>
-		<string>both</string>
-		<key>treatWave</key>
-		<string>W1</string>
-		<key>treatTime</key>
-		<string>1</string>
-		<key>treatStrength</key>
-		<string>S3</string>
-	</dict>
-	<dict>
-		<key>treatName</key>
-		<string>推荐4</string>
-		<key>treatModel</key>
-		<string>both</string>
-		<key>treatWave</key>
-		<string>W1</string>
-		<key>treatTime</key>
-		<string>1</string>
-		<key>treatStrength</key>
-		<string>S3</string>
-	</dict>
-	<dict>
-		<key>treatName</key>
-		<string>推荐5</string>
-		<key>treatModel</key>
-		<string>both</string>
-		<key>treatWave</key>
-		<string>W1</string>
-		<key>treatTime</key>
-		<string>1</string>
-		<key>treatStrength</key>
-		<string>S3</string>
-	</dict>
-	<dict>
-		<key>treatName</key>
-		<string>推荐6</string>
-		<key>treatModel</key>
-		<string>both</string>
-		<key>treatWave</key>
-		<string>W5</string>
-		<key>treatTime</key>
-		<string>10</string>
-		<key>treatStrength</key>
-		<string>S2</string>
-	</dict>
 </array>
 </plist>

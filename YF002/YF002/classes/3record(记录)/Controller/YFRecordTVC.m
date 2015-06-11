@@ -19,19 +19,49 @@
     
     
     //读取plist,生成第一级别的dictionary
-    NSString *plistPath1 = [[NSBundle mainBundle] pathForResource:@"treatHistory" ofType:@"plist"];
-    _recordArray = [[NSArray alloc] initWithContentsOfFile:plistPath1];
+    NSString *plistPath;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+    plistPath = [rootPath stringByAppendingPathComponent:@"treatHistory.plist"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+        plistPath =  [[NSBundle mainBundle] pathForResource:@"treatHistory" ofType:@"plist"];
+    }
+    _recordArray = [[NSArray alloc] initWithContentsOfFile:plistPath];
+    
+//    //block比较方法，数组中可以是NSInteger，NSString（需要转换）
+//    NSComparator finderSort = ^(id string1,id string2){
+//        
+//        if ([string1 integerValue] > [string2 integerValue]) {
+//            return (NSComparisonResult)NSOrderedDescending;
+//        }else if ([string1 integerValue] < [string2 integerValue]){
+//            return (NSComparisonResult)NSOrderedAscending;
+//        }
+//        else
+//            return (NSComparisonResult)NSOrderedSame;
+//    };
+    
+    //数组排序：
+//    NSArray *originalArray1 = [originalArray sortedArrayUsingComparator:finderSort];
+    
+    
+    NSLog(@"第一种排序结果：%@",_recordArray);
+    [self reloadArrayFromHomeVC];
+//    [_tableview reloadData];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ChangeNameNotification:) name:@"ChangeNameNotification" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) reloadArrayFromHomeVC{
+    _recordArray = [self.delegate ArrayToRecordTVC];
 }
 
 #pragma mark - Table view data source
@@ -75,7 +105,7 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -85,7 +115,7 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.

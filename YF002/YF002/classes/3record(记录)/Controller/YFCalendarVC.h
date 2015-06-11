@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JTCalendar.h"
 
-
-@interface YFCalendarVC : UIViewController <JTCalendarDataSource>
-@property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
-
-@property (weak, nonatomic) IBOutlet JTCalendarContentView *calendarContentView;
+#import "VRGCalendarView.h"
 
 
 
-@property (strong, nonatomic) JTCalendar *calendar;
+
+@interface YFCalendarVC : UIViewController <VRGCalendarViewDelegate>
+
+
+
+
+
 @end

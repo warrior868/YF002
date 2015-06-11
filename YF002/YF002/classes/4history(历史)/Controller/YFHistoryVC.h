@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SliderSwitch.h"
 
 @interface YFHistoryVC : UIViewController
 
 @property (nonatomic,weak) UITableView *tableView;
 @property (nonatomic,weak) UIView *aview;
 @property (weak, nonatomic) IBOutlet UIView *baseView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property(nonatomic,strong) SliderSwitch *slideSwitchH;
 
+-(void)loadAreaDicWithCGRect:(CGRect) cgrect;
 @end

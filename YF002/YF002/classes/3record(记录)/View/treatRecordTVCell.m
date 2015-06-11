@@ -25,7 +25,7 @@
     cell.treatWave.text = [treatParameterItem objectForKey:@"treatWave"];
     cell.treatModel.text = [treatParameterItem objectForKey:@"treatModel"];
     
-
+    
     NSString *string1 = [treatParameterItem objectForKey:@"treatDate"];
     NSString *year = [string1 substringWithRange:NSMakeRange(0, 4)];
     NSString *month = [string1 substringWithRange:NSMakeRange(4, 2)];

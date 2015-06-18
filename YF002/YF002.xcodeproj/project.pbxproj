@@ -18,6 +18,8 @@
 		AB320AC31B240C3600E8FF7C /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB320ABE1B240C3600E8FF7C /* MenuView.m */; };
 		AB320AC41B240C3600E8FF7C /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB320ABF1B240C3600E8FF7C /* MenuView.xib */; };
 		AB320AC81B246EC300E8FF7C /* SliderSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = AB320AC71B246EC300E8FF7C /* SliderSwitch.m */; };
+		AB43D9031B305C9900426AAB /* YFAlarmTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43D9021B305C9900426AAB /* YFAlarmTVC.m */; };
+		AB43D90A1B32F3E200426AAB /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43D9091B32F3E200426AAB /* MMMaterialDesignSpinner.m */; };
 		AB454D351B1BD1DF00FC10CD /* YFRecordTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AB454D341B1BD1DF00FC10CD /* YFRecordTVC.m */; };
 		AB454D391B1BD1F100FC10CD /* YFHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AB454D381B1BD1F100FC10CD /* YFHistoryVC.m */; };
 		AB454D3D1B1BD20100FC10CD /* YFSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB454D3C1B1BD20100FC10CD /* YFSettingTableViewController.m */; };
@@ -94,6 +96,10 @@
 		AB320ABF1B240C3600E8FF7C /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
 		AB320AC61B246EC300E8FF7C /* SliderSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderSwitch.h; sourceTree = "<group>"; };
 		AB320AC71B246EC300E8FF7C /* SliderSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderSwitch.m; sourceTree = "<group>"; };
+		AB43D9011B305C9900426AAB /* YFAlarmTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFAlarmTVC.h; sourceTree = "<group>"; };
+		AB43D9021B305C9900426AAB /* YFAlarmTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFAlarmTVC.m; sourceTree = "<group>"; };
+		AB43D9081B32F3E200426AAB /* MMMaterialDesignSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMaterialDesignSpinner.h; sourceTree = "<group>"; };
+		AB43D9091B32F3E200426AAB /* MMMaterialDesignSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMaterialDesignSpinner.m; sourceTree = "<group>"; };
 		AB454D331B1BD1DF00FC10CD /* YFRecordTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFRecordTVC.h; sourceTree = "<group>"; };
 		AB454D341B1BD1DF00FC10CD /* YFRecordTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFRecordTVC.m; sourceTree = "<group>"; };
 		AB454D371B1BD1F100FC10CD /* YFHistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFHistoryVC.h; sourceTree = "<group>"; };
@@ -254,6 +260,15 @@
 			path = SliderSwitch;
 			sourceTree = "<group>";
 		};
+		AB43D9071B32F3E200426AAB /* MMMaterialDesignSpinner */ = {
+			isa = PBXGroup;
+			children = (
+				AB43D9081B32F3E200426AAB /* MMMaterialDesignSpinner.h */,
+				AB43D9091B32F3E200426AAB /* MMMaterialDesignSpinner.m */,
+			);
+			path = MMMaterialDesignSpinner;
+			sourceTree = "<group>";
+		};
 		AB454D321B1BD1DF00FC10CD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +294,8 @@
 			children = (
 				AB454D3B1B1BD20100FC10CD /* YFSettingTableViewController.h */,
 				AB454D3C1B1BD20100FC10CD /* YFSettingTableViewController.m */,
+				AB43D9011B305C9900426AAB /* YFAlarmTVC.h */,
+				AB43D9021B305C9900426AAB /* YFAlarmTVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -375,6 +392,7 @@
 		AB5BB74B1B0CB6C500CB1FA8 /* library */ = {
 			isa = PBXGroup;
 			children = (
+				AB43D9071B32F3E200426AAB /* MMMaterialDesignSpinner */,
 				AB320AC51B246EC300E8FF7C /* SliderSwitch */,
 				AB320AB11B21B69100E8FF7C /* STAlertView */,
 				AB8F6D681B2077F300377D42 /* VurigCalendar */,
@@ -778,12 +796,14 @@
 				ABD3FE3D1B1ABBCD00190AE5 /* UUChart.m in Sources */,
 				AB5BB7981B0CBDFA00CB1FA8 /* YFAppDelegate.m in Sources */,
 				ABB43DF71B15EBA8000C83AA /* treatParameterItemsViewCell.m in Sources */,
+				AB43D90A1B32F3E200426AAB /* MMMaterialDesignSpinner.m in Sources */,
 				AB4748661B1F431F003EFACE /* LMContainsLMComboxScrollView.m in Sources */,
 				ABD3FE3C1B1ABBCD00190AE5 /* UUBarChart.m in Sources */,
 				AB8F6D7A1B2077F300377D42 /* VRGCalendarView.m in Sources */,
 				AB454D391B1BD1F100FC10CD /* YFHistoryVC.m in Sources */,
 				ABD3FE3F1B1ABBCD00190AE5 /* UUColor.m in Sources */,
 				AB8F6D751B2077F300377D42 /* NSDate+convenience.m in Sources */,
+				AB43D9031B305C9900426AAB /* YFAlarmTVC.m in Sources */,
 				AB5BB78A1B0CBDFA00CB1FA8 /* YFNavigationController.m in Sources */,
 				AB5BB7911B0CBDFA00CB1FA8 /* YFHomeViewController.m in Sources */,
 				ABB43DEF1B15E7DF000C83AA /* YFPamameterItemTableViewController.m in Sources */,

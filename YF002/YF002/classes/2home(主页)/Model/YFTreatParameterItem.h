@@ -15,6 +15,7 @@
 @property (nonatomic, copy) NSString *treatWave;
 @property (nonatomic, copy) NSString *treatModel;
 @property (nonatomic, copy) NSString *treatName;
+@property (nonatomic, copy) NSString *treatDate;
 
 @property (nonatomic, strong) NSDictionary *defaultTreatItem;
 //从treatItem.plist中读取的治疗参数库

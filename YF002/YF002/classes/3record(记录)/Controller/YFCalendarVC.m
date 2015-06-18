@@ -10,8 +10,9 @@
 
 @interface YFCalendarVC (){
     NSMutableDictionary *eventsByDate;
+    
 }
-
+@property (nonatomic ,strong) NSMutableArray *recordArray;
 @end
 
 @implementation YFCalendarVC
@@ -25,8 +26,14 @@
     [self.view addSubview:calendar];
     
     // Do any additional setup after loading the view.
+    //读取plist,生成第一级别的dictionary
+    NSString *plistPath;
+//    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+//    plistPath = [rootPath stringByAppendingPathComponent:@"treatHistory.plist"];
     
-
+    plistPath =  [[NSBundle mainBundle] pathForResource:@"treatHistory" ofType:@"plist"];
+   
+    _recordArray = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
 }
 
 #pragma mark - calendarDelegate
@@ -37,9 +44,22 @@
 }
 
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(int)month targetHeight:(float)targetHeight animated:(BOOL)animated {
-    
-        NSArray *dates = [NSArray arrayWithObjects:[NSNumber numberWithInt:1],[NSNumber numberWithInt:2], nil];
-        [calendarView markDates:dates];
+    NSMutableArray *markDates = [[NSMutableArray alloc] init];
+    for (NSInteger i=0; i<[_recordArray count]; i++) {
+       NSString *treatDate = [_recordArray[i] objectForKey:@"treatDate" ];
+        //读取历史纪录中的月字符串
+        NSString *treatMonth =[treatDate substringWithRange:NSMakeRange(4, 2)];
+        //读取历史纪录中的月为数值
+        NSInteger treatMonthInterger = [treatMonth integerValue];
+        if (treatMonthInterger == month) {
+            NSString *treatDay = [treatDate substringWithRange:NSMakeRange(6, 2)];
+            NSInteger treatDayInterger = [treatDay integerValue];
+            NSNumber *numberDay = [NSNumber numberWithInteger:treatDayInterger];
+            [markDates addObject:numberDay];
+        }
+    };
+        //NSLog(@"day is %@",markDates);
+        [calendarView markDates:markDates];
     
 }
 
@@ -52,7 +72,7 @@
 //- (void)transitionExample
 //{
 //    CGFloat newHeight = 300;
-//    if(self.calendar.calendarAppearance.isWeekMode){
+//    if(self->calendar.calendarAppearance.isWeekMode){
 //        newHeight = 75.;
 //    }
 //    

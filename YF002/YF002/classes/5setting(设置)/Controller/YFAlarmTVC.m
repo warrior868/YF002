@@ -1,40 +1,27 @@
 //
-//  YFRecordTVC.m
+//  YFAlarmTVC.m
 //  YF002
 //
-//  Created by Mushroom on 5/31/15.
+//  Created by Mushroom on 6/16/15.
 //  Copyright (c) 2015 Mushroom. All rights reserved.
 //
 
-#import "YFRecordTVC.h"
+#import "YFAlarmTVC.h"
 
-@interface YFRecordTVC ()
+@interface YFAlarmTVC ()
 
 @end
 
-@implementation YFRecordTVC
+@implementation YFAlarmTVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
     
-    //读取plist,生成第一级别的dictionary
-    NSString *plistPath;
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
-    plistPath = [rootPath stringByAppendingPathComponent:@"treatHistory.plist"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
-        plistPath =  [[NSBundle mainBundle] pathForResource:@"treatHistory" ofType:@"plist"];
-    }
-    _recordArray = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
-    
-    //对数组中的字典按照日期进行排序
-    NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"treatDate" ascending:NO]];
-    [_recordArray sortUsingDescriptors:sortDescriptors];
-    
-    
-    NSLog(@"第一种排序结果：%@",_recordArray);
-
-    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,42 +29,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) reloadArrayFromHomeVC{
-    _recordArray = [self.delegate ArrayToRecordTVC];
-}
-
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 1;
-}
+//    // Return the number of sections.
+//    return 0;
+//}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return [_recordArray count];
-}
+//    // Return the number of rows in the section.
+//    return 0;
+//}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-
-{       //设置cell的高度
-    return 100.0;
-}
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //创建cell
-    NSDictionary *dicInCell = _recordArray[indexPath.row];
-    treatRecordTVCell *cell = [treatRecordTVCell cellWithTableView:tableView withTreatItem:dicInCell];
-    // 隔行显示颜色
-    if ((indexPath.row % 2) == 1) {
-        cell.backgroundColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:245.0/255 alpha:1];
-    }
-   // cell.selectedBackgroundView.backgroundColor = [UIColor redColor ];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
     return cell;
 }
-
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -87,7 +61,7 @@
 }
 */
 
-
+/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -97,7 +71,7 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-
+*/
 
 /*
 // Override to support rearranging the table view.

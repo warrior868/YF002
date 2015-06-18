@@ -26,6 +26,7 @@
         _treatWave = [dic objectForKey:@"treatWave"];
         _treatModel = [dic objectForKey:@"treatModel"];
         _treatName = [dic objectForKey:@"treatName"];
+        _treatDate = [dic objectForKey:@"treatDate"];
     }
     return self;
 }
@@ -44,7 +45,10 @@
     plistPath = [[NSBundle mainBundle] pathForResource:@"treatItem" ofType:@"plist"];
     }
    _datafromTreatItem = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
-    
+    //对数组中的字典按照日期进行排序
+    NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"treatDate" ascending:YES]];
+    [_datafromTreatItem sortUsingDescriptors:sortDescriptors];
+      
     
     //取出第一级别的dictionary中的第item个treatItem 生成新的_defaultTreatItem
    // _defaultTreatItem =[_datafromTreatItem objectForKey:@"上次使用参数"] ;
@@ -87,7 +91,9 @@
     
     NSLog(@"%d",[[NSFileManager defaultManager] fileExistsAtPath:plistPath1] );
     _datafromTreatHistory = [[NSMutableArray alloc] initWithContentsOfFile:plistPath1];
-    
+    //对数组中的字典按照日期进行排序
+    NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"treatDate" ascending:YES]];
+    [_datafromTreatItem sortUsingDescriptors:sortDescriptors];
     //   [mySettingData synchronize];
     
     

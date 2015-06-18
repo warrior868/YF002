@@ -24,6 +24,8 @@
 
 #import "STAlertView.h"
 
+#import "MMMaterialDesignSpinner.h"
+
 #define kDropDownListTag 1000
 
 @interface YFHomeViewController () <AKPickerViewDataSource,AKPickerViewDelegate,YFPamameterItemTVCDelegate,MZTimerLabelDelegate,UIScrollViewDelegate,LMComBoxViewDelegate,YFRecordTVCDelegate>{
@@ -44,6 +46,11 @@
 
 //保存时弹出窗口的属性
 @property (nonatomic, strong) STAlertView *stAlertView;
+
+//主界面左侧滑动窗口实例属性
+@property (nonatomic ,strong) MenuView *menu;
+
+@property (nonatomic ,strong) MMMaterialDesignSpinner *spinnerView;
 
 //pickView的属性
 @property (nonatomic, strong) AKPickerView *treatTimePickerView;
@@ -92,8 +99,18 @@
     [_scrollView setContentSize:newSize];
 //    [self.view addSubview:_scrollView];
     
+    
+    MMMaterialDesignSpinner *spinnerView = [[MMMaterialDesignSpinner alloc] initWithFrame:CGRectZero];
+    self.spinnerView = spinnerView;
+    self.spinnerView.bounds = CGRectMake(0, 0, 140, 140);
+    self.spinnerView.lineWidth = 3.0f;
+    self.spinnerView.tintColor = [UIColor colorWithRed:70.f/255 green:188.f/255 blue:76.f/255 alpha:0.8];
+    self.spinnerView.center = CGPointMake(CGRectGetMidX(self.view.bounds), 78);
+   // [self.view addSubview:self.spinnerView];
+    [self.view insertSubview:self.spinnerView atIndex:2];
+    
 //  初始化治疗参数
-    _treatParameterItem = [[YFTreatParameterItem alloc] initWithIndex:2];
+    _treatParameterItem = [[YFTreatParameterItem alloc] initWithIndex:1];
     NSLog(@"%@", _treatParameterItem.datafromTreatItem);
 //   初始化pickerView
 //   第一个pickview X轴xPickerView,y轴yPickerView,y轴增加值xAddPickerView
@@ -102,11 +119,11 @@
     [self treatStrengthPickerViewLoad:CGRectMake(xPickerView,(yPickerView+yAddPickerView) , 200, 60)];
     [self treatWavePickerViewLoad:CGRectMake(xPickerView, (yPickerView+2*yAddPickerView), 200, 60)];
     [self treatModelPickerViewLoad:CGRectMake(xPickerView,(yPickerView+3*yAddPickerView), 200, 60)];
-    [self pickerView:_treatTimePickerView didSelectItem:2];
-    [_treatTimePickerView selectItem:2 animated:NO];
-    [_treatStrengthPickerView selectItem:2 animated:NO];
-    [_treatWavePickerView selectItem:2 animated:NO];
-    [_treatModelPickerView selectItem:2 animated:NO];
+//   初始化载入每个pickerView选中的行
+    [_treatTimePickerView selectItem:[[_treatParameterItem.treatTime substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
+    [_treatStrengthPickerView selectItem:[[_treatParameterItem.treatStrength substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
+    [_treatWavePickerView selectItem:[[_treatParameterItem.treatWave substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
+    [_treatModelPickerView selectItem:[[_treatParameterItem.treatModel substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
 //  设置navigationBar 左侧栏的名称以及按键调用的方法
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"状态" style:UIBarButtonItemStyleBordered                                                                            target:self                                                                            action:@selector(switchTouched)];
     
@@ -122,7 +139,8 @@
   
  
 //// 设置代理与ViewController
-    YFRecordTVC *yfRecordTVC = [[YFRecordTVC alloc] init];
+    
+    YFRecordTVC *yfRecordTVC = [[YFRecordTVC alloc] initWithNibName:@"YFRecordTVC" bundle:nil];
     yfRecordTVC.delegate = self;
 
 //    YFPamameterItemTableViewController *parameterItemTVC = [[YFPamameterItemTableViewController alloc] init];
@@ -136,15 +154,14 @@
     _sideSlipView = [[JKSideSlipView alloc]initWithSender:self];
     _sideSlipView.backgroundColor = [UIColor redColor];
     
-    MenuView *menu = [MenuView menuView];
-//    [menu didSelectRowAtIndexPath:^(id cell, NSIndexPath *indexPath) {
-//        NSLog(@"click");
-//        [_sideSlipView hide];
-////        NextViewController *next = [[NextViewController alloc]init];
-////        [self.navigationController pushViewController:next animated:YES];
-//    }];
-    menu.items = @[@{@"title":@"蓝牙已连接",@"imagename":@"电池电量"},@{@"title":@"预设时间",@"imagename":@"2"},@{@"title":@"强度",@"imagename":@"3"},@{@"title":@"波形",@"imagename":@"4"},@{@"title":@"电极",@"imagename":@"5"}];
-    [_sideSlipView setContentView:menu];
+    _menu = [MenuView menuView];
+
+    _menu.items = @[@{@"title":@"蓝牙已连接",@"imagename":@"电池电量"},
+                   @{@"title":[NSString stringWithFormat:@"预设时间为%@",_treatParameterItem.treatTime],@"imagename":_treatParameterItem.treatTime},
+                   @{@"title":[NSString stringWithFormat:@"强度为%@",_treatParameterItem.treatStrength],@"imagename":_treatParameterItem.treatStrength},
+                   @{@"title":[NSString stringWithFormat:@"波形为%@",_treatParameterItem.treatWave],@"imagename":_treatParameterItem.treatWave},
+                   @{@"title":[NSString stringWithFormat:@"电极为%@",_treatParameterItem.treatModel],@"imagename":_treatParameterItem.treatModel}];
+    [_sideSlipView setContentView:_menu];
     [self.view addSubview:_sideSlipView];
     
 }
@@ -351,8 +368,20 @@
 
 #pragma mark - YFPamameterItemTableViewController Delegate
 
-- (void)sendSelectedItemToHomeVC:(NSInteger)item{
-    // 选中的列表第几个值后，重新赋值给_YFTreatItem;
+- (void)sendSelectedItemToHomeVC:(NSInteger) rowForNewTreatItem{
+    // 选中的列表第几个值后，重新赋值给_defaultTreatItem;
+    NSDictionary *newTreatItem = _treatParameterItem.datafromTreatItem[rowForNewTreatItem];
+    _treatParameterItem.treatTime = [newTreatItem objectForKey:@"treatTime"];
+    _treatParameterItem.treatStrength = [newTreatItem objectForKey:@"treatStrength"];
+    _treatParameterItem.treatWave = [newTreatItem objectForKey:@"treatWave"];
+    _treatParameterItem.treatModel = [newTreatItem objectForKey:@"treatModel"];
+    ;
+    // 重新对每个pickerView进行重选;
+    [_treatTimePickerView selectItem:[[_treatParameterItem.treatTime substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
+    [_treatStrengthPickerView selectItem:[[_treatParameterItem.treatStrength substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
+    [_treatWavePickerView selectItem:[[_treatParameterItem.treatWave substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
+    [_treatModelPickerView selectItem:[[_treatParameterItem.treatModel substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
+    
 }
 
 - (NSArray *)getArrayHomeVC{
@@ -397,7 +426,9 @@
 
 #pragma mark - AKPickerViewDataSource 选择器初始化
 - (void)treatTimePickerViewLoad:(CGRect )pickerViewCGRect{
-    _treatTimePickerView = [[AKPickerView alloc] initWithFrame:pickerViewCGRect];
+    if (_treatTimePickerView == nil) {
+        _treatTimePickerView = [[AKPickerView alloc] initWithFrame:pickerViewCGRect];
+    }
     
     [self pickerViewParameterLoad:_treatTimePickerView];
     //取出数据模型中关于treatTime的plist中数组
@@ -476,16 +507,28 @@
 - (NSUInteger)nnumberOfItemsInPickerView:(AKPickerView *)pickerView{
     if([pickerView isEqual:_treatTimePickerView])
     {
-        return 2;
+        
+        NSString *treatTime = _treatParameterItem.treatTime ;
+        NSString *treatTimeNumber = [treatTime substringWithRange:NSMakeRange(1, 1)];
+        return [treatTimeNumber integerValue];
     }
     else if([pickerView isEqual:_treatStrengthPickerView])
-    {   return 2;
+    {
+        NSString *treatStrength = _treatParameterItem.treatStrength ;
+        NSString *treatStrengthNumber = [treatStrength substringWithRange:NSMakeRange(1, 1)];
+        return [treatStrengthNumber integerValue];
     }
     else if([pickerView isEqual:_treatWavePickerView])
-    {   return 3;
+    {
+        NSString *treatWave = _treatParameterItem.treatWave ;
+        NSString *treatWaveNumber = [treatWave substringWithRange:NSMakeRange(1, 1)];
+        return [treatWaveNumber integerValue];
     }
-    else
-        return 3;
+    else{
+    NSString *treatModel = _treatParameterItem.treatModel;
+    NSString *treatModelNumber = [treatModel substringWithRange:NSMakeRange(1, 1)];
+        return [treatModelNumber integerValue];
+    }
 }
 
 //用pickerView 选出的treatItem 参数
@@ -496,10 +539,12 @@
         {
             //读取数组中的值设置时间
             NSString *treatTimeSelect =_treatTimePickerViewArray[item];
+            //字符串转化后面的序号
+            NSString *treatTimeSelectNumber = [treatTimeSelect substringWithRange:NSMakeRange(1, 1)];
             //字符串转化成整数
-            NSInteger  setTime = [treatTimeSelect integerValue];
+            NSInteger  setTime = [treatTimeSelectNumber integerValue];
             //设置计时时间
-            [_timer setCountDownTime:setTime*2];
+            [_timer setCountDownTime:(setTime + 1)*5];
             //设置模型中treatTime的值，以便保存；
             _treatParameterItem.treatTime = treatTimeSelect;
             NSLog(@"Time_%@", _treatParameterItem.treatTime);
@@ -509,20 +554,19 @@
         {
             //读取数组中的值设置时间，设置模型中treatStrength的值，以便保存
             _treatParameterItem.treatTime = _treatStrengthPickerViewArray[item];
-            NSLog(@"Time_%@", _treatParameterItem.treatTime);
+            
         }
         else if([pickerView isEqual:_treatWavePickerView])
         {
            //读取数组中的值设置时间，设置模型中treatWave的值，以便保存
             _treatParameterItem.treatWave = _treatWavePickerViewArray[item];
-            NSLog(@"Time_%@",_treatParameterItem.treatWave);
+            
 
         }
         else
         {
             //读取数组中的值设置时间，设置模型中treatModel的值，以便保存
             _treatParameterItem.treatModel = _treatModelPickerViewArray[item];
-            NSLog(@"Time_%@",_treatParameterItem.treatModel);
         }
     
         
@@ -537,14 +581,9 @@
                                             textFieldHint:@"请输入你要存储的名称"
                                            textFieldValue:nil
                                         cancelButtonTitle:@"取消"
-                                         otherButtonTitle:@"确定"
-                        
-                                        cancelButtonBlock:^{
+                                         otherButtonTitle:@"确定"                                        cancelButtonBlock:^{
                                             NSLog(@"取消了存储");
-                                        } otherButtonBlock:^(NSString * result){
-                                        
-                                            [self saveTreatItemToListWithName:result];
-                                            
+                                        } otherButtonBlock:^(NSString * result){                                            [self saveTreatItemToListWithName:result];
                                             
                                         }];
     
@@ -557,11 +596,17 @@
 }
 //    保存的参数形成字典加入到治疗参数列表中，并存储到plist中
 - (void) saveTreatItemToListWithName:(NSString *)name{
+    //读取当前日期
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyyMMddHHmm"];
+    NSString *date =  [formatter stringFromDate:[NSDate date]];
+    
     if (name == nil) {
 
     }
     else{
         NSDictionary *newDic = @{@"treatName":name,
+                                 @"treatDate":date,
                                  @"treatTime":_treatParameterItem.treatTime,
                                  @"treatStrength":_treatParameterItem.treatStrength,
                                  @"treatWave":_treatParameterItem.treatWave,
@@ -576,13 +621,13 @@
             NSFileManager *fm = [NSFileManager defaultManager];
             [fm createFileAtPath:plistPath1 contents:nil attributes:nil];
         }
-//        NSLog(@"applist %@", applist);
+        //        NSLog(@"applist %@", applist);
         
         //把数组加入到文件中
         [_treatParameterItem.datafromTreatItem writeToFile:plistPath1 atomically:YES];
         
         //读出保存的文件看看
-//        NSString *plistPath2 = [[NSBundle mainBundle] pathForResource:@"treatItem" ofType:@"plist"];
+        //        NSString *plistPath2 = [[NSBundle mainBundle] pathForResource:@"treatItem" ofType:@"plist"];
         NSMutableArray *applist1 = [[NSMutableArray alloc] initWithContentsOfFile:plistPath1];
          NSLog(@"applist1  %@", applist1);
         //NSLog(@" 输入的事 %@", newDic);
@@ -599,10 +644,14 @@
         
         [_resetBtn setEnabled:YES];
         [_saveTreatPamameterItem setEnabled:YES];
+        //圆圈动画结束
+        [self.spinnerView stopAnimating];
         
     }else{
         
         [_timer start];
+        //圆圈动画开始
+        [self.spinnerView startAnimating];
         [_startPauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
         [_saveTreatPamameterItem setEnabled:NO];
     }
@@ -621,6 +670,8 @@
 
 
 - (void)timerLabel:(MZTimerLabel*)timerLabel finshedCountDownTimerWithTime:(NSTimeInterval)countTime{
+    //圆圈动画结束
+    [self.spinnerView stopAnimating];
     //设置结束后，按钮设置成开始；
     [_startPauseBtn setTitle:@"开始" forState:UIControlStateNormal];
     //设置结束后，保存参数按钮设置为开启
@@ -677,6 +728,12 @@
 #pragma mark - sideView 按钮方法
 - (void)switchTouched{
     [_sideSlipView switchMenu];
+    
+    _menu.items = @[@{@"title":@"蓝牙已连接",@"imagename":@"电池电量"},
+                   @{@"title":[NSString stringWithFormat:@"预设时间为%@",_treatParameterItem.treatTime],@"imagename":_treatParameterItem.treatTime},
+                   @{@"title":[NSString stringWithFormat:@"强度为%@",_treatParameterItem.treatStrength],@"imagename":_treatParameterItem.treatStrength},
+                   @{@"title":[NSString stringWithFormat:@"波形为%@",_treatParameterItem.treatWave],@"imagename":_treatParameterItem.treatWave},
+                   @{@"title":[NSString stringWithFormat:@"电极为%@",_treatParameterItem.treatModel],@"imagename":_treatParameterItem.treatModel}];
 //    [_sideSlipView reloadTreatItem:_treatParameterItem withBlueToothStatus:YES withPowerStatus:50]  ;
     
 }
@@ -731,8 +788,11 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
- YFPamameterItemTableViewController *yfAddToDo = [segue destinationViewController];
- yfAddToDo.delegate = self;
+    
+         YFPamameterItemTableViewController *yfAddToDo = [segue destinationViewController];
+         yfAddToDo.delegate = self;
+     
+     
      
  }
 @end

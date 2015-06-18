@@ -3,58 +3,28 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>treatDrug</key>
-		<string>阿司匹林</string>
 		<key>treatDrugQuantity</key>
-		<string>5</string>
+		<string>7</string>
 		<key>treatDate</key>
-		<string>201504161235</string>
-		<key>treatName</key>
-		<string>推荐2</string>
-		<key>treatModel</key>
-		<string>right</string>
-		<key>treatWave</key>
-		<string>W4</string>
-		<key>treatTime</key>
-		<string>15</string>
-		<key>treatStrength</key>
-		<string>S2</string>
+		<string>201506141140</string>
 	</dict>
 	<dict>
 		<key>treatDrugQuantity</key>
-		<string>6</string>
-		<key>treatDrug</key>
-		<string>阿司匹林</string>
+		<string>0</string>
 		<key>treatDate</key>
-		<string>201504161238</string>
-		<key>treatName</key>
-		<string>推荐2</string>
-		<key>treatModel</key>
-		<string>right</string>
-		<key>treatWave</key>
-		<string>W4</string>
-		<key>treatTime</key>
-		<string>15</string>
-		<key>treatStrength</key>
-		<string>S2</string>
+		<string>201506151240</string>
 	</dict>
 	<dict>
 		<key>treatDrugQuantity</key>
-		<string>10</string>
-		<key>treatDrug</key>
-		<string>阿司匹林</string>
+		<string>8</string>
 		<key>treatDate</key>
-		<string>201504161240</string>
-		<key>treatName</key>
-		<string>推荐2</string>
-		<key>treatModel</key>
-		<string>right</string>
-		<key>treatWave</key>
-		<string>W4</string>
-		<key>treatTime</key>
-		<string>15</string>
-		<key>treatStrength</key>
-		<string>S2</string>
+		<string>201506151140</string>
+	</dict>
+	<dict>
+		<key>treatDrugQuantity</key>
+		<string>0</string>
+		<key>treatDate</key>
+		<string>201506141235</string>
 	</dict>
 </array>
 </plist>

@@ -11,7 +11,7 @@
 #import "treatParameterItemsViewCell.h"
 @protocol YFPamameterItemTVCDelegate <NSObject>
 
-- (void)sendSelectedItemToHomeVC:(NSInteger) item;
+- (void)sendSelectedItemToHomeVC:(NSInteger ) rowForNewTreatItem;
 - (NSArray *)getArrayHomeVC;
 
 @end

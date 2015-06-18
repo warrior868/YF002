@@ -36,16 +36,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _scrollView.directionalLockEnabled = YES; //只能一个方向滑动
-    _scrollView.pagingEnabled = NO; //是否翻页
-    //    _scrollView.backgroundColor = [UIColor blackColor];
-    _scrollView.showsVerticalScrollIndicator =YES; //垂直方向的滚动指示
-    _scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;//滚动指示的风格
-    _scrollView.delegate = self;
-    _scrollView.showsHorizontalScrollIndicator = NO;//水平方向的滚动指示
-    CGSize newSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+70);
-    [_scrollView setContentSize:newSize];
-//    [_view addSubview:_scrollView];
+    //读取plist,生成第一级别的dictionary
+    NSString *plistPath;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+    plistPath = [rootPath stringByAppendingPathComponent:@"treatHistory.plist"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+        plistPath =  [[NSBundle mainBundle] pathForResource:@"treatHistory" ofType:@"plist"];
+    }
+    _recordArray = [[NSArray alloc] initWithContentsOfFile:plistPath];
+    
+    
    
     //三选项按钮
     _slideSwitchH=[[SliderSwitch alloc]init];
@@ -70,8 +70,8 @@
     _lineChart.frame = CGRectMake(0, 120, 100, 100) ;
     
     //配置下拉列表
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"area" ofType:@"plist"];
-    areaDic = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    NSString *plistPath1 = [[NSBundle mainBundle] pathForResource:@"area" ofType:@"plist"];
+    areaDic = [NSDictionary dictionaryWithContentsOfFile:plistPath1];
     [self loadAreaDicWithCGRect:CGRectMake(46, 310, 320, 130)];
     
     

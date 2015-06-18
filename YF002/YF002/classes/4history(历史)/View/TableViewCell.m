@@ -14,9 +14,21 @@
     NSIndexPath *path;
     UUChart *chartView;
 }
-@property (nonatomic,strong) NSArray *week;
-@property (nonatomic,strong) NSArray *month;
-@property (nonatomic,strong) NSArray *year;
+
+@property (nonatomic,strong) NSMutableArray *recordArray;
+//图表中X轴数据
+@property (nonatomic,strong) NSMutableArray *weekArrayX;
+@property (nonatomic,strong) NSMutableArray *monthArrayX;
+@property (nonatomic,strong) NSMutableArray *yearArrayX;
+//图表中Y轴数据
+@property (nonatomic,strong) NSMutableArray *weekArrayY;
+@property (nonatomic,strong) NSMutableArray *monthArrayY;
+@property (nonatomic,strong) NSMutableArray *yearArrayY;
+//当前时间的数据
+@property (nonatomic,assign) NSInteger nowYear;
+@property (nonatomic,assign) NSInteger nowMonth;
+@property (nonatomic,assign) NSInteger nowDay;
+@property (nonatomic,assign) NSInteger nowWeekday;
 @end
 
 @implementation TableViewCell
@@ -33,90 +45,124 @@
     }
     
     path = indexPath;
-//   后面选择UUChartBarStyle或者 UUChartLineStyle
+    //后面选择UUChartBarStyle或者 UUChartLineStyle
     chartView = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-20, 150)
                                               withSource:self
                                                withStyle:UUChartLineStyle];
     [chartView showInView:self.contentView];
+    //读取记录,生成第一级别的dictionary
+    NSString *plistPath =  [[NSBundle mainBundle] pathForResource:@"treatHistory" ofType:@"plist"];
+    _recordArray = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+    //对数组中的字典按照日期进行排序
+    NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"treatDate" ascending:NO]];
+    [_recordArray sortUsingDescriptors:sortDescriptors];
+    NSLog(@"_recordArray is  %@ ", _recordArray);
+   
+    
 }
 
 
 
-#pragma mark - @required
+#pragma mark - @required 横坐标标题数组
 
 //横坐标标题数组
 - (NSArray *)UUChart_xLableArray:(UUChart *)chart
 {
-    _week = @[@"星期一",@"星期二",@"星期三",@"星期四",@"星期五",@"星期六",@"星期日"];
-    _month = @[@"五日",@"十日",@"十五日",@"二十日",@"二十五日",@"三十日"];
-    _year = @[@"二月",@"四月",@"六月",@"八月",@"十月",@"十二月"];
-    if (path.section==0) {
+    
+    
+    
+    _weekArrayX = @[@"星期一",@"星期二",@"星期三",@"星期四",@"星期五",@"星期六",@"星期日"];
+    _monthArrayX = @[@"五日",@"十日",@"十五日",@"二十日",@"二十五日",@"三十日"];
+    _yearArrayX = @[@"二月",@"四月",@"六月",@"八月",@"十月",@"十二月"];
+    
         switch (path.row) {
             case 0:
-                return _week;
+                return _weekArrayX;
             case 1:
-                return _month;
-            case 2:
-                return _year;
-           
+                return _monthArrayX;
             default:
-                break;
+                return _yearArrayX;
         }
-    }else{
-        switch (path.row) {
-            case 0:
-                return _week;
-            case 1:
-                return _month;
-            default:
-                break;
-        }
-    }
-    return _week;
+    
 }
-//数值多重数组
+#pragma mark - @required 纵坐标标题数组
 - (NSArray *)UUChart_yValueArray:(UUChart *)chart
 {
-    
-    NSArray *ary = @[@"22",@"44",@"15",@"40",@"42",@"40",@"42"];
-    NSArray *ary1 = @[@"22",@"54",@"15",@"30",@"42",@"77"];
-    NSArray *ary2 = @[@"76",@"34",@"54",@"23",@"16",@"32",@"17"];
-    NSArray *ary3 = @[@"3",@"12",@"25",@"55",@"52"];
-    NSArray *ary4 = @[@"23",@"42",@"25",@"15",@"30",@"42",@"32",@"40",@"42",@"25",@"33"];
-    
-    if (path.section==0) {
-        switch (path.row) {
+   
+   
+    [self setWeekArrayY];
+    _monthArrayY = @[@"10",@"10",@"10",@"10"];
+    _yearArrayY = @[@"10",@"10",@"10",@"10"];
+    switch (path.row) {
             case 0:
-                return @[ary];
+                return @[_weekArrayY];
             case 1:
-                return @[ary1];
-            case 2:
-                return @[ary2];
+                return @[_monthArrayY];
             default:
-                return @[ary,ary1,ary2];
+                return @[_yearArrayY];
         }
-    }else{
-        if (path.row) {
-            return @[ary1,ary2];
-        }else{
-            return @[ary4];
-        }
-    }
+   
 }
 
-#pragma mark - @optional
+- (NSMutableArray *) setWeekArrayY{
+    
+    
+    _weekArrayY = [[NSMutableArray alloc] init];
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormat setDateFormat:@"yyyyMMddHHmm"];
+    
+    NSDate *today = [NSDate dateWithTimeIntervalSinceNow:0];
+    //设定时间格式，年中的第几天
+    NSDateFormatter *dayOfYear = [[NSDateFormatter alloc] init];
+    [dayOfYear setDateFormat:@"D'"];
+    //年中的第几天转化成整数
+    NSInteger todayInt = [[dayOfYear stringFromDate:today] integerValue];
+    
+    
+    //设定都为0的数组
+    for (NSInteger i = 0; i<7; i++) {
+        [_weekArrayY addObject:@"0"];
+    }
+    
+    
+    for (NSInteger e = 0 ; e<[_recordArray count]; e++) {
+        //读出纪录中第e个纪录日期
+        NSDate *recordDate =[dateFormat dateFromString:[_recordArray[e] objectForKey:@"treatDate" ]];
+        NSInteger recordDateInt = [[dayOfYear stringFromDate:recordDate] integerValue];
+        NSInteger treatDrugQuantityInt = [[_recordArray[e] objectForKey:@"treatDrugQuantity" ] integerValue];
+        //读出纪录中第e个纪录日期
+        if ((todayInt-recordDateInt)<7 && treatDrugQuantityInt>0) {
+            //把record中读出的值加入到对应周纪录数组中
+            NSInteger weekDayInt = todayInt-recordDateInt ;
+            treatDrugQuantityInt = [_weekArrayY[weekDayInt]  integerValue] + treatDrugQuantityInt ;
+            //替换对应数组内的值
+            [_weekArrayY replaceObjectAtIndex:weekDayInt withObject:[NSString stringWithFormat:@"%d",treatDrugQuantityInt]];
+            //判断是否超过一周数量，若超出，退出for循环
+        }else if ((todayInt-recordDateInt)>=7){
+            e=[_recordArray count];
+        }
+    }
+    
+    NSLog(@"_weekArrayY is  %@ ", _weekArrayY);
+    return  _weekArrayY;
+}
+
+#pragma mark -  图表颜色数组
 //颜色数组
 - (NSArray *)UUChart_ColorArray:(UUChart *)chart
 {
-    return @[UUGreen,UURed,UUBrown];
+    return @[UURed,UUGreen,UUBrown];
 }
+#pragma mark -  图表纵坐标显示范围
 //显示数值范围
 - (CGRange)UUChartChooseRangeInLineChart:(UUChart *)chart
 {
-    if (path.section==0 && (path.row==0|path.row==1)) {
-        return CGRangeMake(80, 10);
+    if (path.row==0 ) {
+        return CGRangeMake(50, 0);
     }
-    if (path.section==1 && path.row==0) {
+    if (path.row==1) {
         return CGRangeMake(60, 10);
     }
     if (path.row==2) {

@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property(nonatomic,strong) SliderSwitch *slideSwitchH;
 
+@property (nonatomic,strong) NSArray *recordArray;
 -(void)loadAreaDicWithCGRect:(CGRect) cgrect;
 @end

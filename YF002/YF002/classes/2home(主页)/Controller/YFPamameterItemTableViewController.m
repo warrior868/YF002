@@ -13,7 +13,7 @@
 <UITableViewDataSource,UITabBarDelegate>
 
 
-
+@property (nonatomic ,strong) NSIndexPath *lastIndexPath;
 
 @end
 
@@ -23,13 +23,25 @@
     [super viewDidLoad];
     [self delegateMethodGetArrayFromHomeCV];
 
-    NSLog(@"tre %@",_tableViewArray);
    
+    //对数组中的字典按照日期进行排序
+    NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"treatDate" ascending:YES]];
+    [_tableViewArray sortUsingDescriptors:sortDescriptors];
+    NSLog(@"排序后的数组%@",_tableViewArray);
+    //初始化选中行
+    _lastIndexPath= [NSIndexPath indexPathForRow:0 inSection:0 ];
+    [self.tableView selectRowAtIndexPath:_lastIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)viewWillAppear:(BOOL)animated{
+  
 }
 //从代理那边拿到tableView 显示的数组
 - (void)delegateMethodGetArrayFromHomeCV {
@@ -40,23 +52,34 @@
 
 
 
-#pragma mark - Table view data source
+#pragma mark - TableViewCell选中某行，取消之前选中行
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSIndexPath *path =  [tableView indexPathForSelectedRow];
-    NSLog(@"%@",path );
-    UITableViewCell *cell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    if(cell.tag == 0){
-        //注销cell单击事件
-        cell.selected = NO;
-    }else {
-        //取消选中项
-        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
-        
+    
+    int newRow = [indexPath row];
+    int oldRow = [_lastIndexPath row];
+    UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:_lastIndexPath];
+    UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
+    if (newRow != oldRow)
+    {
+        //新旧不同的两行，对旧的行进行背景颜色赋值
+        newCell.backgroundColor = [UIColor redColor];
+        if ((oldRow % 2) == 1) {
+            oldCell.backgroundColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:245.0/255 alpha:1];
+        }else{
+            oldCell.backgroundColor = [UIColor whiteColor ];
+        };
+        //把新的行设置成下次操作的旧的行
+        _lastIndexPath = indexPath;
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSLog(@"选中了%d",newRow );
+    [self.delegate sendSelectedItemToHomeVC:newRow];
+    
+    
 }
-
+#pragma mark - TableViewcell高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 {       //设置cell的高度
@@ -75,7 +98,7 @@
     return [_tableViewArray count];
 }
 
-
+#pragma mark - 生成Tableviewcell内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //创建cell
      NSDictionary *dicInCell = _tableViewArray[indexPath.row];
@@ -100,7 +123,7 @@
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-
+#pragma mark - Tableviewcell删除该行
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -110,19 +133,14 @@
         NSString *plistPath1;
         NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
         plistPath1 = [rootPath stringByAppendingPathComponent:@"treatItem.plist"];
-//        if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath1] == NO) {
-//            NSFileManager *fm = [NSFileManager defaultManager];
-//            [fm createFileAtPath:plistPath1 contents:nil attributes:nil];
-//        }
-        //        NSLog(@"applist %@", applist);
-        
-        //把数组加入到文件中
+
         [_tableViewArray writeToFile:plistPath1 atomically:YES];
 //        [tableView  deleteRowsAtIndexPaths:indexPath withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
+
 
 
 /*

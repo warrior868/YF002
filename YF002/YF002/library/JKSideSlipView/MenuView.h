@@ -15,6 +15,6 @@ typedef void (^didSelectRowAtIndexPath)(id cell, NSIndexPath *indexPath);
 }
 +(instancetype)menuView;
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
-@property (nonatomic, strong) NSArray *items;
+@property (nonatomic, strong) NSMutableArray *items;
 -(void)didSelectRowAtIndexPath:(void (^)(id cell, NSIndexPath *indexPath))didSelectRowAtIndexPath;
 @end

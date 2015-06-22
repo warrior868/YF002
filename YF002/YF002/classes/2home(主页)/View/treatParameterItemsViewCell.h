@@ -14,5 +14,6 @@
 + (instancetype)cellWithTableView:(UITableView *)tableView withTreatItem:(NSDictionary *)treatParameterItem;
 
 @property (nonatomic, strong) YFTreatParameterItem *treatParameterItem;
+@property (weak, nonatomic) IBOutlet UIImageView *check;
 
 @end

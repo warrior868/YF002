@@ -43,6 +43,7 @@
 		AB5BB7911B0CBDFA00CB1FA8 /* YFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB76D1B0CBDFA00CB1FA8 /* YFHomeViewController.m */; };
 		AB5BB7971B0CBDFA00CB1FA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB7871B0CBDFA00CB1FA8 /* main.m */; };
 		AB5BB7981B0CBDFA00CB1FA8 /* YFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB7891B0CBDFA00CB1FA8 /* YFAppDelegate.m */; };
+		AB6506EF1B3859C9000978E4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6506EE1B3859C9000978E4 /* CoreBluetooth.framework */; };
 		AB8F6D751B2077F300377D42 /* NSDate+convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8F6D6A1B2077F300377D42 /* NSDate+convenience.m */; };
 		AB8F6D761B2077F300377D42 /* NSMutableArray+convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8F6D6C1B2077F300377D42 /* NSMutableArray+convenience.m */; };
 		AB8F6D771B2077F300377D42 /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8F6D6E1B2077F300377D42 /* UIColor+expanded.m */; };
@@ -140,6 +141,7 @@
 		AB5BB7871B0CBDFA00CB1FA8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB5BB7881B0CBDFA00CB1FA8 /* YFAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFAppDelegate.h; sourceTree = "<group>"; };
 		AB5BB7891B0CBDFA00CB1FA8 /* YFAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFAppDelegate.m; sourceTree = "<group>"; };
+		AB6506EE1B3859C9000978E4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		AB8F6D691B2077F300377D42 /* NSDate+convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+convenience.h"; sourceTree = "<group>"; };
 		AB8F6D6A1B2077F300377D42 /* NSDate+convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+convenience.m"; sourceTree = "<group>"; };
 		AB8F6D6B1B2077F300377D42 /* NSMutableArray+convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+convenience.h"; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB6506EF1B3859C9000978E4 /* CoreBluetooth.framework in Frameworks */,
 				AB2B1EBA1B0B7B890038A3E0 /* CoreGraphics.framework in Frameworks */,
 				AB2B1EB81B0B7B5B0038A3E0 /* Foundation.framework in Frameworks */,
 				AB2B1EB51B0B7A500038A3E0 /* UIKit.framework in Frameworks */,
@@ -217,6 +220,7 @@
 		AB2B1EB61B0B7A900038A3E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB6506EE1B3859C9000978E4 /* CoreBluetooth.framework */,
 				AB2B1EB91B0B7B890038A3E0 /* CoreGraphics.framework */,
 				AB2B1EB71B0B7B5B0038A3E0 /* Foundation.framework */,
 				AB2B1EB41B0B7A500038A3E0 /* UIKit.framework */,

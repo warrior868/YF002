@@ -10,11 +10,13 @@
 
 @interface treatRecordTVCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *treatTime;
+@property (weak, nonatomic) IBOutlet UIImageView *treatWave;
 
-@property (weak, nonatomic) IBOutlet UILabel *treatTime;
-@property (weak, nonatomic) IBOutlet UILabel *treatStrength;
-@property (weak, nonatomic) IBOutlet UILabel *treatWave;
-@property (weak, nonatomic) IBOutlet UILabel *treatModel;
+@property (weak, nonatomic) IBOutlet UIImageView *treatStrength;
+
+@property (weak, nonatomic) IBOutlet UIImageView *treatModel;
+
 @property (weak, nonatomic) IBOutlet UILabel *treatDate;
 @property (weak, nonatomic) IBOutlet UILabel *treatDrug;
 @property (weak, nonatomic) IBOutlet UILabel *treatDrugQuantity;

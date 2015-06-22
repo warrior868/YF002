@@ -13,7 +13,7 @@
 
 - (void)sendSelectedItemToHomeVC:(NSInteger ) rowForNewTreatItem;
 - (NSArray *)getArrayHomeVC;
-
+- (NSInteger )getRowFromHomeVC;
 @end
 
 
@@ -22,5 +22,6 @@
 @property (nonatomic,weak) id <YFPamameterItemTVCDelegate> delegate;
 @property (strong,nonatomic) YFTreatParameterItem      *treatParameterItemTV;
 @property (strong,nonatomic) NSMutableArray                   *tableViewArray;
+@property (assign,nonatomic) NSInteger                   newRow;
 
 @end

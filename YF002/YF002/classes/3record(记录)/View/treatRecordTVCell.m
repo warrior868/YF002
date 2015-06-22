@@ -17,13 +17,14 @@
     treatRecordTVCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         // 从xib中加载cell
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"treatRecordTVCell" owner:nil options:nil] lastObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"treatRecordTVCell"  owner:nil options:nil] lastObject];
     }
     //从字典中读取各个参数
-    cell.treatTime.text = [treatParameterItem objectForKey:@"treatTime"];
-    cell.treatStrength.text = [treatParameterItem objectForKey:@"treatStrength"];
-    cell.treatWave.text = [treatParameterItem objectForKey:@"treatWave"];
-    cell.treatModel.text = [treatParameterItem objectForKey:@"treatModel"];
+    
+    cell.treatTime.image = [UIImage imageNamed:[treatParameterItem objectForKey:@"treatTime"]];
+    cell.treatStrength.image = [UIImage imageNamed:[treatParameterItem objectForKey:@"treatStrength"]];
+    cell.treatWave.image = [UIImage imageNamed:[treatParameterItem objectForKey:@"treatWave"]];
+    cell.treatModel.image = [UIImage imageNamed:[treatParameterItem objectForKey:@"treatModel"]];
     
     
     NSString *string1 = [treatParameterItem objectForKey:@"treatDate"];

@@ -56,8 +56,9 @@
     [self.myTableView registerNib:[UINib nibWithNibName:@"MenuCell" bundle:nil] forCellReuseIdentifier:@"MenuCell"];
     MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MenuCell"];
     cell.lable.text = [self.items[indexPath.row] objectForKey:@"title"];
+    cell.dataLable.text = [self.items[indexPath.row] objectForKey:@"data"];
     cell.icon.image = [UIImage imageNamed:[self.items[indexPath.row] objectForKey:@"imagename"]];
-    return cell;
+        return cell;
 }
 
 

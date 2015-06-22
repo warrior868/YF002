@@ -9,14 +9,16 @@
 #import "treatParameterItemsViewCell.h"
 
 @interface treatParameterItemsViewCell()
-@property (weak, nonatomic) IBOutlet UIButton *check;
-@property (weak, nonatomic) IBOutlet UILabel *treatTime;
-@property (weak, nonatomic) IBOutlet UILabel *treatStrength;
-@property (weak, nonatomic) IBOutlet UILabel *treatWave;
-@property (weak, nonatomic) IBOutlet UILabel *treatModel;
+
 @property (weak, nonatomic) IBOutlet UILabel *treatName;
 
+@property (weak, nonatomic) IBOutlet UIImageView *treatTime;
 
+@property (weak, nonatomic) IBOutlet UIImageView *treatStrength;
+
+@property (weak, nonatomic) IBOutlet UIImageView *treatWave;
+
+@property (weak, nonatomic) IBOutlet UIImageView *treatModel;
 
 
 @end
@@ -33,10 +35,12 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"treatParameterItemsViewCell" owner:nil options:nil] lastObject];
     }
     //名称
-    cell.treatTime.text = [treatParameterItem objectForKey:@"treatTime"];
-    cell.treatStrength.text = [treatParameterItem objectForKey:@"treatStrength"];
-    cell.treatWave.text = [treatParameterItem objectForKey:@"treatWave"];
-    cell.treatModel.text = [treatParameterItem objectForKey:@"treatModel"];
+    cell.treatTime.image = [UIImage imageNamed:[treatParameterItem objectForKey:@"treatTime"]];
+    cell.treatStrength.image = [UIImage imageNamed:[treatParameterItem objectForKey:@"treatStrength"]];
+    cell.treatWave.image = [UIImage imageNamed:[treatParameterItem objectForKey:@"treatWave"]];
+    cell.treatModel.image = [UIImage imageNamed:[treatParameterItem objectForKey:@"treatModel"]];
+    
+    cell.check.image = [UIImage imageNamed:@"checkNo"];
     cell.treatName.text = [treatParameterItem objectForKey:@"treatName"];
     return cell;
 }

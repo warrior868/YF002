@@ -49,13 +49,7 @@
     NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"treatDate" ascending:YES]];
     [_datafromTreatItem sortUsingDescriptors:sortDescriptors];
       
-    
-    //取出第一级别的dictionary中的第item个treatItem 生成新的_defaultTreatItem
-   // _defaultTreatItem =[_datafromTreatItem objectForKey:@"上次使用参数"] ;
-    
-    
-    
-    //   [mySettingData synchronize];
+
     
     }
 

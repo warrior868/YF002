@@ -22,16 +22,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegateMethodGetArrayFromHomeCV];
-
+    [self delegateMethodGetRowFromHomeCV];
    
     //对数组中的字典按照日期进行排序
     NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"treatDate" ascending:YES]];
     [_tableViewArray sortUsingDescriptors:sortDescriptors];
     NSLog(@"排序后的数组%@",_tableViewArray);
+    
+    
     //初始化选中行
-    _lastIndexPath= [NSIndexPath indexPathForRow:0 inSection:0 ];
+    
+    _lastIndexPath= [NSIndexPath indexPathForRow:_newRow inSection:0 ];
     [self.tableView selectRowAtIndexPath:_lastIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-}
+     treatParameterItemsViewCell *newCell = (treatParameterItemsViewCell *)[self.tableView cellForRowAtIndexPath:_lastIndexPath];
+   newCell.check.image = [UIImage imageNamed:@"checkYes"];
+   }
 
 
 
@@ -43,39 +48,45 @@
 - (void)viewWillAppear:(BOOL)animated{
   
 }
-//从代理那边拿到tableView 显示的数组
+#pragma mark - 从代理那边拿到tableView 显示的数组
+
 - (void)delegateMethodGetArrayFromHomeCV {
     
      _tableViewArray = (NSMutableArray *)   [self.delegate getArrayHomeVC];
     
 }
-
-
+#pragma mark - 从代理那边拿到tableView 显示的行
+- (void)delegateMethodGetRowFromHomeCV {
+    _newRow = [self.delegate getRowFromHomeVC];
+}
 
 #pragma mark - TableViewCell选中某行，取消之前选中行
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    int newRow = [indexPath row];
+    _newRow = [indexPath row];
     int oldRow = [_lastIndexPath row];
-    UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:_lastIndexPath];
-    UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
-    if (newRow != oldRow)
+    treatParameterItemsViewCell *oldCell = (treatParameterItemsViewCell *)[tableView cellForRowAtIndexPath:_lastIndexPath];
+     treatParameterItemsViewCell *newCell = (treatParameterItemsViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if (_newRow != oldRow)
     {
         //新旧不同的两行，对旧的行进行背景颜色赋值
-        newCell.backgroundColor = [UIColor redColor];
+        newCell.check.image = [UIImage imageNamed:@"checkYes"];
+        
         if ((oldRow % 2) == 1) {
             oldCell.backgroundColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:245.0/255 alpha:1];
+            oldCell.check.image = [UIImage imageNamed:@"checkNo"];
         }else{
             oldCell.backgroundColor = [UIColor whiteColor ];
+           oldCell.check.image = [UIImage imageNamed:@"checkNo"];
         };
         //把新的行设置成下次操作的旧的行
         _lastIndexPath = indexPath;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"选中了%d",newRow );
-    [self.delegate sendSelectedItemToHomeVC:newRow];
+    NSLog(@"选中了%d",_newRow );
+    [self.delegate sendSelectedItemToHomeVC:_newRow];
     
     
 }
@@ -107,12 +118,7 @@
     if ((indexPath.row % 2) == 1) {
         cell.backgroundColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:245.0/255 alpha:1];
     }
-    cell.selectedBackgroundView.backgroundColor = [UIColor redColor ];
-
-    // 2.给cell传递模型数据
-    
-    //cell= self.tableViewArray[indexPath.row];
-    
+  
     return cell;
 }
 
@@ -124,7 +130,7 @@
     return YES;
 }
 #pragma mark - Tableviewcell删除该行
-// Override to support editing the table view.
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source

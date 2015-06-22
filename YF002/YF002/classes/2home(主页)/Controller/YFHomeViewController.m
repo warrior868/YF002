@@ -47,9 +47,14 @@
 //保存时弹出窗口的属性
 @property (nonatomic, strong) STAlertView *stAlertView;
 
-//主界面左侧滑动窗口实例属性
-@property (nonatomic ,strong) MenuView *menu;
+//在YFPamameterItemTableViewController 数组中选择第几个治疗参数
+@property (assign,nonatomic) NSInteger  treatItemNumber;
 
+//左侧滑动窗口实例属性
+@property (nonatomic ,strong) MenuView   *menu;
+
+
+//计时动画圈圈属性
 @property (nonatomic ,strong) MMMaterialDesignSpinner *spinnerView;
 
 //pickView的属性
@@ -86,50 +91,59 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-//
+
 //    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44,768, 1004)];
-   _scrollView.directionalLockEnabled = YES; //只能一个方向滑动
-    _scrollView.pagingEnabled = NO; //是否翻页
-//    _scrollView.backgroundColor = [UIColor blackColor];
-    _scrollView.showsVerticalScrollIndicator =YES; //垂直方向的滚动指示
-    _scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;//滚动指示的风格
-    _scrollView.showsHorizontalScrollIndicator = NO;//水平方向的滚动指示
+    _scrollView.directionalLockEnabled = YES;
+    //只能一个方向滑动
+    _scrollView.pagingEnabled = NO;
+    //是否翻页
+    _scrollView.showsVerticalScrollIndicator =YES;
+    //垂直方向的滚动指示
+    _scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    //滚动指示的风格
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    //水平方向的滚动指示
     _scrollView.delegate = self;
-    CGSize newSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+70);
+    CGSize newSize = CGSizeMake(self.view.frame.size.width, 600);
     [_scrollView setContentSize:newSize];
-//    [self.view addSubview:_scrollView];
+
     
-    
+//  创建倒计时的圈圈动画
     MMMaterialDesignSpinner *spinnerView = [[MMMaterialDesignSpinner alloc] initWithFrame:CGRectZero];
     self.spinnerView = spinnerView;
     self.spinnerView.bounds = CGRectMake(0, 0, 140, 140);
     self.spinnerView.lineWidth = 3.0f;
     self.spinnerView.tintColor = [UIColor colorWithRed:70.f/255 green:188.f/255 blue:76.f/255 alpha:0.8];
     self.spinnerView.center = CGPointMake(CGRectGetMidX(self.view.bounds), 78);
-   // [self.view addSubview:self.spinnerView];
+   
     [self.view insertSubview:self.spinnerView atIndex:2];
     
 //  初始化治疗参数
     _treatParameterItem = [[YFTreatParameterItem alloc] initWithIndex:1];
-    NSLog(@"%@", _treatParameterItem.datafromTreatItem);
-//   初始化pickerView
-//   第一个pickview X轴xPickerView,y轴yPickerView,y轴增加值xAddPickerView
-     NSInteger xPickerView = 70,yPickerView = 150,yAddPickerView = 50;
+     NSLog(@"%@", _treatParameterItem.datafromTreatItem);
+
+//   创建 pickerView 第一个pickview X轴xPickerView,y轴yPickerView,y轴增加值xAddPickerView
+    NSInteger xPickerView = 70,yPickerView = 148,yAddPickerView = 50;
     [self treatTimePickerViewLoad:CGRectMake(xPickerView, yPickerView, 200, 60)];
     [self treatStrengthPickerViewLoad:CGRectMake(xPickerView,(yPickerView+yAddPickerView) , 200, 60)];
     [self treatWavePickerViewLoad:CGRectMake(xPickerView, (yPickerView+2*yAddPickerView), 200, 60)];
     [self treatModelPickerViewLoad:CGRectMake(xPickerView,(yPickerView+3*yAddPickerView), 200, 60)];
-//   初始化载入每个pickerView选中的行
+     //   初始化载入每个pickerView选中的行
     [_treatTimePickerView selectItem:[[_treatParameterItem.treatTime substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
     [_treatStrengthPickerView selectItem:[[_treatParameterItem.treatStrength substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
     [_treatWavePickerView selectItem:[[_treatParameterItem.treatWave substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
     [_treatModelPickerView selectItem:[[_treatParameterItem.treatModel substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
+
 //  设置navigationBar 左侧栏的名称以及按键调用的方法
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"状态" style:UIBarButtonItemStyleBordered                                                                            target:self                                                                            action:@selector(switchTouched)];
     
-//  设置MZTimerLabel倒计时  按钮
+//  创建 MZTimerLabel倒计时  按钮
     _timer = [[MZTimerLabel alloc] initWithLabel:_timerCountDownLabel andTimerType:MZTimerLabelTypeTimer];
-    [_timer setCountDownTime:60];
+    //读出初始化时间,字符串转数值
+    NSTimeInterval initTime = (NSTimeInterval )[[_treatParameterItem.treatTime substringWithRange:NSMakeRange(1, 1)] integerValue];
+    //设置初始化时间
+    [_timer setCountDownTime:(initTime+1)*5];
+    //关闭时间设置中的重置按钮
     [_resetBtn setEnabled:NO];
     _timer.resetTimerAfterFinish = YES;
     _timer.delegate = self;
@@ -138,32 +152,28 @@
 
   
  
-//// 设置代理与ViewController
+// 设置代理与ViewController
     
     YFRecordTVC *yfRecordTVC = [[YFRecordTVC alloc] initWithNibName:@"YFRecordTVC" bundle:nil];
     yfRecordTVC.delegate = self;
 
-//    YFPamameterItemTableViewController *parameterItemTVC = [[YFPamameterItemTableViewController alloc] init];
-//    parameterItemTVC.delegate = self;
+// 创建药物下拉菜单
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"area" ofType:@"plist"];
     areaDic = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-    [self loadAreaDicWithCGRect:CGRectMake(20, 407, 320, 136)];
+    [self loadAreaDicWithCGRect:CGRectMake(20, 407, 320, 140)];
     
-    //  设置sideView
+//  设置sideView
     _sideSlipView = [[JKSideSlipView alloc] initWithSender:self];
-    _sideSlipView = [[JKSideSlipView alloc]initWithSender:self];
-    _sideSlipView.backgroundColor = [UIColor redColor];
-    
     _menu = [MenuView menuView];
-
-    _menu.items = @[@{@"title":@"蓝牙已连接",@"imagename":@"电池电量"},
-                   @{@"title":[NSString stringWithFormat:@"预设时间为%@",_treatParameterItem.treatTime],@"imagename":_treatParameterItem.treatTime},
-                   @{@"title":[NSString stringWithFormat:@"强度为%@",_treatParameterItem.treatStrength],@"imagename":_treatParameterItem.treatStrength},
-                   @{@"title":[NSString stringWithFormat:@"波形为%@",_treatParameterItem.treatWave],@"imagename":_treatParameterItem.treatWave},
-                   @{@"title":[NSString stringWithFormat:@"电极为%@",_treatParameterItem.treatModel],@"imagename":_treatParameterItem.treatModel}];
+    [self loadSideViewData];
     [_sideSlipView setContentView:_menu];
     [self.view addSubview:_sideSlipView];
-    
+// 创建 蓝牙
+    _manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    _cbReady = false;
+    _nDevices = [[NSMutableArray alloc]init];
+    _nServices = [[NSMutableArray alloc]init];
+    _nCharacteristics = [[NSMutableArray alloc]init];
 }
 
 
@@ -247,15 +257,6 @@
         };
         
         LMComBoxView *comBox = [[LMComBoxView alloc]initWithFrame:CGRectMake(x, 0, xWidth, 29)];
-//        comBox.
-//        if (i==1) {
-//            
-//           
-//            
-//        } else if (i ==2){
-//            
-//            
-//        };
         comBox.backgroundColor = [UIColor whiteColor];
         comBox.arrowImgName = @"down_dark0.png";
         NSMutableArray *itemsArray = [NSMutableArray arrayWithArray:[addressDict objectForKey:[keys objectAtIndex:i]]];
@@ -268,7 +269,7 @@
     }
 }
 
-#pragma mark -LMComBoxViewDelegate
+#pragma mark - LMComBoxViewDelegate
 -(void)selectAtIndex:(int)index inCombox:(LMComBoxView *)_combox
 {
     NSInteger tag = _combox.tag - kDropDownListTag;
@@ -370,6 +371,8 @@
 
 - (void)sendSelectedItemToHomeVC:(NSInteger) rowForNewTreatItem{
     // 选中的列表第几个值后，重新赋值给_defaultTreatItem;
+    self.treatItemNumber = rowForNewTreatItem;
+    
     NSDictionary *newTreatItem = _treatParameterItem.datafromTreatItem[rowForNewTreatItem];
     _treatParameterItem.treatTime = [newTreatItem objectForKey:@"treatTime"];
     _treatParameterItem.treatStrength = [newTreatItem objectForKey:@"treatStrength"];
@@ -383,11 +386,15 @@
     [_treatModelPickerView selectItem:[[_treatParameterItem.treatModel substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
     
 }
+#pragma mark -YFPamameterTableViewController Delegate (Get Array)
 
 - (NSArray *)getArrayHomeVC{
     
-  //  self.delegate.tableViewArray = self.treatParameterItem.datafromTreatItem;
     return _treatParameterItem.datafromTreatItem;
+}
+
+- (NSInteger )getRowFromHomeVC{
+    return _treatItemNumber;
 }
 
 #pragma mark -YFRecordTVC Delegate
@@ -468,41 +475,38 @@
     pickerView.highlightedFont = [UIFont fontWithName:@"HelveticaNeue" size:18];
     pickerView.interitemSpacing = 15;
     pickerView.fisheyeFactor = 0.001;
-    pickerView.pickerViewStyle = AKPickerViewStyleFlat;
+    pickerView.pickerViewStyle = AKPickerViewStyle3D;
     pickerView.maskDisabled = false;
 }
 
-#pragma mark - pickerView 图片选择
+#pragma mark - AFPickerView 图片选择
 
-- (NSString *)pickerView:(AKPickerView *)pickerView titleForItem:(NSInteger)item
+
+
+- (UIImage *)pickerView:(AKPickerView *)pickerView imageForItem:(NSInteger)item
 {
     if([pickerView isEqual:_treatTimePickerView])
     {
-        return _treatTimePickerViewArray[item];
+        return [UIImage imageNamed:_treatTimePickerViewArray[item]];
     }
     
     else if([pickerView isEqual:_treatStrengthPickerView])
     {
-        return _treatStrengthPickerViewArray[item];
+        return [UIImage imageNamed:_treatStrengthPickerViewArray[item]];
     }
+    
     else if([pickerView isEqual:_treatWavePickerView])
     {
-        return _treatWavePickerViewArray[item];
+        return [UIImage imageNamed:_treatWavePickerViewArray[item]];
     }
+    
     else
     {
-        return _treatModelPickerViewArray[item];
+        return [UIImage imageNamed:_treatModelPickerViewArray[item]];
     }
-    
-    
 }
 
-//- (UIImage *)pickerView:(AKPickerView *)pickerView imageForItem:(NSInteger)item
-//{
-//    
-//    return [UIImage imageNamed:_treatWavePickerViewArray[item]];
-//}
-#pragma mark - pickerView 选择的项目
+#pragma mark - AFPickerView 选择的项目
 
 - (NSUInteger)nnumberOfItemsInPickerView:(AKPickerView *)pickerView{
     if([pickerView isEqual:_treatTimePickerView])
@@ -553,14 +557,13 @@
         else if([pickerView isEqual:_treatStrengthPickerView])
         {
             //读取数组中的值设置时间，设置模型中treatStrength的值，以便保存
-            _treatParameterItem.treatTime = _treatStrengthPickerViewArray[item];
+            _treatParameterItem.treatStrength = _treatStrengthPickerViewArray[item];
             
         }
         else if([pickerView isEqual:_treatWavePickerView])
         {
            //读取数组中的值设置时间，设置模型中treatWave的值，以便保存
             _treatParameterItem.treatWave = _treatWavePickerViewArray[item];
-            
 
         }
         else
@@ -581,7 +584,8 @@
                                             textFieldHint:@"请输入你要存储的名称"
                                            textFieldValue:nil
                                         cancelButtonTitle:@"取消"
-                                         otherButtonTitle:@"确定"                                        cancelButtonBlock:^{
+                                         otherButtonTitle:@"确定"
+                                        cancelButtonBlock:^{
                                             NSLog(@"取消了存储");
                                         } otherButtonBlock:^(NSString * result){                                            [self saveTreatItemToListWithName:result];
                                             
@@ -702,11 +706,11 @@
     }
     NSDictionary *newHistoryDic = @{@"treatDate":date,
                                     @"treatTime":_treatParameterItem.treatTime,
-                             @"treatStrength":_treatParameterItem.treatStrength,
-                             @"treatWave":_treatParameterItem.treatWave,
-                             @"treatModel":_treatParameterItem.treatModel,
-                             @"treatDrug":treatDrug,
-                             @"treatDrugQuantity":treatDrugQuantity};
+                                    @"treatStrength":_treatParameterItem.treatStrength,
+                                    @"treatWave":_treatParameterItem.treatWave,
+                                    @"treatModel":_treatParameterItem.treatModel,
+                                    @"treatDrug":treatDrug,
+                                    @"treatDrugQuantity":treatDrugQuantity};
     //读取治疗记录文件
     NSString *plistPath1;
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
@@ -729,16 +733,255 @@
 - (void)switchTouched{
     [_sideSlipView switchMenu];
     
-    _menu.items = @[@{@"title":@"蓝牙已连接",@"imagename":@"电池电量"},
-                   @{@"title":[NSString stringWithFormat:@"预设时间为%@",_treatParameterItem.treatTime],@"imagename":_treatParameterItem.treatTime},
-                   @{@"title":[NSString stringWithFormat:@"强度为%@",_treatParameterItem.treatStrength],@"imagename":_treatParameterItem.treatStrength},
-                   @{@"title":[NSString stringWithFormat:@"波形为%@",_treatParameterItem.treatWave],@"imagename":_treatParameterItem.treatWave},
-                   @{@"title":[NSString stringWithFormat:@"电极为%@",_treatParameterItem.treatModel],@"imagename":_treatParameterItem.treatModel}];
+    [self loadSideViewData];
+    
+    [_menu.myTableView reloadData];
 //    [_sideSlipView reloadTreatItem:_treatParameterItem withBlueToothStatus:YES withPowerStatus:50]  ;
     
 }
 
+- (void) loadSideViewData{
+    
+    if (1) {
+        _batteryValue = 70.0;
+        _menu.items =
+        @[
+          @{@"title":@"蓝牙已连接",@"imagename":@"70%",@"data":@"70% "},
+          @{@"title":[NSString stringWithFormat:@"电池电量%f%%",_batteryValue],@"imagename":@"70%",@"data":@"70%"},
+          @{@"title":@"时间",@"imagename":_treatParameterItem.treatTime,
+            @"data":[NSString stringWithFormat:@"%@",_treatParameterItem.treatTime]},
+          @{@"title":@"强度",@"imagename":_treatParameterItem.treatStrength,
+            @"data":[NSString stringWithFormat:@"%@",_treatParameterItem.treatStrength]},
+          @{@"title":@"波形",@"imagename":_treatParameterItem.treatWave,
+            @"data":[NSString stringWithFormat:@"%@",_treatParameterItem.treatWave]},
+          @{@"title":@"电极",@"imagename":_treatParameterItem.treatModel,
+            @"data":[NSString stringWithFormat:@"%@",_treatParameterItem.treatModel]}
+          ];
 
+    } else{
+        
+    }
+    }
+
+#pragma mark - BlueTooth 方法
+-(void)updateLog:(NSString *)s
+{
+    static unsigned int count = 0;
+    NSLog(@"[ %d ]  %@\r\n",count,s);
+//    [_textView setText:[NSString stringWithFormat:@"[ %d ]  %@\r\n%@",count,s,_textView.text]];
+    count++;
+}
+//扫描
+-(void)scanClick
+{
+    [self updateLog:@"正在扫描外设..."];
+    //[_activity startAnimating];
+    [_manager scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
+    
+    double delayInSeconds = 30.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self.manager stopScan];
+//        [_activity stopAnimating];
+        [self updateLog:@"扫描超时,停止扫描"];
+    });
+}
+
+//连接
+
+-(void)connectClick:(id)sender
+{
+    if (_cbReady ==false) {
+        [self.manager connectPeripheral:_peripheral options:nil];
+        _cbReady = true;
+//        [_connect setTitle:@"断开" forState:UIControlStateNormal];
+    }else {
+        [self.manager cancelPeripheralConnection:_peripheral];
+        _cbReady = false;
+//        [_connect setTitle:@"连接" forState:UIControlStateNormal];
+    }
+}
+
+//报警
+-(void)sendClick:(UIButton *)bu
+{
+    unsigned char data = 0x02;
+    [_peripheral writeValue:[NSData dataWithBytes:&data length:1] forCharacteristic:_writeCharacteristic type:CBCharacteristicWriteWithoutResponse];
+}
+
+//开始查看服务，蓝牙开启
+-(void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    switch (central.state) {
+        case CBCentralManagerStatePoweredOn:
+            [self updateLog:@"蓝牙已打开,请扫描外设"];
+            break;
+        default:
+            break;
+    }
+}
+
+//查到外设后，停止扫描，连接设备
+-(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
+{
+    [self updateLog:[NSString stringWithFormat:@"已发现 peripheral: %@ rssi: %@, UUID: %@ advertisementData: %@ ", peripheral, RSSI, peripheral.UUID, advertisementData]];
+    _peripheral = peripheral;
+    NSLog(@"%@",_peripheral);
+    [self.manager stopScan];
+    //[_activity stopAnimating];
+    BOOL replace = NO;
+    // Match if we have this device from before
+    for (int i=0; i < _nDevices.count; i++) {
+        CBPeripheral *p = [_nDevices objectAtIndex:i];
+        if ([p isEqual:peripheral]) {
+            [_nDevices replaceObjectAtIndex:i withObject:peripheral];
+            replace = YES;
+        }
+    }
+    if (!replace) {
+        [_nDevices addObject:peripheral];
+//        [_deviceTable reloadData];
+    }
+}
+
+//连接外设成功，开始发现服务
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
+    [self updateLog:[NSString stringWithFormat:@"成功连接 peripheral: %@ with UUID: %@",peripheral,peripheral.UUID]];
+    
+    [self.peripheral setDelegate:self];
+    [self.peripheral discoverServices:nil];
+    [self updateLog:@"扫描服务"];
+    
+}
+//连接外设失败
+-(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    NSLog(@"%@",error);
+}
+
+-(void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    //NSLog(@"%s,%@",__PRETTY_FUNCTION__,peripheral);
+    int rssi = abs([peripheral.RSSI intValue]);
+    CGFloat ci = (rssi - 49) / (10 * 4.);
+    NSString *length = [NSString stringWithFormat:@"发现BLT4.0热点:%@,距离:%.1fm",_peripheral,pow(10,ci)];
+    NSLog(@"距离：%@",length);
+}
+//已发现服务
+-(void) peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error{
+    
+    [self updateLog:@"发现服务."];
+    int i=0;
+    for (CBService *s in peripheral.services) {
+        [self.nServices addObject:s];
+    }
+    for (CBService *s in peripheral.services) {
+        [self updateLog:[NSString stringWithFormat:@"%d :服务 UUID: %@(%@)",i,s.UUID.data,s.UUID]];
+        i++;
+        [peripheral discoverCharacteristics:nil forService:s];
+    }
+}
+
+//已搜索到Characteristics
+-(void) peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error{
+    [self updateLog:[NSString stringWithFormat:@"发现特征的服务:%@ (%@)",service.UUID.data ,service.UUID]];
+    
+    for (CBCharacteristic *c in service.characteristics) {
+        [self updateLog:[NSString stringWithFormat:@"特征 UUID: %@ (%@)",c.UUID.data,c.UUID]];
+        
+        if ([c.UUID isEqual:[CBUUID UUIDWithString:@"2A06"]]) {
+            _writeCharacteristic = c;
+        }
+        if ([c.UUID isEqual:[CBUUID UUIDWithString:@"2A19"]]) {
+            [_peripheral readValueForCharacteristic:c];
+        }
+        
+        if ([c.UUID isEqual:[CBUUID UUIDWithString:@"FFA1"]]) {
+            [_peripheral readRSSI];
+        }
+        [_nCharacteristics addObject:c];
+    }
+}
+
+
+//获取外设发来的数据，不论是read和notify,获取数据都是从这个方法中读取。
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    // BOOL isSaveSuccess;
+    
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"2A19"]]) {
+        NSString *value = [[NSString alloc]initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+        _batteryValue = [value floatValue];
+        NSLog(@"电量%f",_batteryValue);
+    }
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"FFA1"]]) {
+        NSString *value = [[NSString alloc]initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+        //_batteryValue = [value floatValue];
+        NSLog(@"信号%@",value);
+    }
+    
+    else
+        NSLog(@"didUpdateValueForCharacteristic%@",[[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding]);
+}
+
+//将视频保存到目录文件夹下
+-(BOOL)saveToDocument:(NSData *) data withFilePath:(NSString *) filePath
+{
+    if ((data == nil) || (filePath == nil) || [filePath isEqualToString:@""]) {
+        return NO;
+    }
+    @try {
+        //将视频写入指定路径
+        [data writeToFile:filePath atomically:YES];
+        return  YES;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"保存失败");
+    }
+    return NO;
+}
+
+//根据当前时间将视频保存到VideoFile文件夹中
+-(NSString *)imageSavedPath:(NSString *) VideoName
+{
+    //获取Documents文件夹目录
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [path objectAtIndex:0];
+    //获取文件管理器
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //指定新建文件夹路径
+    NSString *videoDocPath = [documentPath stringByAppendingPathComponent:@"VideoFile"];
+    //创建VideoFile文件夹
+    [fileManager createDirectoryAtPath:videoDocPath withIntermediateDirectories:YES attributes:nil error:nil];
+    //返回保存图片的路径（图片保存在VideoFile文件夹下）
+    NSString * VideoPath = [videoDocPath stringByAppendingPathComponent:VideoName];
+    return VideoPath;
+}
+
+//中心读取外设实时数据
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+    if (error) {
+        NSLog(@"Error changing notification state: %@", error.localizedDescription);
+    }
+    // Notification has started
+    if (characteristic.isNotifying) {
+        [peripheral readValueForCharacteristic:characteristic];
+        
+    } else { // Notification has stopped
+        // so disconnect from the peripheral
+        NSLog(@"Notification stopped on %@.  Disconnecting", characteristic);
+        [self.manager cancelPeripheralConnection:self.peripheral];
+    }
+}
+//用于检测中心向外设写数据是否成功
+-(void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"=======%@",error.userInfo);
+    }else{
+        NSLog(@"发送数据成功");
+    }
+}
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];

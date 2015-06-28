@@ -22,14 +22,14 @@
             break;
         }
     }
-    return result;
+    return (MenuView *)result;
 }
 
 -(void)didSelectRowAtIndexPath:(void (^)(id cell, NSIndexPath *indexPath))didSelectRowAtIndexPath{
     _didSelectRowAtIndexPath = [didSelectRowAtIndexPath copy];
 }
 -(void)setItems:(NSArray *)items{
-    _items = items;
+    _items =(NSMutableArray *) items;
 }
 
 

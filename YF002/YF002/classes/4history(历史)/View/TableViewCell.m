@@ -71,9 +71,9 @@
     
     
     
-    _weekArrayX = @[@"星期一",@"星期二",@"星期三",@"星期四",@"星期五",@"星期六",@"星期日"];
-    _monthArrayX = @[@"五日",@"十日",@"十五日",@"二十日",@"二十五日",@"三十日"];
-    _yearArrayX = @[@"二月",@"四月",@"六月",@"八月",@"十月",@"十二月"];
+    _weekArrayX =[NSMutableArray arrayWithObjects:@"星期一",@"星期二",@"星期三",@"星期四",@"星期五",@"星期六",@"星期日", nil];
+    _monthArrayX =[NSMutableArray arrayWithObjects:@"五日",@"十日",@"十五日",@"二十日",@"二十五日",@"三十日", nil];
+    _yearArrayX = [NSMutableArray arrayWithObjects:@"二月",@"四月",@"六月",@"八月",@"十月",@"十二月", nil];
     
         switch (path.row) {
             case 0:
@@ -88,11 +88,9 @@
 #pragma mark - @required 纵坐标标题数组
 - (NSArray *)UUChart_yValueArray:(UUChart *)chart
 {
-   
-   
-    [self setWeekArrayY];
-    _monthArrayY = @[@"10",@"10",@"10",@"10"];
-    _yearArrayY = @[@"10",@"10",@"10",@"10"];
+   [self setWeekArrayY];
+    _monthArrayY = [NSMutableArray arrayWithObjects:@"10",@"10",@"10",@"10", nil];
+    _yearArrayY = [NSMutableArray arrayWithObjects:@"10",@"10",@"10",@"10", nil];
     switch (path.row) {
             case 0:
                 return @[_weekArrayY];

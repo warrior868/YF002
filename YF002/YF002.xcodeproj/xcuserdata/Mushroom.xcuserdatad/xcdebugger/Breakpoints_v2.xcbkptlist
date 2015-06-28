@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YF002/classes/2home(&#x4e3b;&#x9875;)/Controller/YFHomeViewController.m"
-            timestampString = "456680051.167877"
+            timestampString = "456840742.745269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "693"
-            endingLineNumber = "693"
+            startingLineNumber = "679"
+            endingLineNumber = "679"
             landmarkName = "-timerLabel:finshedCountDownTimerWithTime:"
             landmarkType = "5">
          </BreakpointContent>
@@ -426,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YF002/classes/2home(&#x4e3b;&#x9875;)/Controller/YFHomeViewController.m"
-            timestampString = "456680051.167877"
+            timestampString = "456840742.745269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "764"
-            endingLineNumber = "764"
+            startingLineNumber = "749"
+            endingLineNumber = "749"
             landmarkName = "-loadSideViewData"
             landmarkType = "5">
          </BreakpointContent>
@@ -522,12 +522,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YF002/classes/2home(&#x4e3b;&#x9875;)/Controller/YFHomeViewController.m"
-            timestampString = "456680051.167877"
+            timestampString = "456840742.745269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "750"
-            endingLineNumber = "750"
+            startingLineNumber = "735"
+            endingLineNumber = "735"
             landmarkName = "-loadSideViewData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YF002/classes/5setting(&#x8bbe;&#x7f6e;)/Controller/YFAlarmTVC.m"
+            timestampString = "457153312.830603"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "-testKEEvent"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

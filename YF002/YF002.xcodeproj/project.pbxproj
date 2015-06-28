@@ -49,6 +49,7 @@
 		AB8F6D771B2077F300377D42 /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8F6D6E1B2077F300377D42 /* UIColor+expanded.m */; };
 		AB8F6D781B2077F300377D42 /* UIView+convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8F6D701B2077F300377D42 /* UIView+convenience.m */; };
 		AB8F6D7A1B2077F300377D42 /* VRGCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8F6D741B2077F300377D42 /* VRGCalendarView.m */; };
+		AB995DB51B3AD71C00B7ACF6 /* YFRepeatTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AB995DB41B3AD71C00B7ACF6 /* YFRepeatTVC.m */; };
 		ABAB51A71B10DF00001663D2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABAB51A41B10DF00001663D2 /* Info.plist */; };
 		ABAB51A81B10DF00001663D2 /* MZTimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB51A61B10DF00001663D2 /* MZTimerLabel.m */; };
 		ABB43DEA1B134783000C83AA /* YFTreatParameterItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB43DE91B134783000C83AA /* YFTreatParameterItem.m */; };
@@ -152,6 +153,8 @@
 		AB8F6D701B2077F300377D42 /* UIView+convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+convenience.m"; sourceTree = "<group>"; };
 		AB8F6D731B2077F300377D42 /* VRGCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRGCalendarView.h; sourceTree = "<group>"; };
 		AB8F6D741B2077F300377D42 /* VRGCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRGCalendarView.m; sourceTree = "<group>"; };
+		AB995DB31B3AD71C00B7ACF6 /* YFRepeatTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFRepeatTVC.h; sourceTree = "<group>"; };
+		AB995DB41B3AD71C00B7ACF6 /* YFRepeatTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFRepeatTVC.m; sourceTree = "<group>"; };
 		ABAB51A41B10DF00001663D2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABAB51A51B10DF00001663D2 /* MZTimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimerLabel.h; sourceTree = "<group>"; };
 		ABAB51A61B10DF00001663D2 /* MZTimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTimerLabel.m; sourceTree = "<group>"; };
@@ -300,6 +303,8 @@
 				AB454D3C1B1BD20100FC10CD /* YFSettingTableViewController.m */,
 				AB43D9011B305C9900426AAB /* YFAlarmTVC.h */,
 				AB43D9021B305C9900426AAB /* YFAlarmTVC.m */,
+				AB995DB31B3AD71C00B7ACF6 /* YFRepeatTVC.h */,
+				AB995DB41B3AD71C00B7ACF6 /* YFRepeatTVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -824,6 +829,7 @@
 				AB454D351B1BD1DF00FC10CD /* YFRecordTVC.m in Sources */,
 				ABD3FE401B1ABBCD00190AE5 /* UULineChart.m in Sources */,
 				AB5BB74F1B0CB6C500CB1FA8 /* AKPickerView.m in Sources */,
+				AB995DB51B3AD71C00B7ACF6 /* YFRepeatTVC.m in Sources */,
 				AB5BB7901B0CBDFA00CB1FA8 /* YFPageControl.m in Sources */,
 				AB4748531B1E7415003EFACE /* YFCalendarVC.m in Sources */,
 				AB320AC81B246EC300E8FF7C /* SliderSwitch.m in Sources */,

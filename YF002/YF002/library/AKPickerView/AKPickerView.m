@@ -191,7 +191,7 @@
 - (CGFloat)offsetForItem:(NSUInteger)item
 {
 	NSAssert(item < [self.collectionView numberOfItemsInSection:0],
-			 @"item out of range; '%lu' passed, but the maximum is '%lu'", item, [self.collectionView numberOfItemsInSection:0]);
+			 @"item out of range; '%d' passed, but the maximum is '%d'", item, [self.collectionView numberOfItemsInSection:0]);
 
 	CGFloat offset = 0.0;
 

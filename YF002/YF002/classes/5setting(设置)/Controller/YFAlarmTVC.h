@@ -10,4 +10,8 @@
 
 @interface YFAlarmTVC : UITableViewController
 
+
+@property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
+@property (strong ,nonatomic) NSArray *weeDayPicked;
+
 @end

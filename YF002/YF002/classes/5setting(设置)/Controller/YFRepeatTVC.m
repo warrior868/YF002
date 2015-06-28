@@ -1,22 +1,32 @@
 //
-//  YFAlarmTVC.m
+//  YFRepeatTVC.m
 //  YF002
 //
-//  Created by Mushroom on 6/16/15.
+//  Created by Mushroom on 6/24/15.
 //  Copyright (c) 2015 Mushroom. All rights reserved.
 //
 
-#import "YFAlarmTVC.h"
+#import "YFRepeatTVC.h"
 
-@interface YFAlarmTVC ()
+@interface YFRepeatTVC ()
+
+@property (nonatomic ,assign) NSInteger  newRow;
+@property (nonatomic ,strong) NSMutableArray *selectedArray;
+@property (nonatomic ,strong) NSIndexPath *lastIndexPath;
+@property (nonatomic ,strong) NSMutableDictionary  *selectValueDictionary;
 
 @end
 
-@implementation YFAlarmTVC
+@implementation YFRepeatTVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _selectedArray =[NSMutableArray arrayWithObjects:@"0",@"1",@"0",@"1",@"0",@"1",@"0",@"0",nil];
     
+    
+    _lastIndexPath= [NSIndexPath indexPathForRow:_newRow inSection:6 ];
+    [self.tableView selectRowAtIndexPath:_lastIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [self.tableView deselectRowAtIndexPath:_lastIndexPath animated:YES];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -31,17 +41,28 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
-//}
+    
+    UITableViewCell *cell = [self.tableView
+                             cellForRowAtIndexPath: indexPath ];
+    
+    if (cell.accessoryType ==UITableViewCellAccessoryNone){
+        cell.accessoryType =UITableViewCellAccessoryCheckmark;
+        [_selectValueDictionary setObject:indexPath forKey:[_selectedArray objectAtIndex:indexPath.row]];
+        
+    }
+    else{
+        [_selectValueDictionary removeObjectForKey:[_selectedArray objectAtIndex:indexPath.row]];
+        cell.accessoryType =UITableViewCellAccessoryNone;
+    }
+    
+    NSLog(@"%@ ,%@",_selectedArray,_selectValueDictionary);
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

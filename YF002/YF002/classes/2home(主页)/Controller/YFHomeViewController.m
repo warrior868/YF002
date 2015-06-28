@@ -92,7 +92,7 @@
     
     [super viewDidLoad];
 
-//    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44,768, 1004)];
+//   创建滚动视图
     _scrollView.directionalLockEnabled = YES;
     //只能一个方向滑动
     _scrollView.pagingEnabled = NO;
@@ -135,7 +135,10 @@
     [_treatModelPickerView selectItem:[[_treatParameterItem.treatModel substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
 
 //  设置navigationBar 左侧栏的名称以及按键调用的方法
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"状态" style:UIBarButtonItemStyleBordered                                                                            target:self                                                                            action:@selector(switchTouched)];
+    UIImage *leftBarButtonItem = [UIImage imageNamed:@"blueToothGray" ];
+    self.navigationItem.leftBarButtonItem =[[UIBarButtonItem alloc] initWithImage:leftBarButtonItem landscapeImagePhone:nil style:UIBarButtonItemStyleBordered target:self action:@selector(switchTouched)];
+    [self.navigationItem.leftBarButtonItem setImage:[leftBarButtonItem imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+
     
 //  创建 MZTimerLabel倒计时  按钮
     _timer = [[MZTimerLabel alloc] initWithLabel:_timerCountDownLabel andTimerType:MZTimerLabelTypeTimer];
@@ -237,8 +240,7 @@
     [self setUpBgScrollView];
     
 }
--(void)setUpBgScrollView
-{
+-(void)setUpBgScrollView{
    
     
     NSArray *keys = [NSArray arrayWithObjects:@"province",@"city",@"area", nil];
@@ -270,8 +272,7 @@
 }
 
 #pragma mark - LMComBoxViewDelegate
--(void)selectAtIndex:(int)index inCombox:(LMComBoxView *)_combox
-{
+-(void)selectAtIndex:(int)index inCombox:(LMComBoxView *)_combox{
     NSInteger tag = _combox.tag - kDropDownListTag;
     switch (tag) {
         case 0:
@@ -368,7 +369,6 @@
 }
 
 #pragma mark - YFPamameterItemTableViewController Delegate
-
 - (void)sendSelectedItemToHomeVC:(NSInteger) rowForNewTreatItem{
     // 选中的列表第几个值后，重新赋值给_defaultTreatItem;
     self.treatItemNumber = rowForNewTreatItem;
@@ -386,13 +386,12 @@
     [_treatModelPickerView selectItem:[[_treatParameterItem.treatModel substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
     
 }
-#pragma mark -YFPamameterTableViewController Delegate (Get Array)
 
+#pragma mark -YFPamameterTableViewController Delegate (Get Array)
 - (NSArray *)getArrayHomeVC{
     
     return _treatParameterItem.datafromTreatItem;
 }
-
 - (NSInteger )getRowFromHomeVC{
     return _treatItemNumber;
 }
@@ -408,9 +407,7 @@
 }
 
 #pragma mark - AKPickerView DataSource
-
-- (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView
-{
+- (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView{
 
     if([pickerView isEqual:_treatTimePickerView])
     {
@@ -480,11 +477,7 @@
 }
 
 #pragma mark - AFPickerView 图片选择
-
-
-
-- (UIImage *)pickerView:(AKPickerView *)pickerView imageForItem:(NSInteger)item
-{
+- (UIImage *)pickerView:(AKPickerView *)pickerView imageForItem:(NSInteger)item{
     if([pickerView isEqual:_treatTimePickerView])
     {
         return [UIImage imageNamed:_treatTimePickerViewArray[item]];
@@ -507,7 +500,6 @@
 }
 
 #pragma mark - AFPickerView 选择的项目
-
 - (NSUInteger)nnumberOfItemsInPickerView:(AKPickerView *)pickerView{
     if([pickerView isEqual:_treatTimePickerView])
     {
@@ -536,8 +528,7 @@
 }
 
 //用pickerView 选出的treatItem 参数
-- (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item
-{
+- (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item{
     
         if([pickerView isEqual:_treatTimePickerView])
         {
@@ -574,7 +565,6 @@
     
         
 }
-
 
 #pragma mark - 保存参数按钮
 - (IBAction)saveTreatPamameterItem:(id)sender{
@@ -625,7 +615,6 @@
             NSFileManager *fm = [NSFileManager defaultManager];
             [fm createFileAtPath:plistPath1 contents:nil attributes:nil];
         }
-        //        NSLog(@"applist %@", applist);
         
         //把数组加入到文件中
         [_treatParameterItem.datafromTreatItem writeToFile:plistPath1 atomically:YES];
@@ -638,6 +627,7 @@
     };
     
 }
+
 #pragma mark - MZTimerlabel 开始 暂停 重置按钮的方法
 - (IBAction)startOrResumeCountDown:(id)sender {
     
@@ -661,8 +651,6 @@
     }
     
 }
-
-
 - (IBAction)resetCountDown:(id)sender {
     [_timer reset];
     
@@ -671,8 +659,6 @@
     }
      [_resetBtn setEnabled:NO];
 }
-
-
 - (void)timerLabel:(MZTimerLabel*)timerLabel finshedCountDownTimerWithTime:(NSTimeInterval)countTime{
     //圆圈动画结束
     [self.spinnerView stopAnimating];
@@ -728,18 +714,17 @@
     NSLog(@"%@",_treatParameterItem.datafromTreatHistory);
 }
 
-
 #pragma mark - sideView 按钮方法
 - (void)switchTouched{
     [_sideSlipView switchMenu];
     
     [self loadSideViewData];
-    
+    //蓝牙进行扫描
+    [self scanClick];
     [_menu.myTableView reloadData];
-//    [_sideSlipView reloadTreatItem:_treatParameterItem withBlueToothStatus:YES withPowerStatus:50]  ;
+
     
 }
-
 - (void) loadSideViewData{
     
     if (1) {
@@ -747,7 +732,7 @@
         _menu.items =
         @[
           @{@"title":@"蓝牙已连接",@"imagename":@"70%",@"data":@"70% "},
-          @{@"title":[NSString stringWithFormat:@"电池电量%f%%",_batteryValue],@"imagename":@"70%",@"data":@"70%"},
+          @{@"title":[NSString stringWithFormat:@"电池电量%d%%",(NSInteger)_batteryValue],@"imagename":@"70%",@"data":@"70%"},
           @{@"title":@"时间",@"imagename":_treatParameterItem.treatTime,
             @"data":[NSString stringWithFormat:@"%@",_treatParameterItem.treatTime]},
           @{@"title":@"强度",@"imagename":_treatParameterItem.treatStrength,
@@ -763,17 +748,16 @@
     }
     }
 
-#pragma mark - BlueTooth 方法
--(void)updateLog:(NSString *)s
-{
+#pragma mark - BlueTooth
+-(void)updateLog:(NSString *)s{
     static unsigned int count = 0;
     NSLog(@"[ %d ]  %@\r\n",count,s);
 //    [_textView setText:[NSString stringWithFormat:@"[ %d ]  %@\r\n%@",count,s,_textView.text]];
     count++;
 }
-//扫描
--(void)scanClick
-{
+
+//BlueTooth  扫描
+-(void)scanClick{
     [self updateLog:@"正在扫描外设..."];
     //[_activity startAnimating];
     [_manager scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
@@ -782,34 +766,33 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.manager stopScan];
-//        [_activity stopAnimating];
+   //     [_activity stopAnimating];
         [self updateLog:@"扫描超时,停止扫描"];
     });
 }
 
-//连接
+//BlueTooth  连接
 
--(void)connectClick:(id)sender
-{
+-(void)connectClick:(id)sender{
     if (_cbReady ==false) {
         [self.manager connectPeripheral:_peripheral options:nil];
         _cbReady = true;
-//        [_connect setTitle:@"断开" forState:UIControlStateNormal];
+       // [_connect setTitle:@"断开" forState:UIControlStateNormal];
     }else {
         [self.manager cancelPeripheralConnection:_peripheral];
         _cbReady = false;
-//        [_connect setTitle:@"连接" forState:UIControlStateNormal];
+        //[_connect setTitle:@"连接" forState:UIControlStateNormal];
     }
 }
 
-//报警
+//BlueTooth  报警
 -(void)sendClick:(UIButton *)bu
 {
     unsigned char data = 0x02;
     [_peripheral writeValue:[NSData dataWithBytes:&data length:1] forCharacteristic:_writeCharacteristic type:CBCharacteristicWriteWithoutResponse];
 }
 
-//开始查看服务，蓝牙开启
+#pragma mark -      -  BlueTooth  开始查看服务，蓝牙开启
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     switch (central.state) {
@@ -821,7 +804,7 @@
     }
 }
 
-//查到外设后，停止扫描，连接设备
+#pragma mark -      -  BlueTooth  查到外设后，停止扫描，连接设备
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     [self updateLog:[NSString stringWithFormat:@"已发现 peripheral: %@ rssi: %@, UUID: %@ advertisementData: %@ ", peripheral, RSSI, peripheral.UUID, advertisementData]];
@@ -840,11 +823,11 @@
     }
     if (!replace) {
         [_nDevices addObject:peripheral];
-//        [_deviceTable reloadData];
+    //[_deviceTable reloadData];
     }
 }
 
-//连接外设成功，开始发现服务
+//BlueTooth  连接外设成功，开始发现服务
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     [self updateLog:[NSString stringWithFormat:@"成功连接 peripheral: %@ with UUID: %@",peripheral,peripheral.UUID]];
     
@@ -853,7 +836,7 @@
     [self updateLog:@"扫描服务"];
     
 }
-//连接外设失败
+// BlueTooth  连接外设失败
 -(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"%@",error);
@@ -867,7 +850,7 @@
     NSString *length = [NSString stringWithFormat:@"发现BLT4.0热点:%@,距离:%.1fm",_peripheral,pow(10,ci)];
     NSLog(@"距离：%@",length);
 }
-//已发现服务
+#pragma mark -      -  BlueTooth  已发现服务
 -(void) peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error{
     
     [self updateLog:@"发现服务."];
@@ -882,7 +865,7 @@
     }
 }
 
-//已搜索到Characteristics
+#pragma mark -      -  BlueTooth  已搜索到Characteristics
 -(void) peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error{
     [self updateLog:[NSString stringWithFormat:@"发现特征的服务:%@ (%@)",service.UUID.data ,service.UUID]];
     
@@ -904,7 +887,7 @@
 }
 
 
-//获取外设发来的数据，不论是read和notify,获取数据都是从这个方法中读取。
+#pragma mark -      -  BlueTooth  获取外设发来的数据，不论是read和notify。
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
     // BOOL isSaveSuccess;

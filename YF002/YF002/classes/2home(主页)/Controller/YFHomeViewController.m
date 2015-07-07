@@ -25,6 +25,7 @@
 #import "STAlertView.h"
 
 #import "MMMaterialDesignSpinner.h"
+#import "Masonry.h"
 
 #define kDropDownListTag 1000
 
@@ -107,6 +108,7 @@
     CGSize newSize = CGSizeMake(self.view.frame.size.width, 600);
     [_scrollView setContentSize:newSize];
 
+
     
 //  创建倒计时的圈圈动画
     MMMaterialDesignSpinner *spinnerView = [[MMMaterialDesignSpinner alloc] initWithFrame:CGRectZero];
@@ -145,7 +147,10 @@
     //读出初始化时间,字符串转数值
     NSTimeInterval initTime = (NSTimeInterval )[[_treatParameterItem.treatTime substringWithRange:NSMakeRange(1, 1)] integerValue];
     //设置初始化时间
-    [_timer setCountDownTime:(initTime+1)*5];
+    if (initTime == 0) {
+        [_timer setCountDownTime:60];
+    }else{
+        [_timer setCountDownTime:initTime*5*60];}
     //关闭时间设置中的重置按钮
     [_resetBtn setEnabled:NO];
     _timer.resetTimerAfterFinish = YES;
@@ -170,7 +175,10 @@
     _menu = [MenuView menuView];
     [self loadSideViewData];
     [_sideSlipView setContentView:_menu];
+    _menu.myTableView.separatorStyle =UITableViewCellSeparatorStyleSingleLine;
+    _menu.myTableView.separatorColor = [UIColor colorWithRed:0.1 green:0.8 blue:0.1 alpha:1.0];
     [self.view addSubview:_sideSlipView];
+    
 // 创建 蓝牙
     _manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     _cbReady = false;
@@ -539,7 +547,10 @@
             //字符串转化成整数
             NSInteger  setTime = [treatTimeSelectNumber integerValue];
             //设置计时时间
-            [_timer setCountDownTime:(setTime + 1)*5];
+            if (setTime == 0) {
+                [_timer setCountDownTime:1*60];
+            }else{
+                [_timer setCountDownTime:setTime*5*60];}
             //设置模型中treatTime的值，以便保存；
             _treatParameterItem.treatTime = treatTimeSelect;
             NSLog(@"Time_%@", _treatParameterItem.treatTime);
@@ -807,7 +818,7 @@
 #pragma mark -      -  BlueTooth  查到外设后，停止扫描，连接设备
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    [self updateLog:[NSString stringWithFormat:@"已发现 peripheral: %@ rssi: %@, UUID: %@ advertisementData: %@ ", peripheral, RSSI, peripheral.UUID, advertisementData]];
+    [self updateLog:[NSString stringWithFormat:@"已发现 peripheral: %@ rssi: %@, UUID: %@ advertisementData: %@ ", peripheral, RSSI, peripheral.identifier, advertisementData]];
     _peripheral = peripheral;
     NSLog(@"%@",_peripheral);
     [self.manager stopScan];
@@ -829,7 +840,7 @@
 
 //BlueTooth  连接外设成功，开始发现服务
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-    [self updateLog:[NSString stringWithFormat:@"成功连接 peripheral: %@ with UUID: %@",peripheral,peripheral.UUID]];
+    [self updateLog:[NSString stringWithFormat:@"成功连接 peripheral: %@ with UUID: %@",peripheral,peripheral.identifier]];
     
     [self.peripheral setDelegate:self];
     [self.peripheral discoverServices:nil];

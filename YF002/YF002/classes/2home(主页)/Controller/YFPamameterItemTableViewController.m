@@ -66,7 +66,7 @@
 {
     
     _newRow = [indexPath row];
-    int oldRow = [_lastIndexPath row];
+    NSInteger oldRow = [_lastIndexPath row];
     treatParameterItemsViewCell *oldCell = (treatParameterItemsViewCell *)[tableView cellForRowAtIndexPath:_lastIndexPath];
      treatParameterItemsViewCell *newCell = (treatParameterItemsViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     if (_newRow != oldRow)
@@ -85,7 +85,7 @@
         _lastIndexPath = indexPath;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"选中了%d",_newRow );
+   // NSLog(@"选中了%d",_newRow );
     [self.delegate sendSelectedItemToHomeVC:_newRow];
     
     

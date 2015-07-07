@@ -14,7 +14,7 @@
 
 @interface SliderSwitch : UIView
 
-@property (nonatomic) int numberOflabels;
+@property (nonatomic) NSInteger numberOflabels;
 @property (nonatomic, retain, readonly) UILabel *labelOne, *labelTwo, *labelThree, *labelFour, *labelFive;
 @property (nonatomic,retain) UIButton *toggleButton;
 @property (nonatomic,assign) id<SliderSwitchDelegate> delegate;

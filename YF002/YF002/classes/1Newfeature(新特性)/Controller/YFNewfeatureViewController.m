@@ -39,8 +39,8 @@
     
     //新特征跳转到主控制器
     
-    [self dismissModalViewControllerAnimated:YES];
-    
+    //[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 /**

@@ -8,15 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "SliderSwitch.h"
+#import "InfoView.h"
+#import "chatView.h"
+typedef enum{
+    year=0,
+    month,
+    day,
+    week
+}State;
 
 @interface YFHistoryVC : UIViewController
 
 @property (nonatomic,weak) UITableView *tableView;
 @property (nonatomic,weak) UIView *aview;
-@property (weak, nonatomic) IBOutlet UIView *baseView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @property(nonatomic,strong) SliderSwitch *slideSwitchH;
 
-@property (nonatomic,strong) NSArray *recordArray;
+@property (nonatomic,strong) NSMutableArray *recordArray;
 -(void)loadAreaDicWithCGRect:(CGRect) cgrect;
 @end

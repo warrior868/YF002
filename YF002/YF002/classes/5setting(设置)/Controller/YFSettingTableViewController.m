@@ -7,8 +7,9 @@
 //
 
 #import "YFSettingTableViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface YFSettingTableViewController ()
+@interface YFSettingTableViewController () <MFMailComposeViewControllerDelegate >
 
 @end
 
@@ -17,16 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -39,18 +35,127 @@
 }
 
 #pragma mark - Table view data source
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        [self sendEmailAction];
+    } else if (indexPath.section == 4)
+    [self sendProblem];
+}
+#pragma mark - Mail 方法
+- (void)sendEmailAction
+{
+    // 邮件服务器
+    MFMailComposeViewController *mailCompose = [[MFMailComposeViewController alloc] init];
+    // 设置邮件代理
+    [mailCompose setMailComposeDelegate:self];
+    NSDateFormatter *nowFormatter= [[NSDateFormatter alloc] init];
+    [nowFormatter setDateFormat:@"yyyyMMdd"];
+    NSString *date =  [nowFormatter stringFromDate:[NSDate date]];
+    NSString *nameSubject = [NSString stringWithFormat:@"纪录备份(%@)",date ] ;
+    // 设置邮件主题
+    [mailCompose setSubject:nameSubject];
+    
+    // 设置收件人
+    [mailCompose setToRecipients:@[@"邮箱号码"]];
+    // 设置抄送人
+    [mailCompose setCcRecipients:@[@"邮箱号码"]];
+    // 设置密抄送
+    [mailCompose setBccRecipients:@[@"邮箱号码"]];
+    
+    /**
+     *  设置邮件的正文内容
+     */
+    NSString *emailContent = @"请填写邮箱地址，并点击发送以便保持你的备份。";
+    // 是否为HTML格式
+    [mailCompose setMessageBody:emailContent isHTML:NO];
+    // 如使用HTML格式，则为以下代码
+    //    [mailCompose setMessageBody:@"<html><body><p>Hello</p><p>World！</p></body></html>" isHTML:YES];
+    
+    /**
+     *  添加附件
+     */
+    //读取治疗记录文件
+    NSString *plistPath1;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+    plistPath1 = [rootPath stringByAppendingPathComponent:@"treatHistory.plist"];
+    //判断是否存在记录的文件，没有的话建文件
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath1] ) {
+        NSFileManager *fm = [NSFileManager defaultManager];
+        [fm createFileAtPath:plistPath1 contents:nil attributes:nil];
+    }
+    NSData *pdf = [NSData dataWithContentsOfFile:plistPath1];
+    
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
+    //把附件添加到邮件附件中
+    [mailCompose addAttachmentData:pdf mimeType:@"" fileName:nameSubject];
+    
+    // 弹出邮件发送视图
+    [self presentViewController:mailCompose animated:YES completion:nil];
+}
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
-//}
+
+- (void) sendProblem{
+    // 邮件服务器
+    MFMailComposeViewController *mailCompose = [[MFMailComposeViewController alloc] init];
+    // 设置邮件代理
+    [mailCompose setMailComposeDelegate:self];
+    NSDateFormatter *nowFormatter= [[NSDateFormatter alloc] init];
+    [nowFormatter setDateFormat:@"yyyyMMdd"];
+    NSString *date =  [nowFormatter stringFromDate:[NSDate date]];
+    NSString *nameSubject = [NSString stringWithFormat:@"问题反馈(%@)",date ] ;
+    // 设置邮件主题
+    [mailCompose setSubject:nameSubject];
+    
+    // 设置收件人
+    [mailCompose setToRecipients:@[@"yonggang_xu@126.com"]];
+    // 设置抄送人
+    [mailCompose setCcRecipients:@[@"邮箱号码"]];
+    // 设置密抄送
+    [mailCompose setBccRecipients:@[@"邮箱号码"]];
+    
+    /**
+     *  设置邮件的正文内容
+     */
+    NSString *emailContent = @"建议和意见时 请表述问题且提出大概想法 ";
+    // 是否为HTML格式
+    [mailCompose setMessageBody:emailContent isHTML:NO];
+    // 如使用HTML格式，则为以下代码
+    //    [mailCompose setMessageBody:@"<html><body><p>Hello</p><p>World！</p></body></html>" isHTML:YES];
+    
+    /**
+     *  添加附件
+     */
+
+    
+    // 弹出邮件发送视图
+    [self presentViewController:mailCompose animated:YES completion:nil];
+}
+#pragma mark - Mail 操作反馈（是否取消或保存）
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled: // 用户取消编辑
+            NSLog(@"Mail send canceled...");
+            break;
+        case MFMailComposeResultSaved: // 用户保存邮件
+            NSLog(@"Mail saved...");
+            break;
+        case MFMailComposeResultSent: // 用户点击发送
+            NSLog(@"Mail sent...");
+            break;
+        case MFMailComposeResultFailed: // 用户尝试保存或发送邮件失败
+            NSLog(@"Mail send errored: %@...", [error localizedDescription]);
+            break;
+    }
+    
+    // 关闭邮件发送视图
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+
+    }
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

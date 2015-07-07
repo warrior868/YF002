@@ -22,6 +22,7 @@
             break;
         }
     }
+    
     return (MenuView *)result;
 }
 

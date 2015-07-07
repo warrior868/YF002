@@ -164,7 +164,7 @@
     _selectedIndex = 0;
     //divide frame height by numberOfFields to decide height of each option
     long double height;
-    int n=number;
+    NSInteger n=number;
     _numberOflabels=n;
     long double f=(long double)frame.size.height;
     height=f/n;        
@@ -353,7 +353,7 @@
     //divide frame width by numberOfFields to decide width of each option
     _selectedIndex = 0;
     float width;
-    int n=number;
+    NSInteger n=number;
     _numberOflabels=n;
     float f=(float)frame.size.width;    
     width=f/n;    
@@ -583,11 +583,11 @@
 {
        
     float diffone,difftwo,diffthree,difffour,difffive;
-    diffone=fabsf(button.frame.origin.y-_labelOne.frame.origin.y);
-    difftwo=fabsf(_labelTwo.frame.origin.y-button.frame.origin.y);
-    diffthree=fabsf(_labelThree.frame.origin.y-button.frame.origin.y);
-    difffour=fabsf(_labelFour.frame.origin.y-button.frame.origin.y);
-    difffive=fabsf(_labelFive.frame.origin.y-button.frame.origin.y);
+    diffone=fabsf((float)(button.frame.origin.y-_labelOne.frame.origin.y));
+    difftwo=fabsf((float)(_labelTwo.frame.origin.y-button.frame.origin.y));
+    diffthree=fabsf((float)(_labelThree.frame.origin.y-button.frame.origin.y));
+    difffour=fabsf((float)(_labelFour.frame.origin.y-button.frame.origin.y));
+    difffive=fabsf((float)(_labelFive.frame.origin.y-button.frame.origin.y));
     
     
     if (_numberOflabels==2) {

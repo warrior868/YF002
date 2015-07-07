@@ -1,0 +1,143 @@
+
+/* Class = "UIViewController"; title = "关于"; ObjectID = "08P-S5-dFC"; */
+"08P-S5-dFC.title" = "About";
+
+/* Class = "UIBarButtonItem"; title = "参数"; ObjectID = "2PC-uI-R05"; */
+"2PC-uI-R05.title" = "Parameter";
+
+/* Class = "UINavigationItem"; title = "常见问题"; ObjectID = "4Lv-q8-IRV"; */
+"4Lv-q8-IRV.title" = "Problem";
+
+/* Class = "UILabel"; text = "波形"; ObjectID = "59m-CP-JKp"; */
+"59m-CP-JKp.text" = "Wave";
+
+/* Class = "UILabel"; text = "时间"; ObjectID = "6NQ-4j-zC8"; */
+"6NQ-4j-zC8.text" = "Time";
+
+/* Class = "UITabBarItem"; title = "主页"; ObjectID = "6uC-dv-Cxw"; */
+"6uC-dv-Cxw.title" = "Home";
+
+/* Class = "UILabel"; text = "常见问题"; ObjectID = "8ky-J3-Dz7"; */
+"8ky-J3-Dz7.text" = "Problem";
+
+/* Class = "UIButton"; normalTitle = "重置"; ObjectID = "9gK-iR-9TO"; */
+"9gK-iR-9TO.normalTitle" = "Reset";
+
+/* Class = "UILabel"; text = "药物"; ObjectID = "BzG-ru-bkO"; */
+"BzG-ru-bkO.text" = "Drug";
+
+/* Class = "UITextView"; text = "帮助1
+
+
+帮助2"; ObjectID = "Dmh-72-eGz"; */
+"Dmh-72-eGz.text" = "帮助1
+
+
+帮助2";
+
+/* Class = "UILabel"; text = "备份数据"; ObjectID = "Gdi-q2-zkT"; */
+"Gdi-q2-zkT.text" = "Backup";
+
+/* Class = "UILabel"; text = "强度"; ObjectID = "IeC-VG-Abj"; */
+"IeC-VG-Abj.text" = "Strengh";
+
+/* Class = "UIViewController"; title = "帮助"; ObjectID = "Mvs-Kc-gI4"; */
+"Mvs-Kc-gI4.title" = "Help";
+
+/* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "SR0-BR-RUW"; */
+"SR0-BR-RUW.title" = "Save";
+
+/* Class = "UILabel"; text = "提醒设置"; ObjectID = "SWc-Ge-m3H"; */
+"SWc-Ge-m3H.text" = "Reminder";
+
+/* Class = "UINavigationItem"; title = "新建闹钟"; ObjectID = "TJl-Rd-Pzo"; */
+"TJl-Rd-Pzo.title" = "New Alarm";
+
+/* Class = "UINavigationItem"; title = "关于"; ObjectID = "UAg-Mb-HHN"; */
+"UAg-Mb-HHN.title" = "About";
+
+/* Class = "UIBarButtonItem"; title = "日期"; ObjectID = "VZM-L4-AmO"; */
+"VZM-L4-AmO.title" = "Date";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "VhW-RM-Utb"; */
+"VhW-RM-Utb.text" = "00:00";
+
+/* Class = "UITextView"; text = "1. 找不到蓝牙 ，请尝试以下方法
+A:已经在手机上打开蓝牙设备；
+B:设备已经打开蓝牙；
+
+ "; ObjectID = "Woh-Nw-OLr"; */
+"Woh-Nw-OLr.text" = "1. 找不到蓝牙 ，请尝试以下方法
+A:已经在手机上打开蓝牙设备；
+B:设备已经打开蓝牙；
+
+ ";
+
+/* Class = "UILabel"; text = "关于"; ObjectID = "YF4-Q0-kZn"; */
+"YF4-Q0-kZn.text" = "About";
+
+/* Class = "UILabel"; text = "版本：V 0.1"; ObjectID = "Z1p-9v-oEh"; */
+"Z1p-9v-oEh.text" = "Version：V 0.1";
+
+/* Class = "UILabel"; text = "药物："; ObjectID = "ZPL-gs-RGt"; */
+"ZPL-gs-RGt.text" = "Drug：";
+
+/* Class = "UINavigationItem"; title = "记录"; ObjectID = "Zw4-lV-cR4"; */
+"Zw4-lV-cR4.title" = "Record";
+
+/* Class = "UINavigationItem"; title = "主页"; ObjectID = "aJr-3y-SEq"; */
+"aJr-3y-SEq.title" = "Home";
+
+/* Class = "UIViewController"; title = "常见问题"; ObjectID = "aQG-K3-6Sg"; */
+"aQG-K3-6Sg.title" = "Problem";
+
+/* Class = "UINavigationItem"; title = "历史"; ObjectID = "cJd-2I-sl5"; */
+"cJd-2I-sl5.title" = "History";
+
+/* Class = "UINavigationItem"; title = "设置"; ObjectID = "co4-AU-4ZI"; */
+"co4-AU-4ZI.title" = "Setting";
+
+/* Class = "UILabel"; text = "重复设置"; ObjectID = "eMh-k0-Ie8"; */
+"eMh-k0-Ie8.text" = "Repeat Set";
+
+/* Class = "UIBarButtonItem"; title = "编辑"; ObjectID = "gQr-kW-meU"; */
+"gQr-kW-meU.title" = "Edit";
+
+/* Class = "UILabel"; text = "中文/English"; ObjectID = "goG-UV-6kz"; */
+"goG-UV-6kz.text" = "中文/English";
+
+/* Class = "UILabel"; text = "电极"; ObjectID = "j9D-Da-DWq"; */
+"j9D-Da-DWq.text" = "Model";
+
+/* Class = "UILabel"; text = "时间选择"; ObjectID = "lXm-lA-ZCY"; */
+"lXm-lA-ZCY.text" = "TimeSet";
+
+/* Class = "UINavigationItem"; title = "参数"; ObjectID = "mcw-UM-RQW"; */
+"mcw-UM-RQW.title" = "Parameter";
+
+/* Class = "UITabBarItem"; title = "历史"; ObjectID = "moV-aC-zJt"; */
+"moV-aC-zJt.title" = "History";
+
+/* Class = "UIButton"; normalTitle = "保存参数"; ObjectID = "n4l-OI-Dco"; */
+"n4l-OI-Dco.normalTitle" = "Save Parameter";
+
+/* Class = "UINavigationItem"; title = "帮助"; ObjectID = "oRf-hR-oDk"; */
+"oRf-hR-oDk.title" = "Help";
+
+/* Class = "UIButton"; normalTitle = "开始"; ObjectID = "rRw-Fm-bAT"; */
+"rRw-Fm-bAT.normalTitle" = "Start";
+
+/* Class = "UILabel"; text = "反馈"; ObjectID = "tAt-0n-DM4"; */
+"tAt-0n-DM4.text" = "反馈";
+
+/* Class = "UITabBarItem"; title = "设置"; ObjectID = "tGa-66-ahq"; */
+"tGa-66-ahq.title" = "Setting";
+
+/* Class = "UITabBarItem"; title = "纪录"; ObjectID = "teF-Uf-N8u"; */
+"teF-Uf-N8u.title" = "Record";
+
+/* Class = "UILabel"; text = "帮助"; ObjectID = "vY6-gS-Cm5"; */
+"vY6-gS-Cm5.text" = "Help";
+
+/* Class = "UIBarButtonItem"; title = "日期"; ObjectID = "zJJ-9M-sds"; */
+"zJJ-9M-sds.title" = "Date";

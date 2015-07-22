@@ -26,8 +26,14 @@
 /* Class = "UILabel"; text = "药物"; ObjectID = "BzG-ru-bkO"; */
 "BzG-ru-bkO.text" = "药物";
 
-/* Class = "UITextView"; text = "帮助1   帮助2"; ObjectID = "Dmh-72-eGz"; */
-"Dmh-72-eGz.text" = "帮助1   帮助2";
+/* Class = "UITextView"; text = "帮助1
+
+
+帮助2"; ObjectID = "Dmh-72-eGz"; */
+"Dmh-72-eGz.text" = "帮助1
+
+
+帮助2";
 
 /* Class = "UILabel"; text = "备份数据"; ObjectID = "Gdi-q2-zkT"; */
 "Gdi-q2-zkT.text" = "备份数据";
@@ -56,8 +62,16 @@
 /* Class = "UILabel"; text = "00:00"; ObjectID = "VhW-RM-Utb"; */
 "VhW-RM-Utb.text" = "00:00";
 
-/* Class = "UITextView"; text = "1. 找不到蓝牙 ，请尝试以下方法 A:已经在手机上打开蓝牙设备； B:设备已经打开蓝牙；   "; ObjectID = "Woh-Nw-OLr"; */
-"Woh-Nw-OLr.text" = "1. 找不到蓝牙 ，请尝试以下方法 A:已经在手机上打开蓝牙设备； B:设备已经打开蓝牙；   ";
+/* Class = "UITextView"; text = "1. 找不到蓝牙 ，请尝试以下方法
+A:已经在手机上打开蓝牙设备；
+B:设备已经打开蓝牙；
+
+ "; ObjectID = "Woh-Nw-OLr"; */
+"Woh-Nw-OLr.text" = "1. 找不到蓝牙 ，请尝试以下方法
+A:已经在手机上打开蓝牙设备；
+B:设备已经打开蓝牙；
+
+ ";
 
 /* Class = "UILabel"; text = "关于"; ObjectID = "YF4-Q0-kZn"; */
 "YF4-Q0-kZn.text" = "关于";
@@ -89,8 +103,8 @@
 /* Class = "UIBarButtonItem"; title = "编辑"; ObjectID = "gQr-kW-meU"; */
 "gQr-kW-meU.title" = "编辑";
 
-/* Class = "UILabel"; text = "中文/English"; ObjectID = "goG-UV-6kz"; */
-"goG-UV-6kz.text" = "中文/English";
+/* Class = "UILabel"; text = "反馈意见和建议"; ObjectID = "goG-UV-6kz"; */
+"goG-UV-6kz.text" = "反馈意见和建议";
 
 /* Class = "UILabel"; text = "电极"; ObjectID = "j9D-Da-DWq"; */
 "j9D-Da-DWq.text" = "电极";

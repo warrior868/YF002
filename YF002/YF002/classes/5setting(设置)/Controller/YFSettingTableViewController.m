@@ -38,7 +38,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         [self sendEmailAction];
-    } else if (indexPath.section == 4)
+    } else if (indexPath.section == 2)
     [self sendProblem];
 }
 #pragma mark - Mail 方法

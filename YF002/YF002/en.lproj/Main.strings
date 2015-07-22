@@ -103,9 +103,9 @@ B:设备已经打开蓝牙；
 /* Class = "UIBarButtonItem"; title = "编辑"; ObjectID = "gQr-kW-meU"; */
 "gQr-kW-meU.title" = "Edit";
 
-/* Class = "UILabel"; text = "中文/English"; ObjectID = "goG-UV-6kz"; */
-"goG-UV-6kz.text" = "中文/English";
-
+/* Class = "UILabel"; text = "反馈意见和建议"; ObjectID = "goG-UV-6kz"; */
+"goG-UV-6kz.text" = "反馈意见和建议";
+ 
 /* Class = "UILabel"; text = "电极"; ObjectID = "j9D-Da-DWq"; */
 "j9D-Da-DWq.text" = "Model";
 

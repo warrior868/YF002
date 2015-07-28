@@ -50,8 +50,7 @@
 void CGContextAddRoundedRectWithHookSimple(CGContextRef c, CGRect rect, CGFloat radius) {
 	CGFloat hookSize = HOOK_SIZE;
 	CGContextAddArc(c, rect.origin.x + radius, rect.origin.y + radius, radius, M_PI, M_PI * 1.5, 0);
-	CGContextAddArc(c, rect.origin.x + rect.size.width - radius, rect.origin.y + radius, radius, M_PI * 1.5, M_PI * 2, 0);
-    CGContextAddArc(c, rect.origin.x + rect.size.width - radius, rect.origin.y + rect.size.height - radius, radius, M_PI * 2, M_PI * 0.5, 0);
+	CGContextAddArc(c, rect.origin.x + rect.size.width - radius, rect.origin.y + radius, radius, M_PI * 1.5, M_PI * 2, 0); 	CGContextAddArc(c, rect.origin.x + rect.size.width - radius, rect.origin.y + rect.size.height - radius, radius, M_PI * 2, M_PI * 0.5, 0);
     {
 		CGContextAddLineToPoint(c, rect.origin.x + rect.size.width / 2 + hookSize, rect.origin.y + rect.size.height);
 		CGContextAddLineToPoint(c, rect.origin.x + rect.size.width / 2, rect.origin.y + rect.size.height + hookSize);
@@ -73,9 +72,7 @@ void CGContextAddRoundedRectWithHookSimple(CGContextRef c, CGRect rect, CGFloat 
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    //CGSize s = [self.infoLabel.text sizeWithFont:self.infoLabel.font];
-  CGSize s = [self.infoLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObject:self.infoLabel.font forKey:NSFontAttributeName]];
-    
+    CGSize s = [self.infoLabel.text sizeWithFont:self.infoLabel.font];
     s.height += 15;
     s.height += SHADOWSIZE;
     

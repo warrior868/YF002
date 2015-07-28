@@ -129,12 +129,12 @@
     [self treatTimePickerViewLoad:CGRectMake(xPickerView, yPickerView, 200, 60)];
     [self treatStrengthPickerViewLoad:CGRectMake(xPickerView,(yPickerView+yAddPickerView) , 200, 60)];
     [self treatWavePickerViewLoad:CGRectMake(xPickerView, (yPickerView+2*yAddPickerView), 200, 60)];
-    [self treatModelPickerViewLoad:CGRectMake(xPickerView,(yPickerView+3*yAddPickerView), 200, 60)];
+    //[self treatModelPickerViewLoad:CGRectMake(xPickerView,(yPickerView+3*yAddPickerView), 200, 60)];
      //   初始化载入每个pickerView选中的行
     [_treatTimePickerView selectItem:[[_treatParameterItem.treatTime substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
     [_treatStrengthPickerView selectItem:[[_treatParameterItem.treatStrength substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
     [_treatWavePickerView selectItem:[[_treatParameterItem.treatWave substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
-    [_treatModelPickerView selectItem:[[_treatParameterItem.treatModel substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
+    //[_treatModelPickerView selectItem:[[_treatParameterItem.treatModel substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
 
 //  设置navigationBar 左侧栏的名称以及按键调用的方法
     UIImage *leftBarButtonItem = [UIImage imageNamed:@"blueToothGray" ];
@@ -168,7 +168,7 @@
 // 创建药物下拉菜单
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"area" ofType:@"plist"];
     areaDic = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-    [self loadAreaDicWithCGRect:CGRectMake(20, 407, 320, 140)];
+    [self loadAreaDicWithCGRect:CGRectMake(20, 364, 320, 140)];
     
 //  设置sideView
     _sideSlipView = [[JKSideSlipView alloc] initWithSender:self];

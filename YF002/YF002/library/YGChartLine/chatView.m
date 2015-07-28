@@ -29,11 +29,15 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetRGBStrokeColor(context, 0.6, 0.6, 0.6, 0.8);
+    CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+    
     for(int i=0; i<self.lines.count; i++){
         Line* line = [self.lines objectAtIndex:i];
-        CGContextSetLineWidth(context, 1);
-
+        if(i!=0 ||i!=6 || i!=7){
+           CGContextSetLineWidth(context, 1);
+        }else{
+            CGContextSetLineWidth(context, 1);
+        }
         CGContextMoveToPoint(context, line.firstPoint.x, line.firstPoint.y);
         CGContextAddLineToPoint(context, line.secondPoint.x, line.secondPoint.y);
     }
@@ -41,20 +45,18 @@
 
     if([self.points count]){
         //画线
-        CGContextRef context1 = UIGraphicsGetCurrentContext();
-        CGContextSetLineCap(context,kCGLineCapRound);
-        CGContextSetRGBStrokeColor(context1, 1, 0.5, 0.5, 1.0);
-        CGContextBeginPath(context1);
-        CGContextDrawPath(context1, kCGPathFillStroke);
-        CGContextSetLineWidth(context1, 2);
+        UIBezierPath* path = [UIBezierPath bezierPath];
+        [path setLineWidth:2];
         for(int i=0; i<[[self.points objectAtIndex:0] count]-1; i++){
             CGPoint firstPoint = [[[self.points objectAtIndex:0] objectAtIndex:i] CGPointValue];
             CGPoint secondPoint = [[[self.points objectAtIndex:0] objectAtIndex:i+1] CGPointValue];
-            CGContextMoveToPoint(context1, firstPoint.x, firstPoint.y);
-            CGContextAddLineToPoint(context1, secondPoint.x, secondPoint.y);
+            [path moveToPoint:firstPoint];
+            [path addCurveToPoint:secondPoint controlPoint1:CGPointMake((secondPoint.x-firstPoint.x)/2+firstPoint.x, firstPoint.y) controlPoint2:CGPointMake((secondPoint.x-firstPoint.x)/2+firstPoint.x, secondPoint.y)];
+            [self.bfColor set];
         }
-        CGContextStrokePath(context1);
-        //画点
+        path.lineCapStyle = kCGLineCapRound;
+        [path strokeWithBlendMode:kCGBlendModeNormal alpha:1];
+        
         if(!self.isDrawPoint){
             for(int i=0; i<[[self.points objectAtIndex:0] count]; i++){
                 CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -64,26 +66,24 @@
                 CGContextFillPath(ctx);
             }
         }
-    }
-}
-        //绘制第二条曲线
-//        UIBezierPath* path1 = [UIBezierPath bezierPath];
-//        [path1 setLineWidth:2];
-//        for(int i=0; i<[[self.points lastObject] count]-1; i++){
-//            CGPoint firstPoint = [[[self.points lastObject] objectAtIndex:i] CGPointValue];
-//            CGPoint secondPoint = [[[self.points lastObject] objectAtIndex:i+1] CGPointValue];
-//            [path1 moveToPoint:firstPoint];
-//            [UIView animateWithDuration:.1 animations:^(){
-//                [path1 addCurveToPoint:secondPoint controlPoint1:CGPointMake((secondPoint.x-firstPoint.x)/2+firstPoint.x, firstPoint.y) controlPoint2:CGPointMake((secondPoint.x-firstPoint.x)/2+firstPoint.x, secondPoint.y)];
-//            }];
-//            [self.afColor set];
-//            
-//        }
-//        path1.lineCapStyle = kCGLineCapRound;
-//        [path1 strokeWithBlendMode:kCGBlendModeNormal alpha:1];
+        
+        UIBezierPath* path1 = [UIBezierPath bezierPath];
+        [path1 setLineWidth:2];
+        for(int i=0; i<[[self.points lastObject] count]-1; i++){
+            CGPoint firstPoint = [[[self.points lastObject] objectAtIndex:i] CGPointValue];
+            CGPoint secondPoint = [[[self.points lastObject] objectAtIndex:i+1] CGPointValue];
+            [path1 moveToPoint:firstPoint];
+            [UIView animateWithDuration:.1 animations:^(){
+                [path1 addCurveToPoint:secondPoint controlPoint1:CGPointMake((secondPoint.x-firstPoint.x)/2+firstPoint.x, firstPoint.y) controlPoint2:CGPointMake((secondPoint.x-firstPoint.x)/2+firstPoint.x, secondPoint.y)];
+            }];
+            [self.afColor set];
+            
+        }
+        path1.lineCapStyle = kCGLineCapRound;
+        [path1 strokeWithBlendMode:kCGBlendModeNormal alpha:1];
         
         //画点
-//        if(!self.isDrawPoint){
+        if(!self.isDrawPoint){
 //            for(int i=0; i<[[self.points objectAtIndex:0] count]; i++){
 //                CGContextRef ctx = UIGraphicsGetCurrentContext();
 //                CGPoint point = [[[self.points objectAtIndex:0] objectAtIndex:i] CGPointValue];
@@ -91,16 +91,16 @@
 //                CGContextSetFillColorWithColor(ctx, self.bfColor.CGColor);
 //                CGContextFillPath(ctx);
 //            }
-//            
-//            for(int i=0; i<[[self.points lastObject] count]; i++){
-//                CGContextRef ctx = UIGraphicsGetCurrentContext();
-//                CGPoint point = [[[self.points lastObject] objectAtIndex:i] CGPointValue];
-//                CGContextFillEllipseInRect(ctx, CGRectMake(point.x-4, point.y-4, 8, 8));
-//                CGContextSetFillColorWithColor(ctx, self.afColor.CGColor);
-//                CGContextFillPath(ctx);
-//            }
-//        }
-//    }
+            
+            for(int i=0; i<[[self.points lastObject] count]; i++){
+                CGContextRef ctx = UIGraphicsGetCurrentContext();
+                CGPoint point = [[[self.points lastObject] objectAtIndex:i] CGPointValue];
+                CGContextFillEllipseInRect(ctx, CGRectMake(point.x-4, point.y-4, 8, 8));
+                CGContextSetFillColorWithColor(ctx, self.afColor.CGColor);
+                CGContextFillPath(ctx);
+            }
+        }
+    }
 //    for(int i=0; i<self.bfLines.count; i++){
 //        Line* line = [self.bfLines objectAtIndex:i];
 //        [path moveToPoint:line.firstPoint];
@@ -130,7 +130,7 @@
 //    path1.lineCapStyle = kCGLineCapRound;
 //    [path1 strokeWithBlendMode:kCGBlendModeNormal alpha:1];
     
-
+}
 
 @end
 

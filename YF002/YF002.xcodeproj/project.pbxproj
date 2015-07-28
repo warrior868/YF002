@@ -62,6 +62,7 @@
 		AB995DE21B42C44E00B7ACF6 /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB995DD41B42C44E00B7ACF6 /* NSArray+MASAdditions.m */; };
 		AB995DE31B42C44E00B7ACF6 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB995DD71B42C44E00B7ACF6 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		AB995DE41B42C44E00B7ACF6 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB995DD91B42C44E00B7ACF6 /* View+MASAdditions.m */; };
+		ABA593D31B663CE2004C4A87 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA593D21B663CE2004C4A87 /* libsqlite3.0.dylib */; };
 		ABAB51A71B10DF00001663D2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABAB51A41B10DF00001663D2 /* Info.plist */; };
 		ABAB51A81B10DF00001663D2 /* MZTimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB51A61B10DF00001663D2 /* MZTimerLabel.m */; };
 		ABB43DEA1B134783000C83AA /* YFTreatParameterItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB43DE91B134783000C83AA /* YFTreatParameterItem.m */; };
@@ -189,6 +190,7 @@
 		AB995DD81B42C44E00B7ACF6 /* View+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASAdditions.h"; sourceTree = "<group>"; };
 		AB995DD91B42C44E00B7ACF6 /* View+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+MASAdditions.m"; sourceTree = "<group>"; };
 		AB995DDA1B42C44E00B7ACF6 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		ABA593D21B663CE2004C4A87 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		ABAB51A41B10DF00001663D2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABAB51A51B10DF00001663D2 /* MZTimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimerLabel.h; sourceTree = "<group>"; };
 		ABAB51A61B10DF00001663D2 /* MZTimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTimerLabel.m; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABA593D31B663CE2004C4A87 /* libsqlite3.0.dylib in Frameworks */,
 				AB995DB71B3FBD3300B7ACF6 /* MessageUI.framework in Frameworks */,
 				AB6506EF1B3859C9000978E4 /* CoreBluetooth.framework in Frameworks */,
 				AB2B1EBA1B0B7B890038A3E0 /* CoreGraphics.framework in Frameworks */,
@@ -250,6 +253,7 @@
 		AB2B1EB61B0B7A900038A3E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ABA593D21B663CE2004C4A87 /* libsqlite3.0.dylib */,
 				AB995DB61B3FBD3300B7ACF6 /* MessageUI.framework */,
 				AB6506EE1B3859C9000978E4 /* CoreBluetooth.framework */,
 				AB2B1EB91B0B7B890038A3E0 /* CoreGraphics.framework */,

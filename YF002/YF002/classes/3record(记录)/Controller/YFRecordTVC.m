@@ -17,6 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
+ }
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     
     //读取plist,生成第一级别的dictionary
     NSString *plistPath;
@@ -30,10 +35,6 @@
     //对数组中的字典按照日期进行排序
     NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"treatDate" ascending:NO]];
     [_recordArray sortUsingDescriptors:sortDescriptors];
-    
-    
-    NSLog(@"第一种排序结果：%@",_recordArray);
-
     
 }
 

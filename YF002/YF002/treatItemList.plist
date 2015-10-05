@@ -4,11 +4,11 @@
 <dict>
 	<key>treatTime</key>
 	<array>
-		<string>T0</string>
-		<string>T1</string>
-		<string>T2</string>
-		<string>T3</string>
-		<string>T4</string>
+		<string>1</string>
+		<string>2</string>
+		<string>3</string>
+		<string>4</string>
+		<string>5</string>
 	</array>
 	<key>treatModel</key>
 	<array>
@@ -18,19 +18,19 @@
 	</array>
 	<key>treatWave</key>
 	<array>
-		<string>W0</string>
-		<string>W1</string>
-		<string>W2</string>
-		<string>W3</string>
-		<string>W4</string>
+		<string>A</string>
+		<string>B</string>
+		<string>C</string>
+		<string>D</string>
+		<string>R</string>
 	</array>
 	<key>treatStrength</key>
 	<array>
-		<string>S0</string>
-		<string>S1</string>
-		<string>S2</string>
-		<string>S3</string>
-		<string>S4</string>
+		<string>1</string>
+		<string>2</string>
+		<string>3</string>
+		<string>4</string>
+		<string>5</string>
 	</array>
 </dict>
 </plist>

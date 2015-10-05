@@ -11,16 +11,13 @@
 @protocol YFRecordTVCDelegate <NSObject>
 
 
-- (NSMutableArray *)ArrayToRecordTVC;
+
 
 @end
 
-@interface YFRecordTVC : UITableViewController
+@interface YFRecordTVC : UIViewController
 
 
-@property (strong,nonatomic) NSMutableArray            *recordArray;
-@property (nonatomic,weak) id <YFRecordTVCDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 
 @end

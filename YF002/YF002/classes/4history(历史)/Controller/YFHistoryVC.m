@@ -8,17 +8,20 @@
 
 #import "YFHistoryVC.h"
 
-#import "LMComBoxView.h"
-#import "LMContainsLMComboxScrollView.h"
-
+#import "AKPickerView.h"
+#define screenWidth [UIScreen mainScreen].bounds.size.width
+#define screenHeight [UIScreen mainScreen].bounds.size.height
 
 #define kDropDownListTag 1000
 
+#define  selfDefineColor1 [UIColor colorWithRed:187.0/255 green:135.0/255 blue:87.0/255 alpha:0.8]
+//主色调
+#define  selfDefineColor2 [UIColor colorWithRed:116.0/255 green:201.0/255 blue:184.0/255 alpha:1]
 
 
-@interface YFHistoryVC ()  <LMComBoxViewDelegate,SliderSwitchDelegate,UIScrollViewDelegate>
+@interface YFHistoryVC ()  <SliderSwitchDelegate,UIScrollViewDelegate,AKPickerViewDataSource, AKPickerViewDelegate>
 {
-    LMContainsLMComboxScrollView *bgScrollView;
+   
     NSMutableDictionary *addressDict;   //地址选择字典
     NSMutableDictionary *areaDic;
     NSArray *province;
@@ -34,10 +37,19 @@
     UIView *dayView;
     UIView *dateView;
     UILabel *dateLab;
+   
+    
     int goY;
     int goW;
     int goM;
 }
+@property (nonatomic,strong) UIView *chatOnView;
+@property (nonatomic,strong) UILabel *drugLab;
+
+@property (nonatomic, strong) AKPickerView *pickerView;
+@property (nonatomic, strong) NSMutableArray *titles;
+@property (weak, nonatomic) IBOutlet UIView *drugView;
+@property (weak, nonatomic) IBOutlet UIView *pickViewBackground;
 
 @end
 
@@ -60,7 +72,11 @@
     _scrollView.backgroundColor = [UIColor whiteColor];
     CGSize newSize = CGSizeMake(self.view.frame.size.width, 600);
     [_scrollView setContentSize:newSize];
-    
+    //图表所在的视图
+    _chatOnView = [[UIView alloc] init];
+    _chatOnView.frame = CGRectMake(0, 100, screenWidth, 350);
+    _chatOnView.backgroundColor = selfDefineColor2;
+    [_scrollView addSubview:_chatOnView];
     
     //读取plist,生成第一级别的dictionary
     NSString *plistPath;
@@ -73,14 +89,14 @@
 
     
     //配置分段开关
-    segmentControl = [[UISegmentedControl alloc]initWithFrame:CGRectMake(15, 5, 290, 30)];
+    segmentControl = [[UISegmentedControl alloc]initWithFrame:CGRectMake(15, 15, 290, 30)];
     [segmentControl insertSegmentWithTitle:@"周" atIndex:0 animated:YES];
     [segmentControl insertSegmentWithTitle:@"月" atIndex:1 animated:YES];
     [segmentControl insertSegmentWithTitle:@"年" atIndex:2 animated:YES];
     [segmentControl setSelectedSegmentIndex:0];
     
-    [segmentControl setTintColor: [UIColor colorWithRed:1.0/255 green:176.0/255 blue:1.0/255 alpha:1.0]];
-    [segmentControl setAlpha:0.8f];
+    [segmentControl setTintColor: [UIColor colorWithRed:133.0/255 green:211.0/255 blue:198.0/255 alpha:1.0]];
+    [segmentControl setAlpha:1.0f];
     [segmentControl setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15],NSFontAttributeName, nil] forState:UIControlStateNormal];
     [self.scrollView addSubview:segmentControl];
     
@@ -88,12 +104,31 @@
     [self controlPressOne];
 
     
-    //配置下拉列表
-    NSString *plistPath1 = [[NSBundle mainBundle] pathForResource:@"area" ofType:@"plist"];
-    areaDic = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath1];
-    //[areaDic removeObjectForKey:@"0"];
-    [self loadAreaDicWithCGRect:CGRectMake(40, 360, 320, 130)];
+ //配置药物选择部分
+    _drugView.frame = CGRectMake(0, 15, 320, 30);
+    [_chatOnView addSubview:_drugView];
+    //设置view的圆角
+    _pickViewBackground.layer.cornerRadius = 5.0;
     
+    self.pickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(93, 5, 200, 50)];
+    self.pickerView.delegate = self;
+    self.pickerView.dataSource = self;
+    self.pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:self.pickerView];
+    self.pickerView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+    self.pickerView.textColor = [UIColor colorWithRed:180.0/255 green:180.0/255 blue:180.0/255 alpha:120.0/255];
+    self.pickerView.highlightedFont = [UIFont fontWithName:@"HelveticaNeue" size:14];
+    self.pickerView.highlightedTextColor = [UIColor whiteColor];
+    self.pickerView.interitemSpacing = 8;
+    self.pickerView.maskDisabled = true;
+    self.titles = @[@"扶他林",
+                    @"布洛芬",
+                    @"保泰松",
+                    @"其他",];
+    
+    [self.pickerView reloadData];
+    [_pickerView selectItem:1 animated:NO];
+    [_chatOnView addSubview:_pickerView];
     
 }
 
@@ -106,178 +141,9 @@
 - (void)switchChangedSliderSwitch:(SliderSwitch *)sliderSwitch{
     
 }
-#pragma mark -LMComBoxViewDelegate
-//didViewLoad 中加载
--(void)loadAreaDicWithCGRect:(CGRect) cgrect{
-    NSArray *components = [areaDic allKeys];
-    NSArray *sortedArray = [components sortedArrayUsingComparator: ^(id obj1, id obj2) {
-        
-        if ([obj1 integerValue] > [obj2 integerValue]) {
-            return (NSComparisonResult)NSOrderedDescending;
-        }
-        
-        if ([obj1 integerValue] < [obj2 integerValue]) {
-            return (NSComparisonResult)NSOrderedAscending;
-        }
-        return (NSComparisonResult)NSOrderedSame;
-    }];
-    
-    NSMutableArray *provinceTmp = [NSMutableArray array];
-    for (int i=0; i<[sortedArray count]; i++) {
-        NSString *index = [sortedArray objectAtIndex:i];
-        NSArray *tmp = [[areaDic objectForKey: index] allKeys];
-        [provinceTmp addObject: [tmp objectAtIndex:0]];
-    }
-    
-    province = [NSArray arrayWithArray:provinceTmp];
-    
-    NSString *index = [sortedArray objectAtIndex:0];
-    NSString *selected = [province objectAtIndex:0];
-    NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [[areaDic objectForKey:index]objectForKey:selected]];
-    
-    NSArray *cityArray = [dic allKeys];
-    NSDictionary *cityDic = [NSDictionary dictionaryWithDictionary: [dic objectForKey: [cityArray objectAtIndex:0]]];
-    city = [NSArray arrayWithArray:[cityDic allKeys]];
-    
-    selectedCity = [city objectAtIndex:0];
-    district = [NSArray arrayWithArray:[cityDic objectForKey:selectedCity]];
-    
-    addressDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                   province,@"province",
-                   city,@"city",
-                   district,@"area",nil];
-    
-    selectedProvince = [province objectAtIndex:0];
-    selectedArea = [district objectAtIndex:0];
-    
-    bgScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:cgrect];
-    bgScrollView.backgroundColor = [UIColor clearColor];
-    bgScrollView.showsVerticalScrollIndicator = NO;
-    bgScrollView.showsHorizontalScrollIndicator = NO;
-    [self.scrollView addSubview:bgScrollView];
-    
-    [self setUpBgScrollView];
-   
-}
 
--(void)setUpBgScrollView
-{
-    
-    
-    NSArray *keys = [NSArray arrayWithObjects:@"province",@"city",@"area", nil];
-    for(NSInteger i=0;i<2;i++)
-    {
-        NSInteger x = 40+(60)*i  ;
-        NSInteger xWidth =  115;
-        if (i==1) {x = 155 ;
-            xWidth = 85 ;} else if (i ==2){
-            x =  240 ;
-            xWidth =  40;};
-        LMComBoxView *comBox = [[LMComBoxView alloc]initWithFrame:CGRectMake(x, 0, xWidth, 27)];
-        comBox.backgroundColor = [UIColor whiteColor];
-        comBox.arrowImgName = @"down_dark0.png";
-        NSMutableArray *itemsArray = [NSMutableArray arrayWithArray:[addressDict objectForKey:[keys objectAtIndex:i]]];
-        comBox.titlesList = itemsArray;
-        comBox.delegate = self;
-        comBox.supView = bgScrollView;
-        [comBox defaultSettings];
-        comBox.tag = kDropDownListTag + i;
-        [bgScrollView addSubview:comBox];
-    }
-}
 
-#pragma mark -LMComBoxViewDelegate
--(void)selectAtIndex:(int)index inCombox:(LMComBoxView *)_combox
-{
-    NSInteger tag = _combox.tag - kDropDownListTag;
-    switch (tag) {
-        case 0:
-        {
-            selectedProvince =  [[addressDict objectForKey:@"province"]objectAtIndex:index];
-            //字典操作
-            NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [areaDic objectForKey: [NSString stringWithFormat:@"%d", index]]];
-            NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [tmp objectForKey: selectedProvince]];
-            NSArray *cityArray = [dic allKeys];
-            NSArray *sortedArray = [cityArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
-            if ([obj1 integerValue] > [obj2 integerValue]) {
-                    return (NSComparisonResult)NSOrderedDescending;//递减
-                }
-            if ([obj1 integerValue] < [obj2 integerValue]) {
-                    return (NSComparisonResult)NSOrderedAscending;//上升
-            }
-                return (NSComparisonResult)NSOrderedSame;
-            }];
-            NSMutableArray *array = [[NSMutableArray alloc] init];
-            for (int i=0; i<[sortedArray count]; i++) {
-                NSString *index = [sortedArray objectAtIndex:i];
-                NSArray *temp = [[dic objectForKey: index] allKeys];
-                [array addObject: [temp objectAtIndex:0]];
-            }
-            city = [NSArray arrayWithArray:array];
-            NSDictionary *cityDic = [dic objectForKey: [sortedArray objectAtIndex: 0]];
-            district = [NSArray arrayWithArray:[cityDic objectForKey:[city objectAtIndex:0]]];
-            //刷新市、区
-            addressDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                           province,@"province",
-                           city,@"city",
-                           district,@"area",nil];
-            LMComBoxView *cityCombox = (LMComBoxView *)[bgScrollView viewWithTag:tag + 1 + kDropDownListTag];
-            cityCombox.titlesList = [NSMutableArray arrayWithArray:[addressDict objectForKey:@"city"]];
-            [cityCombox reloadData];
-            LMComBoxView *areaCombox = (LMComBoxView *)[bgScrollView viewWithTag:tag + 2 + kDropDownListTag];
-            areaCombox.titlesList = [NSMutableArray arrayWithArray:[addressDict objectForKey:@"area"]];
-            [areaCombox reloadData];
-            
-            selectedCity = [city objectAtIndex:0];
-            selectedArea = [district objectAtIndex:0];
-            break;
-        }
-        case 1:
-        {
-            selectedCity = [[addressDict objectForKey:@"city"]objectAtIndex:index];
-            NSString *provinceIndex = [NSString stringWithFormat: @"%d", [province indexOfObject: selectedProvince]];
-            NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [areaDic objectForKey: provinceIndex]];
-            NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [tmp objectForKey: selectedProvince]];
-            NSArray *dicKeyArray = [dic allKeys];
-            NSArray *sortedArray = [dicKeyArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
-                
-                if ([obj1 integerValue] > [obj2 integerValue]) {
-                    return (NSComparisonResult)NSOrderedDescending;
-                }
-                
-                if ([obj1 integerValue] < [obj2 integerValue]) {
-                    return (NSComparisonResult)NSOrderedAscending;
-                }
-                return (NSComparisonResult)NSOrderedSame;
-            }];
-            
-            NSDictionary *cityDic = [NSDictionary dictionaryWithDictionary: [dic objectForKey: [sortedArray objectAtIndex: index]]];
-            NSArray *cityKeyArray = [cityDic allKeys];
-            district = [NSArray arrayWithArray:[cityDic objectForKey:[cityKeyArray objectAtIndex:0]]];
-            //刷新区
-            addressDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                           province,@"province",
-                           city,@"city",
-                           district,@"area",nil];
-            LMComBoxView *areaCombox = (LMComBoxView *)[bgScrollView viewWithTag:tag + 1 + kDropDownListTag];
-            areaCombox.titlesList = [NSMutableArray arrayWithArray:[addressDict objectForKey:@"area"]];
-            [areaCombox reloadData];
-            
-            selectedArea = [district objectAtIndex:0];
-            break;
-        }
-        case 2:
-        {
-            selectedArea = [[addressDict objectForKey:@"area"]objectAtIndex:index];
-            break;
-        }
-        default:
-            break;
-    }
-    NSLog(@"===%@===%@===%@",selectedProvince,selectedCity,selectedArea);
-    
-}
-#pragma mark -  设置表格
+#pragma mark -  设置日期UI选择的初始化
 - (void)initDateView
 {
     if(!dateView){
@@ -288,29 +154,31 @@
         dateLab = [[UILabel alloc]initWithFrame:CGRectMake(segmentControl.frame.origin.x+segmentControl.frame.origin.x+20, 7, dateView.frame.size.width-100, 25)];
         [dateLab setBackgroundColor:[UIColor clearColor]];
         [dateLab setTextColor:[UIColor colorWithRed:150.0/255 green:150.0/255 blue:150.0/255 alpha:1.0]];
-        [dateLab setFont:[UIFont fontWithName:@"Arial" size:15]];
+        [dateLab setFont:[UIFont fontWithName:@"Arial" size:17]];
         [dateLab setTextAlignment:NSTextAlignmentCenter];
         [dateView addSubview:dateLab];
-        //左右按钮初始化
-        for(int i=0; i<2; i++){
-            UIImage* image =[UIImage imageNamed:[NSString stringWithFormat:@"dateLabel%d", i]];
-            UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            btn.frame = CGRectMake(10+250*i, 7, 24, 24);
-            btn.tag = i;
-            [btn setBackgroundImage:image forState:UIControlStateNormal];
-            [btn addTarget:self action:@selector(goOrBack:) forControlEvents:UIControlEventTouchUpInside];
-            [dateView addSubview:btn];}
+        //左边（日期减少）按钮初始化
+         UIImage* image1 =[UIImage imageNamed:@"leftarrow"];
+            UIButton* btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn1.frame = CGRectMake(10, 9, 20, 20);
+            btn1.tag = 0;
+            [btn1 setBackgroundImage:image1 forState:UIControlStateNormal];
+            [btn1 addTarget:self action:@selector(goOrBack:) forControlEvents:UIControlEventTouchUpInside];
+            [dateView addSubview:btn1];
+        //右边(日期增加)按钮初始化
+        UIImage* image2 =[UIImage imageNamed:@"rightarrow"];
+        UIButton* btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn2.frame = CGRectMake(260, 9, 20,20);
+        btn2.tag = 1;
+        [btn2 setBackgroundImage:image2 forState:UIControlStateNormal];
+        [btn2 addTarget:self action:@selector(goOrBack:) forControlEvents:UIControlEventTouchUpInside];
+        [dateView addSubview:btn2];
+        
+        
     }
-    //Y轴刻度数值
-    for(int i=0; i<5; i++){
-        UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(segmentControl.frame.origin.x+segmentControl.frame.origin.x-28,dateView.frame.origin.y+53+i*45, 30, 20)];
-        [label setText:[NSString stringWithFormat:@"%d", 40-i*10]];
-        [label setTextColor:[UIColor colorWithRed:150.0/255 green:150.0/255 blue:150.0/255 alpha:1.0]];
-        [label setFont:[UIFont systemFontOfSize:11]];
-        [label setTextAlignment:NSTextAlignmentCenter];
-        [label setBackgroundColor:[UIColor clearColor]];
-        [self.scrollView addSubview:label];
-    }
+
+    
+    
 }
 #pragma mark 左右按钮选择不同日期
 - (void)goOrBack:(UIButton* )btn
@@ -525,46 +393,84 @@ int backDaysM(int m){
             return [self returnCurrentYear:0];
         break;}
 }
-#pragma mark  设置Y轴刻度的值
+#pragma mark  曲线的数量以及纵轴右边药物值
 - (NSArray* )returnPointXandYWithTip:(int)tip
 {
-    NSMutableArray *Points = [[NSMutableArray alloc]init];
-    //根据划分几个网格来设置点数据
-    int gap = chat.frame.size.width/([self rePointCountWithTip:tip]-2);
     
-    for(int i=0; i<[self rePointCountWithTip:tip]-1; i++){
-        CGPoint point1 =CGPointMake(1+gap*i, arc4random()%180);
-        [Points addObject:[NSValue valueWithCGPoint:point1]];
+    //创建第一条线的点
+    NSMutableArray *aPoints = [[NSMutableArray alloc]init];
+    //创建第二条线的点
+    NSMutableArray *bPoints = [[NSMutableArray alloc] init];
+    //根据划分几个网格来设置点数据
+    //int gap = chat.frame.size.width/([self rePointCountWithTip:tip]-2);
+    int gap = chat.frame.size.width/([self rePointCountWithTip:tip]-2);
+    if(([self rePointCountWithTip:tip]-2)*gap>=250){
+        gap-=2;
     }
-    return [NSArray arrayWithObjects:Points, nil];
+    for(int i=0; i<[self rePointCountWithTip:tip]-1; i++){
+        //随机产生画曲线所需的点
+        CGPoint point1 =CGPointMake(1+gap*i, arc4random()%180);
+        [aPoints addObject:[NSValue valueWithCGPoint:point1]];
+        CGPoint point2 =CGPointMake(1+gap*i, arc4random()%180+20);
+        [bPoints addObject:[NSValue valueWithCGPoint:point2]];
+    }
+    
+    
+//纵轴右边药物值
+    //取出代表药物曲线的最后一个点
+    NSValue *lastPoint=[bPoints lastObject];
+    CGPoint drugPoint = [lastPoint CGPointValue];
+    
+    //图表底部横坐标刻度位置
+    //_drugLab = [[UILabel alloc] init];
+    _drugLab.frame = CGRectMake(drugPoint.x+15, drugPoint.y, 34, 10);
+    //图表底部横坐标刻度内容
+    [_drugLab setText:@"布洛芬"];
+    [_drugLab setBackgroundColor:[UIColor clearColor]];
+    //图表底部横坐标刻度颜色
+    [_drugLab setTextColor:[UIColor grayColor]];
+    [_drugLab setFont:[UIFont systemFontOfSize:11]];
+    [_chatOnView addSubview:_drugLab];
+    
+    return [NSArray arrayWithObjects:aPoints,bPoints, nil];
+    
     
 }
 
-#pragma mark  根据tip画表格线
+#pragma mark  根据tip画表格线，纵横坐标刻度值
 - (void)readyDrawLineWithTip:(int)tip
 {
     [self initDateView];
     if(!chat){
-        chat = [[chatView alloc]initWithFrame:CGRectMake(30, dateView.frame.origin.y+40, 250, 210)];
+        //曲线位置所在视图
+        chat = [[chatView alloc]initWithFrame:CGRectMake(40, 70, 250, 210)];
         [chat setBackgroundColor:[UIColor clearColor]];
         chat.opaque= NO;
-        [self.scrollView addSubview:chat];
+        [_chatOnView addSubview:chat];
     }
     if(!dayView){
+        //图表底部横坐标所在视图显示
         dayView = [[UIView alloc]initWithFrame:CGRectMake(0, chat.frame.origin.y+chat.frame.size.height, [[UIScreen mainScreen] bounds].size.width, 10)];
         dayView.opaque = NO;
-        [self.scrollView addSubview:dayView];
+        [_chatOnView addSubview:dayView];
     }
     if(!chat.lines.count){
+        // 1.图表纵向分割线以及时间刻度值
         int gap = chat.frame.size.width/([self reLineCountWithTip:tip]-2);
         for(int i=0; i<[self reLineCountWithTip:tip]; i++){
             Line* line = [[Line alloc]init];
             if(i!=[self reLineCountWithTip:tip]-1){
-                line.firstPoint = CGPointMake(1+gap*i, 0);
-                line.secondPoint = CGPointMake(1+gap*i, 205);
-                UILabel* lab = [[UILabel alloc]initWithFrame:CGRectMake(25+gap*i, 0, 34, 10)];
+                if (i==0) {
+                    line.firstPoint = CGPointMake(1+gap*i, 0);
+                    line.secondPoint = CGPointMake(1+gap*i, 205);
+                }
+                
+                //图表底部横坐标刻度位置
+                UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(25+gap*i, 5, 34, 10)];
+                //图表底部横坐标刻度内容
                 [lab setText:[self reWeeksWithDay:i UseTip:tip]];
                 [lab setBackgroundColor:[UIColor clearColor]];
+                //图表底部横坐标刻度颜色
                 [lab setTextColor:[UIColor grayColor]];
                 [lab setFont:[UIFont systemFontOfSize:11]];
                 [dayView addSubview:lab];
@@ -580,6 +486,17 @@ int backDaysM(int m){
             gap2-=2;
         }
         chat.points = [[self returnPointXandYWithTip:tip] mutableCopy];
+
+     //3.纵轴左边刻度数值
+        for(int i=0; i<5; i++){
+            UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(segmentControl.frame.origin.x+segmentControl.frame.origin.x-20,63+i*50, 30, 20)];
+            [label setText:[NSString stringWithFormat:@"%d", 40-i*10]];
+            [label setTextColor:[UIColor colorWithRed:120.0/255 green:120.0/255 blue:120.0/255 alpha:1.0]];
+            [label setFont:[UIFont systemFontOfSize:11]];
+            [label setTextAlignment:NSTextAlignmentCenter];
+            [label setBackgroundColor:[UIColor clearColor]];
+            [_chatOnView addSubview:label];
+        }
     }
     NSArray *lastPoint = [chat.points lastObject] ;
     NSLog(@"lastPoint is %@",lastPoint);
@@ -762,5 +679,68 @@ int backDaysM(int m){
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark - AKPickerViewDataSource
 
+- (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView
+{
+    return [self.titles count];
+}
+
+/*
+ * AKPickerView now support images!
+ *
+ * Please comment '-pickerView:titleForItem:' entirely
+ * and uncomment '-pickerView:imageForItem:' to see how it works.
+ *
+ */
+
+- (NSString *)pickerView:(AKPickerView *)pickerView titleForItem:(NSInteger)item
+{
+    return self.titles[item];
+}
+
+/*
+ - (UIImage *)pickerView:(AKPickerView *)pickerView imageForItem:(NSInteger)item
+ {
+	return [UIImage imageNamed:self.titles[item]];
+ }
+ */
+
+#pragma mark - AKPickerViewDelegate
+
+- (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item
+{
+    [self controlPressOne];
+ 
+    NSLog(@"%@", self.titles[item]);
+}
+
+
+/*
+ * Label Customization
+ *
+ * You can customize labels by their any properties (except font,)
+ * and margin around text.
+ * These methods are optional, and ignored when using images.
+ *
+ */
+
+/*
+ - (void)pickerView:(AKPickerView *)pickerView configureLabel:(UILabel *const)label forItem:(NSInteger)item
+ {
+	label.textColor = [UIColor lightGrayColor];
+	label.highlightedTextColor = [UIColor whiteColor];
+	label.backgroundColor = [UIColor colorWithHue:(float)item/(float)self.titles.count
+ saturation:1.0
+ brightness:1.0
+ alpha:1.0];
+ }
+ */
+
+/*
+ - (CGSize)pickerView:(AKPickerView *)pickerView marginForItem:(NSInteger)item
+ {
+	return CGSizeMake(20, 20);
+ }
+ */
 @end

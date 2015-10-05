@@ -36,7 +36,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     NSString *key = @"CFBundleVersion";
-    
+       self.navigationController.navigationBarHidden = NO;
     // 取出沙盒中存储的上次使用软件的版本号
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *lastVersion = [defaults stringForKey:key];

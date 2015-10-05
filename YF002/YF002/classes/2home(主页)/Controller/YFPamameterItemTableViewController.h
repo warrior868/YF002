@@ -17,7 +17,7 @@
 @end
 
 
-@interface YFPamameterItemTableViewController : UITableViewController
+@interface YFPamameterItemTableViewController : UIView
 
 @property (nonatomic,weak) id <YFPamameterItemTVCDelegate> delegate;
 @property (strong,nonatomic) YFTreatParameterItem      *treatParameterItemTV;

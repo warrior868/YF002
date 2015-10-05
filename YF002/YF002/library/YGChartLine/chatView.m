@@ -16,8 +16,10 @@
     if (self) {
         // Initialization code
         self.lines = [[NSMutableArray alloc]init];
-        self.afColor = [UIColor colorWithRed:123.0/255.0 green:207.0/255.0 blue:35.0/255.0 alpha:1.0];
-        self.bfColor = [UIColor colorWithRed:97.0/255.0 green:173.0/255.0 blue:244.0/255.0 alpha:1.0];
+        //第一条曲线的颜色
+        self.afColor = [UIColor whiteColor];
+        //第二条曲线的颜色
+        self.bfColor = [UIColor blueColor];
         self.points = [[NSMutableArray alloc]init];
     }
     return self;
@@ -33,7 +35,7 @@
     
     for(int i=0; i<self.lines.count; i++){
         Line* line = [self.lines objectAtIndex:i];
-        if(i!=0 ||i!=6 || i!=7){
+        if(i!=0 || i!=6 || i!=7){
            CGContextSetLineWidth(context, 1);
         }else{
             CGContextSetLineWidth(context, 1);
@@ -44,9 +46,10 @@
     CGContextDrawPath(context, kCGPathStroke);
 
     if([self.points count]){
-        //画线
+//画第一条曲线
         UIBezierPath* path = [UIBezierPath bezierPath];
-        [path setLineWidth:2];
+        //第一条曲线的粗细
+        [path setLineWidth:1];
         for(int i=0; i<[[self.points objectAtIndex:0] count]-1; i++){
             CGPoint firstPoint = [[[self.points objectAtIndex:0] objectAtIndex:i] CGPointValue];
             CGPoint secondPoint = [[[self.points objectAtIndex:0] objectAtIndex:i+1] CGPointValue];
@@ -56,19 +59,21 @@
         }
         path.lineCapStyle = kCGLineCapRound;
         [path strokeWithBlendMode:kCGBlendModeNormal alpha:1];
-        
+//画第一条曲线的点
         if(!self.isDrawPoint){
             for(int i=0; i<[[self.points objectAtIndex:0] count]; i++){
                 CGContextRef ctx = UIGraphicsGetCurrentContext();
                 CGPoint point = [[[self.points objectAtIndex:0] objectAtIndex:i] CGPointValue];
-                CGContextFillEllipseInRect(ctx, CGRectMake(point.x-4, point.y-4, 8, 8));
+                CGContextFillEllipseInRect(ctx, CGRectMake(point.x-3, point.y-3, 6, 6));
                 CGContextSetFillColorWithColor(ctx, self.bfColor.CGColor);
                 CGContextFillPath(ctx);
             }
         }
-        
+//画第二条曲线
         UIBezierPath* path1 = [UIBezierPath bezierPath];
-        [path1 setLineWidth:2];
+        //第二条曲线的粗细
+        [path1 setLineWidth:1];
+        //开始画第二条线
         for(int i=0; i<[[self.points lastObject] count]-1; i++){
             CGPoint firstPoint = [[[self.points lastObject] objectAtIndex:i] CGPointValue];
             CGPoint secondPoint = [[[self.points lastObject] objectAtIndex:i+1] CGPointValue];
@@ -82,7 +87,7 @@
         path1.lineCapStyle = kCGLineCapRound;
         [path1 strokeWithBlendMode:kCGBlendModeNormal alpha:1];
         
-        //画点
+//画第二条曲线的点
         if(!self.isDrawPoint){
 //            for(int i=0; i<[[self.points objectAtIndex:0] count]; i++){
 //                CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -91,11 +96,12 @@
 //                CGContextSetFillColorWithColor(ctx, self.bfColor.CGColor);
 //                CGContextFillPath(ctx);
 //            }
-            
+            //开始画第二条线的点
             for(int i=0; i<[[self.points lastObject] count]; i++){
                 CGContextRef ctx = UIGraphicsGetCurrentContext();
                 CGPoint point = [[[self.points lastObject] objectAtIndex:i] CGPointValue];
-                CGContextFillEllipseInRect(ctx, CGRectMake(point.x-4, point.y-4, 8, 8));
+                //点得大小
+                CGContextFillEllipseInRect(ctx, CGRectMake(point.x-3, point.y-3, 6, 6));
                 CGContextSetFillColorWithColor(ctx, self.afColor.CGColor);
                 CGContextFillPath(ctx);
             }

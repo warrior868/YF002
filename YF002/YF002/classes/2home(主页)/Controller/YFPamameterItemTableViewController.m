@@ -10,7 +10,7 @@
 
 
 @interface YFPamameterItemTableViewController ()
-<UITableViewDataSource,UITabBarDelegate>
+<UITabBarDelegate>
 
 
 @property (nonatomic ,strong) NSIndexPath *lastIndexPath;
@@ -20,29 +20,29 @@
 @implementation YFPamameterItemTableViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+   // [super viewDidLoad];
     [self delegateMethodGetArrayFromHomeCV];
     [self delegateMethodGetRowFromHomeCV];
    
     //对数组中的字典按照日期进行排序
-    NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"treatDate" ascending:YES]];
-    [_tableViewArray sortUsingDescriptors:sortDescriptors];
-    NSLog(@"排序后的数组%@",_tableViewArray);
-    
+//    NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"treatDate" ascending:YES]];
+//    [_tableViewArray sortUsingDescriptors:sortDescriptors];
+//    NSLog(@"排序后的数组%@",_tableViewArray);
+//    
     
     //初始化选中行
     
-    _lastIndexPath= [NSIndexPath indexPathForRow:_newRow inSection:0 ];
-    [self.tableView selectRowAtIndexPath:_lastIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-     treatParameterItemsViewCell *newCell = (treatParameterItemsViewCell *)[self.tableView cellForRowAtIndexPath:_lastIndexPath];
-   newCell.check.image = [UIImage imageNamed:@"checkYes"];
+//    _lastIndexPath= [NSIndexPath indexPathForRow:_newRow inSection:0 ];
+//    [self.tableView selectRowAtIndexPath:_lastIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+//     treatParameterItemsViewCell *newCell = (treatParameterItemsViewCell *)[self.tableView cellForRowAtIndexPath:_lastIndexPath];
+//   newCell.check.image = [UIImage imageNamed:@"checkYes"];
    }
 
 
 
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+   // [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -52,14 +52,16 @@
 
 - (void)delegateMethodGetArrayFromHomeCV {
     
-     _tableViewArray = (NSMutableArray *)   [self.delegate getArrayHomeVC];
+   //  _tableViewArray = (NSMutableArray *)   [self.delegate getArrayHomeVC];
     
 }
 #pragma mark - 从代理那边拿到tableView 显示的行
 - (void)delegateMethodGetRowFromHomeCV {
-    _newRow = [self.delegate getRowFromHomeVC];
+//    _newRow = [self.delegate getRowFromHomeVC];
 }
 
+
+/*
 #pragma mark - TableViewCell选中某行，取消之前选中行
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -147,7 +149,7 @@
     }   
 }
 
-
+*/
 
 /*
 // Override to support rearranging the table view.

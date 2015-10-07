@@ -9,7 +9,6 @@
 #import "YFLoginVC.h"
 #import "MHTextField.h"
 #import "SVProgressHUD.h"
-
 @interface YFLoginVC (){
  
 }
@@ -41,23 +40,61 @@
     //self.navigationController.navigationBar.translucent = NO;
    // [self.navigationController.navigationBar ];
     // Do any additional setup after loading the view.
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
+//  //  [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(keyboardWillShow:)
+//                                                 name:UIKeyboardWillShowNotification
+//                                               object:nil];
+//    //[[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(keyboardWillHide:)
+//                                                 name:UIKeyboardWillHideNotification
+//                                               object:nil];
 }
 
 -(void) viewDidAppear:(BOOL)animated{
     
-    //隐藏导航栏
+//隐藏导航栏
     self.navigationController.navigationBarHidden = YES;
-//    self.scrollView.frame = CGRectMake(0, 0, 320, 480);
+    //Create Panel From Nib
+    MYIntroductionPanel *panel1 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) nibNamed:@"NewFeatureView1"];
+    MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) nibNamed:@"NewFeatureView2"];
+    MYIntroductionPanel *panel3 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) nibNamed:@"NewFeatureView3"];
+    //Add panels to an array
+    NSArray *panels = @[panel1, panel2, panel3];
+    
+    //Create the introduction view and set its delegate
+    MYBlurIntroductionView *introductionView = [[MYBlurIntroductionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    introductionView.delegate = self;
+    introductionView.BackgroundImageView.image = [UIImage imageNamed:@"guide3"];
+    [introductionView setBackgroundColor:[UIColor colorWithRed:90.0f/255.0f green:175.0f/255.0f blue:113.0f/255.0f alpha:0.65]];
+    
+    //Build the introduction with desired panels
+    [introductionView buildIntroductionWithPanels:panels];
+    
+    //Add the introduction to your view
+    [self.view addSubview:introductionView];
+//判断是否是新版本，出现相应地新特性
+ //   [self performSegueWithIdentifier:@"newFeatureView" sender:nil];
+//    NSString *key = @"CFBundleVersion";
+//    self.navigationController.navigationBarHidden = NO;
+//    // 取出沙盒中存储的上次使用软件的版本号
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *lastVersion = [defaults stringForKey:key];
 //    
-//    [self.scrollView setContentSize:CGSizeMake(320, 1000)];
+//    // 获得当前软件的版本号
+//    NSString *currentVersion = [NSBundle mainBundle].infoDictionary[key];
+//    
+//    if ([currentVersion isEqualToString:lastVersion]) {
+//        
+//    }
+//    else { // 新版本
+//        
+//        // 存储新版本
+//        [defaults setObject:currentVersion forKey:key];
+//        [defaults synchronize];
+//        // 跳转到新特性控制器
+//        [self performSegueWithIdentifier:@"newFeatureView" sender:nil];
+//    }
+//注册键盘回退通知
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
@@ -71,6 +108,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - MYIntroduction Delegate
+
+-(void)introduction:(MYBlurIntroductionView *)introductionView didChangeToPanel:(MYIntroductionPanel *)panel withIndex:(NSInteger)panelIndex{
+    NSLog(@"Introduction did change to panel %ld", (long)panelIndex);
+    
+    //You can edit introduction view properties right from the delegate method!
+    //If it is the first panel, change the color to green!
+    if (panelIndex == 0) {
+        [introductionView setBackgroundColor:[UIColor colorWithRed:90.0f/255.0f green:175.0f/255.0f blue:113.0f/255.0f alpha:0.65]];
+    }
+    //If it is the second panel, change the color to blue!
+    else if (panelIndex == 1){
+        [introductionView setBackgroundColor:[UIColor colorWithRed:50.0f/255.0f green:79.0f/255.0f blue:133.0f/255.0f alpha:0.65]];
+    }
+}
+
+-(void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType {
+    NSLog(@"Introduction did finish");
+}
 
 #pragma mark - 解决虚拟键盘挡住UITextField的方法
 

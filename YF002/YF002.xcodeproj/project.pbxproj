@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4252A2BDC25B9F1A59F49162 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C64BD1BEE6F8A8DA4BC9BE2A /* libPods.a */; };
 		AB2B1EB51B0B7A500038A3E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2B1EB41B0B7A500038A3E0 /* UIKit.framework */; };
 		AB2B1EB81B0B7B5B0038A3E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2B1EB71B0B7B5B0038A3E0 /* Foundation.framework */; };
 		AB2B1EBA1B0B7B890038A3E0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2B1EB91B0B7B890038A3E0 /* CoreGraphics.framework */; };
@@ -92,6 +93,15 @@
 		ABB43DF71B15EBA8000C83AA /* treatParameterItemsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB43DF51B15EBA8000C83AA /* treatParameterItemsViewCell.m */; };
 		ABB43DF81B15EBA8000C83AA /* treatParameterItemsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB43DF61B15EBA8000C83AA /* treatParameterItemsViewCell.xib */; };
 		ABB54A871BC28BC100C565B3 /* YFDoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB54A861BC28BC100C565B3 /* YFDoneVC.m */; };
+		ABB54A8A1BC35F3500C565B3 /* YFNewFeatureViewPVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB54A891BC35F3500C565B3 /* YFNewFeatureViewPVC.m */; };
+		ABB54B021BC37A6300C565B3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB54B011BC37A6300C565B3 /* QuartzCore.framework */; };
+		ABB54B041BC37F1700C565B3 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB54B031BC37F1700C565B3 /* libstdc++.dylib */; };
+		ABB54B061BC37F2A00C565B3 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB54B051BC37F2A00C565B3 /* libz.1.1.3.dylib */; };
+		ABB54B0C1BC4A50200C565B3 /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB54B091BC4A50200C565B3 /* MYBlurIntroductionView.m */; };
+		ABB54B0D1BC4A50200C565B3 /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB54B0B1BC4A50200C565B3 /* MYIntroductionPanel.m */; };
+		ABB54B0F1BC4A69400C565B3 /* NewFeatureView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB54B0E1BC4A69400C565B3 /* NewFeatureView1.xib */; };
+		ABB54B111BC4AB3200C565B3 /* NewFeatureView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB54B101BC4AB3200C565B3 /* NewFeatureView2.xib */; };
+		ABB54B131BC4AB7B00C565B3 /* NewFeatureView3.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB54B121BC4AB7B00C565B3 /* NewFeatureView3.xib */; };
 		ABD3FE4C1B1B19F100190AE5 /* treatHistory.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABD3FE4B1B1B19F100190AE5 /* treatHistory.plist */; };
 		ABD3FE531B1B1D1900190AE5 /* treatRecordTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD3FE511B1B1D1900190AE5 /* treatRecordTVCell.m */; };
 		ABD3FE541B1B1D1900190AE5 /* treatRecordTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD3FE521B1B1D1900190AE5 /* treatRecordTVCell.xib */; };
@@ -261,11 +271,26 @@
 		ABB43DF61B15EBA8000C83AA /* treatParameterItemsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = treatParameterItemsViewCell.xib; sourceTree = "<group>"; };
 		ABB54A851BC28BC100C565B3 /* YFDoneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFDoneVC.h; sourceTree = "<group>"; };
 		ABB54A861BC28BC100C565B3 /* YFDoneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFDoneVC.m; sourceTree = "<group>"; };
+		ABB54A881BC35F3500C565B3 /* YFNewFeatureViewPVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFNewFeatureViewPVC.h; sourceTree = "<group>"; };
+		ABB54A891BC35F3500C565B3 /* YFNewFeatureViewPVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFNewFeatureViewPVC.m; sourceTree = "<group>"; };
+		ABB54B011BC37A6300C565B3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		ABB54B031BC37F1700C565B3 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		ABB54B051BC37F2A00C565B3 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		ABB54B081BC4A50200C565B3 /* MYBlurIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYBlurIntroductionView.h; sourceTree = "<group>"; };
+		ABB54B091BC4A50200C565B3 /* MYBlurIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYBlurIntroductionView.m; sourceTree = "<group>"; };
+		ABB54B0A1BC4A50200C565B3 /* MYIntroductionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYIntroductionPanel.h; sourceTree = "<group>"; };
+		ABB54B0B1BC4A50200C565B3 /* MYIntroductionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYIntroductionPanel.m; sourceTree = "<group>"; };
+		ABB54B0E1BC4A69400C565B3 /* NewFeatureView1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeatureView1.xib; sourceTree = "<group>"; };
+		ABB54B101BC4AB3200C565B3 /* NewFeatureView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeatureView2.xib; sourceTree = "<group>"; };
+		ABB54B121BC4AB7B00C565B3 /* NewFeatureView3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeatureView3.xib; sourceTree = "<group>"; };
 		ABD3FE4B1B1B19F100190AE5 /* treatHistory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = treatHistory.plist; sourceTree = "<group>"; };
 		ABD3FE501B1B1D1900190AE5 /* treatRecordTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = treatRecordTVCell.h; sourceTree = "<group>"; };
 		ABD3FE511B1B1D1900190AE5 /* treatRecordTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = treatRecordTVCell.m; sourceTree = "<group>"; };
 		ABD3FE521B1B1D1900190AE5 /* treatRecordTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = treatRecordTVCell.xib; sourceTree = "<group>"; };
 		ABF075281B42DC1700FA7CD6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B12C35F9AB4866DF05DEB49C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C64BD1BEE6F8A8DA4BC9BE2A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1C255E4AB440494A98A47B9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,12 +298,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABB54B061BC37F2A00C565B3 /* libz.1.1.3.dylib in Frameworks */,
+				ABB54B041BC37F1700C565B3 /* libstdc++.dylib in Frameworks */,
+				ABB54B021BC37A6300C565B3 /* QuartzCore.framework in Frameworks */,
 				ABA593D31B663CE2004C4A87 /* libsqlite3.0.dylib in Frameworks */,
 				AB995DB71B3FBD3300B7ACF6 /* MessageUI.framework in Frameworks */,
 				AB6506EF1B3859C9000978E4 /* CoreBluetooth.framework in Frameworks */,
 				AB2B1EBA1B0B7B890038A3E0 /* CoreGraphics.framework in Frameworks */,
 				AB2B1EB81B0B7B5B0038A3E0 /* Foundation.framework in Frameworks */,
 				AB2B1EB51B0B7A500038A3E0 /* UIKit.framework in Frameworks */,
+				4252A2BDC25B9F1A59F49162 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +321,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		789F74B93DE57069F5B74D6B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D1C255E4AB440494A98A47B9 /* Pods.debug.xcconfig */,
+				B12C35F9AB4866DF05DEB49C /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AB2B1EB11B0B71340038A3E0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,12 +344,16 @@
 		AB2B1EB61B0B7A900038A3E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ABB54B051BC37F2A00C565B3 /* libz.1.1.3.dylib */,
+				ABB54B031BC37F1700C565B3 /* libstdc++.dylib */,
+				ABB54B011BC37A6300C565B3 /* QuartzCore.framework */,
 				ABA593D21B663CE2004C4A87 /* libsqlite3.0.dylib */,
 				AB995DB61B3FBD3300B7ACF6 /* MessageUI.framework */,
 				AB6506EE1B3859C9000978E4 /* CoreBluetooth.framework */,
 				AB2B1EB91B0B7B890038A3E0 /* CoreGraphics.framework */,
 				AB2B1EB71B0B7B5B0038A3E0 /* Foundation.framework */,
 				AB2B1EB41B0B7A500038A3E0 /* UIKit.framework */,
+				C64BD1BEE6F8A8DA4BC9BE2A /* libPods.a */,
 			);
 			name = Frameworks;
 			path = YF002;
@@ -441,6 +483,7 @@
 				AB4C85851AE5219800D67565 /* YF002Tests */,
 				AB2B1EB61B0B7A900038A3E0 /* Frameworks */,
 				AB4C856A1AE5219800D67565 /* Products */,
+				789F74B93DE57069F5B74D6B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -495,6 +538,7 @@
 		AB5BB74B1B0CB6C500CB1FA8 /* library */ = {
 			isa = PBXGroup;
 			children = (
+				ABB54B071BC4A50200C565B3 /* MYBlurIntroductionView */,
 				AB3ED7411BBED35800FE8180 /* MHTextField */,
 				AB9B0E4A1BBD66AE00F94E63 /* SVProgressHUD */,
 				AB9B0E341BBD5D7200F94E63 /* BabyBluetooth */,
@@ -555,6 +599,8 @@
 				AB497A901BB9736C0034A177 /* YFLoginVC.m */,
 				AB9B0E531BBD787800F94E63 /* YFRegsiterVC.h */,
 				AB9B0E541BBD787800F94E63 /* YFRegsiterVC.m */,
+				ABB54A881BC35F3500C565B3 /* YFNewFeatureViewPVC.h */,
+				ABB54A891BC35F3500C565B3 /* YFNewFeatureViewPVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -570,6 +616,9 @@
 			isa = PBXGroup;
 			children = (
 				AB497A8A1BB80C0B0034A177 /* login.storyboard */,
+				ABB54B0E1BC4A69400C565B3 /* NewFeatureView1.xib */,
+				ABB54B101BC4AB3200C565B3 /* NewFeatureView2.xib */,
+				ABB54B121BC4AB7B00C565B3 /* NewFeatureView3.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -852,6 +901,17 @@
 			path = MZTimerLabel;
 			sourceTree = "<group>";
 		};
+		ABB54B071BC4A50200C565B3 /* MYBlurIntroductionView */ = {
+			isa = PBXGroup;
+			children = (
+				ABB54B081BC4A50200C565B3 /* MYBlurIntroductionView.h */,
+				ABB54B091BC4A50200C565B3 /* MYBlurIntroductionView.m */,
+				ABB54B0A1BC4A50200C565B3 /* MYIntroductionPanel.h */,
+				ABB54B0B1BC4A50200C565B3 /* MYIntroductionPanel.m */,
+			);
+			path = MYBlurIntroductionView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -859,9 +919,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB4C858C1AE5219800D67565 /* Build configuration list for PBXNativeTarget "YF002" */;
 			buildPhases = (
+				0BCEF9B72AE5F095F92F160C /* Check Pods Manifest.lock */,
 				AB4C85651AE5219800D67565 /* Sources */,
 				AB4C85661AE5219800D67565 /* Frameworks */,
 				AB4C85671AE5219800D67565 /* Resources */,
+				B3954C689C4A6EA531B13046 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -939,6 +1001,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABB54B131BC4AB7B00C565B3 /* NewFeatureView3.xib in Resources */,
 				AB3ED7661BC1648300FE8180 /* NewAlarm.xib in Resources */,
 				AB4748631B1F431F003EFACE /* screentshoot1.png in Resources */,
 				AB9B0E511BBD66AE00F94E63 /* SVProgressHUD.bundle in Resources */,
@@ -946,9 +1009,11 @@
 				AB320AC21B240C3600E8FF7C /* MenuCell.xib in Resources */,
 				ABAB51A71B10DF00001663D2 /* Info.plist in Resources */,
 				AB320AC41B240C3600E8FF7C /* MenuView.xib in Resources */,
+				ABB54B0F1BC4A69400C565B3 /* NewFeatureView1.xib in Resources */,
 				ABB43DEC1B147EB9000C83AA /* treatItemList.plist in Resources */,
 				AB4748641B1F431F003EFACE /* screentshoot2.png in Resources */,
 				AB4748621B1F431F003EFACE /* down_dark0.png in Resources */,
+				ABB54B111BC4AB3200C565B3 /* NewFeatureView2.xib in Resources */,
 				ABD3FE4C1B1B19F100190AE5 /* treatHistory.plist in Resources */,
 				AB497A931BB985AD0034A177 /* Images.xcassets in Resources */,
 				AB4748611B1F431F003EFACE /* area.plist in Resources */,
@@ -971,6 +1036,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0BCEF9B72AE5F095F92F160C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B3954C689C4A6EA531B13046 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AB4C85651AE5219800D67565 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -980,9 +1078,11 @@
 				AB995DBF1B40516F00B7ACF6 /* chatView.m in Sources */,
 				ABB43DEA1B134783000C83AA /* YFTreatParameterItem.m in Sources */,
 				AB995DE31B42C44E00B7ACF6 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				ABB54B0C1BC4A50200C565B3 /* MYBlurIntroductionView.m in Sources */,
 				AB320AB61B21B69100E8FF7C /* STAlertView.m in Sources */,
 				AB9B0E521BBD66AE00F94E63 /* SVProgressHUD.m in Sources */,
 				AB4748651B1F431F003EFACE /* LMComBoxView.m in Sources */,
+				ABB54B0D1BC4A50200C565B3 /* MYIntroductionPanel.m in Sources */,
 				AB3ED7471BBF65B000FE8180 /* PeripheralInfo.m in Sources */,
 				AB995DE01B42C44E00B7ACF6 /* MASViewAttribute.m in Sources */,
 				ABAB51A81B10DF00001663D2 /* MZTimerLabel.m in Sources */,
@@ -1005,6 +1105,7 @@
 				AB8F6D751B2077F300377D42 /* NSDate+convenience.m in Sources */,
 				AB43D9031B305C9900426AAB /* YFAlarmTVC.m in Sources */,
 				AB5BB78A1B0CBDFA00CB1FA8 /* YFNavigationController.m in Sources */,
+				ABB54A8A1BC35F3500C565B3 /* YFNewFeatureViewPVC.m in Sources */,
 				AB9B0E431BBD5D7200F94E63 /* BabyBluetooth.m in Sources */,
 				AB5BB7911B0CBDFA00CB1FA8 /* YFHomeViewController.m in Sources */,
 				AB9B0E551BBD787800F94E63 /* YFRegsiterVC.m in Sources */,
@@ -1156,10 +1257,12 @@
 		};
 		AB4C858D1AE5219800D67565 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1C255E4AB440494A98A47B9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = YF002/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1170,10 +1273,12 @@
 		};
 		AB4C858E1AE5219800D67565 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B12C35F9AB4866DF05DEB49C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = YF002/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

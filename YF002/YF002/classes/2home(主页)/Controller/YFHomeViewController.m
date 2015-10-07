@@ -102,6 +102,8 @@
 
 //开启编辑参数按钮
 @property (weak, nonatomic) IBOutlet UIButton *editParameter;
+- (IBAction)editParameter:(id)sender;
+@property (nonatomic,strong) UIView *coverView;
 
 
 
@@ -119,12 +121,14 @@
 // 0.滚动的scrollView
     self.scrollView.frame = CGRectMake(0, 0, 320, 560);
     [self.scrollView setContentSize:CGSizeMake(320, 600)];
+    
+    
    
 //  1.初始化治疗参数
     _treatParameterItem = [[YFTreatParameterItem alloc] initWithIndex:1];
      NSLog(@"%@", _treatParameterItem.datafromTreatItem);
 
-//   2.创建 pickerView 第一个pickview X轴xPickerView,y轴yPickerView,y轴增加值xAddPickerView
+//   2.创建 pickerView 第一个时间选择pickview X轴xPickerView,y轴yPickerView,y轴增加值xAddPickerView
     NSInteger xPickerView = 80,yPickerView =10,yAddPickerView = 40;
     [self treatTimePickerViewLoad:CGRectMake(xPickerView, yPickerView, 240, 30)];
     [self treatStrengthPickerViewLoad:CGRectMake(xPickerView,(yPickerView+yAddPickerView) , 240, 30)];
@@ -203,7 +207,11 @@
   // 7.push链接
     [self performSegueWithIdentifier:@"forChoose" sender:self];
     
- 
+    //0.1编辑参数按钮所在的coverView；
+    _coverView.frame =CGRectMake(0, 0, width, 160);
+    _coverView.backgroundColor = [UIColor blackColor];
+    _coverView.alpha =0.5;
+    [_scrollView addSubview:_coverView];
 }
 
 
@@ -285,9 +293,9 @@
     if (_treatTimePickerView == nil) {
         _treatTimePickerView = [[AKPickerView alloc] initWithFrame:pickerViewCGRect];
     }
-    
+    //初始化治疗时间pickerView
     [self pickerViewParameterLoad:_treatTimePickerView];
-    //取出数据模型中关于treatTime的plist中数组
+    //取出数据模型中关于treatTime的plist中数组 治疗时间
     _treatTimePickerViewArray = [_treatParameterItem.datafromTreatItemList objectForKey:@"treatTime"];
     [_treatTimePickerView reloadData];
 }
@@ -315,11 +323,11 @@
     pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.scrollView addSubview:pickerView];
     
-    pickerView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+    pickerView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
     pickerView.textColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:255.0/255 alpha:0.8];
-    pickerView.highlightedFont = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    pickerView.highlightedFont = [UIFont fontWithName:@"HelveticaNeue" size:18];
     pickerView.highlightedTextColor = [UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255 alpha:1.0];
-    pickerView.interitemSpacing = 15;
+    pickerView.interitemSpacing = 13;
     //pickerView.fisheyeFactor = 0.001;
     pickerView.pickerViewStyle = AKPickerViewStyle3D;
     pickerView.maskDisabled = false;
@@ -923,5 +931,9 @@
 #pragma mark - Navigation
 
 - (IBAction)editParameter:(id)sender {
+    [UIView animateWithDuration:0.5 animations:^{
+                _coverView.alpha = 1.0f;
+            }];
 }
+
 @end

@@ -22,6 +22,17 @@
 @property (weak, nonatomic) IBOutlet UIButton *doneStep2Btn;
 - (IBAction)doneStep2Btn:(id)sender;
 
+//笑脸按钮
+@property (weak, nonatomic) IBOutlet UIButton *before1Btn;
+- (IBAction)before2Btn:(id)sender;
+- (IBAction)before1Btn:(id)sender;
+- (IBAction)before3Btn:(id)sender;
+- (IBAction)after1Btn:(id)sender;
+- (IBAction)after2Btn:(id)sender;
+- (IBAction)after3Btn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *beforeArrow;
+@property (weak, nonatomic) IBOutlet UIImageView *afterArrow;
+
 @end
 
 @implementation YFDoneVC
@@ -181,5 +192,28 @@
 }
 - (IBAction)doneStep2Btn:(id)sender {
      [self dismissViewControllerAnimated:YES completion:^{}];
+}
+- (IBAction)before2Btn:(id)sender {
+    _beforeArrow.transform = CGAffineTransformMakeTranslation(0, 45);
+}
+
+- (IBAction)before1Btn:(id)sender {
+     _beforeArrow.transform = CGAffineTransformMakeTranslation(0, 0);
+}
+
+- (IBAction)before3Btn:(id)sender {
+     _beforeArrow.transform = CGAffineTransformMakeTranslation(0, 90);
+}
+
+- (IBAction)after1Btn:(id)sender {
+     _afterArrow.transform = CGAffineTransformMakeTranslation(0, 0);
+}
+
+- (IBAction)after2Btn:(id)sender {
+      _afterArrow.transform = CGAffineTransformMakeTranslation(0, 45);
+}
+
+- (IBAction)after3Btn:(id)sender {
+      _afterArrow.transform = CGAffineTransformMakeTranslation(0, 90);
 }
 @end

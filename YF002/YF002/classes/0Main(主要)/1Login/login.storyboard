@@ -32,7 +32,7 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" indicatorStyle="black" keyboardDismissMode="onDrag" id="eCZ-jM-FfD">
                                 <rect key="frame" x="11" y="-3" width="298" height="480"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SsA-ac-XcY">
                                         <rect key="frame" x="20" y="352" width="30" height="30"/>
@@ -147,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o71-Gk-pap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="208" y="142"/>
+            <point key="canvasLocation" x="172" y="110"/>
         </scene>
         <!--RegsiterVC-->
         <scene sceneID="10O-k1-CVY">

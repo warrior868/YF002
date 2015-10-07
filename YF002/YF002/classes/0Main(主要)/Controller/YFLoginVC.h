@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MYBlurIntroductionView.h"
 
-@interface YFLoginVC : UIViewController
+@interface YFLoginVC : UIViewController <MYIntroductionDelegate>
 
 @end

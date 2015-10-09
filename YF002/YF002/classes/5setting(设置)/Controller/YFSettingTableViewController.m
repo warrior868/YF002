@@ -36,7 +36,7 @@
 
 #pragma mark - Table view data source
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
+    if (indexPath.row == 2) {
         [self sendEmailAction];
     }
 }

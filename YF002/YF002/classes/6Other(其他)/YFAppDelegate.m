@@ -20,7 +20,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-
+    
+    
+    //启动画面延时
+    [NSThread sleepForTimeInterval:1.5];
+    [_window makeKeyAndVisible];
     return YES;
 }
 

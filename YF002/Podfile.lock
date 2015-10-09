@@ -1,13 +1,16 @@
 PODS:
   - FastAnimationWithPOP (HEAD based on 0.0.2):
     - pop (~> 1.0.5)
+  - IQKeyboardManager (3.2.4)
   - pop (1.0.7)
 
 DEPENDENCIES:
   - FastAnimationWithPOP (HEAD)
+  - IQKeyboardManager
 
 SPEC CHECKSUMS:
   FastAnimationWithPOP: a6ec4b6707c3dc4f0b21287337e328c56d16edda
+  IQKeyboardManager: 555b1231fefafb21b19278d7cca72986a27b748b
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
 
 COCOAPODS: 0.38.2

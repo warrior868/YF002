@@ -7,8 +7,31 @@
 //
 
 #import "YFRegsiterVC.h"
+#import "TextFieldValidator.h"
+#import "SVProgressHUD.h"
+
+#define sreenWidth [UIScreen mainScreen].bounds.size.width
+#define sreenHeight [UIScreen mainScreen].bounds.size.height
+
+
+#define REGEX_USER_NAME_LIMIT @"^.{3,10}$"
+#define REGEX_USER_HEIGH @"[0-9]"
+#define REGEX_USER_WEIGHT @"[0-9]"
+#define REGEX_EMAIL @"[A-Z0-9a-z._%+-]{3,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+#define REGEX_PASSWORD_LIMIT @"^.{6,20}$"
+#define REGEX_PASSWORD @"[A-Za-z0-9]{6,20}"
+#define REGEX_PHONE_DEFAULT @"[0-9]{3}\\-[0-9]{3}\\-[0-9]{4}"
+
 #define viewCornerRadius 5.0
-@interface YFRegsiterVC ()
+@interface YFRegsiterVC (){
+    IBOutlet TextFieldValidator *userName;
+    IBOutlet TextFieldValidator *userHeigh;
+    IBOutlet TextFieldValidator *userWeight;
+    IBOutlet TextFieldValidator *userPassword;
+    IBOutlet TextFieldValidator *userComfirmPassword;
+    
+}
+
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -22,17 +45,22 @@
 - (IBAction)registerBtn:(id)sender;
 
 
+
 @end
 
 @implementation YFRegsiterVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+//界面上的UI设置
     //隐藏导航栏
     self.navigationController.navigationBarHidden = NO;
-    self.scrollView.frame = CGRectMake(11, 0, 320, 480);
-    [self.scrollView setContentSize:CGSizeMake(320, 520)];
+    _scrollView.frame = CGRectMake(0, 0, sreenWidth, 600);
+    //[_scrollView setContentSize:CGSizeMake(width, 600)];
+    [_scrollView setContentSize:CGSizeMake(sreenWidth, 570)];
+    _scrollView.center = CGPointMake(sreenWidth/2, _scrollView.frame.size.height/2);
+    
     //UI设置
     _view1.layer.cornerRadius =viewCornerRadius;
     _view2.layer.cornerRadius =viewCornerRadius;
@@ -56,8 +84,24 @@
     // 0.4设置导航栏的leftButton
     UIBarButtonItem *back=[[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem=back;
+//验证要求
+    [self setupAlerts];
+    
+}
+
+#pragma mark - 登陆输入验证
+
+-(void)setupAlerts{
     
     
+    [userName addRegx:REGEX_EMAIL withMsg:@"请输入有效地电子邮箱"];
+    
+    [userPassword addRegx:REGEX_PASSWORD withMsg:@"请输入6~10位长度的密码"];
+    [userComfirmPassword addConfirmValidationTo:userPassword withMsg:@"请与上次输入的密码保持一致"];
+    [userHeigh addRegx:REGEX_USER_HEIGH withMsg:@"请输入2~3位数字"];
+    [userWeight addRegx:REGEX_USER_WEIGHT withMsg:@"请输入2~3位数字"];
+    
+ 
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,6 +125,12 @@
 */
 
 - (IBAction)registerBtn:(id)sender {
+    if([userName validate] & [userWeight validate] & [userHeigh validate]& [userComfirmPassword validate]& [userPassword validate]){
+        [SVProgressHUD showSuccessWithStatus:@"注册成功，请返回登陆界面"];
+        
+    }
     
 }
+
+
 @end

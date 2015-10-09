@@ -78,8 +78,7 @@
 @property (nonatomic, strong) AKPickerView *treatTimePickerView;
 @property (nonatomic, strong) AKPickerView *treatStrengthPickerView;
 @property (nonatomic, strong) AKPickerView *treatWavePickerView;
-//倒计时所在的层视图
-@property (weak, nonatomic) IBOutlet UIView *timeCountLayer;
+
 
 @property (nonatomic, strong) NSArray *treatTimePickerViewArray;
 @property (nonatomic, strong) NSArray *treatStrengthPickerViewArray;
@@ -104,7 +103,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *editParameter;
 - (IBAction)editParameter:(id)sender;
 @property (nonatomic,strong) UIView *coverView;
+@property (nonatomic,assign) BOOL _isStateOn;
 
+@property (weak, nonatomic) IBOutlet UIView *allPickerView;
+//倒计时所在的层视图
+@property (weak, nonatomic) IBOutlet UIView *timeCountView;
+@property (weak, nonatomic) IBOutlet UIImageView *timeCountBackground;
+//蓝牙连接按钮
+@property (nonatomic,strong) UIButton *btn;
 
 
 
@@ -117,10 +123,28 @@
     
     [super viewDidLoad];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:187.0/255 green:135.0/255 blue:87.0/135 alpha:0.8]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:187.0/255 green:135.0/255 blue:87.0/255 alpha:0.8]}];
 // 0.滚动的scrollView
-    self.scrollView.frame = CGRectMake(0, 0, 320, 560);
-    [self.scrollView setContentSize:CGSizeMake(320, 600)];
+    self.scrollView.frame = CGRectMake(0, 0, width, 560);
+    [self.scrollView setContentSize:CGSizeMake(width, 600)];
+    
+    _allPickerView.frame = CGRectMake(0, 0, width, 170);
+    _allPickerView.center = CGPointMake(width/2, 85);
+    _editParameter.center =CGPointMake(width/2, 148);
+    _timeCountView.center = CGPointMake(width/2, 305);
+    // 3.开启编辑参数按钮 圆角实现
+    [_editParameter.layer setMasksToBounds:YES];
+    [_editParameter.layer setCornerRadius:5];
+    //__isStateOn = YES;
+ 
+  // 0.1设置左上角蓝牙连接按钮的背景图片
+    // 0.11新建一个按钮
+    _btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _btn.frame = CGRectMake(20, 8, 30, 30);
+    [_btn setBackgroundImage:[UIImage imageNamed:@"bluetoothOff"] forState:UIControlStateNormal];
+    // 0.12增加selector的方法
+    [_btn addTarget: self action: @selector(bluetoothConnect) forControlEvents: UIControlEventTouchUpInside];
+
     
     
    
@@ -138,17 +162,7 @@
     [_treatTimePickerView selectItem:[[_treatParameterItem.treatTime substringWithRange:NSMakeRange(0, 1)] integerValue] animated:NO];
     [_treatStrengthPickerView selectItem:[[_treatParameterItem.treatStrength substringWithRange:NSMakeRange(0, 1)] integerValue] animated:NO];
     [_treatWavePickerView selectItem:[[_treatParameterItem.treatWave substringWithRange:NSMakeRange(0, 1)] integerValue] animated:NO];
-    //[_treatModelPickerView selectItem:[[_treatParameterItem.treatModel substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
-
-// 3.开启编辑参数按钮 圆角实现
-    [_editParameter.layer setMasksToBounds:YES];
-    [_editParameter.layer setCornerRadius:5];
-
-//  设置navigationBar 左侧栏的名称以及按键调用的方法
-  //  UIImage *leftBarButtonItem = [UIImage imageNamed:@"blueToothGray" ];
-  //  self.navigationItem.leftBarButtonItem =[[UIBarButtonItem alloc] initWithImage:leftBarButtonItem landscapeImagePhone:nil style:UIBarButtonItemStyleBordered target:self action:@selector(switchTouched)];
-  //  [self.navigationItem.leftBarButtonItem setImage:[leftBarButtonItem imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-
+ 
     
 //  4.创建 MZTimerLabel倒计时  按钮
     _timer = [[MZTimerLabel alloc] initWithLabel:_timerCountDownLabel andTimerType:MZTimerLabelTypeTimer];
@@ -169,12 +183,11 @@
     //  4.4创建倒计时的圈圈动画
     MMMaterialDesignSpinner *spinnerView = [[MMMaterialDesignSpinner alloc] initWithFrame:CGRectZero];
     self.spinnerView = spinnerView;
-    self.spinnerView.bounds = CGRectMake(0, 0, 210, 210);
+    self.spinnerView.frame = CGRectMake(0, 0, 220, 220);
     self.spinnerView.lineWidth = 3.6f;
     self.spinnerView.tintColor = [UIColor colorWithRed:194.f/255 green:53.f/255 blue:127.f/255 alpha:0.3];
-    self.spinnerView.center = CGPointMake(CGRectGetMidX(self.view.bounds)-2, 128);
-    
-    [self.timeCountLayer insertSubview:self.spinnerView atIndex:2];
+    self.spinnerView.center = CGPointMake(_timeCountBackground.center.x, _timeCountBackground.center.y);
+   [self.timeCountView insertSubview:self.spinnerView atIndex:2];
  
 
     
@@ -207,11 +220,7 @@
   // 7.push链接
     [self performSegueWithIdentifier:@"forChoose" sender:self];
     
-    //0.1编辑参数按钮所在的coverView；
-    _coverView.frame =CGRectMake(0, 0, width, 160);
-    _coverView.backgroundColor = [UIColor blackColor];
-    _coverView.alpha =0.5;
-    [_scrollView addSubview:_coverView];
+
 }
 
 
@@ -267,6 +276,7 @@
 -(IBAction)unwind:(UIStoryboardSegue *) segue{
     
 }
+
 
 
 #pragma mark - AKPickerView DataSource
@@ -396,7 +406,7 @@
             if (setTime == 0) {
                 [_timer setCountDownTime:1*5];
             }else{
-                [_timer setCountDownTime:setTime*1*5];}
+                [_timer setCountDownTime:setTime*60*5];}
             //设置模型中treatTime的值，以便保存；
             _treatParameterItem.treatTime = treatTimeSelect;
             NSLog(@"Time_%@", _treatParameterItem.treatTime);
@@ -480,6 +490,54 @@
     
 }
 
+#pragma mark - editParameter 编辑参数的按钮
+- (IBAction)editParameter:(id)sender {
+//禁用pickView
+    if ( _treatStrengthPickerView.userInteractionEnabled ) {
+        
+        [self openEditParameter];
+        
+    }else{
+      
+        [self closeEditParameter];
+    }
+  [UIView animateWithDuration:0.5 animations:^{
+        _coverView.alpha = 1.0f;
+    }];
+}
+
+- (void) openEditParameter{
+    //pickerView中的text字体颜色成透明色， pickView不可使用手势
+    [_treatWavePickerView setUserInteractionEnabled:NO];
+    [_treatStrengthPickerView setUserInteractionEnabled:NO];
+    [_treatTimePickerView setUserInteractionEnabled:NO];
+    _treatStrengthPickerView.textColor = [UIColor clearColor];
+    _treatTimePickerView.textColor = [UIColor clearColor];
+    _treatWavePickerView.textColor = [UIColor clearColor];
+    [_treatStrengthPickerView reloadData];
+    [_treatTimePickerView reloadData];
+    [_treatWavePickerView reloadData];
+    //编辑按钮颜色成灰色
+    _editParameter.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:0.7];
+    _editParameter.titleLabel.text = @"打开参数编辑";
+}
+
+- (void) closeEditParameter{
+    //pickerView中的text字体颜色恢复成原来颜色， pickView可使用手势
+    [_treatWavePickerView setUserInteractionEnabled:YES];
+    [_treatStrengthPickerView setUserInteractionEnabled:YES];
+    [_treatTimePickerView setUserInteractionEnabled:YES];
+    _treatStrengthPickerView.textColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:255.0/255 alpha:0.8];
+    _treatTimePickerView.textColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:255.0/255 alpha:0.8];
+    _treatWavePickerView.textColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:255.0/255 alpha:0.8];
+    [_treatStrengthPickerView reloadData];
+    [_treatTimePickerView reloadData];
+    [_treatWavePickerView reloadData];
+    //编辑按钮颜色成白色
+    
+    _editParameter.backgroundColor = [UIColor whiteColor];
+    _editParameter.titleLabel.text = @"关闭参数编辑";
+}
 #pragma mark - MZTimerlabel 开始 暂停 重置按钮的方法
 - (IBAction)startOrResumeCountDown:(id)sender {
     
@@ -495,10 +553,20 @@
         
     }else{
         
-        [_timer start];
-        //圆圈动画开始
-        [self.spinnerView startAnimating];
-        [_startPauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
+        //给蓝牙设备发送指令以便其工作
+//        if (蓝牙已经进入正常工作状态) {
+            //开始计时
+            [_timer start];
+            //editParameter关闭编辑并且把开启参数编辑按钮不可用
+            [self openEditParameter];
+            _editParameter.userInteractionEnabled = NO;
+            //圆圈动画开始
+            [self.spinnerView startAnimating];
+            [_startPauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
+//        } else {
+//            [SVProgressHUD showErrorWithStatus:@"没有找到可控制的蓝牙，确定蓝牙已经连接？"];
+//
+//        }
         
     }
     
@@ -510,17 +578,23 @@
         [_startPauseBtn setTitle:@"开始" forState:UIControlStateNormal];
     }
      [_resetBtn setEnabled:NO];
+     //editParameter开启参数编辑按钮可用
+    _editParameter.userInteractionEnabled = YES;
 }
 - (void)timerLabel:(MZTimerLabel*)timerLabel finshedCountDownTimerWithTime:(NSTimeInterval)countTime{
     //圆圈动画结束
     [self.spinnerView stopAnimating];
+    
     //设置结束后，按钮设置成开始；
     [_startPauseBtn setTitle:@"开始" forState:UIControlStateNormal];
-    //设置结束后，保存参数按钮设置为开启
     
-    //提示用户完成治疗
+    //editParameter开启参数编辑按钮可用
+    _editParameter.userInteractionEnabled = YES;
+    
+    //提示用户完成治疗,出现用户选择画面
     [self performSegueWithIdentifier:@"showDone" sender:self];
-    //1.把治疗结果记录在history中
+    
+ //1.把治疗结果记录在history中
 
     //1.1读取当前日期
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -564,39 +638,6 @@
     NSLog(@"%@",_treatParameterItem.datafromTreatHistory);
 }
 
-#pragma mark - sideView 按钮方法
-- (void)switchTouched{
-    [_sideSlipView switchMenu];
-    
-    [self loadSideViewData];
-    //蓝牙进行扫描
-  //  [self scanClick];
-    [_menu.myTableView reloadData];
-
-    
-}
-- (void) loadSideViewData{
-    
-    if (1) {
-        batteryValue = 70;
-        _menu.items =
-        @[
-          @{@"title":@"蓝牙已连接",@"imagename":@"70%",@"data":@"70% "},
-          @{@"title":[NSString stringWithFormat:@"电池电量%d%%", batteryValue],@"imagename":@"70%",@"data":@"70%"},
-          @{@"title":@"时间",@"imagename":_treatParameterItem.treatTime,
-            @"data":[NSString stringWithFormat:@"%@",_treatParameterItem.treatTime]},
-          @{@"title":@"强度",@"imagename":_treatParameterItem.treatStrength,
-            @"data":[NSString stringWithFormat:@"%@",_treatParameterItem.treatStrength]},
-          @{@"title":@"波形",@"imagename":_treatParameterItem.treatWave,
-            @"data":[NSString stringWithFormat:@"%@",_treatParameterItem.treatWave]},
-          @{@"title":@"电极",@"imagename":_treatParameterItem.treatModel,
-            @"data":[NSString stringWithFormat:@"%@",_treatParameterItem.treatModel]}
-          ];
-
-    } else{
-        
-    }
-    }
 
 
 /*
@@ -645,19 +686,27 @@
 
 #pragma mark - BabyBluetooth 蓝牙部分
 
+
+
+
+#pragma mark  蓝牙连接
+- (void) bluetoothConnect{
+
+}
+
 //蓝牙网关初始化和委托方法设置
 -(void)babyDelegate{
     
     __weak typeof(self) weakSelf = self;
     [baby setBlockOnCentralManagerDidUpdateState:^(CBCentralManager *central) {
         if (central.state == CBCentralManagerStatePoweredOn) {
-            [SVProgressHUD showInfoWithStatus:@"设备打开成功，开始扫描设备"];
+            [SVProgressHUD showInfoWithStatus:@"蓝牙设备打开成功，开始扫描设备"];
         }
     }];
     
     //设置扫描到设备的委托
     [baby setBlockOnDiscoverToPeripherals:^(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
-        NSLog(@"搜索到了设备:%@",peripheral.name);
+        NSLog(@"搜索到了 设备:%@",peripheral.name);
 //        if ([peripheral.name isEqual:@"SimpleBLEPeripheral"]) {
 //            self.services = [[NSMutableArray alloc]init];
 //            [self babyOneDelegate];
@@ -670,7 +719,7 @@
     }];
     //设置设备连接成功的委托
     [baby setBlockOnConnected:^(CBCentralManager *central, CBPeripheral *peripheral) {
-        NSLog(@"设备：%@--连接成功 ViewController",peripheral.name);
+        NSLog(@"设备：%@--蓝牙与设备连接成功",peripheral.name);
         //3 获取设备的services、characteristic、description以及value
         
         //停止扫描
@@ -680,6 +729,8 @@
         _services = [[NSMutableArray alloc]init];
         [self babyOneDelegate];
         [self performSelector:@selector(loadData) withObject:nil afterDelay:2];
+        
+        [_btn setBackgroundImage:[UIImage imageNamed:@"bluetoothOn"] forState:UIControlStateNormal];
 
     }];
     //设置设备连接失败的委托
@@ -696,7 +747,7 @@
         for (CBService *service in peripheral.services) {
             NSLog(@"搜索到服务:%@",service.UUID.UUIDString);
         }
-        //找到cell并修改detaisText
+//找到cell并修改detaisText
 //        for (int i=0;i<peripherals.count;i++) {
 //            UITableViewCell *cell = [weakSelf.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
 //            if (cell.textLabel.text == peripheral.name) {
@@ -777,10 +828,12 @@
     BabyRhythm *rhythm = [[BabyRhythm alloc]init];
     
     
-    //设置设备连接成功的委托,同一个baby对象，使用不同的channel切换委托回调
+    //设置设备蓝牙连接成功的委托,同一个baby对象，使用不同的channel切换委托回调
     
     [baby setBlockOnConnectedAtChannel:channelOnPeropheralView block:^(CBCentralManager *central, CBPeripheral *peripheral) {
-        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接成功",peripheral.name]];
+        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接成功",peripheral.name]
+         ];
+        
     }];
     
     //设置发现设备的Services的委托
@@ -927,13 +980,5 @@
 
 
 
-
-#pragma mark - Navigation
-
-- (IBAction)editParameter:(id)sender {
-    [UIView animateWithDuration:0.5 animations:^{
-                _coverView.alpha = 1.0f;
-            }];
-}
 
 @end

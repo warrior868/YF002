@@ -1,6 +1,6 @@
-
-platform :ios, "6.0"
+pod 'IQKeyboardManager'
 
 #pod 'FastAnimationWithPOP', path: '../FastAnimationWithPOP'
+
 pod 'FastAnimationWithPOP', :head
 

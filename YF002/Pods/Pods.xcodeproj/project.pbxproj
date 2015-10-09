@@ -7,212 +7,293 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0024BC9013E6A3D7B052AC86DC8FB38C /* FAAnimationZoomIn.h in Headers */ = {isa = PBXBuildFile; fileRef = 10809D0FF0027D66A4BE576940F36BD6 /* FAAnimationZoomIn.h */; };
 		03FF532EB8C5304EFA2E77016458C281 /* POPPropertyAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2726A20CBCFFB77F9972C445E8972099 /* POPPropertyAnimation.mm */; };
-		045DFEAA2D44C0EDAF1F304551220386 /* NSObject+FastAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C83F2F42D843B8EBED205A8A498B88 /* NSObject+FastAnimation.h */; };
-		05BC76343ACB2B7D76598F3FC83200E0 /* FAAnimationZoomOut.m in Sources */ = {isa = PBXBuildFile; fileRef = 0915A5E69507C85F01164E89A95E6E17 /* FAAnimationZoomOut.m */; };
+		06DBC5D58FFBB149BCC6DE799A71DBDC /* UIView+FastAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8518B426D084189D85AB25C189B7DA54 /* UIView+FastAnimation.m */; };
 		09F160052D6F4DF4F769F6A2A351071C /* POPAnimationPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = EC10F21A5E230A911C2C2E5082CDAE4B /* POPAnimationPrivate.h */; };
+		0DBB08DE72E45A7F411D9E2695D777BD /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C37756A249A93BA8C20C6F9BCCE2A84A /* IQToolbar.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		0E111996ED8AB07B504AD6200F460C6E /* POP.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C1E5A4A6882760CB349FCABD22A9DC /* POP.h */; };
-		0E50D5539B4719D87D5956AA8DC05419 /* UIView+FastAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB6C3A563A9F7733F72963924DFC090 /* UIView+FastAnimation.m */; };
 		11924DA123F63743B409090BFC425AD2 /* POPCGUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC05709207C91767940918CDD4779DC /* POPCGUtils.h */; };
-		12ED8858D1612CC1824CC2B5413849F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8868E76B0C2B4B5B262EF75FD75DF4C9 /* Foundation.framework */; };
-		169F64926F1F0A265B7FB63FDF878B1A /* FAAnimationBounces.h in Headers */ = {isa = PBXBuildFile; fileRef = F029E81616F9251BA8767035F80B47AD /* FAAnimationBounces.h */; };
-		1818584EA93B37E7F6527D84B7EA302A /* FAAnimationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F09A167E6857FAE192E35C85F2DC54A /* FAAnimationGroup.m */; };
+		1637593C336F31244C15F8D835739BA8 /* FastAnimationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C0D6793B10834C106469653F2D966D0 /* FastAnimationProtocol.h */; };
+		170B3B29D3F10C1A3CF642626085B599 /* NSObject+FastAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = DF25D25DA8CB86776B0A8F663C833358 /* NSObject+FastAnimation.h */; };
 		1937EC6CD83AA2FAB3455591AB074459 /* POPPropertyAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 134BDC30251FB7A5465C17F603FCAC5F /* POPPropertyAnimationInternal.h */; };
+		1B19784F0BB3F2C081CAC52ADB5BE199 /* IQBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5801F4BFBD35EED37D6F71BFF1525E4E /* IQBarButtonItem.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		1BEBEDAB53B9DB3AD45E1F70637747F9 /* POPSpringSolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 6961E549FC85F85EB7560B887B11C928 /* POPSpringSolver.h */; };
-		1D51C383BF4C43DAB3D273ACEE9E04E5 /* FastAnimationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 93F88CA337A510745508FAD4123D321D /* FastAnimationProtocol.h */; };
+		20036DEF8B357C24B062B272AF0C1F3F /* FastAnimiationUitls.m in Sources */ = {isa = PBXBuildFile; fileRef = A25593D832A65B25158A111D59FDD167 /* FastAnimiationUitls.m */; };
 		22030D04E39440FA02B75449A95BF767 /* POPAnimationEventInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 5785AD09C2208501D5161E950E701889 /* POPAnimationEventInternal.h */; };
 		226B9015C8E393975BCF1AFEA63C1D51 /* POPGeometry.mm in Sources */ = {isa = PBXBuildFile; fileRef = B330BCF969EF6189E02E10926FB95CED /* POPGeometry.mm */; };
 		23FC5124B2FA2C879AFE378BBB12AC3A /* POPSpringAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = C24554FAA71D841BC3C0759DA37874AE /* POPSpringAnimation.mm */; };
+		26B5F7EAC52740A9E589A0CD2E623308 /* IQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A089C3682648ED6306256FD69C34986C /* IQTextView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		272658E990FE34AD607D5F753ABC8A45 /* FastAnimationWithPop.h in Headers */ = {isa = PBXBuildFile; fileRef = FD32C199A13470A257DBD14EAAE58EF9 /* FastAnimationWithPop.h */; };
 		2AD822A4C6DD9CA6D499CF6955198F4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8868E76B0C2B4B5B262EF75FD75DF4C9 /* Foundation.framework */; };
-		2B4C3840B4498D6E0F10391473A5B5E1 /* FastAnimationWithPop.h in Headers */ = {isa = PBXBuildFile; fileRef = 586CCC160FADB0C55E01161DD73CBCB4 /* FastAnimationWithPop.h */; };
+		31AEF37F12EB7FDE39D314FE1A3858F9 /* FAAnimationShake.m in Sources */ = {isa = PBXBuildFile; fileRef = E93DC613DF19B41F6BB9EB8CCF770BE9 /* FAAnimationShake.m */; };
 		32A7371F19FC366D8DF77A2FA2166918 /* POPCustomAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8EC4FC6A3A06D9292C296C691005546B /* POPCustomAnimation.mm */; };
-		3A9E145D01442CB84FE8F731E91B8851 /* FAAnimationZoomIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 164B3BEBCEC4C381A2922D60E00950F7 /* FAAnimationZoomIn.m */; };
-		3B956ADF4EC9870C8C603AFA5B3A65AE /* FAAnimationButtonScale.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F8DB6D872C2D7BF56FC9B890D5D991 /* FAAnimationButtonScale.m */; };
-		45E0497F1F8DB5632E9E4C67ED6006FE /* FAAnimationBounces.m in Sources */ = {isa = PBXBuildFile; fileRef = D92E758AA0058510A183DEB55BB3F59E /* FAAnimationBounces.m */; };
+		399D990ABD5854849E1EF2D50B81011A /* UIControl+FastAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = BB76FE4D3F6B314129934044CFEC225C /* UIControl+FastAnimation.h */; };
+		3A835E1206EB3FEAB5766BA063422EC2 /* IQSegmentedNextPrevious.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BBF6AE58D9BB857FB572D2F3BB77FDE /* IQSegmentedNextPrevious.h */; };
+		3BD2AF36FBDD55C292B31DDE2F53CE02 /* IQBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F450853F8C42C8C66099F945AD549089 /* IQBarButtonItem.h */; };
+		415A9193B85F82EAF574F1F8681F4D7C /* IQKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C1DF5354DD24162442D0DC5128DEA1 /* IQKeyboardManager.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		42831524709AABD01A1147058C0B89C6 /* FAAnimationBounces.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B3C8A8D7D1427148FB2201604553FA /* FAAnimationBounces.m */; };
 		461ADD1403E940D9DB7BBB5B7323376F /* POPMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C3FE18EB564AF4087573DE6F3F2D3D3 /* POPMath.h */; };
-		4708C15F0169A073023EEF0C1610CF0E /* FAAnimationButtonScale.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E0636C8CBC813D74D5782C4846FED29 /* FAAnimationButtonScale.h */; };
 		4ACF656AFA1302DCF387C7A2D0F238F2 /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = F0B4105C7EE2DA010EA4746E79138C7C /* POPVector.mm */; };
 		4BA566241FA98C1D5E4A5284D84EAB71 /* POPSpringAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = EB56BE02F1B0412A41C9D9834B04BC30 /* POPSpringAnimationInternal.h */; };
+		4BFB665B9F231F03305A455735B17928 /* FAAnimationZoomIn.h in Headers */ = {isa = PBXBuildFile; fileRef = CD55CAB56F6FB394F4AAF258586B6F01 /* FAAnimationZoomIn.h */; };
+		524BB1D4C94071959D1D954880D3FA44 /* FAAnimationButtonScale.m in Sources */ = {isa = PBXBuildFile; fileRef = ED93AD96EA7AE3B4414A036C4373A033 /* FAAnimationButtonScale.m */; };
 		5520088E66FB2528F595AA617FFC5D9A /* POPAnimationRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5F7AF86D19E519B94AD6D8CB98CC34 /* POPAnimationRuntime.h */; };
 		59CB94574F710422B4C9CD6D388CCA03 /* POPCustomAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 928EC8B9105DA581C7896C2102E87BE2 /* POPCustomAnimation.h */; };
+		59D4544916E6D4C3521E4EDA28D372B5 /* NSObject+FastAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B3A21AB6D12761EBE2ECA1D6698C14 /* NSObject+FastAnimation.m */; };
 		5BFDF4E4848A83D2225D948A6D0B79B5 /* POPAnimationRuntime.mm in Sources */ = {isa = PBXBuildFile; fileRef = E85E0983DBE882A8009D0F7EAB591B91 /* POPAnimationRuntime.mm */; };
 		620920967F6C1FB5C501AD33EFDA1639 /* POPAnimationEvent.mm in Sources */ = {isa = PBXBuildFile; fileRef = C0DF3C83EBC5F7BF6DAAACEBD7D72791 /* POPAnimationEvent.mm */; };
+		6248E5A3C3FAD4517E8E81E0E891D649 /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEF3129C8F8EC0FCA010603F7E18B24 /* IQNSArray+Sort.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		64CDCF4076F2F9C0EA7F316780CC33D6 /* KeyboardManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 196D281BE55FC15252C3DC4D83AC0A3D /* KeyboardManager.h */; };
+		68EDDBC8C06B239B18339DBF7063331F /* FAAnimationBounces.h in Headers */ = {isa = PBXBuildFile; fileRef = F2A17CB8BA838601D370041EAB1C8F81 /* FAAnimationBounces.h */; };
+		6B082B18747355A3E29056446E21173C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8868E76B0C2B4B5B262EF75FD75DF4C9 /* Foundation.framework */; };
+		6B70449FBA08B46519A05A76C23C3E7E /* IQNSArray+Sort.h in Headers */ = {isa = PBXBuildFile; fileRef = 000B2D40016AF78EAA2AF1799CAE71FC /* IQNSArray+Sort.h */; };
+		6E8365C9E8F801FC88A8920642326EB5 /* FAAnimationGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = A8E7882DE5F287BC791AAA564D3F79EA /* FAAnimationGroup.h */; };
+		75E181B5A5DCA9F03F6935334CCD2013 /* IQKeyboardManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DF59812D362512002F8A4A5FC76E7AC /* IQKeyboardManager.h */; };
+		77A4FCC1823E355D885EDC6F26BFD904 /* IQSegmentedNextPrevious.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D2618D0A9FEF8D9878F197A8FAACA /* IQSegmentedNextPrevious.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		795E704A17919AB70FF6F5738289A44D /* POPAnimationExtras.mm in Sources */ = {isa = PBXBuildFile; fileRef = 22DC4C87D619EF0F28631B5560E82333 /* POPAnimationExtras.mm */; };
 		7B99231436CB0981EC5113A681AF7C8E /* POPAnimationTracerInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DA58C3428E2A0E2F88C2A0522297274 /* POPAnimationTracerInternal.h */; };
 		7D2E1DA076E379421DF5A9E74C0FD4DB /* POPBasicAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = F54B1AE39CAF0CA846C1C729B033E047 /* POPBasicAnimation.mm */; };
+		7D39F729FB3BB72433EF0B9EF9674D2E /* FAAnimationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = D538ECB37D81C94F04F9C0DBA437BDAE /* FAAnimationGroup.m */; };
 		7DC645E712D9190C15F71B1B92844D2C /* pop-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B3FD41DEC22C5891C9B83C27BC25E0 /* pop-dummy.m */; };
+		7EC93B038D66BBC8AC73FAB5DEF27556 /* FAAnimationShake.h in Headers */ = {isa = PBXBuildFile; fileRef = A44C919E0E534790EC7B39E7A831F4A2 /* FAAnimationShake.h */; };
 		7EE77B776CF54D5794EB5D9DB5FCF8D4 /* POPPropertyAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = F81E8633F1E784423FE8B9BE16D38981 /* POPPropertyAnimation.h */; };
 		804C70F77F75F0E75ACC3E3E4B47B727 /* POPLayerExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 9663A817A809169745F3F8E987FFE076 /* POPLayerExtras.h */; };
+		825E40E23BB42C2D8D8E8E7F690212E4 /* UIControl+FastAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 069F637B70C462521E9A41F6D7C0CF5C /* UIControl+FastAnimation.m */; };
+		83E9095C1980FBCBEBBB1F07A6EEF6D3 /* IQUIWindow+Hierarchy.h in Headers */ = {isa = PBXBuildFile; fileRef = F4F8FA84F5B65A3F36B4EE582C378DB8 /* IQUIWindow+Hierarchy.h */; };
+		842E227516E72583831F25A1FDCFA5AE /* IQUIView+IQKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BA4D07D23FA0AEF1D4F08FA0CDEE15 /* IQUIView+IQKeyboardToolbar.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8566BEF56405A6510AC5B897431D4814 /* IQUIWindow+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3542F11DA70B26229E4DEF0E73BB6F1 /* IQUIWindow+Hierarchy.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		868BFBCD8263F71F8A14CBBDDAF5B748 /* POPLayerExtras.mm in Sources */ = {isa = PBXBuildFile; fileRef = 197635F0BFB93E63E82503F09B7AABBF /* POPLayerExtras.mm */; };
-		8C86EE9E60F9CA78E129EE72A8825671 /* UIView+FastAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 74992A233D2CC59904078840276F13AA /* UIView+FastAnimation.h */; };
-		8DAAB1A024D5AF1CE63333AC18029F22 /* FAAnimationShake.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E1CF20E7FC746DD236EF0AB05D8BB1 /* FAAnimationShake.m */; };
+		8BEE80F5FD1A8406C2C51D6DAA778EE8 /* IQUITextFieldView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F002AEABF24490055EC700ACF678424 /* IQUITextFieldView+Additions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8CCE028AA344A2185A44DCD1F06B1C22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8868E76B0C2B4B5B262EF75FD75DF4C9 /* Foundation.framework */; };
+		8D5C282A839866C1F9A677F3A8568136 /* IQToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = B289FA0965483C6A614B41811423FF74 /* IQToolbar.h */; };
 		8DF9960DD96F9AC25E32BFDD4A3B53B7 /* POPDecayAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = C560616DDF5273CF7C53EF72EA6ED45A /* POPDecayAnimation.mm */; };
+		8F0F98EAD61EEF788E9A82477ECFD7D2 /* IQTitleBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B48A916139DC42449E7994C03BCA128 /* IQTitleBarButtonItem.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8F83B3B087D986325C930A7D18E369AE /* FastAnimiationUitls.h in Headers */ = {isa = PBXBuildFile; fileRef = DD67F4B5F355DC7BD84B3CC784A09E19 /* FastAnimiationUitls.h */; };
+		8FB4FBF79815D659775F61D36D626E6F /* IQUIViewController+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 726628383FE19009558B2CD975013C4C /* IQUIViewController+Additions.h */; };
+		9027445217306578BBE12DE99B968A74 /* IQKeyboardManagerConstantsInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 972C7BD5E161677D91C56F281D73197B /* IQKeyboardManagerConstantsInternal.h */; };
 		9088AFD3E6C678A42A8E0189F65F73B6 /* POPDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DA3C63E9AD758336342BC51C0BB859 /* POPDefines.h */; };
-		9468FD99E1064CB57872697A6E189206 /* FastAnimiationUitls.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE5A090BA7CCBF8EB2A529A7AC93096 /* FastAnimiationUitls.m */; };
 		94BFE73B7E00A0FED987F553B0DCE94E /* POPAnimatableProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 313669CF0D1BF49C96C85FC593F4BC1D /* POPAnimatableProperty.h */; };
 		94FACE1C5E4B42AB129DA7326E4E04F9 /* POPAnimationEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F210DEEA777E0BF1995DC3570CC616E /* POPAnimationEvent.h */; };
 		966900CAD39E8B592A35F8401549A86D /* TransformationMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E056FF5C4EC38A55B45FB52F395D72E /* TransformationMatrix.h */; };
-		9DCE97BFF162930EEB810DF501F9106F /* FAAnimationZoomOut.h in Headers */ = {isa = PBXBuildFile; fileRef = EFED306BFB5C35EE94FF9D466F1E22D5 /* FAAnimationZoomOut.h */; };
-		A7CA650486AB8C71680B4EDD554F8B1F /* UIControl+FastAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E939B7BA56358FE1D8A1002592B0D9 /* UIControl+FastAnimation.m */; };
+		9DCC3C1CA174E7A58187E8053C2D394E /* IQUITextFieldView+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 986A87CF52B2D404BB1F929A053F0DB9 /* IQUITextFieldView+Additions.h */; };
+		9FE3639DE24742C0FABE2FBBBD1EF862 /* IQKeyboardReturnKeyHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9299FFF9CB431A75A8E44D83BF43D261 /* IQKeyboardReturnKeyHandler.h */; };
+		9FF10AFD68933A86822796886E945D67 /* IQUIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 122F21655AC1EA9CF94159211B803AAE /* IQUIView+Hierarchy.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A7B5F27202139AF592A1634487E5CCC3 /* IQUIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5116A74B493E66ADE388397BBA05 /* IQUIViewController+Additions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A806CC4BAF5AF808390E9E1D0DA2C7A6 /* FastAnimationWithPOP-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCBCA015BC9A57F7A2891C94961E63 /* FastAnimationWithPOP-dummy.m */; };
 		A9B701428585304B432F6FD45D7EB707 /* POPAnimatableProperty.mm in Sources */ = {isa = PBXBuildFile; fileRef = C9565C73D5D4BE79747E60DCF1557E71 /* POPAnimatableProperty.mm */; };
-		A9E166332F3C7DD753EF66C7396125E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8868E76B0C2B4B5B262EF75FD75DF4C9 /* Foundation.framework */; };
 		AA0189A6FB9572B5BF87E3B0DD1F872C /* FloatConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = C091E831068E3E504A40AC6932B39C87 /* FloatConversion.h */; };
 		AFEBB8DD2F176DBEF3E1F0FFA6FE7AF8 /* POPCGUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A9ED47A0EA56543BEB2F83DFD6122C8 /* POPCGUtils.mm */; };
-		B3130A62D5E6F18688C9395CCE1A6947 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D6C26232E1EACF9DE79EF6BB3E2F92 /* Pods-dummy.m */; };
 		B5B86F0561840C9F3408D9A3CE3BADD0 /* POPDecayAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = B0CE575CDDE0B1795BB8B88E0B49ACA0 /* POPDecayAnimationInternal.h */; };
 		B6DA545595D3CE47BC8F81E673889B4B /* UnitBezier.h in Headers */ = {isa = PBXBuildFile; fileRef = 96015F1C746803D9318614B277F71BCB /* UnitBezier.h */; };
 		BA9989C7128E968BA7D20CFEB392AE9D /* POPBasicAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 212068113F29FA47D17730ED388F8706 /* POPBasicAnimation.h */; };
-		BBED238916F1213FDD77FF0BE917A0D6 /* FastAnimiationUitls.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF78C364E1AF597777A28E50A91FD47 /* FastAnimiationUitls.h */; };
 		BD6626643DD9C3A12AB86F9361EC89DB /* POPAnimatorPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0476012CEBFEB22B5F0926994E6AEEE3 /* POPAnimatorPrivate.h */; };
 		BE267A18590772AAA04953604BC7B310 /* POPAnimationExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B6A53BFD919966B87CD6FBFD89CE1B /* POPAnimationExtras.h */; };
-		C5C40FD760EDB3AE8B760CBC497ECA15 /* UIControl+FastAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = F3D6B92AF5177260D1C963EA60A9953C /* UIControl+FastAnimation.h */; };
+		C27D2C614619650AD1592A2772DE30E1 /* IQKeyboardManagerConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F9477A5611989C55181E89A15AF63B0 /* IQKeyboardManagerConstants.h */; };
+		C4F299EC690469F537876179393DEDC1 /* FAAnimationZoomOut.h in Headers */ = {isa = PBXBuildFile; fileRef = 232076E2D19C56C132FDD3A7980F98D7 /* FAAnimationZoomOut.h */; };
+		CAB8635B5BD8F5F7F5A3E254262F6D5D /* FAAnimationZoomOut.m in Sources */ = {isa = PBXBuildFile; fileRef = 31875E4070738DE65446CD69C9591DB9 /* FAAnimationZoomOut.m */; };
 		D4224969BAFBC6138FFC872CCC829FB9 /* POPDecayAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = B0F7BCEE9A871E1193D694931FA31E17 /* POPDecayAnimation.h */; };
+		D4C2524F8F391FFB6914F24537F83371 /* IQUIView+IQKeyboardToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AE2D4478857B2596502016FC32A22B5 /* IQUIView+IQKeyboardToolbar.h */; };
 		D5792E05DB34C9521294B06A622AE040 /* POPAnimationTracer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E88590D291A3C131FC32F9BC9A80038 /* POPAnimationTracer.h */; };
 		D83868EA3920350C53488A4C4F9A5565 /* POPGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 3155A15C877F794FB064A4A0CEEB2F13 /* POPGeometry.h */; };
+		DAB197D9801B20C0CABB54371FC1DC0C /* IQKeyboardReturnKeyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0766A0FF063E78F5183FF8A8AE839E /* IQKeyboardReturnKeyHandler.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		DB96FD03330472F773F2400C228A8B2D /* IQTitleBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E823DF5F516AE15A30870AB20EAA9D3 /* IQTitleBarButtonItem.h */; };
 		DBEF60495B33D1BA4C7BA3C8E3A24968 /* POPSpringAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7371F16336283F2D8BB2A199CD4DDEF5 /* POPSpringAnimation.h */; };
 		E03238690A5A21C9B8ADCC9737633061 /* POPAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8336CCF2280C58E6C367DF4EC0EBB7B3 /* POPAnimation.mm */; };
+		E18D385020D7128943BCF89C70B05C38 /* IQUIView+Hierarchy.h in Headers */ = {isa = PBXBuildFile; fileRef = 9253E284DCBE9BDDF2DAB74A5A61EAC4 /* IQUIView+Hierarchy.h */; };
+		E30F8BAFE8AA3F2E1726CC92836DDD39 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 54591A776518B0A997CB16162B070F9C /* Pods-dummy.m */; };
+		E5C582B4813C748C780EDBBF01D957C9 /* UIView+FastAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 81309D424AAAF65A2284FF89443B3F4A /* UIView+FastAnimation.h */; };
 		E66A972C821119D091B99E54200F7FC0 /* POPAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 94815AA3EE3CBA04CEE85515701AD534 /* POPAnimator.h */; };
-		EACC9F81FFBC4380A6546AC7E8A2F552 /* FAAnimationShake.h in Headers */ = {isa = PBXBuildFile; fileRef = 52F96D8B3651214FEB1FB4DBD6AEA378 /* FAAnimationShake.h */; };
+		EA19172817EBF3382DD947C2D42B142D /* FAAnimationZoomIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC12256B260DE762F6F40A724635690 /* FAAnimationZoomIn.m */; };
+		EB0362100CC9FD8EAC4C6589183A0662 /* IQKeyboardManager-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7DA3615AAD481A33B5426AA0B560FB5 /* IQKeyboardManager-dummy.m */; };
 		EB965B246F7206AE338A7DF882400A0E /* POPVector.h in Headers */ = {isa = PBXBuildFile; fileRef = D5CE48778301C24CD288B08DDA441605 /* POPVector.h */; };
 		ED0BF4FE2052871A5C209B796BA9D91E /* POPAnimator.mm in Sources */ = {isa = PBXBuildFile; fileRef = ECC48BF18D3BD01C21B65648709A45D6 /* POPAnimator.mm */; };
 		ED3821443DA3268139C3CE29A592C03C /* POPAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F3A985A006B0CCD0116D8FC53C4D1834 /* POPAction.h */; };
-		F056B87A5C62D53857E3E4DD53C469B7 /* NSObject+FastAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7063ADCA2A1025491AD416CA771B3E7D /* NSObject+FastAnimation.m */; };
-		F0B6571023D2832367FB4F834CC4EE37 /* FastAnimationWithPOP-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FB9D920446127400857C8288A3D92A /* FastAnimationWithPOP-dummy.m */; };
 		F1869B0A07F843009A3268A12F2F96CF /* POPBasicAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F59C51782AE555897A5B92D6B3CECD1 /* POPBasicAnimationInternal.h */; };
+		F1B17E1DE53EBAAAF58AA8C1E40D4A05 /* IQTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = AD298B77354A8CB53A40AD06D3DD0BF6 /* IQTextView.h */; };
 		F353B70A061E08623279B54744E15DA7 /* POPAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = ED596D85957A49EC6092EC8EC38FCE49 /* POPAnimationInternal.h */; };
 		F388B7C3B4B0325048D4B5E4C1BAF904 /* POPAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 14938EB08280063D294781C3164C8332 /* POPAnimation.h */; };
 		F3A5D609595883FAB0550B75A0237C58 /* POPMath.mm in Sources */ = {isa = PBXBuildFile; fileRef = A19FD133843D5FCF16B8AF3B4E165515 /* POPMath.mm */; };
 		F50CFC840B1B486D290EF5656C3AB5A4 /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35574BADA6CDEA944F089CBC021F01AA /* TransformationMatrix.cpp */; };
-		F863EED0D225E0E6E2266B48E00D7108 /* FAAnimationGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = DD453FFEB4C38A2356B870F70834E3C0 /* FAAnimationGroup.h */; };
+		F6EB2F8BD055E5DDE670C70AFB0066B1 /* FAAnimationButtonScale.h in Headers */ = {isa = PBXBuildFile; fileRef = B1D99C535FFFBB3A22409FDBEF72F237 /* FAAnimationButtonScale.h */; };
 		F9627C89FA11AC0378E77DF8EF1535FF /* POPAnimationTracer.mm in Sources */ = {isa = PBXBuildFile; fileRef = C1E27C3CBB149C1873F6CDC55D998CE2 /* POPAnimationTracer.mm */; };
+		FD610FCCE6E8A0B7A8D2A0C3A58BBF3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8868E76B0C2B4B5B262EF75FD75DF4C9 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1FDE4E084B31C3B7EDDF31163C29AE5C /* PBXContainerItemProxy */ = {
+		3D5DB64BCD28C61084B05D29D3E41EAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87DAF7A4091EFC57862ADC22EECA7574;
+			remoteInfo = IQKeyboardManager;
+		};
+		95580EAE8B11C38E2A970B86E7A20391 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 47C800E42623009B7192B025B3DD25A1;
 			remoteInfo = pop;
 		};
-		39F49D49CD0DB718104930E0787EA7F5 /* PBXContainerItemProxy */ = {
+		D87C1933658FFEB80940526E4CD68439 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 47C800E42623009B7192B025B3DD25A1;
-			remoteInfo = pop;
-		};
-		6A8737C11702BE3A752DC960EA31928A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 377DBC19E23E6EC73B9058B4FFA56B16;
+			remoteGlobalIDString = EB20EB84E03329A56A8721222D8F17C3;
 			remoteInfo = FastAnimationWithPOP;
+		};
+		DBC9167C9BB559F3F0D399F47E9C142F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47C800E42623009B7192B025B3DD25A1;
+			remoteInfo = pop;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000B2D40016AF78EAA2AF1799CAE71FC /* IQNSArray+Sort.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "IQNSArray+Sort.h"; path = "IQKeyBoardManager/Categories/IQNSArray+Sort.h"; sourceTree = "<group>"; };
 		0476012CEBFEB22B5F0926994E6AEEE3 /* POPAnimatorPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimatorPrivate.h; path = pop/POPAnimatorPrivate.h; sourceTree = "<group>"; };
-		05FB9D920446127400857C8288A3D92A /* FastAnimationWithPOP-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FastAnimationWithPOP-dummy.m"; sourceTree = "<group>"; };
-		0915A5E69507C85F01164E89A95E6E17 /* FAAnimationZoomOut.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAAnimationZoomOut.m; path = FastAnimationWithPop/Animations/FAAnimationZoomOut.m; sourceTree = "<group>"; };
+		069F637B70C462521E9A41F6D7C0CF5C /* UIControl+FastAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIControl+FastAnimation.m"; path = "FastAnimationWithPop/Core/UIControl+FastAnimation.m"; sourceTree = "<group>"; };
 		0A9ED47A0EA56543BEB2F83DFD6122C8 /* POPCGUtils.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPCGUtils.mm; path = pop/POPCGUtils.mm; sourceTree = "<group>"; };
-		10809D0FF0027D66A4BE576940F36BD6 /* FAAnimationZoomIn.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAAnimationZoomIn.h; path = FastAnimationWithPop/Animations/FAAnimationZoomIn.h; sourceTree = "<group>"; };
+		0D328C6C9854C332EBD1B53EBEEC898B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		122F21655AC1EA9CF94159211B803AAE /* IQUIView+Hierarchy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "IQUIView+Hierarchy.m"; path = "IQKeyBoardManager/Categories/IQUIView+Hierarchy.m"; sourceTree = "<group>"; };
 		134BDC30251FB7A5465C17F603FCAC5F /* POPPropertyAnimationInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPPropertyAnimationInternal.h; path = pop/POPPropertyAnimationInternal.h; sourceTree = "<group>"; };
 		14938EB08280063D294781C3164C8332 /* POPAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimation.h; path = pop/POPAnimation.h; sourceTree = "<group>"; };
 		15A529C27057E4A57D259CBC6E6CE49C /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		164B3BEBCEC4C381A2922D60E00950F7 /* FAAnimationZoomIn.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAAnimationZoomIn.m; path = FastAnimationWithPop/Animations/FAAnimationZoomIn.m; sourceTree = "<group>"; };
-		16C83F2F42D843B8EBED205A8A498B88 /* NSObject+FastAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+FastAnimation.h"; path = "FastAnimationWithPop/Core/NSObject+FastAnimation.h"; sourceTree = "<group>"; };
+		196D281BE55FC15252C3DC4D83AC0A3D /* KeyboardManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KeyboardManager.h; path = IQKeyBoardManager/KeyboardManager.h; sourceTree = "<group>"; };
 		197635F0BFB93E63E82503F09B7AABBF /* POPLayerExtras.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPLayerExtras.mm; path = pop/POPLayerExtras.mm; sourceTree = "<group>"; };
+		1E823DF5F516AE15A30870AB20EAA9D3 /* IQTitleBarButtonItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQTitleBarButtonItem.h; path = IQKeyBoardManager/IQToolbar/IQTitleBarButtonItem.h; sourceTree = "<group>"; };
+		1F002AEABF24490055EC700ACF678424 /* IQUITextFieldView+Additions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "IQUITextFieldView+Additions.m"; path = "IQKeyBoardManager/Categories/IQUITextFieldView+Additions.m"; sourceTree = "<group>"; };
 		212068113F29FA47D17730ED388F8706 /* POPBasicAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPBasicAnimation.h; path = pop/POPBasicAnimation.h; sourceTree = "<group>"; };
 		22DC4C87D619EF0F28631B5560E82333 /* POPAnimationExtras.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimationExtras.mm; path = pop/POPAnimationExtras.mm; sourceTree = "<group>"; };
+		232076E2D19C56C132FDD3A7980F98D7 /* FAAnimationZoomOut.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAAnimationZoomOut.h; path = FastAnimationWithPop/Animations/FAAnimationZoomOut.h; sourceTree = "<group>"; };
 		2726A20CBCFFB77F9972C445E8972099 /* POPPropertyAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPPropertyAnimation.mm; path = pop/POPPropertyAnimation.mm; sourceTree = "<group>"; };
+		2A818C2A87AD26B0F2DF0E401F72AC28 /* IQKeyboardManager-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IQKeyboardManager-prefix.pch"; sourceTree = "<group>"; };
+		2AEF3129C8F8EC0FCA010603F7E18B24 /* IQNSArray+Sort.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "IQNSArray+Sort.m"; path = "IQKeyBoardManager/Categories/IQNSArray+Sort.m"; sourceTree = "<group>"; };
+		2DF59812D362512002F8A4A5FC76E7AC /* IQKeyboardManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQKeyboardManager.h; path = IQKeyBoardManager/IQKeyboardManager.h; sourceTree = "<group>"; };
 		2E056FF5C4EC38A55B45FB52F395D72E /* TransformationMatrix.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TransformationMatrix.h; path = pop/WebCore/TransformationMatrix.h; sourceTree = "<group>"; };
 		2E88590D291A3C131FC32F9BC9A80038 /* POPAnimationTracer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimationTracer.h; path = pop/POPAnimationTracer.h; sourceTree = "<group>"; };
+		2F9477A5611989C55181E89A15AF63B0 /* IQKeyboardManagerConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQKeyboardManagerConstants.h; path = IQKeyBoardManager/Constants/IQKeyboardManagerConstants.h; sourceTree = "<group>"; };
+		307BBE6B6BB15FED19F35860D1AE2581 /* libFastAnimationWithPOP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFastAnimationWithPOP.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		313669CF0D1BF49C96C85FC593F4BC1D /* POPAnimatableProperty.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimatableProperty.h; path = pop/POPAnimatableProperty.h; sourceTree = "<group>"; };
 		3155A15C877F794FB064A4A0CEEB2F13 /* POPGeometry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPGeometry.h; path = pop/POPGeometry.h; sourceTree = "<group>"; };
+		31875E4070738DE65446CD69C9591DB9 /* FAAnimationZoomOut.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAAnimationZoomOut.m; path = FastAnimationWithPop/Animations/FAAnimationZoomOut.m; sourceTree = "<group>"; };
 		35574BADA6CDEA944F089CBC021F01AA /* TransformationMatrix.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = TransformationMatrix.cpp; path = pop/WebCore/TransformationMatrix.cpp; sourceTree = "<group>"; };
 		38C1E5A4A6882760CB349FCABD22A9DC /* POP.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POP.h; path = pop/POP.h; sourceTree = "<group>"; };
 		3A5F7AF86D19E519B94AD6D8CB98CC34 /* POPAnimationRuntime.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimationRuntime.h; path = pop/POPAnimationRuntime.h; sourceTree = "<group>"; };
-		3E0636C8CBC813D74D5782C4846FED29 /* FAAnimationButtonScale.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAAnimationButtonScale.h; path = FastAnimationWithPop/BindingAnimations/FAAnimationButtonScale.h; sourceTree = "<group>"; };
+		45EBF41D22724782F5E6D3AC07A2CA84 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		48B3A21AB6D12761EBE2ECA1D6698C14 /* NSObject+FastAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+FastAnimation.m"; path = "FastAnimationWithPop/Core/NSObject+FastAnimation.m"; sourceTree = "<group>"; };
+		4AE2D4478857B2596502016FC32A22B5 /* IQUIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "IQUIView+IQKeyboardToolbar.h"; path = "IQKeyBoardManager/IQToolbar/IQUIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
 		4CC05709207C91767940918CDD4779DC /* POPCGUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPCGUtils.h; path = pop/POPCGUtils.h; sourceTree = "<group>"; };
-		52F96D8B3651214FEB1FB4DBD6AEA378 /* FAAnimationShake.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAAnimationShake.h; path = FastAnimationWithPop/Animations/FAAnimationShake.h; sourceTree = "<group>"; };
+		54591A776518B0A997CB16162B070F9C /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
 		5785AD09C2208501D5161E950E701889 /* POPAnimationEventInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimationEventInternal.h; path = pop/POPAnimationEventInternal.h; sourceTree = "<group>"; };
-		586CCC160FADB0C55E01161DD73CBCB4 /* FastAnimationWithPop.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FastAnimationWithPop.h; path = FastAnimationWithPop/FastAnimationWithPop.h; sourceTree = "<group>"; };
+		5801F4BFBD35EED37D6F71BFF1525E4E /* IQBarButtonItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IQBarButtonItem.m; path = IQKeyBoardManager/IQToolbar/IQBarButtonItem.m; sourceTree = "<group>"; };
 		59B3FD41DEC22C5891C9B83C27BC25E0 /* pop-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "pop-dummy.m"; sourceTree = "<group>"; };
-		60F48DA52967A506E6EF49CC1C4035C6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		641AE05DD55E5E6AC1590CD7B4A18F97 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		695F1773379730ED8DF386C5B7F568BF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
 		6961E549FC85F85EB7560B887B11C928 /* POPSpringSolver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPSpringSolver.h; path = pop/POPSpringSolver.h; sourceTree = "<group>"; };
-		7063ADCA2A1025491AD416CA771B3E7D /* NSObject+FastAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+FastAnimation.m"; path = "FastAnimationWithPop/Core/NSObject+FastAnimation.m"; sourceTree = "<group>"; };
+		6B48A916139DC42449E7994C03BCA128 /* IQTitleBarButtonItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IQTitleBarButtonItem.m; path = IQKeyBoardManager/IQToolbar/IQTitleBarButtonItem.m; sourceTree = "<group>"; };
+		726628383FE19009558B2CD975013C4C /* IQUIViewController+Additions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "IQUIViewController+Additions.h"; path = "IQKeyBoardManager/Categories/IQUIViewController+Additions.h"; sourceTree = "<group>"; };
+		72FB03DDBAEB3B97AF8FC2F1966BA6A8 /* libIQKeyboardManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIQKeyboardManager.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7371F16336283F2D8BB2A199CD4DDEF5 /* POPSpringAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPSpringAnimation.h; path = pop/POPSpringAnimation.h; sourceTree = "<group>"; };
-		74992A233D2CC59904078840276F13AA /* UIView+FastAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+FastAnimation.h"; path = "FastAnimationWithPop/Core/UIView+FastAnimation.h"; sourceTree = "<group>"; };
-		7E9C65CAEA8F57271825FB15C422BDDB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		7F09A167E6857FAE192E35C85F2DC54A /* FAAnimationGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAAnimationGroup.m; path = FastAnimationWithPop/Animations/FAAnimationGroup.m; sourceTree = "<group>"; };
+		7582854AE19846602AE564E1B2A70D5D /* FastAnimationWithPOP.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FastAnimationWithPOP.xcconfig; sourceTree = "<group>"; };
+		7D61835F5E5858275A8978F08D69FFE6 /* FastAnimationWithPOP-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FastAnimationWithPOP-prefix.pch"; sourceTree = "<group>"; };
 		7F59C51782AE555897A5B92D6B3CECD1 /* POPBasicAnimationInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPBasicAnimationInternal.h; path = pop/POPBasicAnimationInternal.h; sourceTree = "<group>"; };
+		81309D424AAAF65A2284FF89443B3F4A /* UIView+FastAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+FastAnimation.h"; path = "FastAnimationWithPop/Core/UIView+FastAnimation.h"; sourceTree = "<group>"; };
 		8336CCF2280C58E6C367DF4EC0EBB7B3 /* POPAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimation.mm; path = pop/POPAnimation.mm; sourceTree = "<group>"; };
+		8518B426D084189D85AB25C189B7DA54 /* UIView+FastAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+FastAnimation.m"; path = "FastAnimationWithPop/Core/UIView+FastAnimation.m"; sourceTree = "<group>"; };
 		8868E76B0C2B4B5B262EF75FD75DF4C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		8EC4FC6A3A06D9292C296C691005546B /* POPCustomAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPCustomAnimation.mm; path = pop/POPCustomAnimation.mm; sourceTree = "<group>"; };
+		8ECCBCA015BC9A57F7A2891C94961E63 /* FastAnimationWithPOP-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FastAnimationWithPOP-dummy.m"; sourceTree = "<group>"; };
 		90DA3C63E9AD758336342BC51C0BB859 /* POPDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPDefines.h; path = pop/POPDefines.h; sourceTree = "<group>"; };
+		9253E284DCBE9BDDF2DAB74A5A61EAC4 /* IQUIView+Hierarchy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "IQUIView+Hierarchy.h"; path = "IQKeyBoardManager/Categories/IQUIView+Hierarchy.h"; sourceTree = "<group>"; };
 		928EC8B9105DA581C7896C2102E87BE2 /* POPCustomAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPCustomAnimation.h; path = pop/POPCustomAnimation.h; sourceTree = "<group>"; };
-		93F88CA337A510745508FAD4123D321D /* FastAnimationProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FastAnimationProtocol.h; path = FastAnimationWithPop/Core/FastAnimationProtocol.h; sourceTree = "<group>"; };
+		9299FFF9CB431A75A8E44D83BF43D261 /* IQKeyboardReturnKeyHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQKeyboardReturnKeyHandler.h; path = IQKeyBoardManager/IQKeyboardReturnKeyHandler.h; sourceTree = "<group>"; };
+		937DB089A73F52D64BC74E558A757C63 /* IQKeyboardManager-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "IQKeyboardManager-Private.xcconfig"; sourceTree = "<group>"; };
 		94815AA3EE3CBA04CEE85515701AD534 /* POPAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimator.h; path = pop/POPAnimator.h; sourceTree = "<group>"; };
 		96015F1C746803D9318614B277F71BCB /* UnitBezier.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UnitBezier.h; path = pop/WebCore/UnitBezier.h; sourceTree = "<group>"; };
 		9663A817A809169745F3F8E987FFE076 /* POPLayerExtras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPLayerExtras.h; path = pop/POPLayerExtras.h; sourceTree = "<group>"; };
+		972C7BD5E161677D91C56F281D73197B /* IQKeyboardManagerConstantsInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQKeyboardManagerConstantsInternal.h; path = IQKeyBoardManager/Constants/IQKeyboardManagerConstantsInternal.h; sourceTree = "<group>"; };
+		986A87CF52B2D404BB1F929A053F0DB9 /* IQUITextFieldView+Additions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "IQUITextFieldView+Additions.h"; path = "IQKeyBoardManager/Categories/IQUITextFieldView+Additions.h"; sourceTree = "<group>"; };
+		9A5D3ED8DB25D4207D8E0A4F2E1EC6DF /* pop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = pop.xcconfig; sourceTree = "<group>"; };
+		9BBF6AE58D9BB857FB572D2F3BB77FDE /* IQSegmentedNextPrevious.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQSegmentedNextPrevious.h; path = IQKeyBoardManager/IQSegmentedNextPrevious/IQSegmentedNextPrevious.h; sourceTree = "<group>"; };
+		9C0D6793B10834C106469653F2D966D0 /* FastAnimationProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FastAnimationProtocol.h; path = FastAnimationWithPop/Core/FastAnimationProtocol.h; sourceTree = "<group>"; };
 		9C3FE18EB564AF4087573DE6F3F2D3D3 /* POPMath.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPMath.h; path = pop/POPMath.h; sourceTree = "<group>"; };
-		9CB6C3A563A9F7733F72963924DFC090 /* UIView+FastAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+FastAnimation.m"; path = "FastAnimationWithPop/Core/UIView+FastAnimation.m"; sourceTree = "<group>"; };
 		9DA58C3428E2A0E2F88C2A0522297274 /* POPAnimationTracerInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimationTracerInternal.h; path = pop/POPAnimationTracerInternal.h; sourceTree = "<group>"; };
-		9EB50783101AC661C2647B1165728521 /* FastAnimationWithPOP.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FastAnimationWithPOP.xcconfig; sourceTree = "<group>"; };
+		9EC12256B260DE762F6F40A724635690 /* FAAnimationZoomIn.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAAnimationZoomIn.m; path = FastAnimationWithPop/Animations/FAAnimationZoomIn.m; sourceTree = "<group>"; };
 		9F210DEEA777E0BF1995DC3570CC616E /* POPAnimationEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimationEvent.h; path = pop/POPAnimationEvent.h; sourceTree = "<group>"; };
+		A089C3682648ED6306256FD69C34986C /* IQTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IQTextView.m; path = IQKeyBoardManager/IQTextView/IQTextView.m; sourceTree = "<group>"; };
 		A19FD133843D5FCF16B8AF3B4E165515 /* POPMath.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPMath.mm; path = pop/POPMath.mm; sourceTree = "<group>"; };
+		A25593D832A65B25158A111D59FDD167 /* FastAnimiationUitls.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FastAnimiationUitls.m; path = FastAnimationWithPop/Core/FastAnimiationUitls.m; sourceTree = "<group>"; };
 		A42EBF4FDD2D5AA16FCD758564D29ABC /* libpop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpop.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4E1CF20E7FC746DD236EF0AB05D8BB1 /* FAAnimationShake.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAAnimationShake.m; path = FastAnimationWithPop/Animations/FAAnimationShake.m; sourceTree = "<group>"; };
-		ACE5A090BA7CCBF8EB2A529A7AC93096 /* FastAnimiationUitls.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FastAnimiationUitls.m; path = FastAnimationWithPop/Core/FastAnimiationUitls.m; sourceTree = "<group>"; };
+		A44C919E0E534790EC7B39E7A831F4A2 /* FAAnimationShake.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAAnimationShake.h; path = FastAnimationWithPop/Animations/FAAnimationShake.h; sourceTree = "<group>"; };
+		A8E7882DE5F287BC791AAA564D3F79EA /* FAAnimationGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAAnimationGroup.h; path = FastAnimationWithPop/Animations/FAAnimationGroup.h; sourceTree = "<group>"; };
+		AA0F5116A74B493E66ADE388397BBA05 /* IQUIViewController+Additions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "IQUIViewController+Additions.m"; path = "IQKeyBoardManager/Categories/IQUIViewController+Additions.m"; sourceTree = "<group>"; };
+		AD298B77354A8CB53A40AD06D3DD0BF6 /* IQTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQTextView.h; path = IQKeyBoardManager/IQTextView/IQTextView.h; sourceTree = "<group>"; };
 		B0CE575CDDE0B1795BB8B88E0B49ACA0 /* POPDecayAnimationInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPDecayAnimationInternal.h; path = pop/POPDecayAnimationInternal.h; sourceTree = "<group>"; };
 		B0F7BCEE9A871E1193D694931FA31E17 /* POPDecayAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPDecayAnimation.h; path = pop/POPDecayAnimation.h; sourceTree = "<group>"; };
+		B1D99C535FFFBB3A22409FDBEF72F237 /* FAAnimationButtonScale.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAAnimationButtonScale.h; path = FastAnimationWithPop/BindingAnimations/FAAnimationButtonScale.h; sourceTree = "<group>"; };
+		B289FA0965483C6A614B41811423FF74 /* IQToolbar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQToolbar.h; path = IQKeyBoardManager/IQToolbar/IQToolbar.h; sourceTree = "<group>"; };
 		B330BCF969EF6189E02E10926FB95CED /* POPGeometry.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPGeometry.mm; path = pop/POPGeometry.mm; sourceTree = "<group>"; };
+		B3542F11DA70B26229E4DEF0E73BB6F1 /* IQUIWindow+Hierarchy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "IQUIWindow+Hierarchy.m"; path = "IQKeyBoardManager/Categories/IQUIWindow+Hierarchy.m"; sourceTree = "<group>"; };
+		B54737CF1922C2E563DA1B693465E274 /* FastAnimationWithPOP-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "FastAnimationWithPOP-Private.xcconfig"; sourceTree = "<group>"; };
+		BA0766A0FF063E78F5183FF8A8AE839E /* IQKeyboardReturnKeyHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IQKeyboardReturnKeyHandler.m; path = IQKeyBoardManager/IQKeyboardReturnKeyHandler.m; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BBDD9FA4C7B1DEF728F24EE9ED1D70BA /* libFastAnimationWithPOP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFastAnimationWithPOP.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB76FE4D3F6B314129934044CFEC225C /* UIControl+FastAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIControl+FastAnimation.h"; path = "FastAnimationWithPop/Core/UIControl+FastAnimation.h"; sourceTree = "<group>"; };
 		BF59BC15D23E1E1912C8F334E7236813 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
 		C091E831068E3E504A40AC6932B39C87 /* FloatConversion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FloatConversion.h; path = pop/WebCore/FloatConversion.h; sourceTree = "<group>"; };
 		C0DF3C83EBC5F7BF6DAAACEBD7D72791 /* POPAnimationEvent.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimationEvent.mm; path = pop/POPAnimationEvent.mm; sourceTree = "<group>"; };
-		C14BBB8407C99D9AECA8B1F6B5C99F3D /* pop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = pop.xcconfig; sourceTree = "<group>"; };
+		C1A6ACD5E3A492D17D9E885D0DE577C6 /* pop-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "pop-Private.xcconfig"; sourceTree = "<group>"; };
+		C1AD443CF297ED7EA98D44E1C2E61464 /* IQKeyboardManager.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = IQKeyboardManager.xcconfig; sourceTree = "<group>"; };
 		C1B6A53BFD919966B87CD6FBFD89CE1B /* POPAnimationExtras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimationExtras.h; path = pop/POPAnimationExtras.h; sourceTree = "<group>"; };
 		C1E27C3CBB149C1873F6CDC55D998CE2 /* POPAnimationTracer.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimationTracer.mm; path = pop/POPAnimationTracer.mm; sourceTree = "<group>"; };
 		C24554FAA71D841BC3C0759DA37874AE /* POPSpringAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPSpringAnimation.mm; path = pop/POPSpringAnimation.mm; sourceTree = "<group>"; };
-		C2575E588B314DF3E9A3084DC6D16E7A /* pop-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "pop-Private.xcconfig"; sourceTree = "<group>"; };
+		C37756A249A93BA8C20C6F9BCCE2A84A /* IQToolbar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IQToolbar.m; path = IQKeyBoardManager/IQToolbar/IQToolbar.m; sourceTree = "<group>"; };
 		C560616DDF5273CF7C53EF72EA6ED45A /* POPDecayAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPDecayAnimation.mm; path = pop/POPDecayAnimation.mm; sourceTree = "<group>"; };
-		C7F486992E27BBCA3DEB9A1FC98D8421 /* pop-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "pop-prefix.pch"; sourceTree = "<group>"; };
 		C9565C73D5D4BE79747E60DCF1557E71 /* POPAnimatableProperty.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimatableProperty.mm; path = pop/POPAnimatableProperty.mm; sourceTree = "<group>"; };
-		CAF78C364E1AF597777A28E50A91FD47 /* FastAnimiationUitls.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FastAnimiationUitls.h; path = FastAnimationWithPop/Core/FastAnimiationUitls.h; sourceTree = "<group>"; };
-		CF70E584DED142E39BA3AB966B2DC5E2 /* FastAnimationWithPOP-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "FastAnimationWithPOP-Private.xcconfig"; sourceTree = "<group>"; };
-		D1F8DB6D872C2D7BF56FC9B890D5D991 /* FAAnimationButtonScale.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAAnimationButtonScale.m; path = FastAnimationWithPop/BindingAnimations/FAAnimationButtonScale.m; sourceTree = "<group>"; };
+		CD55CAB56F6FB394F4AAF258586B6F01 /* FAAnimationZoomIn.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAAnimationZoomIn.h; path = FastAnimationWithPop/Animations/FAAnimationZoomIn.h; sourceTree = "<group>"; };
+		D4BA4D07D23FA0AEF1D4F08FA0CDEE15 /* IQUIView+IQKeyboardToolbar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "IQUIView+IQKeyboardToolbar.m"; path = "IQKeyBoardManager/IQToolbar/IQUIView+IQKeyboardToolbar.m"; sourceTree = "<group>"; };
+		D538ECB37D81C94F04F9C0DBA437BDAE /* FAAnimationGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAAnimationGroup.m; path = FastAnimationWithPop/Animations/FAAnimationGroup.m; sourceTree = "<group>"; };
 		D5CE48778301C24CD288B08DDA441605 /* POPVector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPVector.h; path = pop/POPVector.h; sourceTree = "<group>"; };
-		D8D6C26232E1EACF9DE79EF6BB3E2F92 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
-		D92E758AA0058510A183DEB55BB3F59E /* FAAnimationBounces.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAAnimationBounces.m; path = FastAnimationWithPop/Animations/FAAnimationBounces.m; sourceTree = "<group>"; };
-		DD453FFEB4C38A2356B870F70834E3C0 /* FAAnimationGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAAnimationGroup.h; path = FastAnimationWithPop/Animations/FAAnimationGroup.h; sourceTree = "<group>"; };
+		D7DA3615AAD481A33B5426AA0B560FB5 /* IQKeyboardManager-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "IQKeyboardManager-dummy.m"; sourceTree = "<group>"; };
+		DBB41206689C62CA994FBF3EDCF1F175 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = IQKeyboardManager.bundle; path = IQKeyBoardManager/Resources/IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		DD67F4B5F355DC7BD84B3CC784A09E19 /* FastAnimiationUitls.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FastAnimiationUitls.h; path = FastAnimationWithPop/Core/FastAnimiationUitls.h; sourceTree = "<group>"; };
+		DF25D25DA8CB86776B0A8F663C833358 /* NSObject+FastAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+FastAnimation.h"; path = "FastAnimationWithPop/Core/NSObject+FastAnimation.h"; sourceTree = "<group>"; };
 		E85E0983DBE882A8009D0F7EAB591B91 /* POPAnimationRuntime.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimationRuntime.mm; path = pop/POPAnimationRuntime.mm; sourceTree = "<group>"; };
+		E8C1DF5354DD24162442D0DC5128DEA1 /* IQKeyboardManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IQKeyboardManager.m; path = IQKeyBoardManager/IQKeyboardManager.m; sourceTree = "<group>"; };
+		E93DC613DF19B41F6BB9EB8CCF770BE9 /* FAAnimationShake.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAAnimationShake.m; path = FastAnimationWithPop/Animations/FAAnimationShake.m; sourceTree = "<group>"; };
 		EB56BE02F1B0412A41C9D9834B04BC30 /* POPSpringAnimationInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPSpringAnimationInternal.h; path = pop/POPSpringAnimationInternal.h; sourceTree = "<group>"; };
 		EC10F21A5E230A911C2C2E5082CDAE4B /* POPAnimationPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimationPrivate.h; path = pop/POPAnimationPrivate.h; sourceTree = "<group>"; };
 		ECC48BF18D3BD01C21B65648709A45D6 /* POPAnimator.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimator.mm; path = pop/POPAnimator.mm; sourceTree = "<group>"; };
 		ED596D85957A49EC6092EC8EC38FCE49 /* POPAnimationInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimationInternal.h; path = pop/POPAnimationInternal.h; sourceTree = "<group>"; };
-		EFED306BFB5C35EE94FF9D466F1E22D5 /* FAAnimationZoomOut.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAAnimationZoomOut.h; path = FastAnimationWithPop/Animations/FAAnimationZoomOut.h; sourceTree = "<group>"; };
-		F029E81616F9251BA8767035F80B47AD /* FAAnimationBounces.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAAnimationBounces.h; path = FastAnimationWithPop/Animations/FAAnimationBounces.h; sourceTree = "<group>"; };
+		ED64FC8FF94744457AB2BFF51C94FD06 /* pop-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "pop-prefix.pch"; sourceTree = "<group>"; };
+		ED93AD96EA7AE3B4414A036C4373A033 /* FAAnimationButtonScale.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAAnimationButtonScale.m; path = FastAnimationWithPop/BindingAnimations/FAAnimationButtonScale.m; sourceTree = "<group>"; };
+		F0B3C8A8D7D1427148FB2201604553FA /* FAAnimationBounces.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAAnimationBounces.m; path = FastAnimationWithPop/Animations/FAAnimationBounces.m; sourceTree = "<group>"; };
 		F0B4105C7EE2DA010EA4746E79138C7C /* POPVector.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPVector.mm; path = pop/POPVector.mm; sourceTree = "<group>"; };
+		F2A17CB8BA838601D370041EAB1C8F81 /* FAAnimationBounces.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAAnimationBounces.h; path = FastAnimationWithPop/Animations/FAAnimationBounces.h; sourceTree = "<group>"; };
 		F3A985A006B0CCD0116D8FC53C4D1834 /* POPAction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAction.h; path = pop/POPAction.h; sourceTree = "<group>"; };
-		F3D6B92AF5177260D1C963EA60A9953C /* UIControl+FastAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIControl+FastAnimation.h"; path = "FastAnimationWithPop/Core/UIControl+FastAnimation.h"; sourceTree = "<group>"; };
+		F450853F8C42C8C66099F945AD549089 /* IQBarButtonItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQBarButtonItem.h; path = IQKeyBoardManager/IQToolbar/IQBarButtonItem.h; sourceTree = "<group>"; };
+		F4F8FA84F5B65A3F36B4EE582C378DB8 /* IQUIWindow+Hierarchy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "IQUIWindow+Hierarchy.h"; path = "IQKeyBoardManager/Categories/IQUIWindow+Hierarchy.h"; sourceTree = "<group>"; };
 		F54B1AE39CAF0CA846C1C729B033E047 /* POPBasicAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPBasicAnimation.mm; path = pop/POPBasicAnimation.mm; sourceTree = "<group>"; };
 		F81E8633F1E784423FE8B9BE16D38981 /* POPPropertyAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPPropertyAnimation.h; path = pop/POPPropertyAnimation.h; sourceTree = "<group>"; };
-		F9E939B7BA56358FE1D8A1002592B0D9 /* UIControl+FastAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIControl+FastAnimation.m"; path = "FastAnimationWithPop/Core/UIControl+FastAnimation.m"; sourceTree = "<group>"; };
-		FACE898461E2E3CB107A5B45DD0A1915 /* FastAnimationWithPOP-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FastAnimationWithPOP-prefix.pch"; sourceTree = "<group>"; };
-		FF2DC6ED877A5CD09C39036022B44D71 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		FD32C199A13470A257DBD14EAAE58EF9 /* FastAnimationWithPop.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FastAnimationWithPop.h; path = FastAnimationWithPop/FastAnimationWithPop.h; sourceTree = "<group>"; };
+		FF3D2618D0A9FEF8D9878F197A8FAACA /* IQSegmentedNextPrevious.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IQSegmentedNextPrevious.m; path = IQKeyBoardManager/IQSegmentedNextPrevious/IQSegmentedNextPrevious.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		554B6BA895266CA6821A9AC97112BC65 /* Frameworks */ = {
+		3B544BCF54C2E6302784D06549DDC28D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9E166332F3C7DD753EF66C7396125E5 /* Foundation.framework in Frameworks */,
+				FD610FCCE6E8A0B7A8D2A0C3A58BBF3E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F8EC0EA2023E426AE27A0FA74C67D87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CCE028AA344A2185A44DCD1F06B1C22 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,66 +305,79 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E7E18EA72D0F3DA58F2BA41B568C0D73 /* Frameworks */ = {
+		B4D07A533F5C16C2F495727299948285 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12ED8858D1612CC1824CC2B5413849F8 /* Foundation.framework in Frameworks */,
+				6B082B18747355A3E29056446E21173C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0F2121F7DBF102C93413AE6D309A6D02 /* Support Files */ = {
+		2B41A9EF90CAD93B5F23D11831252301 /* FastAnimationWithPOP */ = {
 			isa = PBXGroup;
 			children = (
-				C14BBB8407C99D9AECA8B1F6B5C99F3D /* pop.xcconfig */,
-				C2575E588B314DF3E9A3084DC6D16E7A /* pop-Private.xcconfig */,
-				59B3FD41DEC22C5891C9B83C27BC25E0 /* pop-dummy.m */,
-				C7F486992E27BBCA3DEB9A1FC98D8421 /* pop-prefix.pch */,
+				F2A17CB8BA838601D370041EAB1C8F81 /* FAAnimationBounces.h */,
+				F0B3C8A8D7D1427148FB2201604553FA /* FAAnimationBounces.m */,
+				B1D99C535FFFBB3A22409FDBEF72F237 /* FAAnimationButtonScale.h */,
+				ED93AD96EA7AE3B4414A036C4373A033 /* FAAnimationButtonScale.m */,
+				A8E7882DE5F287BC791AAA564D3F79EA /* FAAnimationGroup.h */,
+				D538ECB37D81C94F04F9C0DBA437BDAE /* FAAnimationGroup.m */,
+				A44C919E0E534790EC7B39E7A831F4A2 /* FAAnimationShake.h */,
+				E93DC613DF19B41F6BB9EB8CCF770BE9 /* FAAnimationShake.m */,
+				CD55CAB56F6FB394F4AAF258586B6F01 /* FAAnimationZoomIn.h */,
+				9EC12256B260DE762F6F40A724635690 /* FAAnimationZoomIn.m */,
+				232076E2D19C56C132FDD3A7980F98D7 /* FAAnimationZoomOut.h */,
+				31875E4070738DE65446CD69C9591DB9 /* FAAnimationZoomOut.m */,
+				9C0D6793B10834C106469653F2D966D0 /* FastAnimationProtocol.h */,
+				FD32C199A13470A257DBD14EAAE58EF9 /* FastAnimationWithPop.h */,
+				DD67F4B5F355DC7BD84B3CC784A09E19 /* FastAnimiationUitls.h */,
+				A25593D832A65B25158A111D59FDD167 /* FastAnimiationUitls.m */,
+				DF25D25DA8CB86776B0A8F663C833358 /* NSObject+FastAnimation.h */,
+				48B3A21AB6D12761EBE2ECA1D6698C14 /* NSObject+FastAnimation.m */,
+				BB76FE4D3F6B314129934044CFEC225C /* UIControl+FastAnimation.h */,
+				069F637B70C462521E9A41F6D7C0CF5C /* UIControl+FastAnimation.m */,
+				81309D424AAAF65A2284FF89443B3F4A /* UIView+FastAnimation.h */,
+				8518B426D084189D85AB25C189B7DA54 /* UIView+FastAnimation.m */,
+				46E1C27D23079366621F6F2F715BE063 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/pop";
+			path = FastAnimationWithPOP;
 			sourceTree = "<group>";
 		};
-		147B77F1F99E8281C1D963304D34D288 /* Pods */ = {
+		3A5F772D2C040B21C6ED916E0A8DB8D0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1CA43D91FC19E497621FB8A5E5D5EFBA /* FastAnimationWithPOP */,
-				90D140F5FD85E89F2264D78FFBBC99A0 /* pop */,
+				2B41A9EF90CAD93B5F23D11831252301 /* FastAnimationWithPOP */,
+				976EB31C957E6144AAED3ACACA9E0E54 /* IQKeyboardManager */,
+				59F7126F168D201DDC77CAA7A644ABD8 /* pop */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		1CA43D91FC19E497621FB8A5E5D5EFBA /* FastAnimationWithPOP */ = {
+		46E1C27D23079366621F6F2F715BE063 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				F029E81616F9251BA8767035F80B47AD /* FAAnimationBounces.h */,
-				D92E758AA0058510A183DEB55BB3F59E /* FAAnimationBounces.m */,
-				3E0636C8CBC813D74D5782C4846FED29 /* FAAnimationButtonScale.h */,
-				D1F8DB6D872C2D7BF56FC9B890D5D991 /* FAAnimationButtonScale.m */,
-				DD453FFEB4C38A2356B870F70834E3C0 /* FAAnimationGroup.h */,
-				7F09A167E6857FAE192E35C85F2DC54A /* FAAnimationGroup.m */,
-				52F96D8B3651214FEB1FB4DBD6AEA378 /* FAAnimationShake.h */,
-				A4E1CF20E7FC746DD236EF0AB05D8BB1 /* FAAnimationShake.m */,
-				10809D0FF0027D66A4BE576940F36BD6 /* FAAnimationZoomIn.h */,
-				164B3BEBCEC4C381A2922D60E00950F7 /* FAAnimationZoomIn.m */,
-				EFED306BFB5C35EE94FF9D466F1E22D5 /* FAAnimationZoomOut.h */,
-				0915A5E69507C85F01164E89A95E6E17 /* FAAnimationZoomOut.m */,
-				93F88CA337A510745508FAD4123D321D /* FastAnimationProtocol.h */,
-				586CCC160FADB0C55E01161DD73CBCB4 /* FastAnimationWithPop.h */,
-				CAF78C364E1AF597777A28E50A91FD47 /* FastAnimiationUitls.h */,
-				ACE5A090BA7CCBF8EB2A529A7AC93096 /* FastAnimiationUitls.m */,
-				16C83F2F42D843B8EBED205A8A498B88 /* NSObject+FastAnimation.h */,
-				7063ADCA2A1025491AD416CA771B3E7D /* NSObject+FastAnimation.m */,
-				F3D6B92AF5177260D1C963EA60A9953C /* UIControl+FastAnimation.h */,
-				F9E939B7BA56358FE1D8A1002592B0D9 /* UIControl+FastAnimation.m */,
-				74992A233D2CC59904078840276F13AA /* UIView+FastAnimation.h */,
-				9CB6C3A563A9F7733F72963924DFC090 /* UIView+FastAnimation.m */,
-				F90E680C3F1A23C7E8610C22521BC9DD /* Support Files */,
+				7582854AE19846602AE564E1B2A70D5D /* FastAnimationWithPOP.xcconfig */,
+				B54737CF1922C2E563DA1B693465E274 /* FastAnimationWithPOP-Private.xcconfig */,
+				8ECCBCA015BC9A57F7A2891C94961E63 /* FastAnimationWithPOP-dummy.m */,
+				7D61835F5E5858275A8978F08D69FFE6 /* FastAnimationWithPOP-prefix.pch */,
 			);
-			path = FastAnimationWithPOP;
+			name = "Support Files";
+			path = "../Target Support Files/FastAnimationWithPOP";
+			sourceTree = "<group>";
+		};
+		53AD36C970E349F25735496968890D94 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9A5D3ED8DB25D4207D8E0A4F2E1EC6DF /* pop.xcconfig */,
+				C1A6ACD5E3A492D17D9E885D0DE577C6 /* pop-Private.xcconfig */,
+				59B3FD41DEC22C5891C9B83C27BC25E0 /* pop-dummy.m */,
+				ED64FC8FF94744457AB2BFF51C94FD06 /* pop-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/pop";
 			sourceTree = "<group>";
 		};
 		53F661C0CA7190D2CF05023FB33D61E4 /* iOS */ = {
@@ -294,18 +388,7 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		7DB346D0F39D3F0E887471402A8071AB = {
-			isa = PBXGroup;
-			children = (
-				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				147B77F1F99E8281C1D963304D34D288 /* Pods */,
-				CCA510CFBEA2D207524CDA0D73C3B561 /* Products */,
-				D2411A5FE7F7A004607BED49990C37F4 /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		90D140F5FD85E89F2264D78FFBBC99A0 /* pop */ = {
+		59F7126F168D201DDC77CAA7A644ABD8 /* pop */ = {
 			isa = PBXGroup;
 			children = (
 				C091E831068E3E504A40AC6932B39C87 /* FloatConversion.h */,
@@ -359,9 +442,20 @@
 				35574BADA6CDEA944F089CBC021F01AA /* TransformationMatrix.cpp */,
 				2E056FF5C4EC38A55B45FB52F395D72E /* TransformationMatrix.h */,
 				96015F1C746803D9318614B277F71BCB /* UnitBezier.h */,
-				0F2121F7DBF102C93413AE6D309A6D02 /* Support Files */,
+				53AD36C970E349F25735496968890D94 /* Support Files */,
 			);
 			path = pop;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				3A5F772D2C040B21C6ED916E0A8DB8D0 /* Pods */,
+				CCA510CFBEA2D207524CDA0D73C3B561 /* Products */,
+				D2411A5FE7F7A004607BED49990C37F4 /* Targets Support Files */,
+			);
 			sourceTree = "<group>";
 		};
 		952EEBFAF8F7E620423C9F156F25A506 /* Pods */ = {
@@ -369,13 +463,51 @@
 			children = (
 				15A529C27057E4A57D259CBC6E6CE49C /* Pods-acknowledgements.markdown */,
 				BF59BC15D23E1E1912C8F334E7236813 /* Pods-acknowledgements.plist */,
-				D8D6C26232E1EACF9DE79EF6BB3E2F92 /* Pods-dummy.m */,
+				54591A776518B0A997CB16162B070F9C /* Pods-dummy.m */,
 				641AE05DD55E5E6AC1590CD7B4A18F97 /* Pods-resources.sh */,
-				7E9C65CAEA8F57271825FB15C422BDDB /* Pods.debug.xcconfig */,
-				FF2DC6ED877A5CD09C39036022B44D71 /* Pods.release.xcconfig */,
+				695F1773379730ED8DF386C5B7F568BF /* Pods.debug.xcconfig */,
+				45EBF41D22724782F5E6D3AC07A2CA84 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			path = "Target Support Files/Pods";
+			sourceTree = "<group>";
+		};
+		976EB31C957E6144AAED3ACACA9E0E54 /* IQKeyboardManager */ = {
+			isa = PBXGroup;
+			children = (
+				F450853F8C42C8C66099F945AD549089 /* IQBarButtonItem.h */,
+				5801F4BFBD35EED37D6F71BFF1525E4E /* IQBarButtonItem.m */,
+				2DF59812D362512002F8A4A5FC76E7AC /* IQKeyboardManager.h */,
+				E8C1DF5354DD24162442D0DC5128DEA1 /* IQKeyboardManager.m */,
+				2F9477A5611989C55181E89A15AF63B0 /* IQKeyboardManagerConstants.h */,
+				972C7BD5E161677D91C56F281D73197B /* IQKeyboardManagerConstantsInternal.h */,
+				9299FFF9CB431A75A8E44D83BF43D261 /* IQKeyboardReturnKeyHandler.h */,
+				BA0766A0FF063E78F5183FF8A8AE839E /* IQKeyboardReturnKeyHandler.m */,
+				000B2D40016AF78EAA2AF1799CAE71FC /* IQNSArray+Sort.h */,
+				2AEF3129C8F8EC0FCA010603F7E18B24 /* IQNSArray+Sort.m */,
+				9BBF6AE58D9BB857FB572D2F3BB77FDE /* IQSegmentedNextPrevious.h */,
+				FF3D2618D0A9FEF8D9878F197A8FAACA /* IQSegmentedNextPrevious.m */,
+				AD298B77354A8CB53A40AD06D3DD0BF6 /* IQTextView.h */,
+				A089C3682648ED6306256FD69C34986C /* IQTextView.m */,
+				1E823DF5F516AE15A30870AB20EAA9D3 /* IQTitleBarButtonItem.h */,
+				6B48A916139DC42449E7994C03BCA128 /* IQTitleBarButtonItem.m */,
+				B289FA0965483C6A614B41811423FF74 /* IQToolbar.h */,
+				C37756A249A93BA8C20C6F9BCCE2A84A /* IQToolbar.m */,
+				986A87CF52B2D404BB1F929A053F0DB9 /* IQUITextFieldView+Additions.h */,
+				1F002AEABF24490055EC700ACF678424 /* IQUITextFieldView+Additions.m */,
+				9253E284DCBE9BDDF2DAB74A5A61EAC4 /* IQUIView+Hierarchy.h */,
+				122F21655AC1EA9CF94159211B803AAE /* IQUIView+Hierarchy.m */,
+				4AE2D4478857B2596502016FC32A22B5 /* IQUIView+IQKeyboardToolbar.h */,
+				D4BA4D07D23FA0AEF1D4F08FA0CDEE15 /* IQUIView+IQKeyboardToolbar.m */,
+				726628383FE19009558B2CD975013C4C /* IQUIViewController+Additions.h */,
+				AA0F5116A74B493E66ADE388397BBA05 /* IQUIViewController+Additions.m */,
+				F4F8FA84F5B65A3F36B4EE582C378DB8 /* IQUIWindow+Hierarchy.h */,
+				B3542F11DA70B26229E4DEF0E73BB6F1 /* IQUIWindow+Hierarchy.m */,
+				196D281BE55FC15252C3DC4D83AC0A3D /* KeyboardManager.h */,
+				F96CBE0F5D84A8FB8DB0A5D3DE60D15B /* Resources */,
+				FD145389AFE699C49753F46AC295E297 /* Support Files */,
+			);
+			path = IQKeyboardManager;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -389,8 +521,9 @@
 		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BBDD9FA4C7B1DEF728F24EE9ED1D70BA /* libFastAnimationWithPOP.a */,
-				60F48DA52967A506E6EF49CC1C4035C6 /* libPods.a */,
+				307BBE6B6BB15FED19F35860D1AE2581 /* libFastAnimationWithPOP.a */,
+				72FB03DDBAEB3B97AF8FC2F1966BA6A8 /* libIQKeyboardManager.a */,
+				0D328C6C9854C332EBD1B53EBEEC898B /* libPods.a */,
 				A42EBF4FDD2D5AA16FCD758564D29ABC /* libpop.a */,
 			);
 			name = Products;
@@ -404,40 +537,29 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		F90E680C3F1A23C7E8610C22521BC9DD /* Support Files */ = {
+		F96CBE0F5D84A8FB8DB0A5D3DE60D15B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9EB50783101AC661C2647B1165728521 /* FastAnimationWithPOP.xcconfig */,
-				CF70E584DED142E39BA3AB966B2DC5E2 /* FastAnimationWithPOP-Private.xcconfig */,
-				05FB9D920446127400857C8288A3D92A /* FastAnimationWithPOP-dummy.m */,
-				FACE898461E2E3CB107A5B45DD0A1915 /* FastAnimationWithPOP-prefix.pch */,
+				DBB41206689C62CA994FBF3EDCF1F175 /* IQKeyboardManager.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		FD145389AFE699C49753F46AC295E297 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C1AD443CF297ED7EA98D44E1C2E61464 /* IQKeyboardManager.xcconfig */,
+				937DB089A73F52D64BC74E558A757C63 /* IQKeyboardManager-Private.xcconfig */,
+				D7DA3615AAD481A33B5426AA0B560FB5 /* IQKeyboardManager-dummy.m */,
+				2A818C2A87AD26B0F2DF0E401F72AC28 /* IQKeyboardManager-prefix.pch */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/FastAnimationWithPOP";
+			path = "../Target Support Files/IQKeyboardManager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		3614991114ABC2E9D6BFC2810409F2D0 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				169F64926F1F0A265B7FB63FDF878B1A /* FAAnimationBounces.h in Headers */,
-				4708C15F0169A073023EEF0C1610CF0E /* FAAnimationButtonScale.h in Headers */,
-				F863EED0D225E0E6E2266B48E00D7108 /* FAAnimationGroup.h in Headers */,
-				EACC9F81FFBC4380A6546AC7E8A2F552 /* FAAnimationShake.h in Headers */,
-				0024BC9013E6A3D7B052AC86DC8FB38C /* FAAnimationZoomIn.h in Headers */,
-				9DCE97BFF162930EEB810DF501F9106F /* FAAnimationZoomOut.h in Headers */,
-				1D51C383BF4C43DAB3D273ACEE9E04E5 /* FastAnimationProtocol.h in Headers */,
-				2B4C3840B4498D6E0F10391473A5B5E1 /* FastAnimationWithPop.h in Headers */,
-				BBED238916F1213FDD77FF0BE917A0D6 /* FastAnimiationUitls.h in Headers */,
-				045DFEAA2D44C0EDAF1F304551220386 /* NSObject+FastAnimation.h in Headers */,
-				C5C40FD760EDB3AE8B760CBC497ECA15 /* UIControl+FastAnimation.h in Headers */,
-				8C86EE9E60F9CA78E129EE72A8825671 /* UIView+FastAnimation.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		725D774220C4DF53E7316E8623730814 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -478,27 +600,51 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7470288627871D3005166B68BD32D0D0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68EDDBC8C06B239B18339DBF7063331F /* FAAnimationBounces.h in Headers */,
+				F6EB2F8BD055E5DDE670C70AFB0066B1 /* FAAnimationButtonScale.h in Headers */,
+				6E8365C9E8F801FC88A8920642326EB5 /* FAAnimationGroup.h in Headers */,
+				7EC93B038D66BBC8AC73FAB5DEF27556 /* FAAnimationShake.h in Headers */,
+				4BFB665B9F231F03305A455735B17928 /* FAAnimationZoomIn.h in Headers */,
+				C4F299EC690469F537876179393DEDC1 /* FAAnimationZoomOut.h in Headers */,
+				1637593C336F31244C15F8D835739BA8 /* FastAnimationProtocol.h in Headers */,
+				272658E990FE34AD607D5F753ABC8A45 /* FastAnimationWithPop.h in Headers */,
+				8F83B3B087D986325C930A7D18E369AE /* FastAnimiationUitls.h in Headers */,
+				170B3B29D3F10C1A3CF642626085B599 /* NSObject+FastAnimation.h in Headers */,
+				399D990ABD5854849E1EF2D50B81011A /* UIControl+FastAnimation.h in Headers */,
+				E5C582B4813C748C780EDBBF01D957C9 /* UIView+FastAnimation.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9484CE09E3B0B85FFD93DBA958EE283 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BD2AF36FBDD55C292B31DDE2F53CE02 /* IQBarButtonItem.h in Headers */,
+				75E181B5A5DCA9F03F6935334CCD2013 /* IQKeyboardManager.h in Headers */,
+				C27D2C614619650AD1592A2772DE30E1 /* IQKeyboardManagerConstants.h in Headers */,
+				9027445217306578BBE12DE99B968A74 /* IQKeyboardManagerConstantsInternal.h in Headers */,
+				9FE3639DE24742C0FABE2FBBBD1EF862 /* IQKeyboardReturnKeyHandler.h in Headers */,
+				6B70449FBA08B46519A05A76C23C3E7E /* IQNSArray+Sort.h in Headers */,
+				3A835E1206EB3FEAB5766BA063422EC2 /* IQSegmentedNextPrevious.h in Headers */,
+				F1B17E1DE53EBAAAF58AA8C1E40D4A05 /* IQTextView.h in Headers */,
+				DB96FD03330472F773F2400C228A8B2D /* IQTitleBarButtonItem.h in Headers */,
+				8D5C282A839866C1F9A677F3A8568136 /* IQToolbar.h in Headers */,
+				9DCC3C1CA174E7A58187E8053C2D394E /* IQUITextFieldView+Additions.h in Headers */,
+				E18D385020D7128943BCF89C70B05C38 /* IQUIView+Hierarchy.h in Headers */,
+				D4C2524F8F391FFB6914F24537F83371 /* IQUIView+IQKeyboardToolbar.h in Headers */,
+				8FB4FBF79815D659775F61D36D626E6F /* IQUIViewController+Additions.h in Headers */,
+				83E9095C1980FBCBEBBB1F07A6EEF6D3 /* IQUIWindow+Hierarchy.h in Headers */,
+				64CDCF4076F2F9C0EA7F316780CC33D6 /* KeyboardManager.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		377DBC19E23E6EC73B9058B4FFA56B16 /* FastAnimationWithPOP */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D4D766BF0F844D0D635B5383B657C9BF /* Build configuration list for PBXNativeTarget "FastAnimationWithPOP" */;
-			buildPhases = (
-				572E4891BC5ADE45C7233D79AEC78988 /* Sources */,
-				E7E18EA72D0F3DA58F2BA41B568C0D73 /* Frameworks */,
-				3614991114ABC2E9D6BFC2810409F2D0 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				760D9B8232FEB4B2AC750B58761B6596 /* PBXTargetDependency */,
-			);
-			name = FastAnimationWithPOP;
-			productName = FastAnimationWithPOP;
-			productReference = BBDD9FA4C7B1DEF728F24EE9ED1D70BA /* libFastAnimationWithPOP.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		47C800E42623009B7192B025B3DD25A1 /* pop */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 62C75DE36F62F6DD244D1001268287F5 /* Build configuration list for PBXNativeTarget "pop" */;
@@ -516,22 +662,58 @@
 			productReference = A42EBF4FDD2D5AA16FCD758564D29ABC /* libpop.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		9105ABB265264E7CDB1C9C91F468E77F /* Pods */ = {
+		87DAF7A4091EFC57862ADC22EECA7574 /* IQKeyboardManager */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5410EED54318F8671EDAD486B1E6D9D0 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildConfigurationList = 7C10F1E0411036EB9E4C4A3E284BC8D4 /* Build configuration list for PBXNativeTarget "IQKeyboardManager" */;
 			buildPhases = (
-				3180D7269CE8C48723D809A1B64956FF /* Sources */,
-				554B6BA895266CA6821A9AC97112BC65 /* Frameworks */,
+				983DA1C18C22217FB8853FD4D8F18E82 /* Sources */,
+				3B544BCF54C2E6302784D06549DDC28D /* Frameworks */,
+				E9484CE09E3B0B85FFD93DBA958EE283 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8A6DFFA850B614FBF2B401C4A8C156D3 /* PBXTargetDependency */,
-				D1B0FD53190325DAC7245C4543E1B701 /* PBXTargetDependency */,
+			);
+			name = IQKeyboardManager;
+			productName = IQKeyboardManager;
+			productReference = 72FB03DDBAEB3B97AF8FC2F1966BA6A8 /* libIQKeyboardManager.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		9BE938332ADDCC6CAB6D74CFFC24D0A3 /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24564978B0744DB3893DE9971A3FFBB8 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				62D940AA88BBB18E4E04DFEF6BC033C2 /* Sources */,
+				B4D07A533F5C16C2F495727299948285 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F8485B028910E9F5A9D8ECAA456D3BF /* PBXTargetDependency */,
+				A71BF316EFED12F631E1D4A89A5CFD17 /* PBXTargetDependency */,
+				AB886666515511D082A192C1DA5E5985 /* PBXTargetDependency */,
 			);
 			name = Pods;
 			productName = Pods;
-			productReference = 60F48DA52967A506E6EF49CC1C4035C6 /* libPods.a */;
+			productReference = 0D328C6C9854C332EBD1B53EBEEC898B /* libPods.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		EB20EB84E03329A56A8721222D8F17C3 /* FastAnimationWithPOP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97454B74695895C9A4A89C891F42041C /* Build configuration list for PBXNativeTarget "FastAnimationWithPOP" */;
+			buildPhases = (
+				6640C08D1CC86BD0978683DA9D1D1631 /* Sources */,
+				3F8EC0EA2023E426AE27A0FA74C67D87 /* Frameworks */,
+				7470288627871D3005166B68BD32D0D0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				580901D66A7017B108A415CE8A9806EE /* PBXTargetDependency */,
+			);
+			name = FastAnimationWithPOP;
+			productName = FastAnimationWithPOP;
+			productReference = 307BBE6B6BB15FED19F35860D1AE2581 /* libFastAnimationWithPOP.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -555,8 +737,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				377DBC19E23E6EC73B9058B4FFA56B16 /* FastAnimationWithPOP */,
-				9105ABB265264E7CDB1C9C91F468E77F /* Pods */,
+				EB20EB84E03329A56A8721222D8F17C3 /* FastAnimationWithPOP */,
+				87DAF7A4091EFC57862ADC22EECA7574 /* IQKeyboardManager */,
+				9BE938332ADDCC6CAB6D74CFFC24D0A3 /* Pods */,
 				47C800E42623009B7192B025B3DD25A1 /* pop */,
 			);
 		};
@@ -589,89 +772,118 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3180D7269CE8C48723D809A1B64956FF /* Sources */ = {
+		62D940AA88BBB18E4E04DFEF6BC033C2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3130A62D5E6F18688C9395CCE1A6947 /* Pods-dummy.m in Sources */,
+				E30F8BAFE8AA3F2E1726CC92836DDD39 /* Pods-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		572E4891BC5ADE45C7233D79AEC78988 /* Sources */ = {
+		6640C08D1CC86BD0978683DA9D1D1631 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45E0497F1F8DB5632E9E4C67ED6006FE /* FAAnimationBounces.m in Sources */,
-				3B956ADF4EC9870C8C603AFA5B3A65AE /* FAAnimationButtonScale.m in Sources */,
-				1818584EA93B37E7F6527D84B7EA302A /* FAAnimationGroup.m in Sources */,
-				8DAAB1A024D5AF1CE63333AC18029F22 /* FAAnimationShake.m in Sources */,
-				3A9E145D01442CB84FE8F731E91B8851 /* FAAnimationZoomIn.m in Sources */,
-				05BC76343ACB2B7D76598F3FC83200E0 /* FAAnimationZoomOut.m in Sources */,
-				F0B6571023D2832367FB4F834CC4EE37 /* FastAnimationWithPOP-dummy.m in Sources */,
-				9468FD99E1064CB57872697A6E189206 /* FastAnimiationUitls.m in Sources */,
-				F056B87A5C62D53857E3E4DD53C469B7 /* NSObject+FastAnimation.m in Sources */,
-				A7CA650486AB8C71680B4EDD554F8B1F /* UIControl+FastAnimation.m in Sources */,
-				0E50D5539B4719D87D5956AA8DC05419 /* UIView+FastAnimation.m in Sources */,
+				42831524709AABD01A1147058C0B89C6 /* FAAnimationBounces.m in Sources */,
+				524BB1D4C94071959D1D954880D3FA44 /* FAAnimationButtonScale.m in Sources */,
+				7D39F729FB3BB72433EF0B9EF9674D2E /* FAAnimationGroup.m in Sources */,
+				31AEF37F12EB7FDE39D314FE1A3858F9 /* FAAnimationShake.m in Sources */,
+				EA19172817EBF3382DD947C2D42B142D /* FAAnimationZoomIn.m in Sources */,
+				CAB8635B5BD8F5F7F5A3E254262F6D5D /* FAAnimationZoomOut.m in Sources */,
+				A806CC4BAF5AF808390E9E1D0DA2C7A6 /* FastAnimationWithPOP-dummy.m in Sources */,
+				20036DEF8B357C24B062B272AF0C1F3F /* FastAnimiationUitls.m in Sources */,
+				59D4544916E6D4C3521E4EDA28D372B5 /* NSObject+FastAnimation.m in Sources */,
+				825E40E23BB42C2D8D8E8E7F690212E4 /* UIControl+FastAnimation.m in Sources */,
+				06DBC5D58FFBB149BCC6DE799A71DBDC /* UIView+FastAnimation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		983DA1C18C22217FB8853FD4D8F18E82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B19784F0BB3F2C081CAC52ADB5BE199 /* IQBarButtonItem.m in Sources */,
+				EB0362100CC9FD8EAC4C6589183A0662 /* IQKeyboardManager-dummy.m in Sources */,
+				415A9193B85F82EAF574F1F8681F4D7C /* IQKeyboardManager.m in Sources */,
+				DAB197D9801B20C0CABB54371FC1DC0C /* IQKeyboardReturnKeyHandler.m in Sources */,
+				6248E5A3C3FAD4517E8E81E0E891D649 /* IQNSArray+Sort.m in Sources */,
+				77A4FCC1823E355D885EDC6F26BFD904 /* IQSegmentedNextPrevious.m in Sources */,
+				26B5F7EAC52740A9E589A0CD2E623308 /* IQTextView.m in Sources */,
+				8F0F98EAD61EEF788E9A82477ECFD7D2 /* IQTitleBarButtonItem.m in Sources */,
+				0DBB08DE72E45A7F411D9E2695D777BD /* IQToolbar.m in Sources */,
+				8BEE80F5FD1A8406C2C51D6DAA778EE8 /* IQUITextFieldView+Additions.m in Sources */,
+				9FF10AFD68933A86822796886E945D67 /* IQUIView+Hierarchy.m in Sources */,
+				842E227516E72583831F25A1FDCFA5AE /* IQUIView+IQKeyboardToolbar.m in Sources */,
+				A7B5F27202139AF592A1634487E5CCC3 /* IQUIViewController+Additions.m in Sources */,
+				8566BEF56405A6510AC5B897431D4814 /* IQUIWindow+Hierarchy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		760D9B8232FEB4B2AC750B58761B6596 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = pop;
-			target = 47C800E42623009B7192B025B3DD25A1 /* pop */;
-			targetProxy = 39F49D49CD0DB718104930E0787EA7F5 /* PBXContainerItemProxy */;
-		};
-		8A6DFFA850B614FBF2B401C4A8C156D3 /* PBXTargetDependency */ = {
+		3F8485B028910E9F5A9D8ECAA456D3BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FastAnimationWithPOP;
-			target = 377DBC19E23E6EC73B9058B4FFA56B16 /* FastAnimationWithPOP */;
-			targetProxy = 6A8737C11702BE3A752DC960EA31928A /* PBXContainerItemProxy */;
+			target = EB20EB84E03329A56A8721222D8F17C3 /* FastAnimationWithPOP */;
+			targetProxy = D87C1933658FFEB80940526E4CD68439 /* PBXContainerItemProxy */;
 		};
-		D1B0FD53190325DAC7245C4543E1B701 /* PBXTargetDependency */ = {
+		580901D66A7017B108A415CE8A9806EE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = pop;
 			target = 47C800E42623009B7192B025B3DD25A1 /* pop */;
-			targetProxy = 1FDE4E084B31C3B7EDDF31163C29AE5C /* PBXContainerItemProxy */;
+			targetProxy = 95580EAE8B11C38E2A970B86E7A20391 /* PBXContainerItemProxy */;
+		};
+		A71BF316EFED12F631E1D4A89A5CFD17 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = IQKeyboardManager;
+			target = 87DAF7A4091EFC57862ADC22EECA7574 /* IQKeyboardManager */;
+			targetProxy = 3D5DB64BCD28C61084B05D29D3E41EAD /* PBXContainerItemProxy */;
+		};
+		AB886666515511D082A192C1DA5E5985 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = pop;
+			target = 47C800E42623009B7192B025B3DD25A1 /* pop */;
+			targetProxy = DBC9167C9BB559F3F0D399F47E9C142F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		49D46D93EF8785959C1334E21D9EEBEE /* Debug */ = {
+		03CA91998D6773EC5D02B3DB87B8353E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E9C65CAEA8F57271825FB15C422BDDB /* Pods.debug.xcconfig */;
 			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		5AE96A9B264799401931B72E09F55D50 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2575E588B314DF3E9A3084DC6D16E7A /* pop-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/pop/pop-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		6569F07DC21AD8B72752685013E3D9D8 /* Debug */ = {
+		0B57334D6C23DADAA4F7D802A5760EB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -703,20 +915,36 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		78EEBEDE574E3AB7D2768824F19A3E5C /* Debug */ = {
+		5AB7F390CFA4F0C198C85A4334829661 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2575E588B314DF3E9A3084DC6D16E7A /* pop-Private.xcconfig */;
+			baseConfigurationReference = B54737CF1922C2E563DA1B693465E274 /* FastAnimationWithPOP-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/pop/pop-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				GCC_PREFIX_HEADER = "Target Support Files/FastAnimationWithPOP/FastAnimationWithPOP-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		7FFF375DF33C07EE06F02ACC2A4AC53C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 937DB089A73F52D64BC74E558A757C63 /* IQKeyboardManager-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/IQKeyboardManager/IQKeyboardManager-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -726,12 +954,76 @@
 			};
 			name = Debug;
 		};
-		88F9D0FD546AE4044CE5F17B2D975A84 /* Release */ = {
+		8021BA6C439C9BA5DA5DC85F5E629BF2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF2DC6ED877A5CD09C39036022B44D71 /* Pods.release.xcconfig */;
+			baseConfigurationReference = C1A6ACD5E3A492D17D9E885D0DE577C6 /* pop-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				GCC_PREFIX_HEADER = "Target Support Files/pop/pop-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		9B1A08CE391D2E8E84796A3ED98E9254 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 695F1773379730ED8DF386C5B7F568BF /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AA42AB6ED76A2DA4F19EAD03EE610B0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 937DB089A73F52D64BC74E558A757C63 /* IQKeyboardManager-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/IQKeyboardManager/IQKeyboardManager-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		BC9FA105A578B456CF9D97EC3C878A3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B54737CF1922C2E563DA1B693465E274 /* FastAnimationWithPOP-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FastAnimationWithPOP/FastAnimationWithPOP-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DC842BC528FB623FAA48C595AB918AA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45EBF41D22724782F5E6D3AC07A2CA84 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -742,13 +1034,13 @@
 			};
 			name = Release;
 		};
-		891624FF293433C257E5049E9E4762B8 /* Debug */ = {
+		F7CBC4EC61F2889F3BA69FACB565CD7D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF70E584DED142E39BA3AB966B2DC5E2 /* FastAnimationWithPOP-Private.xcconfig */;
+			baseConfigurationReference = C1A6ACD5E3A492D17D9E885D0DE577C6 /* pop-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/FastAnimationWithPOP/FastAnimationWithPOP-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				GCC_PREFIX_HEADER = "Target Support Files/pop/pop-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -758,73 +1050,23 @@
 			};
 			name = Debug;
 		};
-		952BE06A3592A71CD91FB79496880244 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF70E584DED142E39BA3AB966B2DC5E2 /* FastAnimationWithPOP-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/FastAnimationWithPOP/FastAnimationWithPOP-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		A14E2444F162A20E3776820E0ADFFB52 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+		24564978B0744DB3893DE9971A3FFBB8 /* Build configuration list for PBXNativeTarget "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6569F07DC21AD8B72752685013E3D9D8 /* Debug */,
-				A14E2444F162A20E3776820E0ADFFB52 /* Release */,
+				9B1A08CE391D2E8E84796A3ED98E9254 /* Debug */,
+				DC842BC528FB623FAA48C595AB918AA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5410EED54318F8671EDAD486B1E6D9D0 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				49D46D93EF8785959C1334E21D9EEBEE /* Debug */,
-				88F9D0FD546AE4044CE5F17B2D975A84 /* Release */,
+				0B57334D6C23DADAA4F7D802A5760EB2 /* Debug */,
+				03CA91998D6773EC5D02B3DB87B8353E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -832,17 +1074,26 @@
 		62C75DE36F62F6DD244D1001268287F5 /* Build configuration list for PBXNativeTarget "pop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				78EEBEDE574E3AB7D2768824F19A3E5C /* Debug */,
-				5AE96A9B264799401931B72E09F55D50 /* Release */,
+				F7CBC4EC61F2889F3BA69FACB565CD7D /* Debug */,
+				8021BA6C439C9BA5DA5DC85F5E629BF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4D766BF0F844D0D635B5383B657C9BF /* Build configuration list for PBXNativeTarget "FastAnimationWithPOP" */ = {
+		7C10F1E0411036EB9E4C4A3E284BC8D4 /* Build configuration list for PBXNativeTarget "IQKeyboardManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				891624FF293433C257E5049E9E4762B8 /* Debug */,
-				952BE06A3592A71CD91FB79496880244 /* Release */,
+				7FFF375DF33C07EE06F02ACC2A4AC53C /* Debug */,
+				AA42AB6ED76A2DA4F19EAD03EE610B0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97454B74695895C9A4A89C891F42041C /* Build configuration list for PBXNativeTarget "FastAnimationWithPOP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC9FA105A578B456CF9D97EC3C878A3D /* Debug */,
+				5AB7F390CFA4F0C198C85A4334829661 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

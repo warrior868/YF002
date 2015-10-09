@@ -30,6 +30,7 @@
 		AB454D351B1BD1DF00FC10CD /* YFRecordTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AB454D341B1BD1DF00FC10CD /* YFRecordTVC.m */; };
 		AB454D391B1BD1F100FC10CD /* YFHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AB454D381B1BD1F100FC10CD /* YFHistoryVC.m */; };
 		AB454D3D1B1BD20100FC10CD /* YFSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB454D3C1B1BD20100FC10CD /* YFSettingTableViewController.m */; };
+		AB457F881BC4FE0300FADEEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB457F861BC4FE0300FADEEF /* Main.storyboard */; };
 		AB4748611B1F431F003EFACE /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB4748581B1F431F003EFACE /* area.plist */; };
 		AB4748621B1F431F003EFACE /* down_dark0.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4748591B1F431F003EFACE /* down_dark0.png */; };
 		AB4748631B1F431F003EFACE /* screentshoot1.png in Resources */ = {isa = PBXBuildFile; fileRef = AB47485A1B1F431F003EFACE /* screentshoot1.png */; };
@@ -43,7 +44,6 @@
 		AB497A931BB985AD0034A177 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB497A921BB985AD0034A177 /* Images.xcassets */; };
 		AB4C83E61BC253DB006EBADF /* YFAlarmBtn.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB4C83E51BC253DB006EBADF /* YFAlarmBtn.xib */; };
 		AB4C83E91BC255C3006EBADF /* YFAlarmBtnTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4C83E81BC255C3006EBADF /* YFAlarmBtnTableViewCell.m */; };
-		AB4C85781AE5219800D67565 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB4C85761AE5219800D67565 /* Main.storyboard */; };
 		AB4C857D1AE5219800D67565 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB4C857B1AE5219800D67565 /* LaunchScreen.xib */; };
 		AB4C85891AE5219800D67565 /* YF002Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4C85881AE5219800D67565 /* YF002Tests.m */; };
 		AB5BB74F1B0CB6C500CB1FA8 /* AKPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5BB74E1B0CB6C500CB1FA8 /* AKPickerView.m */; };
@@ -102,9 +102,11 @@
 		ABB54B0F1BC4A69400C565B3 /* NewFeatureView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB54B0E1BC4A69400C565B3 /* NewFeatureView1.xib */; };
 		ABB54B111BC4AB3200C565B3 /* NewFeatureView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB54B101BC4AB3200C565B3 /* NewFeatureView2.xib */; };
 		ABB54B131BC4AB7B00C565B3 /* NewFeatureView3.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB54B121BC4AB7B00C565B3 /* NewFeatureView3.xib */; };
+		ABB54B511BC4FB4200C565B3 /* YFMailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB54B501BC4FB4200C565B3 /* YFMailVC.m */; };
 		ABD3FE4C1B1B19F100190AE5 /* treatHistory.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABD3FE4B1B1B19F100190AE5 /* treatHistory.plist */; };
 		ABD3FE531B1B1D1900190AE5 /* treatRecordTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD3FE511B1B1D1900190AE5 /* treatRecordTVCell.m */; };
 		ABD3FE541B1B1D1900190AE5 /* treatRecordTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD3FE521B1B1D1900190AE5 /* treatRecordTVCell.xib */; };
+		ABF2397E1BC7F24C0002D3E4 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF2397D1BC7F24C0002D3E4 /* TextFieldValidator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +158,7 @@
 		AB454D381B1BD1F100FC10CD /* YFHistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFHistoryVC.m; sourceTree = "<group>"; };
 		AB454D3B1B1BD20100FC10CD /* YFSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFSettingTableViewController.h; sourceTree = "<group>"; };
 		AB454D3C1B1BD20100FC10CD /* YFSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFSettingTableViewController.m; sourceTree = "<group>"; };
+		AB457F871BC4FE0300FADEEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB4748581B1F431F003EFACE /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		AB4748591B1F431F003EFACE /* down_dark0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_dark0.png; sourceTree = "<group>"; };
 		AB47485A1B1F431F003EFACE /* screentshoot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screentshoot1.png; sourceTree = "<group>"; };
@@ -175,7 +178,6 @@
 		AB4C83E71BC255C3006EBADF /* YFAlarmBtnTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFAlarmBtnTableViewCell.h; sourceTree = "<group>"; };
 		AB4C83E81BC255C3006EBADF /* YFAlarmBtnTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFAlarmBtnTableViewCell.m; sourceTree = "<group>"; };
 		AB4C85691AE5219800D67565 /* YF002.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YF002.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB4C85771AE5219800D67565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB4C857C1AE5219800D67565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AB4C85821AE5219800D67565 /* YF002Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YF002Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB4C85871AE5219800D67565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -283,11 +285,15 @@
 		ABB54B0E1BC4A69400C565B3 /* NewFeatureView1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeatureView1.xib; sourceTree = "<group>"; };
 		ABB54B101BC4AB3200C565B3 /* NewFeatureView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeatureView2.xib; sourceTree = "<group>"; };
 		ABB54B121BC4AB7B00C565B3 /* NewFeatureView3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeatureView3.xib; sourceTree = "<group>"; };
+		ABB54B4F1BC4FB4200C565B3 /* YFMailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFMailVC.h; sourceTree = "<group>"; };
+		ABB54B501BC4FB4200C565B3 /* YFMailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFMailVC.m; sourceTree = "<group>"; };
 		ABD3FE4B1B1B19F100190AE5 /* treatHistory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = treatHistory.plist; sourceTree = "<group>"; };
 		ABD3FE501B1B1D1900190AE5 /* treatRecordTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = treatRecordTVCell.h; sourceTree = "<group>"; };
 		ABD3FE511B1B1D1900190AE5 /* treatRecordTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = treatRecordTVCell.m; sourceTree = "<group>"; };
 		ABD3FE521B1B1D1900190AE5 /* treatRecordTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = treatRecordTVCell.xib; sourceTree = "<group>"; };
 		ABF075281B42DC1700FA7CD6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABF2397C1BC7F24C0002D3E4 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldValidator.h; sourceTree = "<group>"; };
+		ABF2397D1BC7F24C0002D3E4 /* TextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldValidator.m; sourceTree = "<group>"; };
 		B12C35F9AB4866DF05DEB49C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C64BD1BEE6F8A8DA4BC9BE2A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1C255E4AB440494A98A47B9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -441,6 +447,8 @@
 				AB43D9021B305C9900426AAB /* YFAlarmTVC.m */,
 				AB995DB31B3AD71C00B7ACF6 /* YFRepeatTVC.h */,
 				AB995DB41B3AD71C00B7ACF6 /* YFRepeatTVC.m */,
+				ABB54B4F1BC4FB4200C565B3 /* YFMailVC.h */,
+				ABB54B501BC4FB4200C565B3 /* YFMailVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -500,8 +508,8 @@
 			isa = PBXGroup;
 			children = (
 				AB5BB7531B0CBDFA00CB1FA8 /* classes */,
-				AB4C85761AE5219800D67565 /* Main.storyboard */,
 				AB4C857B1AE5219800D67565 /* LaunchScreen.xib */,
+				AB457F861BC4FE0300FADEEF /* Main.storyboard */,
 				AB4C856C1AE5219800D67565 /* Supporting Files */,
 			);
 			path = YF002;
@@ -538,6 +546,7 @@
 		AB5BB74B1B0CB6C500CB1FA8 /* library */ = {
 			isa = PBXGroup;
 			children = (
+				ABF2397B1BC7F24C0002D3E4 /* TextFieldValidator */,
 				ABB54B071BC4A50200C565B3 /* MYBlurIntroductionView */,
 				AB3ED7411BBED35800FE8180 /* MHTextField */,
 				AB9B0E4A1BBD66AE00F94E63 /* SVProgressHUD */,
@@ -912,6 +921,15 @@
 			path = MYBlurIntroductionView;
 			sourceTree = "<group>";
 		};
+		ABF2397B1BC7F24C0002D3E4 /* TextFieldValidator */ = {
+			isa = PBXGroup;
+			children = (
+				ABF2397C1BC7F24C0002D3E4 /* TextFieldValidator.h */,
+				ABF2397D1BC7F24C0002D3E4 /* TextFieldValidator.m */,
+			);
+			path = TextFieldValidator;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1013,12 +1031,12 @@
 				ABB43DEC1B147EB9000C83AA /* treatItemList.plist in Resources */,
 				AB4748641B1F431F003EFACE /* screentshoot2.png in Resources */,
 				AB4748621B1F431F003EFACE /* down_dark0.png in Resources */,
+				AB457F881BC4FE0300FADEEF /* Main.storyboard in Resources */,
 				ABB54B111BC4AB3200C565B3 /* NewFeatureView2.xib in Resources */,
 				ABD3FE4C1B1B19F100190AE5 /* treatHistory.plist in Resources */,
 				AB497A931BB985AD0034A177 /* Images.xcassets in Resources */,
 				AB4748611B1F431F003EFACE /* area.plist in Resources */,
 				AB497A8B1BB80C0B0034A177 /* login.storyboard in Resources */,
-				AB4C85781AE5219800D67565 /* Main.storyboard in Resources */,
 				AB4C857D1AE5219800D67565 /* LaunchScreen.xib in Resources */,
 				ABD3FE541B1B1D1900190AE5 /* treatRecordTVCell.xib in Resources */,
 				ABB43DF81B15EBA8000C83AA /* treatParameterItemsViewCell.xib in Resources */,
@@ -1104,6 +1122,7 @@
 				AB454D391B1BD1F100FC10CD /* YFHistoryVC.m in Sources */,
 				AB8F6D751B2077F300377D42 /* NSDate+convenience.m in Sources */,
 				AB43D9031B305C9900426AAB /* YFAlarmTVC.m in Sources */,
+				ABB54B511BC4FB4200C565B3 /* YFMailVC.m in Sources */,
 				AB5BB78A1B0CBDFA00CB1FA8 /* YFNavigationController.m in Sources */,
 				ABB54A8A1BC35F3500C565B3 /* YFNewFeatureViewPVC.m in Sources */,
 				AB9B0E431BBD5D7200F94E63 /* BabyBluetooth.m in Sources */,
@@ -1125,6 +1144,7 @@
 				AB5BB78F1B0CBDFA00CB1FA8 /* YFNewfeatureViewController.m in Sources */,
 				AB8F6D781B2077F300377D42 /* UIView+convenience.m in Sources */,
 				AB9B0E471BBD5D7200F94E63 /* Babysister.m in Sources */,
+				ABF2397E1BC7F24C0002D3E4 /* TextFieldValidator.m in Sources */,
 				AB3ED7441BBED35800FE8180 /* MHTextField.m in Sources */,
 				AB9B0E461BBD5D7200F94E63 /* BabyRhythm.m in Sources */,
 				AB454D351B1BD1DF00FC10CD /* YFRecordTVC.m in Sources */,
@@ -1160,10 +1180,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AB4C85761AE5219800D67565 /* Main.storyboard */ = {
+		AB457F861BC4FE0300FADEEF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				AB4C85771AE5219800D67565 /* Base */,
+				AB457F871BC4FE0300FADEEF /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1260,12 +1280,12 @@
 			baseConfigurationReference = D1C255E4AB440494A98A47B9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = YF002/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1276,12 +1296,12 @@
 			baseConfigurationReference = B12C35F9AB4866DF05DEB49C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = YF002/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

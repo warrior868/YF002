@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>377DBC19E23E6EC73B9058B4FFA56B16</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>47C800E42623009B7192B025B3DD25A1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9105ABB265264E7CDB1C9C91F468E77F</key>
+		<key>87DAF7A4091EFC57862ADC22EECA7574</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9BE938332ADDCC6CAB6D74CFFC24D0A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EB20EB84E03329A56A8721222D8F17C3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

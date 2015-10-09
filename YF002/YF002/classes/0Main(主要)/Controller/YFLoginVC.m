@@ -8,21 +8,37 @@
 
 #import "YFLoginVC.h"
 #import "MHTextField.h"
+
+#import "TextFieldValidator.h"
 #import "SVProgressHUD.h"
+
+
+
+
+#define REGEX_USER_NAME  @"[A-Z0-9a-z._%+-]{3,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+#define REGEX_PASSWORD_LIMIT @"^.{6,20}$"
+#define REGEX_PASSWORD @"[A-Za-z0-9]{6,20}"
+
+
+#define sreenWidth [UIScreen mainScreen].bounds.size.width
+#define srennHeight [UIScreen mainScreen].bounds.size.height
+
 @interface YFLoginVC (){
  
+IBOutlet TextFieldValidator *userName;
+    
+IBOutlet TextFieldValidator *password;
 }
 
 
 @property (weak, nonatomic) IBOutlet UIView *userBackground;
 @property (weak, nonatomic) IBOutlet UIView *passWordBackground;
-@property (weak, nonatomic) IBOutlet UITextField *userName;
 
-@property (weak, nonatomic) IBOutlet UITextField *password;
 @property (weak, nonatomic) IBOutlet UIButton *logoinBtn;
 - (IBAction)logoinBtb:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *gotoHome;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 - (IBAction)GotoHome:(id)sender;
 
 @end
@@ -31,23 +47,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   // [_userName setRequired:YES];
-   // [_password setRequired:YES];
+    //界面上的UI设置
+    
+    _scrollView.frame = CGRectMake(0, 0, sreenWidth, 500);
+    //[_scrollView setContentSize:CGSizeMake(width, 600)];
     _userBackground.layer.cornerRadius = 6.0;
     _passWordBackground.layer.cornerRadius = 6.0;
     _logoinBtn.layer.cornerRadius = 6.0;
     _gotoHome.layer.cornerRadius = 3.0;
-    //self.navigationController.navigationBar.translucent = NO;
-   // [self.navigationController.navigationBar ];
-    // Do any additional setup after loading the view.
-//  //  [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWillShow:)
-//                                                 name:UIKeyboardWillShowNotification
-//                                               object:nil];
-//    //[[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWillHide:)
-//                                                 name:UIKeyboardWillHideNotification
-//                                               object:nil];
+   //验证要求
+    [self setupAlerts];
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -95,12 +104,7 @@
 //        [self performSegueWithIdentifier:@"newFeatureView" sender:nil];
 //    }
 //注册键盘回退通知
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,6 +112,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - 登陆输入验证
+-(void)setupAlerts{
+   
+    
+    [userName addRegx:REGEX_USER_NAME withMsg:@"输入注册邮箱地址"];
+    
+    [password addRegx:REGEX_PASSWORD_LIMIT withMsg:@"输入6~10位之间的注册密码"];
+     [password addRegx:REGEX_PASSWORD withMsg:@"输入6~10位之间的注册密码"];
+    
+}
 #pragma mark - MYIntroduction Delegate
 
 -(void)introduction:(MYBlurIntroductionView *)introductionView didChangeToPanel:(MYIntroductionPanel *)panel withIndex:(NSInteger)panelIndex{
@@ -128,76 +142,6 @@
     NSLog(@"Introduction did finish");
 }
 
-#pragma mark - 解决虚拟键盘挡住UITextField的方法
-
-- (void)keyboardWillShow:(NSNotification *)aNotification
-
-
-{
-    NSDictionary *userInfo = [aNotification userInfo];
-    
-    CGRect keyboardRect = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]
-                           
-                           CGRectValue];
-    NSTimeInterval animationDuration = [[userInfo
-                                         
-                                         objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    CGRect newFrame = self.view.frame;
-    newFrame.size.height -= keyboardRect.size.height;
-    
-    [UIView beginAnimations:@"ResizeTextView" context:nil];
-    [UIView setAnimationDuration:0.3f];
-    
-    self.view.frame = newFrame;  
-    
-    [UIView commitAnimations];  
-}
-/*
-- (void)keyboardWillShow:(NSNotification *)noti
-{
-    //键盘输入的界面调整
-    //键盘的高度
-    float height = 265.0;
-    CGRect frame = self.view.frame;
-    frame.size = CGSizeMake(frame.size.width, frame.size.height - height);
-    [UIView beginAnimations:@"Curl"context:nil];//动画开始
-    [UIView setAnimationDuration:0.30];
-    [UIView setAnimationDelegate:self];
-    [self.view setFrame:frame];
-    [UIView commitAnimations];
-}
-*/
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-    NSTimeInterval animationDuration = 0.30f;
-    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    CGRect rect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);
-    self.view.frame = rect;
-    [UIView commitAnimations];
-    [textField resignFirstResponder];
-    return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    CGRect frame = textField.frame;
-    int offset = frame.origin.y + 32 - (self.view.frame.size.height - 265.0);//键盘高度216
-    NSTimeInterval animationDuration = 0.30f;
-    [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    float width = self.view.frame.size.width;
-    float height = self.view.frame.size.height;
-    if(offset > 0)
-    {
-        CGRect rect = CGRectMake(0.0f, -offset,width,height);
-        self.view.frame = rect;
-    }
-    [UIView commitAnimations];
-}
-
 /*
 #pragma mark - Navigation
 
@@ -211,8 +155,11 @@
  #pragma mark 登陆
 - (IBAction)logoinBtb:(id)sender {
     
-    [SVProgressHUD showSuccessWithStatus:@"准备登陆"];
-    [self performSelector:@selector(GotoHome:) withObject:nil afterDelay:1.5f];
+    if([userName validate] & [password validate] ){
+        [SVProgressHUD showSuccessWithStatus:@"准备登陆"];
+        [self performSelector:@selector(GotoHome:) withObject:nil afterDelay:1.5f];
+    }
+    
    
 }
  #pragma mark 跳过注册

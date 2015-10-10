@@ -63,47 +63,46 @@ IBOutlet TextFieldValidator *password;
     
 //隐藏导航栏
     self.navigationController.navigationBarHidden = YES;
-    //Create Panel From Nib
-    MYIntroductionPanel *panel1 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) nibNamed:@"NewFeatureView1"];
-    MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) nibNamed:@"NewFeatureView2"];
-    MYIntroductionPanel *panel3 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) nibNamed:@"NewFeatureView3"];
-    //Add panels to an array
-    NSArray *panels = @[panel1, panel2, panel3];
+    //判断是否是新版本，出现相应地新特性
+     NSString *key = @"CFBundleVersion";
     
-    //Create the introduction view and set its delegate
-    MYBlurIntroductionView *introductionView = [[MYBlurIntroductionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    introductionView.delegate = self;
-    introductionView.BackgroundImageView.image = [UIImage imageNamed:@"guide3"];
-    [introductionView setBackgroundColor:[UIColor colorWithRed:90.0f/255.0f green:175.0f/255.0f blue:113.0f/255.0f alpha:0.65]];
+    // 取出沙盒中存储的上次使用软件的版本号
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastVersion = [defaults stringForKey:key];
     
-    //Build the introduction with desired panels
-    [introductionView buildIntroductionWithPanels:panels];
+    // 获得当前软件的版本号
+    NSString *currentVersion = [NSBundle mainBundle].infoDictionary[key];
     
-    //Add the introduction to your view
-    [self.view addSubview:introductionView];
-//判断是否是新版本，出现相应地新特性
- //   [self performSegueWithIdentifier:@"newFeatureView" sender:nil];
-//    NSString *key = @"CFBundleVersion";
-//    self.navigationController.navigationBarHidden = NO;
-//    // 取出沙盒中存储的上次使用软件的版本号
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSString *lastVersion = [defaults stringForKey:key];
-//    
-//    // 获得当前软件的版本号
-//    NSString *currentVersion = [NSBundle mainBundle].infoDictionary[key];
-//    
-//    if ([currentVersion isEqualToString:lastVersion]) {
-//        
-//    }
-//    else { // 新版本
-//        
-//        // 存储新版本
-//        [defaults setObject:currentVersion forKey:key];
-//        [defaults synchronize];
-//        // 跳转到新特性控制器
-//        [self performSegueWithIdentifier:@"newFeatureView" sender:nil];
-//    }
-//注册键盘回退通知
+    if ([currentVersion isEqualToString:lastVersion]) {
+        
+    }
+    else { // 新版本
+        
+        // 存储新版本
+        [defaults setObject:currentVersion forKey:key];
+        [defaults synchronize];
+        // 跳转到新特性控制器
+        //Create Panel From Nib
+        MYIntroductionPanel *panel1 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) nibNamed:@"NewFeatureView1"];
+        MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) nibNamed:@"NewFeatureView2"];
+        MYIntroductionPanel *panel3 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) nibNamed:@"NewFeatureView3"];
+        //Add panels to an array
+        NSArray *panels = @[panel1, panel2, panel3];
+        
+        //Create the introduction view and set its delegate
+        MYBlurIntroductionView *introductionView = [[MYBlurIntroductionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        introductionView.delegate = self;
+        introductionView.BackgroundImageView.image = [UIImage imageNamed:@"guide3"];
+        [introductionView setBackgroundColor:[UIColor colorWithRed:90.0f/255.0f green:175.0f/255.0f blue:113.0f/255.0f alpha:0.65]];
+        
+        //Build the introduction with desired panels
+        [introductionView buildIntroductionWithPanels:panels];
+        
+        //Add the introduction to your view
+        [self.view addSubview:introductionView];
+
+    }
+
    
 }
 

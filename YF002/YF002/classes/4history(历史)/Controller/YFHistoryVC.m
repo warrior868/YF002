@@ -51,6 +51,14 @@
 @property (weak, nonatomic) IBOutlet UIView *drugView;
 @property (weak, nonatomic) IBOutlet UIView *pickViewBackground;
 
+//曲线的数量
+@property (nonatomic,assign) NSInteger curveCount;
+
+
+//图表的左右两侧数据
+@property (nonatomic,assign) NSInteger leftMaxValue;
+@property (nonatomic,assign) NSInteger rightMaxValue;
+
 @end
 
 @implementation YFHistoryVC
@@ -124,7 +132,7 @@
     self.titles = @[@"扶他林",
                     @"布洛芬",
                     @"保泰松",
-                    @"其他",];
+                    @"其他",@"无",];
     
     [self.pickerView reloadData];
     [_pickerView selectItem:1 animated:NO];
@@ -136,12 +144,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-- (void)switchChangedSliderSwitch:(SliderSwitch *)sliderSwitch{
-    
-}
-
 
 #pragma mark -  设置日期UI选择的初始化
 - (void)initDateView
@@ -393,51 +395,53 @@ int backDaysM(int m){
             return [self returnCurrentYear:0];
         break;}
 }
-#pragma mark  曲线的数量以及纵轴右边药物值
+#pragma mark  设置曲线的数量
 - (NSArray* )returnPointXandYWithTip:(int)tip
 {
     
-    //创建第一条线的点
-    NSMutableArray *aPoints = [[NSMutableArray alloc]init];
-    //创建第二条线的点
-    NSMutableArray *bPoints = [[NSMutableArray alloc] init];
-    //根据划分几个网格来设置点数据
-    //int gap = chat.frame.size.width/([self rePointCountWithTip:tip]-2);
-    int gap = chat.frame.size.width/([self rePointCountWithTip:tip]-2);
-    if(([self rePointCountWithTip:tip]-2)*gap>=250){
-        gap-=2;
+    if (_curveCount == 2) {
+        //创建第一条线的点
+        NSMutableArray *aPoints = [[NSMutableArray alloc]init];
+        //创建第二条线的点
+        NSMutableArray *bPoints = [[NSMutableArray alloc] init];
+        //根据划分几个网格来设置点数据
+        //int gap = chat.frame.size.width/([self rePointCountWithTip:tip]-2);
+        int gap = chat.frame.size.width/([self rePointCountWithTip:tip]-2);
+        if(([self rePointCountWithTip:tip]-2)*gap>=250){
+            gap-=2;
+        }
+        for(int i=0; i<[self rePointCountWithTip:tip]-1; i++){
+            //随机产生画曲线所需的点
+            CGPoint point1 =CGPointMake(1+gap*i, arc4random()%180);
+            [aPoints addObject:[NSValue valueWithCGPoint:point1]];
+            CGPoint point2 =CGPointMake(1+gap*i, arc4random()%180+20);
+            [bPoints addObject:[NSValue valueWithCGPoint:point2]];
+        }
+        return [NSArray arrayWithObjects:aPoints,bPoints, nil];
+    } else {
+        //创建第一条线的点
+        NSMutableArray *aPoints = [[NSMutableArray alloc]init];
+        
+        //根据划分几个网格来设置点数据
+        //int gap = chat.frame.size.width/([self rePointCountWithTip:tip]-2);
+        int gap = chat.frame.size.width/([self rePointCountWithTip:tip]-2);
+        if(([self rePointCountWithTip:tip]-2)*gap>=250){
+            gap-=2;
+        }
+        for(int i=0; i<[self rePointCountWithTip:tip]-1; i++){
+            //随机产生画曲线所需的点
+            CGPoint point1 =CGPointMake(1+gap*i, arc4random()%180);
+            [aPoints addObject:[NSValue valueWithCGPoint:point1]];
+            
+        }
+        return [NSArray arrayWithObjects:aPoints, nil];
     }
-    for(int i=0; i<[self rePointCountWithTip:tip]-1; i++){
-        //随机产生画曲线所需的点
-        CGPoint point1 =CGPointMake(1+gap*i, arc4random()%180);
-        [aPoints addObject:[NSValue valueWithCGPoint:point1]];
-        CGPoint point2 =CGPointMake(1+gap*i, arc4random()%180+20);
-        [bPoints addObject:[NSValue valueWithCGPoint:point2]];
-    }
     
-    
-//纵轴右边药物值
-    //取出代表药物曲线的最后一个点
-    NSValue *lastPoint=[bPoints lastObject];
-    CGPoint drugPoint = [lastPoint CGPointValue];
-    
-    //图表底部横坐标刻度位置
-    //_drugLab = [[UILabel alloc] init];
-    _drugLab.frame = CGRectMake(drugPoint.x+15, drugPoint.y, 34, 10);
-    //图表底部横坐标刻度内容
-    [_drugLab setText:@"布洛芬"];
-    [_drugLab setBackgroundColor:[UIColor clearColor]];
-    //图表底部横坐标刻度颜色
-    [_drugLab setTextColor:[UIColor grayColor]];
-    [_drugLab setFont:[UIFont systemFontOfSize:11]];
-    [_chatOnView addSubview:_drugLab];
-    
-    return [NSArray arrayWithObjects:aPoints,bPoints, nil];
     
     
 }
 
-#pragma mark  根据tip画表格线，纵横坐标刻度值
+#pragma mark  根据周月年画表格线，纵横坐标刻度值
 - (void)readyDrawLineWithTip:(int)tip
 {
     [self initDateView];
@@ -456,14 +460,25 @@ int backDaysM(int m){
     }
     if(!chat.lines.count){
         // 1.图表纵向分割线以及时间刻度值
+        //1.0 纵向线间距
         int gap = chat.frame.size.width/([self reLineCountWithTip:tip]-2);
+        //1.1循环划线
         for(int i=0; i<[self reLineCountWithTip:tip]; i++){
             Line* line = [[Line alloc]init];
             if(i!=[self reLineCountWithTip:tip]-1){
-                if (i==0) {
+                //如果曲线条数位2 则画出右边的纵向线，否则不画
+                if (i==0 ) {
                     line.firstPoint = CGPointMake(1+gap*i, 0);
                     line.secondPoint = CGPointMake(1+gap*i, 205);
+                    
                 }
+                if (_curveCount == 2 && i== [self reLineCountWithTip:tip]-2) {
+                    line.firstPoint = CGPointMake(1+gap*i, 0);
+                    line.secondPoint = CGPointMake(1+gap*i, 205);
+                    
+                }
+                
+                
                 
                 //图表底部横坐标刻度位置
                 UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(25+gap*i, 5, 34, 10)];
@@ -486,16 +501,28 @@ int backDaysM(int m){
             gap2-=2;
         }
         chat.points = [[self returnPointXandYWithTip:tip] mutableCopy];
-
-     //3.纵轴左边刻度数值
+        
+        //3.纵轴左边刻度数值
         for(int i=0; i<5; i++){
-            UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(segmentControl.frame.origin.x+segmentControl.frame.origin.x-20,63+i*50, 30, 20)];
+            UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(10, i*50-chat.frame.size.height-5, 30, 20)];
             [label setText:[NSString stringWithFormat:@"%d", 40-i*10]];
             [label setTextColor:[UIColor colorWithRed:120.0/255 green:120.0/255 blue:120.0/255 alpha:1.0]];
             [label setFont:[UIFont systemFontOfSize:11]];
             [label setTextAlignment:NSTextAlignmentCenter];
             [label setBackgroundColor:[UIColor clearColor]];
-            [_chatOnView addSubview:label];
+            [dayView addSubview:label];
+        }
+        //4.如果曲线条数为2，则设置纵轴右边刻度数值
+        if (_curveCount == 2) {
+            for(int i=0; i<5; i++){
+                UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake( 290,  i*50-chat.frame.size.height-5, 30, 20)];
+                [label setText:[NSString stringWithFormat:@"%d", 20-i*5]];
+                [label setTextColor:[UIColor blueColor ]];
+                [label setFont:[UIFont systemFontOfSize:11]];
+                [label setTextAlignment:NSTextAlignmentCenter];
+                [label setBackgroundColor:[UIColor clearColor]];
+                [dayView addSubview:label];
+            }
         }
     }
     NSArray *lastPoint = [chat.points lastObject] ;
@@ -710,8 +737,16 @@ int backDaysM(int m){
 
 - (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item
 {
-    [self controlPressOne];
- 
+    
+    if ([self.titles[item] isEqualToString:@"无"]) {
+        _curveCount = 1;
+        [self controlPress:nil];
+    } else {
+        _curveCount = 2;
+        [self controlPress:nil];
+    }
+    [self controlPress:nil];
+    
     NSLog(@"%@", self.titles[item]);
 }
 

@@ -144,7 +144,10 @@
     [_btn setBackgroundImage:[UIImage imageNamed:@"bluetoothOff"] forState:UIControlStateNormal];
     // 0.12增加selector的方法
     [_btn addTarget: self action: @selector(bluetoothConnect) forControlEvents: UIControlEventTouchUpInside];
-
+    UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc]initWithCustomView:_btn];
+    self.navigationItem.leftBarButtonItem = leftBtnItem;
+    //0.13使导航栏右边的字体大小
+    //self.navigationItem.rightBarButtonItem.title.
     
     
    

@@ -36,9 +36,12 @@
 
 #pragma mark - Table view data source
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.row == 2) {
         [self sendEmailAction];
+        NSLog(@"选中了 %ld", (long)indexPath.row);
     }
+    
 }
 #pragma mark - Mail 方法
 - (void)sendEmailAction

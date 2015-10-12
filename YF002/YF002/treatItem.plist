@@ -8,13 +8,13 @@
 		<key>treatName</key>
 		<string>上次使用参数</string>
 		<key>treatModel</key>
-		<string>M2</string>
+		<string>3</string>
 		<key>treatWave</key>
-		<string>W1</string>
+		<string>B</string>
 		<key>treatTime</key>
-		<string>T1</string>
+		<string>2</string>
 		<key>treatStrength</key>
-		<string>S3</string>
+		<string>2</string>
 	</dict>
 	<dict>
 		<key>treatDate</key>
@@ -22,13 +22,13 @@
 		<key>treatName</key>
 		<string>推荐1</string>
 		<key>treatModel</key>
-		<string>M1</string>
+		<string>2</string>
 		<key>treatWave</key>
-		<string>W4</string>
+		<string>R</string>
 		<key>treatTime</key>
-		<string>T2</string>
+		<string>4</string>
 		<key>treatStrength</key>
-		<string>S2</string>
+		<string>3</string>
 	</dict>
 	<dict>
 		<key>treatDate</key>
@@ -36,13 +36,13 @@
 		<key>treatName</key>
 		<string>推荐2</string>
 		<key>treatModel</key>
-		<string>M1</string>
+		<string>1</string>
 		<key>treatWave</key>
-		<string>W4</string>
+		<string>A</string>
 		<key>treatTime</key>
-		<string>T3</string>
+		<string>1</string>
 		<key>treatStrength</key>
-		<string>S2</string>
+		<string>1</string>
 	</dict>
 </array>
 </plist>

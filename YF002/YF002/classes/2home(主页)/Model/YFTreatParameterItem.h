@@ -25,4 +25,6 @@
 //从treatHistory读取的数据
 @property (nonatomic, strong) NSMutableArray *datafromTreatHistory;
 -(instancetype)initWithIndex:(NSInteger) item;
+
+- (void)newParameterWithIndex:(NSInteger) item;
 @end

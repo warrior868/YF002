@@ -53,6 +53,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="forgetPassword:" destination="8xv-gR-vCT" eventType="touchUpInside" id="Wub-Mv-Wu7"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFh-yU-aHM">
                                         <rect key="frame" x="31" y="319" width="258" height="35"/>
@@ -293,6 +296,7 @@
                     <connections>
                         <outlet property="regsiterBtn" destination="nUU-Uu-Zph" id="Gn4-MC-jTG"/>
                         <outlet property="scrollView" destination="Rzf-XR-g4U" id="zQy-W2-PBb"/>
+                        <outlet property="sexChoose" destination="Oid-AG-tmT" id="fxJ-a6-IBg"/>
                         <outlet property="userComfirmPassword" destination="urm-A0-boD" id="Kcs-uq-LA8"/>
                         <outlet property="userHeigh" destination="Lrp-B8-Ud6" id="FQ5-Ge-6Qv"/>
                         <outlet property="userName" destination="jSE-Er-ig5" id="sSJ-1b-8OW"/>

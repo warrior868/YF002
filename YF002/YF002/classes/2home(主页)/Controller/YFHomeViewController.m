@@ -26,6 +26,7 @@
 #import "STAlertView.h"
 
 #import "MMMaterialDesignSpinner.h"
+#import <QuartzCore/QuartzCore.h>
 #import "Masonry.h"
 
 
@@ -152,7 +153,7 @@
     
    
 //  1.初始化治疗参数
-    _treatParameterItem = [[YFTreatParameterItem alloc] initWithIndex:1];
+    _treatParameterItem = [[YFTreatParameterItem alloc] initWithIndex:2];
      NSLog(@"%@", _treatParameterItem.datafromTreatItem);
 
 //   2.创建 pickerView 第一个时间选择pickview X轴xPickerView,y轴yPickerView,y轴增加值xAddPickerView
@@ -162,9 +163,7 @@
     [self treatWavePickerViewLoad:CGRectMake(xPickerView, (yPickerView+2*yAddPickerView), 240, 30)];
     //[self treatModelPickerViewLoad:CGRectMake(xPickerView,(yPickerView+3*yAddPickerView), 200, 60)];
      //   初始化载入每个pickerView选中的行
-    [_treatTimePickerView selectItem:[[_treatParameterItem.treatTime substringWithRange:NSMakeRange(0, 1)] integerValue] animated:NO];
-    [_treatStrengthPickerView selectItem:[[_treatParameterItem.treatStrength substringWithRange:NSMakeRange(0, 1)] integerValue] animated:NO];
-    [_treatWavePickerView selectItem:[[_treatParameterItem.treatWave substringWithRange:NSMakeRange(0, 1)] integerValue] animated:NO];
+    [self loadTreatItemToPickerView];
  
     
 //  4.创建 MZTimerLabel倒计时  按钮
@@ -219,9 +218,18 @@
     
     //2 扫描、连接
     baby.scanForPeripherals().connectToPeripherals().begin();
-    NSLog(@"搜索完成");
+    
   // 7.push链接
-    [self performSegueWithIdentifier:@"forChoose" sender:self];
+    //延时1秒
+    double delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+          //跳转到选择界面
+          [self performSegueWithIdentifier:@"forChoose" sender:self];
+    });
+  
+    //7.1 监听选择视图返回的值，得到值后进行相应操作
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ChangeNameNotification:) name:@"ChangeNameNotification" object:nil];
     
 
 }
@@ -230,6 +238,14 @@
 -(void)viewDidAppear:(BOOL)animated{
     NSLog(@"viewDidAppear");
        self.navigationController.navigationBarHidden = NO;
+   
+    //如果还在及时，则圆圈动画继续
+    if([_timer counting]){
+        [self.spinnerView stopAnimating];
+        [self.spinnerView startAnimating];
+     }
+    
+    
     //停止之前的连接
     //[baby cancelAllPeripheralsConnection];
     //设置委托后直接可以使用，无需等待CBCentralManagerStatePoweredOn状态。
@@ -237,6 +253,46 @@
 //baby.scanForPeripherals().begin().stop(10);
     //baby.having(self.currPeripheral).connectToPeripherals().begin();
 }
+
+
+#pragma mark -  选择视图返回的值进行处理
+-(void)ChangeNameNotification:(NSNotification*)notification{
+    NSDictionary *nameDictionary = [notification userInfo];
+    NSString *fromChooseVC = [nameDictionary objectForKey:@"value"];
+    if ([fromChooseVC isEqualToString:@"1"]) {
+        NSLog(@"选择了1");
+        //选择对于的treatParameterItem
+        [_treatParameterItem newParameterWithIndex:2];
+        [self loadTreatItemToPickerView];
+        //editParameter关闭编辑并且把开启参数编辑按钮可用
+        [self closeEditParameter];
+
+        
+    } else {
+        if ([fromChooseVC isEqualToString:@"2"]) {
+            NSLog(@"选择了2/推荐参数");
+            //选择对于的treatParameterItem
+            [_treatParameterItem newParameterWithIndex:0];
+            [self loadTreatItemToPickerView];
+            //editParameter关闭编辑并且把开启参数编辑按钮不可用
+            [self openEditParameter];
+            //_editParameter.userInteractionEnabled = NO;
+        } else {
+            if ([fromChooseVC isEqualToString:@"3"]) {
+                NSLog(@"选择了3/上次治疗参数");
+                //选择对于的treatParameterItem
+                [_treatParameterItem newParameterWithIndex:1];
+                [self loadTreatItemToPickerView];
+                //editParameter关闭编辑并且把开启参数编辑按钮不可用
+                [self openEditParameter];
+                //_editParameter.userInteractionEnabled = NO;
+            }
+        }
+    }
+}
+//移除观察者
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -428,7 +484,12 @@
         }
         
 }
-
+- (void) loadTreatItemToPickerView{
+//载入每个pickerView选中的行
+[_treatTimePickerView selectItem:[[_treatParameterItem.treatTime substringWithRange:NSMakeRange(0, 1)] integerValue] animated:NO];
+[_treatStrengthPickerView selectItem:[[_treatParameterItem.treatStrength substringWithRange:NSMakeRange(0, 1)] integerValue] animated:NO];
+[_treatWavePickerView selectItem:[[_treatParameterItem.treatWave substringWithRange:NSMakeRange(0, 1)] integerValue] animated:NO];
+}
 #pragma mark - 保存参数按钮
 
     /*- (IBAction)saveTreatPamameterItem:(id)sender{
@@ -563,6 +624,8 @@
             //editParameter关闭编辑并且把开启参数编辑按钮不可用
             [self openEditParameter];
             _editParameter.userInteractionEnabled = NO;
+            //导航栏右上角参数更改不可用
+        self.navigationItem.rightBarButtonItem.enabled =NO;
             //圆圈动画开始
             [self.spinnerView startAnimating];
             [_startPauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
@@ -579,6 +642,8 @@
     
     if(![_timer counting]){
         [_startPauseBtn setTitle:@"开始" forState:UIControlStateNormal];
+        //导航栏右上角参数更改不可用
+        self.navigationItem.rightBarButtonItem.enabled =YES;
     }
      [_resetBtn setEnabled:NO];
      //editParameter开启参数编辑按钮可用
@@ -592,7 +657,10 @@
     [_startPauseBtn setTitle:@"开始" forState:UIControlStateNormal];
     
     //editParameter开启参数编辑按钮可用
-    _editParameter.userInteractionEnabled = YES;
+    _editParameter.hidden = NO;
+    
+    //导航栏右上角参数更改不可用
+    self.navigationItem.rightBarButtonItem.enabled =YES;
     
     //提示用户完成治疗,出现用户选择画面
     [self performSegueWithIdentifier:@"showDone" sender:self];
@@ -687,14 +755,50 @@
 }
 */
 
-#pragma mark - BabyBluetooth 蓝牙部分
+#pragma mark - ----BabyBluetooth 蓝牙部分-----
 
 
 
 
-#pragma mark  蓝牙连接
+#pragma mark  蓝牙连接或断开
 - (void) bluetoothConnect{
+    //1：设置连接的设备的过滤器
+    __block BOOL isFirst = YES;
+    [baby setFilterOnConnetToPeripherals:^BOOL(NSString *peripheralName) {
+        //这里的规则是：连接第一个AAA打头的设备
+        if(isFirst && [peripheralName hasPrefix:@"Sim"]){
+            isFirst = NO;
+            return YES;
+        }
+        return NO;
+    }];
+    
+    //2 扫描、连接
+    baby.scanForPeripherals().connectToPeripherals().begin();
+    
+    //baby.scanForPeripherals().begin().stop(6);
+    [_btn.layer addAnimation:[self opacityForever_Animation:0.2] forKey:nil];
+    //延时1秒
+//    double delayInSeconds = 2;
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//        //跳转到选择界面
+//        [SVProgressHUD showErrorWithStatus:@"无法找到可用的蓝牙设备" ];
+//    });
 
+}
+#pragma mark 闪烁的动画
+-(CABasicAnimation *)opacityForever_Animation:(float)time
+{
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];//必须写opacity才行。
+    animation.fromValue = [NSNumber numberWithFloat:1.0f];
+    animation.toValue = [NSNumber numberWithFloat:0.0f];//这是透明度。
+    animation.autoreverses = YES;
+    animation.duration = time;
+    animation.repeatCount = 5;
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
+    return animation;
 }
 
 //蓝牙网关初始化和委托方法设置

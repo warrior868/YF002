@@ -41,6 +41,7 @@ IBOutlet TextFieldValidator *password;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 - (IBAction)GotoHome:(id)sender;
 
+- (IBAction)forgetPassword:(id)sender;
 @end
 
 @implementation YFLoginVC
@@ -117,8 +118,8 @@ IBOutlet TextFieldValidator *password;
     
     [userName addRegx:REGEX_USER_NAME withMsg:@"输入注册邮箱地址"];
     
-    [password addRegx:REGEX_PASSWORD_LIMIT withMsg:@"输入6~10位之间的注册密码"];
-     [password addRegx:REGEX_PASSWORD withMsg:@"输入6~10位之间的注册密码"];
+    [password addRegx:REGEX_PASSWORD_LIMIT withMsg:@"长度在6~10位之间的注册密码"];
+     [password addRegx:REGEX_PASSWORD withMsg:@"数字和字母组合"];
     
 }
 #pragma mark - MYIntroduction Delegate
@@ -165,5 +166,9 @@ IBOutlet TextFieldValidator *password;
 - (IBAction)GotoHome:(id)sender {
     UIStoryboard *home = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.view.window.rootViewController = home.instantiateInitialViewController;
+}
+
+- (IBAction)forgetPassword:(id)sender {
+    [SVProgressHUD showInfoWithStatus:@"请登录网站进行密码找回"];
 }
 @end

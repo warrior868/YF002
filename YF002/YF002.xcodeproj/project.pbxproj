@@ -102,6 +102,7 @@
 		ABB54B0F1BC4A69400C565B3 /* NewFeatureView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB54B0E1BC4A69400C565B3 /* NewFeatureView1.xib */; };
 		ABB54B111BC4AB3200C565B3 /* NewFeatureView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB54B101BC4AB3200C565B3 /* NewFeatureView2.xib */; };
 		ABB54B131BC4AB7B00C565B3 /* NewFeatureView3.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB54B121BC4AB7B00C565B3 /* NewFeatureView3.xib */; };
+		ABC60D821BC9D66A00B25337 /* YFSettingWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC60D811BC9D66A00B25337 /* YFSettingWebVC.m */; };
 		ABD3FE4C1B1B19F100190AE5 /* treatHistory.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABD3FE4B1B1B19F100190AE5 /* treatHistory.plist */; };
 		ABD3FE531B1B1D1900190AE5 /* treatRecordTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD3FE511B1B1D1900190AE5 /* treatRecordTVCell.m */; };
 		ABD3FE541B1B1D1900190AE5 /* treatRecordTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD3FE521B1B1D1900190AE5 /* treatRecordTVCell.xib */; };
@@ -284,6 +285,8 @@
 		ABB54B0E1BC4A69400C565B3 /* NewFeatureView1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeatureView1.xib; sourceTree = "<group>"; };
 		ABB54B101BC4AB3200C565B3 /* NewFeatureView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeatureView2.xib; sourceTree = "<group>"; };
 		ABB54B121BC4AB7B00C565B3 /* NewFeatureView3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeatureView3.xib; sourceTree = "<group>"; };
+		ABC60D801BC9D66A00B25337 /* YFSettingWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFSettingWebVC.h; sourceTree = "<group>"; };
+		ABC60D811BC9D66A00B25337 /* YFSettingWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFSettingWebVC.m; sourceTree = "<group>"; };
 		ABD3FE4B1B1B19F100190AE5 /* treatHistory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = treatHistory.plist; sourceTree = "<group>"; };
 		ABD3FE501B1B1D1900190AE5 /* treatRecordTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = treatRecordTVCell.h; sourceTree = "<group>"; };
 		ABD3FE511B1B1D1900190AE5 /* treatRecordTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = treatRecordTVCell.m; sourceTree = "<group>"; };
@@ -444,6 +447,8 @@
 				AB43D9021B305C9900426AAB /* YFAlarmTVC.m */,
 				AB995DB31B3AD71C00B7ACF6 /* YFRepeatTVC.h */,
 				AB995DB41B3AD71C00B7ACF6 /* YFRepeatTVC.m */,
+				ABC60D801BC9D66A00B25337 /* YFSettingWebVC.h */,
+				ABC60D811BC9D66A00B25337 /* YFSettingWebVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1134,6 +1139,7 @@
 				AB9B0E451BBD5D7200F94E63 /* BabyOptions.m in Sources */,
 				AB3ED7691BC16E1E00FE8180 /* YFNewAlarmTableViewCell.m in Sources */,
 				AB5BB78B1B0CBDFA00CB1FA8 /* YFTabBarViewController.m in Sources */,
+				ABC60D821BC9D66A00B25337 /* YFSettingWebVC.m in Sources */,
 				AB454D3D1B1BD20100FC10CD /* YFSettingTableViewController.m in Sources */,
 				AB5BB78F1B0CBDFA00CB1FA8 /* YFNewfeatureViewController.m in Sources */,
 				AB8F6D781B2077F300377D42 /* UIView+convenience.m in Sources */,
@@ -1274,6 +1280,7 @@
 			baseConfigurationReference = D1C255E4AB440494A98A47B9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = YF002/Info.plist;
@@ -1290,6 +1297,7 @@
 			baseConfigurationReference = B12C35F9AB4866DF05DEB49C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = YF002/Info.plist;

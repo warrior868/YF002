@@ -32,6 +32,7 @@
     
 }
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *sexChoose;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -69,7 +70,12 @@
     _view5.layer.cornerRadius =viewCornerRadius;
     _view6.layer.cornerRadius =viewCornerRadius;
     _regsiterBtn.layer.cornerRadius =viewCornerRadius;
-   
+    //性别选中
+    _sexChoose.selectedSegmentIndex = 1;
+    [_sexChoose addTarget: self
+                    action: @selector(controlPressed:)
+                forControlEvents: UIControlEventValueChanged
+     ];
     
     
 // 0.设置返回按钮的背景图片
@@ -87,6 +93,11 @@
 //验证要求
     [self setupAlerts];
     
+}
+#pragma mark - 性别的选择
+- (void) controlPressed:(id)sender {
+    NSInteger selectedSegment = _sexChoose.selectedSegmentIndex;
+   // NSLog(@"Segment %ld selected\n", selectedSegment);
 }
 
 #pragma mark - 登陆输入验证

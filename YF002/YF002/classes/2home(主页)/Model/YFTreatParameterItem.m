@@ -31,6 +31,16 @@
     return self;
 }
 
+- (void)newParameterWithIndex:(NSInteger) item{
+    NSDictionary *dic = [_datafromTreatItem objectAtIndex:item];
+    _treatTime = [dic objectForKey:@"treatTime"];
+    _treatStrength = [dic objectForKey:@"treatStrength"];
+    _treatWave = [dic objectForKey:@"treatWave"];
+    _treatModel = [dic objectForKey:@"treatModel"];
+    _treatName = [dic objectForKey:@"treatName"];
+    _treatDate = [dic objectForKey:@"treatDate"];
+}
+
 
 /**  read from treatTtem.plist
 *

@@ -58,11 +58,11 @@
     [mailCompose setSubject:nameSubject];
     
     // 设置收件人
-    [mailCompose setToRecipients:@[@"邮箱号码"]];
+    //[mailCompose setToRecipients:@[@"邮箱号码"]];
     // 设置抄送人
-    [mailCompose setCcRecipients:@[@"邮箱号码"]];
+    //[mailCompose setCcRecipients:@[@"邮箱号码"]];
     // 设置密抄送
-    [mailCompose setBccRecipients:@[@"邮箱号码"]];
+    //[mailCompose setBccRecipients:@[@"邮箱号码"]];
     
     /**
      *  设置邮件的正文内容

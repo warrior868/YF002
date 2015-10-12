@@ -39,6 +39,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 /*
 #pragma mark - Navigation
 
@@ -50,14 +51,20 @@
 */
 
 - (IBAction)byUser:(id)sender {
-           [self dismissViewControllerAnimated:YES completion:^{}];
+         NSString *a = @"1";
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeNameNotification" object:self userInfo:@{@"value":a}];
+        [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (IBAction)byRecommend:(id)sender {
+    NSString *a = @"2";
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeNameNotification" object:self userInfo:@{@"value":a}];
         [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (IBAction)byPrevious:(id)sender {
+    NSString *a = @"3";
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeNameNotification" object:self userInfo:@{@"value":a}];
         [self dismissViewControllerAnimated:YES completion:^{}];
 }
 @end

@@ -89,13 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "YF002/classes/2home(&#x4e3b;&#x9875;)/Controller/YFHomeViewController.m"
-            timestampString = "466335926.460346"
+            filePath = "YF002/classes/5setting(&#x8bbe;&#x7f6e;)/Controller/YFAlarmTVC.m"
+            timestampString = "466821771.535361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
-            landmarkName = "-ChangeNameNotification:"
+            startingLineNumber = "455"
+            endingLineNumber = "455"
+            landmarkName = "-textFieldShouldBeginEditing:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,29 +105,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "YF002/classes/2home(&#x4e3b;&#x9875;)/Model/YFTreatParameterItem.m"
-            timestampString = "466218838.547009"
+            filePath = "YF002/classes/5setting(&#x8bbe;&#x7f6e;)/Controller/YFAlarmTVC.m"
+            timestampString = "466821771.535361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "-readFromTreatHistory"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
+            landmarkName = "-textFieldShouldBeginEditing:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "YF002/classes/2home(&#x4e3b;&#x9875;)/Controller/YFHomeViewController.m"
-            timestampString = "466232336.81447"
+            filePath = "YF002/classes/5setting(&#x8bbe;&#x7f6e;)/Controller/YFAlarmTVC.m"
+            timestampString = "466820736.528606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
-            landmarkName = "-ChangeNameNotification:"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "-actionDone:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,12 +138,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YF002/classes/2home(&#x4e3b;&#x9875;)/Controller/YFHomeViewController.m"
-            timestampString = "466335926.460346"
+            timestampString = "466871066.520936"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
-            landmarkName = "-ChangeNameNotification:"
+            startingLineNumber = "551"
+            endingLineNumber = "551"
+            landmarkName = "-startOrResumeCountDown:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YF002/classes/2home(&#x4e3b;&#x9875;)/Controller/YFHomeViewController.m"
+            timestampString = "466871466.17383"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "571"
+            endingLineNumber = "571"
+            landmarkName = "-startOrResumeCountDown:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

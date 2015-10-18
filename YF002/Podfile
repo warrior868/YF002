@@ -4,3 +4,5 @@ pod 'IQKeyboardManager'
 
 pod 'FastAnimationWithPOP', :head
 
+pod 'Masonry'
+

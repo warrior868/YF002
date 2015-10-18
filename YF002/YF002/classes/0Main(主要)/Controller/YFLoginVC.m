@@ -16,7 +16,7 @@
 
 
 #define REGEX_USER_NAME  @"[A-Z0-9a-z._%+-]{3,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
-#define REGEX_PASSWORD_LIMIT @"^.{6,20}$"
+#define REGEX_PASSWORD_LIMIT @"^.{3,10}$"
 #define REGEX_PASSWORD @"[A-Za-z0-9]{6,20}"
 
 

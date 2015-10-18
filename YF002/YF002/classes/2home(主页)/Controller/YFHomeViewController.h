@@ -8,13 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "BabyBluetooth.h"
+#import "YFAppDelegate.h"
+#import "blePeripheral.h"
 
-@interface YFHomeViewController : UIViewController <CBCentralManagerDelegate,CBPeripheralDelegate>{
-@public
-    BabyBluetooth *baby;}
+@interface YFHomeViewController : UIViewController {
+    YFAppDelegate    *blead;
 
-@property __block NSMutableArray *services;
-@property(strong,nonatomic)CBPeripheral *currPeripheral;
+}
+
+@property (nonatomic) blePeripheral *currentPeripheral;
+@property (strong, nonatomic)  UITableView *blePeripheralTableView;
+
+- (void)clearAllButton:(UIButton *)sender;
+- (void)AutoManualSendButton:(UIButton *)sender;
+- (void)SendInputButton:(UIButton *)sender;
+- (void)touchBackgroundDownEvent:(UIControl *)sender;
 
 @end

@@ -1,225 +1,472 @@
-//
-//  YFAlarmTVC.m
-//  YF002
-//
-//  Created by Mushroom on 6/16/15.
-//  Copyright (c) 2015 Mushroom. All rights reserved.
-//
+
+
 
 #import "YFAlarmTVC.h"
+#import <Masonry/Masonry.h>
 
-#import <EventKit/EventKit.h>
-#import <EventKitUI/EventKitUI.h>
-#import "YFNewAlarmTableViewCell.h"
-#import "YFAlarmBtnTableViewCell.h"
+#define sreenWidth [UIScreen mainScreen].bounds.size.width
+#define srennHeight [UIScreen mainScreen].bounds.size.height
+@interface YFAlarmTVC ()<UITableViewDataSource,UITableViewDelegate, UITextFieldDelegate>
 
-@interface YFAlarmTVC () <UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic ,strong) NSMutableArray *weekName;
-@property (nonatomic ,strong) NSMutableArray *selectedArray;
-@property (nonatomic ,strong) NSIndexPath *lastIndexPath;
-@property (nonatomic ,assign) NSInteger   newRow;
+#pragma mark - IBActions
+
+
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbarCancelDone;
+@property (weak, nonatomic) IBOutlet UIPickerView *customPicker;
+
+
+@property (nonatomic ,strong) NSMutableArray *timeArray;
+@property (nonatomic ,strong) NSMutableArray *onOrOffArray;
+
+
+#pragma mark - IBActions
+
+- (IBAction)actionCancel:(id)sender;
+
+- (IBAction)actionDone:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 
 @end
 
 @implementation YFAlarmTVC
+{
+    
+    
+    NSArray *amPmArray;
+    NSArray *hoursArray;
+    NSMutableArray *minutesArray;
+    BOOL firstTimeLoad;
+    NSMutableString *selectTime;
+    
+    NSInteger textFieldTag;
+    NSInteger tagNumber;
+    
+}
 
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    //隐藏多余的分割线
-    self.tableView.tableFooterView = [[UIView alloc ] init];
-
-    _selectedArray = [NSMutableArray arrayWithObjects:@"06:30", @"11:30",@"16:30",nil];
+        // set tableView delegate.
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    tagNumber = 1;
+    
+    //_customPicker.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>);
+    
+        
+    //读取userDefault中alarmDicList的值
+    NSMutableArray *alarmList = (NSMutableArray *)[[NSUserDefaults standardUserDefaults] objectForKey:@"alarmList"];
+    
+    if (alarmList == nil) {
+        NSArray *time = [NSArray arrayWithObjects:@"06:30", @"11:30",@"16:30",@"00:00",nil];
+        NSArray *onOrOff = [NSArray arrayWithObjects:@"on", @"off",@"off",@"on",nil];
+        alarmList= [NSMutableArray arrayWithObjects:time,onOrOff, nil];
+        [[NSUserDefaults standardUserDefaults] setObject:alarmList forKey:@"alarmList"];
+    }
+    
+    _timeArray = [[alarmList objectAtIndex:0] mutableCopy];
+    _onOrOffArray = [[alarmList objectAtIndex:1] mutableCopy];
+    
+    firstTimeLoad = YES;
+    self.customPicker.hidden = YES;
+    self.toolbarCancelDone.hidden = YES;
+    
+    //NSDate *date = [NSDate date];
+    
+    // Get Current Year
+    
+    //NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    //[formatter setDateFormat:@"yyyy"];
+    
+    // Get Current  Hour
+    //[formatter setDateFormat:@"hh"];
+    //NSString *currentHourString = [NSString stringWithFormat:@"%@",[formatter stringFromDate:date]];
+    
+    // Get Current  Minutes
+    //[formatter setDateFormat:@"mm"];
+   // NSString *currentMinutesString = [NSString stringWithFormat:@"%@",[formatter stringFromDate:date]];
     
 
-    _lastIndexPath= [NSIndexPath indexPathForRow:_newRow =0 inSection:0 ];
-    // 0.设置返回按钮的背景图片
-    // 0.1隐藏原有的返回按钮
-    [self.navigationItem setHidesBackButton:YES];
-    // 0.2新建一个按钮
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(15, 5, 32, 20);
-    [btn setBackgroundImage:[UIImage imageNamed:@"backicon"] forState:UIControlStateNormal];
-    // 0.3增加selector的方法
-    [btn addTarget: self action: @selector(goBackAction) forControlEvents: UIControlEventTouchUpInside];
-    // 0.4设置导航栏的leftButton
-    UIBarButtonItem *back=[[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.leftBarButtonItem=back;
+    // PickerView -  Hours data
+    hoursArray = @[@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23"];
+    // PickerView -  Hours data
+    
+    minutesArray = [[NSMutableArray alloc]init];
+    
+    for (int i = 0; i < 60; i++)
+    {
+        
+        [minutesArray addObject:[NSString stringWithFormat:@"%02d",i]];
+        
+    }
 
+    
+    [self.customPicker selectRow:[hoursArray indexOfObject:@"12"] inComponent:0 animated:YES];
+    
+    [self.customPicker selectRow:[minutesArray indexOfObject:@"30"] inComponent:1 animated:YES];
+  
 }
-#pragma mark - Alarm
-- (void)didReceiveMemoryWarning {
+
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-
+    // Dispose of any resources that can be recreated.
+    
 }
 
-/*- (IBAction)testKEEvent {
- 
- NSDate *select = [_timePicker date];
- //   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
- //    [dateFormatter setDateFormat:@"HH:mm"];
- //    NSString *dateAndTime =  [dateFormatter stringFromDate:select];
- UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已经在日历中设置闹钟" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
- [alert show];
- //在日历中创建闹钟
- EKEventStore *eventDB = [[EKEventStore alloc] init];
- [eventDB requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted,NSError *error) {
- // handle access here
- EKEvent *myEvent  = [EKEvent eventWithEventStore:eventDB];
- myEvent.title     = @"使用HeadaTerm";
- [myEvent setCalendar:[eventDB defaultCalendarForNewEvents]];
- myEvent.startDate = select;
- myEvent.endDate   = [select dateByAddingTimeInterval:5*60];
- myEvent.allDay = NO;
- if (_newRow == 0) {
- NSError *err;
- EKRecurrenceRule *recurrenceRule1 =  [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyDaily interval:1 end:[EKRecurrenceEnd recurrenceEndWithOccurrenceCount:2]];
- 
- [myEvent addRecurrenceRule:recurrenceRule1];
- [eventDB saveEvent:myEvent span:EKSpanThisEvent error:&err];
- 
- }else if (_newRow == 1){
- NSError *err;
- EKRecurrenceRule *recurrenceRule1 =  [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyDaily interval:1 end:[EKRecurrenceEnd recurrenceEndWithOccurrenceCount:7]];
- 
- [myEvent addRecurrenceRule:recurrenceRule1];
- [eventDB saveEvent:myEvent span:EKSpanThisEvent error:&err];
- }else{
- NSError *err;
- EKRecurrenceRule *recurrenceRule1 =  [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyDaily interval:1 end:[EKRecurrenceEnd recurrenceEndWithOccurrenceCount:30]];
- 
- [myEvent addRecurrenceRule:recurrenceRule1];
- [eventDB saveEvent:myEvent span:EKSpanThisEvent error:&err];
- }
- 
- 
- }];
- }
-*/
+
+#pragma mark - UIPickerViewDelegate
+
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{      selectTime = [[NSString stringWithFormat:@"%@:%@ ",[hoursArray objectAtIndex:[self.customPicker selectedRowInComponent:0]],[minutesArray objectAtIndex:[self.customPicker selectedRowInComponent:1]]] mutableCopy];
+    NSLog(@"time is %@",selectTime);
+    
+}
+
+
+#pragma mark - UIPickerViewDatasource
+
+- (UIView *)pickerView:(UIPickerView *)pickerView
+            viewForRow:(NSInteger)row
+          forComponent:(NSInteger)component
+           reusingView:(UIView *)view {
+    
+    // Custom View created for each component
+    
+    UILabel *pickerLabel = (UILabel *)view;
+    
+    if (pickerLabel == nil) {
+        CGRect frame = CGRectMake(0.0, 0.0, 50, 60);
+        pickerLabel = [[UILabel alloc] initWithFrame:frame];
+        [pickerLabel setTextAlignment:NSTextAlignmentCenter];
+        [pickerLabel setBackgroundColor:[UIColor clearColor]];
+        [pickerLabel setFont:[UIFont systemFontOfSize:15.0f]];
+    }
+    
+    
+    
+    if (component == 0)
+    {
+        pickerLabel.text =  [hoursArray objectAtIndex:row]; // Hours
+    }
+    else
+    {
+        pickerLabel.text =  [minutesArray objectAtIndex:row]; // Mins
+    }
+    return pickerLabel;
+    
+}
+
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    
+    return 2;
+    
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    
+    if (component == 0)
+    { // hour
+        
+        return 23;
+        
+    }
+    else
+    { // min
+        return 60;
+    }
+    
+    
+    
+}
+
+
+
+
+
+
+- (IBAction)actionCancel:(id)sender
+{
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.1
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         
+                         self.customPicker.hidden = YES;
+                         self.toolbarCancelDone.hidden = YES;
+                         
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                         
+                     }];
+    
+    
+}
+
+- (IBAction)actionDone:(id)sender
+{
+    //更新数据数据
+    NSInteger fieldTag=textFieldTag/10 -1;
+    [_timeArray replaceObjectAtIndex:fieldTag withObject:selectTime ];
+    tagNumber=1;
+    //通过tag找到对应textfield，改变其参数
+     UITextField *textField = (UITextField *)[self.view viewWithTag:(textFieldTag)];
+    textField.text =selectTime;
+    
+     [self.tableView reloadData];
+   
+    //存储当前闹钟数据
+    NSArray *alarmList= [NSArray arrayWithObjects:_timeArray,_onOrOffArray, nil];
+    [[NSUserDefaults standardUserDefaults] setObject:alarmList forKey:@"alarmList"];
+    
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.1
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         
+                         self.customPicker.hidden = YES;
+                         self.toolbarCancelDone.hidden = YES;
+                         
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                         
+                     }];
+    
+    
+    
+}
+#pragma mark 闹钟开关
+-(void)switchAction:(id)sender{
+    UITableViewCell * cell = (UITableViewCell *)[[sender superview] superview];
+    NSIndexPath * path = [self.tableView indexPathForCell:cell];
+    NSLog(@"点了我 %ld", (long)([path row]+1)*10);
+    
+    if ([[_onOrOffArray objectAtIndex:[path row]] isEqualToString:@"on"]) {
+        [_onOrOffArray replaceObjectAtIndex:[path row] withObject:@"off"];
+        
+        UITextField *textField = (UITextField *)[self.view viewWithTag:(([path row]+1)*10)];
+        textField.textColor =[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.0];
+        
+        [self.tableView reloadData];
+    }else{
+        [_onOrOffArray replaceObjectAtIndex:[path row] withObject:@"on"];
+        
+        UITextField *textField = (UITextField *)[self.view viewWithTag:(([path row]+1)*10)];
+        textField.textColor =[UIColor colorWithRed:116.0/255 green:201.0/255 blue:184.0/255 alpha:1.0];;
+        
+        [self.tableView reloadData];
+    }
+    
+}
+
 #pragma mark - Table view data source
 #pragma mark tableview中cell的高度
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == _selectedArray.count-1) {
-       return 46;
-    }else{
-       return 76;
-    }
+    
+    return 60;
+    
     
 };
 
+
+#pragma mark tableview中增加闹钟
+-(void)addNewAlarmBtn{
+    
+    [_timeArray insertObject:@"12:30" atIndex:_timeArray.count];
+    [_onOrOffArray insertObject:@"off" atIndex:_onOrOffArray.count];
+    //存储当前闹钟数据
+    NSArray *alarmList= [NSArray arrayWithObjects:_timeArray,_onOrOffArray, nil];
+    [[NSUserDefaults standardUserDefaults] setObject:alarmList forKey:@"alarmList"];
+
+    
+    [self.tableView reloadData ];
+}
+
+
 #pragma mark tableview中section的数量
- - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
- return 1;
- }
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
 
 #pragma mark tableview中每个section中cell数量
- - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
- 
- 
- return _selectedArray.count;
- }
- 
- - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-     if (indexPath.row == _selectedArray.count-1) {
-         [_selectedArray addObject:@"12:30"];
-         [self.tableView reloadData ];
-     }
-     //每次只选中行
-//     {_newRow = [indexPath row];
-// NSInteger oldRow = [_lastIndexPath row];
-// UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:_lastIndexPath];
-// UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
-// if (_newRow != oldRow)
-// {
-// //新旧不同的两行，对旧的行进行背景颜色赋值
-// if (newCell.accessoryType == UITableViewCellAccessoryNone){
-// newCell.accessoryType = UITableViewCellAccessoryCheckmark;
-// oldCell.accessoryType = UITableViewCellAccessoryNone;
-// }
-// 
-// 
-// //把新的行设置成下次操作的旧的行
-// _lastIndexPath = indexPath;
-// }
-// 
-// [tableView deselectRowAtIndexPath:_lastIndexPath animated:YES];
-//     }
- }
- 
- 
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-     
- static NSString *SimpleTableIdentifier=@"weekName";
-     
- UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:SimpleTableIdentifier];
- //如果行元素为空的话 则新建一行
- if(cell==nil){
-     NSLog(@"indexPath.row is %ld", (long)indexPath.row);
-    if (indexPath.row == _selectedArray.count-1) {
-         cell =(YFAlarmBtnTableViewCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"YFAlarmBtn" owner:self options:nil]  lastObject];
-     }else{
-         cell= (YFNewAlarmTableViewCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"NewAlarm" owner:self options:nil]  lastObject];
-         YFNewAlarmTableViewCell *alarmCell = [[YFNewAlarmTableViewCell alloc] init];
-         
-         alarmCell.timeTextField.text =@"15:25";
-         
-     }
-     
- }
- 
- return cell;
- }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    
+    return _timeArray.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 50;
+}
 
 
+#pragma mark tableview 中的footerView
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    //UIButton 新增按钮的创建
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = CGRectMake(0, 10, 120,40);
+    button.backgroundColor = [UIColor colorWithRed:116.0/255 green:201.0/255 blue:184.0/255 alpha:1.0];
+    [button addTarget:self action:@selector(addNewAlarmBtn) forControlEvents:UIControlEventTouchUpInside];
+    [button setTitleColor:[UIColor colorWithRed:187.0/255 green:135.0/255 blue:87.0/255 alpha:1.0] forState:UIControlStateNormal];
+    [button setTitle:@"新增处方" forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+    button.layer.cornerRadius = 5.0;
+    
+    UIView *footerView= [[UIView alloc] initWithFrame:CGRectMake(0, 0, sreenWidth, 60)];
+    [footerView addSubview:button];
+    button.center = footerView.center;
+    return footerView;
+}
 
-/*
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        [_timeArray removeObjectAtIndex:indexPath.row];
+        [_onOrOffArray removeObjectAtIndex:indexPath.row];
+        // Delete the row from the data source.
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        //存储当前闹钟数据
+        NSArray *alarmList= [NSArray arrayWithObjects:_timeArray,_onOrOffArray, nil];
+        [[NSUserDefaults standardUserDefaults] setObject:alarmList forKey:@"alarmList"];
+        
+        
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    }
+    
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *SimpleTableIdentifier=@"weekName";
+    
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:SimpleTableIdentifier];
+    //如果行元素为空的话 则新建一行
+    if(cell==nil){
+        cell = [[UITableViewCell alloc]
+                    initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SimpleTableIdentifier
+                    ];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        UIView *cellView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, sreenWidth, 60)];
+        cellView.backgroundColor = [UIColor clearColor];
+        [cell addSubview:cellView];
+        
+        
+        //UITextField 的创建
+        UITextField *time = [[UITextField alloc] initWithFrame:CGRectMake(60,20, 90, 40)];   //声明并指定其位置和长宽
+        time.text = [_timeArray objectAtIndex:indexPath.row ];
+        time.textColor = [UIColor colorWithRed:116.0/255 green:201.0/255 blue:184.0/255 alpha:1.0];;
+        time.tag=([indexPath row]+1)*10;
+        time.delegate=self;
+        time.font = [UIFont fontWithName:@"Helvetica-Bold" size:28];
+        [cellView addSubview:time];
+        time.center = CGPointMake(sreenWidth/2, cellView.frame.size.height/2);
+        //UISwitch 的创建
+        UISwitch *switchButton = [[UISwitch alloc] initWithFrame:CGRectMake(280, 20, 40, 10)];
+        if ([[_onOrOffArray objectAtIndex:indexPath.row] isEqualToString:@"on"]) {
+            [switchButton setOn:YES];
+        }else{
+            [switchButton setOn:NO];
+            time.textColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.0];
+            
+        }
+        
+        [switchButton addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+        [cellView addSubview:switchButton];
+        //开关颜色
+        switchButton.onTintColor =[UIColor colorWithRed:116.0/255 green:201.0/255 blue:184.0/255 alpha:1.0];
+        switchButton.center = CGPointMake(sreenWidth/2+120, cellView.frame.size.height/2);
+        
+        
+        
+        //UIImage 的创建
+        UIImageView *cellImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,10, 30, 30)];
+        cellImage.image=[UIImage imageNamed:@"clockicon"] ;
+        [cellView addSubview:cellImage];
+        cellImage.center = CGPointMake(sreenWidth/2-120, cellView.frame.size.height/2);
+        
+      }
+   
+    
+    
+
+        return cell;
+    
+    
+    
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self.view endEditing:YES];
+    
+}
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    
+//    [UIView animateWithDuration:0.5
+//                          delay:0.1
+//                        options: UIViewAnimationOptionCurveEaseIn
+//                     animations:^{
+//                         
+//                         self.customPicker.hidden = NO;
+//                         self.toolbarCancelDone.hidden = NO;
+//                         
+//                     }
+//                     completion:^(BOOL finished){
+//                         
+//                     }];
+    
+    
+    self.customPicker.hidden = NO;
+    self.toolbarCancelDone.hidden = NO;
+    
+    NSLog(@"textField tag is %ld", (long)textField.tag);
+    if (tagNumber ==1) {
+         textFieldTag = textField.tag;
+        tagNumber =2;
+    }
+   
+    
+    
     return YES;
+    
 }
-*/
 
-/*
-#pragma mark - Navigation
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    
+    return  YES;
+    
+}
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-#pragma mark  增加返回按钮的自定义动作
--(void)goBackAction{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
+
 
 @end

@@ -10,7 +10,11 @@
 #import "YFTabBarViewController.h"
 #import "YFNewfeatureViewController.h"
 
+#import "LKAlarmMamager.h"
 
+@interface YFAppDelegate () <LKAlarmMamagerDelegate>
+
+@end
 @interface YFAppDelegate ()
 
 @end
@@ -25,9 +29,85 @@
     //启动画面延时
     [NSThread sleepForTimeInterval:1.5];
     [_window makeKeyAndVisible];
+    
+    
+    // 初始化蓝牙管理控制器
+    _ble = [[bleCentralManager alloc]init];
+   
+    /*
+    //闹钟设置
+    [[LKAlarmMamager shareManager] didFinishLaunchingWithOptions:launchOptions];
+    ///注册下回调
+    [[LKAlarmMamager shareManager] registDelegateWithObject:self];
+    
+    NSMutableArray *alarmList = [[NSUserDefaults standardUserDefaults] objectForKey:@"alarmList"];
+    NSMutableArray *timeArray = [[alarmList objectAtIndex:0] mutableCopy];
+    NSMutableArray *onOrOffArray = [[alarmList objectAtIndex:1] mutableCopy];
+    for (NSInteger i=0; i<[timeArray count]-1; i++) {
+        if ([[onOrOffArray objectAtIndex:i] isEqualToString:@"on"]) {
+            
+            //当前的日期
+            NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"YYYY-MM-dd-"];
+            NSMutableString *date = [[formatter stringFromDate:[NSDate date]] mutableCopy];
+            
+            //[date stringByAppendingString:[timeArray objectAtIndex:i]];
+            NSString *date1 = [[NSString alloc] init];
+            date1 =[date stringByAppendingFormat:@"%@",[timeArray objectAtIndex:i]];
+            // NSLog(@"Date1 = %@ /n", date1);
+            NSString *date2 =[date1 stringByAppendingString:@"00"];
+            //NSLog(@"Date = %@ /n", date2);
+            
+            //转化成闹钟的日期
+            NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init] ;
+            [inputFormatter setDateFormat:@"YYYY-MM-dd-hh:mmss"];
+            NSDate* inputDate = [inputFormatter dateFromString:date2];
+            //NSLog(@"Date = %@", inputDate);
+            if ([inputDate laterDate:[NSDate date]]) {
+                ///本地提醒
+                LKAlarmEvent* notifyEvent = [LKAlarmEvent new];
+                notifyEvent.title = [NSString stringWithFormat:@"请按照处方进行使用。"];
+                ///强制加入到本地提醒中
+                notifyEvent.isNeedJoinLocalNotify = YES;
+                ///提醒时间
+                notifyEvent.startDate = inputDate;
+                notifyEvent.repeatType = NSCalendarUnitDay;
+                
+                ///增加推送声音
+                [notifyEvent setOnCreatingLocalNotification:^(UILocalNotification * localNotification) {
+                    localNotification.soundName = UILocalNotificationDefaultSoundName;
+                    
+                }];
+                
+                [[LKAlarmMamager shareManager] addAlarmEvent:notifyEvent];
+            }
+            
+            
+        }
+    }
+     */
+    // Override point for customization after application launch.
     return YES;
 }
 
+
+-(void)lk_receiveAlarmEvent:(LKAlarmEvent *)event
+{
+    // UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"接受到通知0！" message:event.title delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    //[alertView show];
+}
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    [[LKAlarmMamager shareManager] handleOpenURL:url];
+    
+    return YES;
+}
+
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    [[LKAlarmMamager shareManager] didReceiveLocalNotification:notification];
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

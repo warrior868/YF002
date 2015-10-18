@@ -16,13 +16,6 @@
 
 #import "MZTimerLabel.h"
 
-#import "JKSideSlipView.h"
-#import "MenuView.h"
-#import "MenuCell.h"
-
-#import "LMComBoxView.h"
-#import "LMContainsLMComboxScrollView.h"
-
 #import "STAlertView.h"
 
 #import "MMMaterialDesignSpinner.h"
@@ -32,6 +25,7 @@
 
 #import "SVProgressHUD.h"
 #import "PeripheralInfo.h"
+#import "cell.h"
 //背景模糊
 
 
@@ -43,33 +37,30 @@
 
 @interface YFHomeViewController () <AKPickerViewDataSource,AKPickerViewDelegate,MZTimerLabelDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDelegate>{
     MZTimerLabel *_timer;
-    JKSideSlipView *_sideSlipView;
-    LMContainsLMComboxScrollView *bgScrollView;
-   
-    NSMutableDictionary *addressDict;   //地址选择字典
-    NSDictionary *areaDic;
-    NSArray *province;
-    NSArray *city;
-    NSArray *district;
     
-    NSString *selectedProvince;
-    NSString *selectedCity;
-    NSString *selectedArea;
+
     
     //蓝牙连接参数
     NSMutableArray *peripherals;
     NSInteger batteryValue;
+    BOOL setAutoState;
+    //蓝牙peripheral部分参数
+     UITextField *txCounterTextField;
+     UITextField *rxCounterTextField;
+     UITextView *showStringTextView;
+     UILabel *statusLabel;
+     UITextField *inputTextField;
+     UIButton *autoManualModeButton;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 //保存时弹出窗口的属性
-@property (nonatomic, strong) STAlertView *stAlertView;
+//@property (nonatomic, strong) STAlertView *stAlertView;
 
 //在YFPamameterItemTableViewController 数组中选择第几个治疗参数
 @property (assign,nonatomic) NSInteger  treatItemNumber;
 
-//左侧滑动窗口实例属性
-@property (nonatomic ,strong) MenuView   *menu;
+
 
 
 //计时动画圈圈属性
@@ -90,7 +81,7 @@
 @property (nonatomic, copy) NSString *treatDrugQuantity;
 
 
-@property (weak, nonatomic) IBOutlet UITableView *bluetoothTableview;
+
 
 
 //设置倒计时 时间 按钮
@@ -112,9 +103,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *timeCountBackground;
 //蓝牙连接按钮
 @property (nonatomic,strong) UIButton *btn;
-
-
-
+@property (nonatomic,strong) NSMutableString *sender;
 
 @end
 
@@ -138,7 +127,7 @@
     [_editParameter.layer setCornerRadius:5];
     //__isStateOn = YES;
  
-  // 0.1设置左上角蓝牙连接按钮的背景图片
+// 0.1设置左上角蓝牙连接按钮的背景图片
     // 0.11新建一个按钮
     _btn = [UIButton buttonWithType:UIButtonTypeCustom];
     _btn.frame = CGRectMake(20, 8, 30, 30);
@@ -148,7 +137,7 @@
     UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc]initWithCustomView:_btn];
     self.navigationItem.leftBarButtonItem = leftBtnItem;
     //0.13使导航栏右边的字体大小
-    //self.navigationItem.rightBarButtonItem.title.
+    
     
     
    
@@ -195,29 +184,17 @@
     
 // 6.创建 蓝牙
     //初始化
-    //[SVProgressHUD showInfoWithStatus:@"准备打开设备"];
+    // 使用全局全量
+    blead = [[UIApplication sharedApplication]delegate];
+    // 注册通知回调
+    nCBCentralStateChange
+    nCBPeripheralStateChange
+    nCBUpdataShowStringBuffer
+    //发送蓝牙数据，数据格式E0000000F
+    //_sender =[@"E0000011F" mutableCopy];
+
     
-    //初始化其他数据 init other
-    peripherals = [[NSMutableArray alloc]init];
     
-    //初始化BabyBluetooth 蓝牙库
-    baby = [BabyBluetooth shareBabyBluetooth];
-    //设置蓝牙委托
-    [self babyDelegate];
-   // baby.scanForPeripherals().begin();
-    //1：设置连接的设备的过滤器
-    __block BOOL isFirst = YES;
-    [baby setFilterOnConnetToPeripherals:^BOOL(NSString *peripheralName) {
-        //这里的规则是：连接第一个AAA打头的设备
-        if(isFirst && [peripheralName hasPrefix:@"Sim"]){
-            isFirst = NO;
-            return YES;
-        }
-        return NO;
-    }];
-    
-    //2 扫描、连接
-    baby.scanForPeripherals().connectToPeripherals().begin();
     
   // 7.push链接
     //延时1秒
@@ -247,14 +224,22 @@
     
     
     //停止之前的连接
-    //[baby cancelAllPeripheralsConnection];
-    //设置委托后直接可以使用，无需等待CBCentralManagerStatePoweredOn状态。
-    
-//baby.scanForPeripherals().begin().stop(10);
-    //baby.having(self.currPeripheral).connectToPeripherals().begin();
+   
 }
-
-
+#pragma mark - 蓝牙通讯数据格式
+/*
+开头加E
+ （0）查询或工作 1.按照新指令工作 2.查询状态指令
+ （1）操作    1.开始  2.暂停  3.继续  4.停止
+ （2）强度   1. 第一档（最弱） 2.第二档  3.第三档  4.第四档  5.第五档（最强）
+ （3）波形   1.方波  2.锯齿波  3.正弦波  4.尖波  5.随机波形
+ （4）时间   1.1分钟  2.5分钟  3.10分钟  4.15分钟  5.20分钟
+ （5）开关机   1.开机  2.关机
+ （6）预留
+结束加F
+ 
+ 
+ */
 #pragma mark -  选择视图返回的值进行处理
 -(void)ChangeNameNotification:(NSNotification*)notification{
     NSDictionary *nameDictionary = [notification userInfo];
@@ -300,35 +285,7 @@
 }
 
 
-/*
-#pragma mark - YFPamameterItemTableViewController Delegate
-- (void)sendSelectedItemToHomeVC:(NSInteger) rowForNewTreatItem{
-    // 选中的列表第几个值后，重新赋值给_defaultTreatItem;
-    self.treatItemNumber = rowForNewTreatItem;
-    
-    NSDictionary *newTreatItem = _treatParameterItem.datafromTreatItem[rowForNewTreatItem];
-    _treatParameterItem.treatTime = [newTreatItem objectForKey:@"treatTime"];
-    _treatParameterItem.treatStrength = [newTreatItem objectForKey:@"treatStrength"];
-    _treatParameterItem.treatWave = [newTreatItem objectForKey:@"treatWave"];
-    _treatParameterItem.treatModel = [newTreatItem objectForKey:@"treatModel"];
-    ;
-    // 重新对每个pickerView进行重选;
-    [_treatTimePickerView selectItem:[[_treatParameterItem.treatTime substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
-    [_treatStrengthPickerView selectItem:[[_treatParameterItem.treatStrength substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
-    [_treatWavePickerView selectItem:[[_treatParameterItem.treatWave substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
-   // [_treatModelPickerView selectItem:[[_treatParameterItem.treatModel substringWithRange:NSMakeRange(1, 1)] integerValue] animated:NO];
-    
-}
 
-#pragma mark -YFPamameterTableViewController Delegate (Get Array)
-- (NSArray *)getArrayHomeVC{
-    
-    return _treatParameterItem.datafromTreatItem;
-}
-- (NSInteger )getRowFromHomeVC{
-    return _treatItemNumber;
-}
-*/
 
 
 #pragma mark  跳转链接segue
@@ -384,8 +341,6 @@
     _treatWavePickerViewArray = [_treatParameterItem.datafromTreatItemList objectForKey:@"treatWave"];
     [_treatWavePickerView reloadData];
 }
-
-
 - (void)pickerViewParameterLoad:(AKPickerView *)pickerView{
     pickerView.delegate = self;
     pickerView.dataSource = self;
@@ -462,10 +417,7 @@
             //字符串转化成整数
             NSInteger  setTime = [treatTimeSelectNumber integerValue];
             //设置计时时间
-            if (setTime == 0) {
-                [_timer setCountDownTime:1*5];
-            }else{
-                [_timer setCountDownTime:setTime*60*5];}
+            [_timer setCountDownTime:setTime*60*5];
             //设置模型中treatTime的值，以便保存；
             _treatParameterItem.treatTime = treatTimeSelect;
             NSLog(@"Time_%@", _treatParameterItem.treatTime);
@@ -492,29 +444,6 @@
 }
 #pragma mark - 保存参数按钮
 
-    /*- (IBAction)saveTreatPamameterItem:(id)sender{
-//    带输入的alertView，并保存的参数形成字典加入到治疗参数列表中
-    self.stAlertView = [[STAlertView alloc] initWithTitle:@"提示"
-                                                  message:@"请输入你要存储的名称"
-                                            textFieldHint:@"请输入你要存储的名称"
-                                           textFieldValue:nil
-                                        cancelButtonTitle:@"取消"
-                                         otherButtonTitle:@"确定"
-                                        cancelButtonBlock:^{
-                                            NSLog(@"取消了存储");
-                                        } otherButtonBlock:^(NSString * result){                                            [self saveTreatItemToListWithName:result];
-                                            
-                                        }];
-    
-    //You can make any customization to the native UIAlertView
-    self.stAlertView.alertView.alertViewStyle =UIAlertViewStylePlainTextInput;
-    [[self.stAlertView.alertView textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
-    
-    [self.stAlertView show];
-    
-}
-     */
-//    保存的参数形成字典加入到治疗参数列表中，并存储到plist中
 - (void) saveTreatItemToListWithName:(NSString *)name{
     //读取当前日期
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -602,7 +531,7 @@
     _editParameter.backgroundColor = [UIColor whiteColor];
     _editParameter.titleLabel.text = @"关闭参数编辑";
 }
-#pragma mark - MZTimerlabel 开始 暂停 重置按钮的方法
+#pragma mark - 开始 暂停 重置按钮的方法
 - (IBAction)startOrResumeCountDown:(id)sender {
     
     if([_timer counting]){
@@ -615,28 +544,70 @@
         //圆圈动画结束
         [self.spinnerView stopAnimating];
         
+        //发送暂停蓝牙数据，数据格式
+         NSString *str1 =  [_sender stringByReplacingCharactersInRange:NSMakeRange(2, 1) withString:@"2"];
+        _sender = [str1 mutableCopy];
+        NSLog(@"发送暂停蓝牙数据，数据格式位%@",_sender);
+        [self SendInputButton:[_sender copy]];
+
     }else{
         
         //给蓝牙设备发送指令以便其工作
-//        if (蓝牙已经进入正常工作状态) {
+        if (_currentPeripheral.connectedFinish == NO) {
             //开始计时
             [_timer start];
             //editParameter关闭编辑并且把开启参数编辑按钮不可用
             [self openEditParameter];
             _editParameter.userInteractionEnabled = NO;
             //导航栏右上角参数更改不可用
-        self.navigationItem.rightBarButtonItem.enabled =NO;
+            self.navigationItem.rightBarButtonItem.enabled =NO;
             //圆圈动画开始
             [self.spinnerView startAnimating];
-            [_startPauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
-//        } else {
-//            [SVProgressHUD showErrorWithStatus:@"没有找到可控制的蓝牙，确定蓝牙已经连接？"];
-//
-//        }
+            
+            //判断是否是继续
+            
+           if ( [_startPauseBtn.titleLabel.text isEqualToString:@"开始"]) {
+               //发送开始蓝牙数据，数据格式
+                [self initSendStartData];
+                NSLog(@"发送开始蓝牙数据，数据格式位%@",_sender);
+                [self SendInputButton:[_sender copy]];
+               //把开始按钮设置位继续；
+               [_startPauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
+            }else{
+                //发送继续蓝牙数据，数据格式
+                NSString *str1 =  [_sender stringByReplacingCharactersInRange:NSMakeRange(2, 1) withString:@"3"];
+                _sender = [str1 mutableCopy];
+                NSLog(@"发送继续蓝牙数据，数据格式位%@",_sender);
+                [self SendInputButton:[_sender copy]];
+            }
+           
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"没有找到可控制的蓝牙，确定蓝牙已经连接？"];
+
+        }
         
     }
     
 }
+-(void)initSendStartData{
+    NSString *str1 = @"E1100011F";
+    NSString *str2 = [str1 stringByReplacingCharactersInRange:NSMakeRange(2, 1) withString:@"1"];
+    NSString *str3 = [str2 stringByReplacingCharactersInRange:NSMakeRange(3, 1) withString:_treatParameterItem.treatStrength];
+    NSString *str4 =[[NSString alloc] init];
+    if ([_treatParameterItem.treatWave  isEqualToString:@"A"]) {
+        str4 = [str3 stringByReplacingCharactersInRange:NSMakeRange(4, 1) withString:@"1"];
+    } else if ([_treatParameterItem.treatWave  isEqualToString:@"B"]){
+        [str3 stringByReplacingCharactersInRange:NSMakeRange(4, 1) withString:@"2"];
+    }else if ([_treatParameterItem.treatWave  isEqualToString:@"C"]){
+        str4 =[str3 stringByReplacingCharactersInRange:NSMakeRange(4, 1) withString:@"3"];
+    }else if ([_treatParameterItem.treatWave  isEqualToString:@"D"]){
+        str4 = [str3 stringByReplacingCharactersInRange:NSMakeRange(4, 1) withString:@"4"];
+    }else if ([_treatParameterItem.treatWave  isEqualToString:@"R"]){
+        str4 =  [str3 stringByReplacingCharactersInRange:NSMakeRange(4, 1) withString:@"5"];
+    }
+    _sender =[[str4 stringByReplacingCharactersInRange:NSMakeRange(5, 1) withString:_treatParameterItem.treatTime] mutableCopy];
+}
+
 - (IBAction)resetCountDown:(id)sender {
     [_timer reset];
     
@@ -644,6 +615,11 @@
         [_startPauseBtn setTitle:@"开始" forState:UIControlStateNormal];
         //导航栏右上角参数更改不可用
         self.navigationItem.rightBarButtonItem.enabled =YES;
+        //发送停止蓝牙数据，数据格式
+        NSString *str1 =  [_sender stringByReplacingCharactersInRange:NSMakeRange(2, 1) withString:@"4"];
+        _sender = [str1 mutableCopy];
+        NSLog(@"发送停止蓝牙数据，数据格式位%@",_sender);
+        [self SendInputButton:[_sender copy]];
     }
      [_resetBtn setEnabled:NO];
      //editParameter开启参数编辑按钮可用
@@ -711,83 +687,52 @@
 
 
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - ----BabyBluetooth 蓝牙部分-----
-
-
-
+#pragma mark - ----蓝牙部分-----
 
 #pragma mark  蓝牙连接或断开
 - (void) bluetoothConnect{
-    //1：设置连接的设备的过滤器
-    __block BOOL isFirst = YES;
-    [baby setFilterOnConnetToPeripherals:^BOOL(NSString *peripheralName) {
-        //这里的规则是：连接第一个AAA打头的设备
-        if(isFirst && [peripheralName hasPrefix:@"Sim"]){
-            isFirst = NO;
-            return YES;
+    if (blead.ble.currentCentralManagerState == bleCentralDelegateStateCentralManagerPoweredOff) {
+        [SVProgressHUD showInfoWithStatus:@"请打开本机设备的蓝牙"];
+    }else{
+        if (blead.ble.blePeripheralArray.count > 0) {
+            for (NSInteger i =0; i<[blead.ble.blePeripheralArray count]-1; i++) {
+                
+                _currentPeripheral = [blead.ble.blePeripheralArray objectAtIndex:i];
+                if (_currentPeripheral.activePeripheral.isConnected == NO) {
+                    [blead.ble connectPeripheral:_currentPeripheral.activePeripheral];
+                }
+                else{
+                    if (_currentPeripheral.connectedFinish == YES) {
+                        [SVProgressHUD showInfoWithStatus:@"与设备连接成功"];
+                        [_btn setBackgroundImage:[UIImage imageNamed:@"bluetoothOn"] forState:UIControlStateNormal];
+                        break;
+                        //[self.navigationController pushViewController:svc animated:YES];
+                    }
+                    else{
+                        [blead.ble disconnectPeripheral:_currentPeripheral.activePeripheral];
+                    }
+                    
+                }
+                if (i==[blead.ble.blePeripheralArray count]-1) {
+                    [SVProgressHUD showErrorWithStatus:@"未找到可连接的蓝牙设备"];
+                }
+                //_currentPeripheral.nameString
+            }
         }
-        return NO;
-    }];
-    
-    //2 扫描、连接
-    baby.scanForPeripherals().connectToPeripherals().begin();
-    
-    //baby.scanForPeripherals().begin().stop(6);
+        else{
+            NSLog(@"ERROR ROW");
+            [SVProgressHUD showErrorWithStatus:@"未找到可连接的蓝牙设备，请检查"];
+            
+        }
+    }
+   
+   
     [_btn.layer addAnimation:[self opacityForever_Animation:0.2] forKey:nil];
-    //延时1秒
-//    double delayInSeconds = 2;
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//        //跳转到选择界面
-//        [SVProgressHUD showErrorWithStatus:@"无法找到可用的蓝牙设备" ];
-//    });
-
+   
+    
 }
-#pragma mark 闪烁的动画
+//闪烁的动画
 -(CABasicAnimation *)opacityForever_Animation:(float)time
 {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];//必须写opacity才行。
@@ -800,290 +745,242 @@
     animation.fillMode = kCAFillModeForwards;
     return animation;
 }
-
-//蓝牙网关初始化和委托方法设置
--(void)babyDelegate{
-    
-    __weak typeof(self) weakSelf = self;
-    [baby setBlockOnCentralManagerDidUpdateState:^(CBCentralManager *central) {
-        if (central.state == CBCentralManagerStatePoweredOn) {
-            [SVProgressHUD showInfoWithStatus:@"蓝牙设备打开成功，开始扫描设备"];
-        }
-    }];
-    
-    //设置扫描到设备的委托
-    [baby setBlockOnDiscoverToPeripherals:^(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
-        NSLog(@"搜索到了 设备:%@",peripheral.name);
-//        if ([peripheral.name isEqual:@"SimpleBLEPeripheral"]) {
-//            self.services = [[NSMutableArray alloc]init];
-//            [self babyOneDelegate];
-//            
-//            //开始扫描设备
-//            [self performSelector:@selector(loadData) withObject:nil afterDelay:2];
-//            [SVProgressHUD showInfoWithStatus:@"准备连接设备"];
-
- //       }
-    }];
-    //设置设备连接成功的委托
-    [baby setBlockOnConnected:^(CBCentralManager *central, CBPeripheral *peripheral) {
-        NSLog(@"设备：%@--蓝牙与设备连接成功",peripheral.name);
-        //3 获取设备的services、characteristic、description以及value
-        
-        //停止扫描
-        [baby cancelScan];
-        //初始化
-        _currPeripheral = peripheral;
-        _services = [[NSMutableArray alloc]init];
-        [self babyOneDelegate];
-        [self performSelector:@selector(loadData) withObject:nil afterDelay:2];
-        
-        [_btn setBackgroundImage:[UIImage imageNamed:@"bluetoothOn"] forState:UIControlStateNormal];
-
-    }];
-    //设置设备连接失败的委托
-    [baby setBlockOnFailToConnect:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        NSLog(@"设备：%@--连接失败",peripheral.name);
-    }];
-    //设置设备断开连接的委托
-    [baby setBlockOnDisconnect:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        NSLog(@"设备：%@--断开连接",peripheral.name);
-    }];
-    
-    //设置发现设备的Services的委托
-    [baby setBlockOnDiscoverServices:^(CBPeripheral *peripheral, NSError *error) {
-        for (CBService *service in peripheral.services) {
-            NSLog(@"搜索到服务:%@",service.UUID.UUIDString);
-        }
-//找到cell并修改detaisText
-//        for (int i=0;i<peripherals.count;i++) {
-//            UITableViewCell *cell = [weakSelf.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-//            if (cell.textLabel.text == peripheral.name) {
-//                cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu个service",(unsigned long)peripheral.services.count];
-//            }
-//        }
-    }];
-    //设置发现设service的Characteristics的委托
-    [baby setBlockOnDiscoverCharacteristics:^(CBPeripheral *peripheral, CBService *service, NSError *error) {
-        NSLog(@"===service name:%@",service.UUID);
-        for (CBCharacteristic *c in service.characteristics) {
-            NSLog(@"charateristic name is :%@",c.UUID);
-        }
-    }];
-    //设置读取characteristics的委托
-    [baby setBlockOnReadValueForCharacteristic:^(CBPeripheral *peripheral, CBCharacteristic *characteristics, NSError *error) {
-        NSLog(@"characteristic name:%@ value is:%@",characteristics.UUID,characteristics.value);
-    }];
-    //设置发现characteristics的descriptors的委托
-    [baby setBlockOnDiscoverDescriptorsForCharacteristic:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
-        NSLog(@"===characteristic name:%@",characteristic.service.UUID);
-        for (CBDescriptor *d in characteristic.descriptors) {
-            NSLog(@"CBDescriptor name is :%@",d.UUID);
-        }
-    }];
-    //设置读取Descriptor的委托
-    [baby setBlockOnReadValueForDescriptors:^(CBPeripheral *peripheral, CBDescriptor *descriptor, NSError *error) {
-        NSLog(@"Descriptor name:%@ value is:%@",descriptor.characteristic.UUID, descriptor.value);
-    }];
-    
-    //设置查找设备的过滤器
-    [baby setFilterOnDiscoverPeripherals:^BOOL(NSString *peripheralName) {
-        
-        //设置查找规则是名称大于1 ， the search rule is peripheral.name length > 2
-        if (peripheralName.length >2) {
-            return YES;
-        }
-        return NO;
-    }];
-    
-    
-    [baby setBlockOnCancelAllPeripheralsConnectionBlock:^(CBCentralManager *centralManager) {
-        NSLog(@"setBlockOnCancelAllPeripheralsConnectionBlock");
-    }];
-    
-    [baby setBlockOnCancelPeripheralConnectionBlock:^(CBCentralManager *centralManager, CBPeripheral *peripheral) {
-        NSLog(@"setBlockOnCancelPeripheralConnectionBlock");
-    }];
-    
-    [baby setBlockOnCancelScanBlock:^(CBCentralManager *centralManager) {
-        NSLog(@"setBlockOnCancelScanBlock");
-    }];
-    
-    /*设置babyOptions
-     
-     参数分别使用在下面这几个地方，若不使用参数则传nil
-     - [centralManager scanForPeripheralsWithServices:scanForPeripheralsWithServices options:scanForPeripheralsWithOptions];
-     - [centralManager connectPeripheral:peripheral options:connectPeripheralWithOptions];
-     - [peripheral discoverServices:discoverWithServices];
-     - [peripheral discoverCharacteristics:discoverWithCharacteristics forService:service];
-     
-     该方法支持channel版本:
-     [baby setBabyOptionsAtChannel:<#(NSString *)#> scanForPeripheralsWithOptions:<#(NSDictionary *)#> connectPeripheralWithOptions:<#(NSDictionary *)#> scanForPeripheralsWithServices:<#(NSArray *)#> discoverWithServices:<#(NSArray *)#> discoverWithCharacteristics:<#(NSArray *)#>]
-     */
-    
-    //示例:
-    //扫描选项->CBCentralManagerScanOptionAllowDuplicatesKey:忽略同一个Peripheral端的多个发现事件被聚合成一个发现事件
-    NSDictionary *scanForPeripheralsWithOptions = @{CBCentralManagerScanOptionAllowDuplicatesKey:@YES};
-    //连接设备->
-    //    [baby setBabyOptionsWithScanForPeripheralsWithOptions:scanForPeripheralsWithOptions connectPeripheralWithOptions:nil scanForPeripheralsWithServices:nil discoverWithServices:nil discoverWithCharacteristics:nil];
-    
+#pragma mark  通知回调函数
+-(void)CBCentralStateChange{
+    [self CBUpdataShowStringBuffer];
 }
 
-#pragma mark  蓝牙连接代理设置
--(void)babyOneDelegate{
-    
-    __weak typeof(self)weakSelf = self;
-    BabyRhythm *rhythm = [[BabyRhythm alloc]init];
-    
-    
-    //设置设备蓝牙连接成功的委托,同一个baby对象，使用不同的channel切换委托回调
-    
-    [baby setBlockOnConnectedAtChannel:channelOnPeropheralView block:^(CBCentralManager *central, CBPeripheral *peripheral) {
-        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接成功",peripheral.name]
-         ];
-        
-    }];
-    
-    //设置发现设备的Services的委托
-    [baby setBlockOnDiscoverServicesAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, NSError *error) {
-        for (CBService *s in peripheral.services) {
-            ///插入section到tableview
-    [weakSelf insertSectionToTableView:s];
-        }
-        
-        [rhythm beats];
-    }];
-    //设置发现设service的Characteristics的委托
-    [baby setBlockOnDiscoverCharacteristicsAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, CBService *service, NSError *error) {
-        NSLog(@"===service name:%@",service.UUID);
-        //插入row到tableview
-        [weakSelf insertRowToTableView:service];
-        
-    }];
-    //设置读取characteristics的委托
-    [baby setBlockOnReadValueForCharacteristicAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, CBCharacteristic *characteristics, NSError *error) {
-        NSLog(@"characteristic name:%@ value is:%@",characteristics.UUID,characteristics.value);
-    }];
-    //设置发现characteristics的descriptors的委托
-    [baby setBlockOnDiscoverDescriptorsForCharacteristicAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
-        NSLog(@"===characteristic name:%@",characteristic.service.UUID);
-        for (CBDescriptor *d in characteristic.descriptors) {
-            NSLog(@"CBDescriptor name is :%@",d.UUID);
-        }
-    }];
-    //设置读取Descriptor的委托
-    [baby setBlockOnReadValueForDescriptorsAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, CBDescriptor *descriptor, NSError *error) {
-        NSLog(@"Descriptor name:%@ value is:%@",descriptor.characteristic.UUID, descriptor.value);
-    }];
-    
-    //设置beats break委托
-    [rhythm setBlockOnBeatsBreak:^(BabyRhythm *bry) {
-        NSLog(@"setBlockOnBeatsBreak call");
-        
-        //如果完成任务，即可停止beat,返回bry可以省去使用weak rhythm的麻烦
-        //        if (<#condition#>) {
-        //            [bry beatsOver];
-        //        }
-        
-    }];
-    
-    //设置beats over委托
-    [rhythm setBlockOnBeatsOver:^(BabyRhythm *bry) {
-        NSLog(@"setBlockOnBeatsOver call");
-    }];
-    
-    //扫描选项->CBCentralManagerScanOptionAllowDuplicatesKey:忽略同一个Peripheral端的多个发现事件被聚合成一个发现事件
-    NSDictionary *scanForPeripheralsWithOptions = @{CBCentralManagerScanOptionAllowDuplicatesKey:@YES};
-    /*连接选项->
-     CBConnectPeripheralOptionNotifyOnConnectionKey :当应用挂起时，如果有一个连接成功时，如果我们想要系统为指定的peripheral显示一个提示时，就使用这个key值。
-     CBConnectPeripheralOptionNotifyOnDisconnectionKey :当应用挂起时，如果连接断开时，如果我们想要系统为指定的peripheral显示一个断开连接的提示时，就使用这个key值。
-     CBConnectPeripheralOptionNotifyOnNotificationKey:
-     当应用挂起时，使用该key值表示只要接收到给定peripheral端的通知就显示一个提
-     */
-    NSDictionary *connectOptions = @{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
-                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
-                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES};
-    
-    [baby setBabyOptionsAtChannel:channelOnPeropheralView scanForPeripheralsWithOptions:scanForPeripheralsWithOptions connectPeripheralWithOptions:connectOptions scanForPeripheralsWithServices:nil discoverWithServices:nil discoverWithCharacteristics:nil];
-    
-}
--(void)loadData{
-    [SVProgressHUD showInfoWithStatus:@"开始连接设备"];
-    baby.having(self.currPeripheral).and.channel(channelOnPeropheralView).then.connectToPeripherals().discoverServices().discoverCharacteristics().readValueForCharacteristic().discoverDescriptorsForCharacteristic().readValueForDescriptors().begin();
-    //    baby.connectToPeripheral(self.currPeripheral).begin();
+-(void)CBPeripheralStateChange{
+    [self CBUpdataShowStringBuffer];
 }
 
-
-#pragma mark 插入table数据
--(void)insertSectionToTableView:(CBService *)service{
-    NSLog(@"搜索到服务:%@",service.UUID.UUIDString);
-    PeripheralInfo *info = [[PeripheralInfo alloc]init];
-    [info setServiceUUID:service.UUID];
-    [self.services addObject:info];
-    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:self.services.count-1];
+-(void)CBUpdataShowStringBuffer{
+    txCounterTextField.text = [[NSString alloc]initWithFormat:@"%d",_currentPeripheral.txCounter];
+    rxCounterTextField.text = [[NSString alloc]initWithFormat:@"%d",_currentPeripheral.rxCounter];
+    showStringTextView.text = _currentPeripheral.ShowStringBuffer;
+    statusLabel.text = _currentPeripheral.staticString;
     
-   // [_bluetoothTableview insertSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
-   
+    // 自动滚动
+    int16_t showTextViewRow = _currentPeripheral.txCounter + _currentPeripheral.rxCounter;
     
-}
-
--(void)insertRowToTableView:(CBService *)service{
-    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-    int sect = -1;
-    for (int i=0;i<self.services.count;i++) {
-        PeripheralInfo *info = [self.services objectAtIndex:i];
-        if (info.serviceUUID == service.UUID) {
-            sect = i;
-        }
-    }
-    if (sect != -1) {
-        PeripheralInfo *info =[self.services objectAtIndex:sect];
-        for (int row=0;row<service.characteristics.count;row++) {
-            CBCharacteristic *c = service.characteristics[row];
-            [info.characteristics addObject:c];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:sect];
-            [indexPaths addObject:indexPath];
-            NSLog(@"add indexpath in row:%d, sect:%d",row,sect);
-        }
-        PeripheralInfo *curInfo =[self.services objectAtIndex:sect];
-        NSLog(@"%@",curInfo.characteristics);
-     //   [self.bluetoothTableview insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-        
+    float f = 17*showTextViewRow;
+    //最大显示行为200
+    if (showTextViewRow == 200) {
+        [self clearAllButton:nil];
     }
     
-    
+    if (showTextViewRow > 8) {
+        [showStringTextView setContentOffset:CGPointMake(0, f-130) animated:NO];
+    }
 }
-#pragma mark -  Bluetooth Table view data source
 
+
+#pragma mark  找出来的peripheral在表格中处理的函数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    //return 1;
-    return self.services.count;
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    PeripheralInfo *info = [self.services objectAtIndex:section];
-    return [info.characteristics count];
-    //return 1;
-
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return blead.ble.blePeripheralArray.count;
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CBCharacteristic *characteristic = [[[self.services objectAtIndex:indexPath.section] characteristics]objectAtIndex:indexPath.row];
-    NSString *cellIdentifier = @"characteristicCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-    }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",characteristic.UUID];
-    cell.detailTextLabel.text = characteristic.description;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"CellTableIdentifier";
+    UINib *nib = [UINib nibWithNibName:@"cell" bundle:nil];
+    [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+    cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    // 自动更新
+    cell.currentPeripheral = [blead.ble.blePeripheralArray objectAtIndex:indexPath.row];
+    cell.backgroundColor = [UIColor redColor];
     return cell;
 }
 
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        blePeripheral *bp = [blead.ble.blePeripheralArray objectAtIndex:indexPath.row];
+        [blead.ble disconnectPeripheral:bp.activePeripheral];
+        [bp initPeripheralWithSeviceAndCharacteristic];
+        [bp initPropert];
+        [blead.ble.blePeripheralArray removeObjectAtIndex:indexPath.row];
+        [blead.ble resetScanning];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+    //在移动到的位置加入新的一行，内容为所选择的那一行
+    [blead.ble.blePeripheralArray insertObject:[blead.ble.blePeripheralArray objectAtIndex:fromIndexPath.row] atIndex: toIndexPath.row];
+    //删除所选行的下一行
+    [blead.ble.blePeripheralArray removeObjectAtIndex:(NSUInteger)fromIndexPath.row+1];
+}
+
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
+}
+
+#pragma mark - 表格点击cell处理函数
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (blead.ble.blePeripheralArray.count > indexPath.row) {
+        //Sub *svc = [[Sub alloc]init];
+        // 显示当前设备子页面
+       // svc.currentPeripheral = [blead.ble.blePeripheralArray objectAtIndex:indexPath.row];
+        
+        if (_currentPeripheral.activePeripheral.isConnected == NO) {
+            [blead.ble connectPeripheral:_currentPeripheral.activePeripheral];
+        }
+        else{
+            if (_currentPeripheral.connectedFinish == YES) {
+                //[self.navigationController pushViewController:svc animated:YES];
+            }
+            else{
+                [blead.ble disconnectPeripheral:_currentPeripheral.activePeripheral];
+            }
+        }
+    }
+    else{
+        NSLog(@"ERROR ROW");
+    }
+}
+
+#pragma mark -蓝牙peripheral部分按钮
 
 
+
+- (void)touchBackgroundDownEvent:(UIControl *)sender{}
+- (void)clearAllButton:(UIButton *)sender {
+    // 清空所有显示
+    _currentPeripheral.txCounter = 0;
+    _currentPeripheral.rxCounter = 0;
+    _currentPeripheral.ShowStringBuffer = [[NSString alloc]init];
+    inputTextField.text = [[NSString alloc]init];
+    _currentPeripheral.staticString = statusLabel.text = @"Clear all";
+    [self CBUpdataShowStringBuffer];
+    
+}
+
+- (void)AutoManualSendButton:(UIButton *)sender {
+    // 切换手动发射与自动发射
+    if (setAutoState == NO) {
+        _currentPeripheral.AutoSendData = setAutoState = YES;
+        [autoManualModeButton setTitle:@"Auto Mode" forState:UIControlStateNormal];
+    }
+    else{
+        _currentPeripheral.AutoSendData = setAutoState = NO;
+        [autoManualModeButton setTitle:@"Manual Mode" forState:UIControlStateNormal];
+    }
+}
+
+- (void)SendInputButton:(NSString *)sender {
+    // 手动模式下，才可以发送数据
+     if (_currentPeripheral.connectedFinish == YES) {
+         NSString *inputString = sender;
+         Byte length = inputString.length;
+         if (0 < length && length <= 5) {
+             char index;
+             Byte viewData[5];
+             for (index = 0; index <5; index++) {
+                 viewData[index] = 0x00;
+             }
+             NSString *aString;
+             for (index = 0; index < length; index++) {
+                 aString = [inputString substringWithRange:NSMakeRange(index, 1)];
+                 sscanf([aString cStringUsingEncoding:NSASCIIStringEncoding], "%s", &viewData[index]);
+                 if (viewData[index] == 0x00 ) {
+                     viewData[index] = 0x20;
+                 }
+             }
+             // 发送数据
+             _currentPeripheral.sendData = [[NSData alloc]initWithBytes:&viewData length:TRANSMIT_05BYTES_DATA_LENGHT];
+         }
+         
+         else if(5 < length && length <= 10){
+             char index;
+             Byte viewData[10];
+             for (index = 0; index <10; index++) {
+                 viewData[index] = 0x00;
+             }
+             NSString *aString;
+             for (index = 0; index < length; index++) {
+                 aString = [inputString substringWithRange:NSMakeRange(index, 1)];
+                 sscanf([aString cStringUsingEncoding:NSASCIIStringEncoding], "%s", &viewData[index]);
+                 if (viewData[index] == 0x00 ) {
+                     viewData[index] = 0x20;
+                 }
+             }
+             // 发送数据
+             _currentPeripheral.sendData = [[NSData alloc]initWithBytes:&viewData length:TRANSMIT_10BYTES_DATA_LENGHT];
+         }
+         
+         else if(10 < length && length <= 15){
+             char index;
+             Byte viewData[15];
+             for (index = 0; index <15; index++) {
+                 viewData[index] = 0x00;
+             }
+             NSString *aString;
+             for (index = 0; index < length; index++) {
+                 aString = [inputString substringWithRange:NSMakeRange(index, 1)];
+                 sscanf([aString cStringUsingEncoding:NSASCIIStringEncoding], "%s", &viewData[index]);
+                 if (viewData[index] == 0x00 ) {
+                     viewData[index] = 0x20;
+                 }
+             }
+             // 发送数据
+             _currentPeripheral.sendData = [[NSData alloc]initWithBytes:&viewData length:TRANSMIT_15BYTES_DATA_LENGHT];
+         }
+         
+         else if(15 < length && length <= 20){
+             char index;
+             Byte viewData[21];
+             for (index = 0; index <20; index++) {
+                 viewData[index] = 0x00;
+             }
+             NSString *aString;
+             for (index = 0; index < length; index++) {
+                 aString = [inputString substringWithRange:NSMakeRange(index, 1)];
+                 sscanf([aString cStringUsingEncoding:NSASCIIStringEncoding], "%s", &viewData[index]);
+                 if (viewData[index] == 0x00 ) {
+                     viewData[index] = 0x20;
+                 }
+             }
+             // 发送数据
+             _currentPeripheral.sendData = [[NSData alloc]initWithBytes:&viewData length:TRANSMIT_20BYTES_DATA_LENGHT];
+         }
+         else{
+             statusLabel.text = @"Error send data";
+         }
+     }else{
+     statusLabel.text = @"设备尚未连接";
+     }
+    
+    
+}
+
+-(void)backMainViewControllerButton{
+    [self.navigationController popViewControllerAnimated:YES];
+    nPeripheralStateChange
+}
+
+
+#pragma mark -  Bluetooth Table view data source
 
 
 

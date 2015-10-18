@@ -19,7 +19,7 @@
 #define  selfDefineColor2 [UIColor colorWithRed:116.0/255 green:201.0/255 blue:184.0/255 alpha:1]
 
 
-@interface YFHistoryVC ()  <SliderSwitchDelegate,UIScrollViewDelegate,AKPickerViewDataSource, AKPickerViewDelegate>
+@interface YFHistoryVC ()  <UIScrollViewDelegate,AKPickerViewDataSource, AKPickerViewDelegate>
 {
    
     NSMutableDictionary *addressDict;   //地址选择字典
@@ -129,10 +129,7 @@
     self.pickerView.highlightedTextColor = [UIColor whiteColor];
     self.pickerView.interitemSpacing = 8;
     self.pickerView.maskDisabled = true;
-    self.titles = @[@"扶他林",
-                    @"布洛芬",
-                    @"保泰松",
-                    @"其他",@"无",];
+    self.titles = [@[@"扶他林",@"布洛芬",@"保泰松", @"其他",@"无"] mutableCopy];
     
     [self.pickerView reloadData];
     [_pickerView selectItem:1 animated:NO];

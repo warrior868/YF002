@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YFAlarmTVC : UITableViewController
+@interface YFAlarmTVC : UIViewController
 
 
-@property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
+@property (weak, nonatomic)  UIDatePicker *timePicker;
 @property (strong ,nonatomic) NSArray *weeDayPicked;
 
 @end

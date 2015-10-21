@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>FMDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FastAnimationWithPOP.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -14,7 +19,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Masonry.xcscheme</key>
+		<key>LKAlarmManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>LKDBHelper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,27 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>028CB4483E697BC3331C4D76376D9032</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>47C800E42623009B7192B025B3DD25A1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5535A5A1D4359142E648F160145F8866</key>
+		<key>580277282720684B5B025272FE3713F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6A1059FE34DBD5B4F6B9808DD590948F</key>
+		<key>61EE17DA5BA225244E72D63E383565CD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EB012B9D179872E8B62B25C7A017A1B2</key>
+		<key>76A8AFD0EAD9B89666CB4F36CD5B6B8F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F1F0475B9D1612E5F5F92DDEF109C072</key>
+		<key>93108DF106F99A7A3EED3CC0B007693C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EFE4D0A77722BA0E1B80700CAF67E384</key>
 		<dict>
 			<key>primary</key>
 			<true/>

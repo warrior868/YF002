@@ -284,6 +284,8 @@
     pausedTime = nil;
     timeUserValue = (self.timerType == MZTimerLabelTypeStopWatch)? 0 : timeUserValue;
     startCountDate = (self.counting)? [NSDate date] : nil;
+    
+
     [self updateLabel];
 }
 

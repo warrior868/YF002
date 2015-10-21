@@ -8,6 +8,7 @@
 
 #import "bleCentralManager.h"
 
+
 @implementation bleCentralManager
 
 #pragma mark -
@@ -61,18 +62,20 @@
 // 开始连接
 -(void)connectPeripheral:(CBPeripheral*)peripheral
 {
-	if (![peripheral isConnected]){
+	if (!(peripheral.state == CBPeripheralStateConnected)){
         // 连接设备
         [_activeCentralManager connectPeripheral:peripheral options:nil];
 	}
     else{
-        // 检测已连接Peripherals
-        float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-        if (version >= 6.0){
-            [_activeCentralManager retrieveConnectedPeripherals];
+//        // 检测已连接Peripherals
+//        float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+//        if (version >= 6.0){
+//            [_activeCentralManager retrieveConnectedPeripheralsWithServices:<#(NSArray *)#>];
+//
+//            [_activeCentralManager retrieveConnectedPeripherals];
         }
     }
-}
+
 
 // 断开连接
 -(void)disconnectPeripheral:(CBPeripheral*)peripheral
@@ -216,6 +219,7 @@
     // 更新状态
     NSLog(@"domain:%@\nuserInfo:%@",error.domain, error.userInfo);
     _currentCentralManagerState = bleCentralDelegateStateDisconnectPeripheral;
+    
     nCentralStateChange
     
 }

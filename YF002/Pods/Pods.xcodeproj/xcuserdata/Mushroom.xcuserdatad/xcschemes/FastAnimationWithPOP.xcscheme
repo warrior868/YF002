@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "67482EE6C17ED307E2415CCD"
+               BlueprintIdentifier = "90D8A4A0B1E69E960A0AE5D6"
                BuildableName = "libFastAnimationWithPOP.a"
                BlueprintName = "FastAnimationWithPOP"
                ReferencedContainer = "container:Pods.xcodeproj">

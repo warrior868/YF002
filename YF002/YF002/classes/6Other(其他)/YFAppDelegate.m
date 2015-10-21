@@ -30,8 +30,7 @@
     [NSThread sleepForTimeInterval:1.5];
     [_window makeKeyAndVisible];
     
-    
-    // 初始化蓝牙管理控制器
+        // 初始化蓝牙管理控制器
     _ble = [[bleCentralManager alloc]init];
    
     /*
@@ -86,6 +85,7 @@
         }
     }
      */
+
     // Override point for customization after application launch.
     return YES;
 }

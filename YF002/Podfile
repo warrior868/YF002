@@ -4,5 +4,4 @@ pod 'IQKeyboardManager'
 
 pod 'FastAnimationWithPOP', :head
 
-pod 'Masonry'
-
+pod 'LKAlarmManager', :head

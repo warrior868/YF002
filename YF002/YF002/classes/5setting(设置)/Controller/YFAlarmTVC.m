@@ -2,7 +2,7 @@
 
 
 #import "YFAlarmTVC.h"
-#import <Masonry/Masonry.h>
+
 
 #define sreenWidth [UIScreen mainScreen].bounds.size.width
 #define srennHeight [UIScreen mainScreen].bounds.size.height
@@ -261,14 +261,18 @@
         
         UITextField *textField = (UITextField *)[self.view viewWithTag:(([path row]+1)*10)];
         textField.textColor =[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.0];
-        
+        //存储当前闹钟数据
+        NSArray *alarmList= [NSArray arrayWithObjects:_timeArray,_onOrOffArray, nil];
+        [[NSUserDefaults standardUserDefaults] setObject:alarmList forKey:@"alarmList"];
         [self.tableView reloadData];
     }else{
         [_onOrOffArray replaceObjectAtIndex:[path row] withObject:@"on"];
         
         UITextField *textField = (UITextField *)[self.view viewWithTag:(([path row]+1)*10)];
         textField.textColor =[UIColor colorWithRed:116.0/255 green:201.0/255 blue:184.0/255 alpha:1.0];;
-        
+        //存储当前闹钟数据
+        NSArray *alarmList= [NSArray arrayWithObjects:_timeArray,_onOrOffArray, nil];
+        [[NSUserDefaults standardUserDefaults] setObject:alarmList forKey:@"alarmList"];
         [self.tableView reloadData];
     }
     

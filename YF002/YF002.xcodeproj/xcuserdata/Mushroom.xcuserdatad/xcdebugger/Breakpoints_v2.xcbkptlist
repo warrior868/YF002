@@ -371,22 +371,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "YF002/classes/2home(&#x4e3b;&#x9875;)/Controller/YFHomeViewController.m"
-            timestampString = "466848302.173344"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "YF002/classes/4history(&#x5386;&#x53f2;)/Controller/YFHistoryVC.m"
             timestampString = "466168994.392602"
             startingColumnNumber = "9223372036854775807"

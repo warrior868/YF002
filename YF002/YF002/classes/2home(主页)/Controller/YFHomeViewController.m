@@ -20,7 +20,7 @@
 
 #import "MMMaterialDesignSpinner.h"
 #import <QuartzCore/QuartzCore.h>
-#import "Masonry.h"
+
 
 
 #import "SVProgressHUD.h"
@@ -185,14 +185,19 @@
 // 6.创建 蓝牙
     //初始化
     // 使用全局全量
+    // CBCentral里面的使用全局全量
     blead = [[UIApplication sharedApplication]delegate];
-    // 注册通知回调
+    _blePeripheralTableView.delegate = self;
+    
+    
+    // 清空所有显示
+    _currentPeripheral.txCounter = 0;
+    _currentPeripheral.rxCounter = 0;
+    _currentPeripheral.ShowStringBuffer =@"0";
+    // CBCentral里面的注册通知回调
     nCBCentralStateChange
     nCBPeripheralStateChange
     nCBUpdataShowStringBuffer
-    //发送蓝牙数据，数据格式E0000000F
-    //_sender =[@"E0000011F" mutableCopy];
-
     
     
     
@@ -276,8 +281,8 @@
     }
 }
 //移除观察者
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];}
+//-(void)dealloc{
+ //   [[NSNotificationCenter defaultCenter] removeObserver:self];}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -553,7 +558,7 @@
     }else{
         
         //给蓝牙设备发送指令以便其工作
-        if (_currentPeripheral.connectedFinish == NO) {
+        if (_currentPeripheral.connectedFinish == YES) {
             //开始计时
             [_timer start];
             //editParameter关闭编辑并且把开启参数编辑按钮不可用
@@ -561,34 +566,38 @@
             _editParameter.userInteractionEnabled = NO;
             //导航栏右上角参数更改不可用
             self.navigationItem.rightBarButtonItem.enabled =NO;
+            //导航栏左上角按钮不可用
+            [_btn setUserInteractionEnabled:NO];
             //圆圈动画开始
             [self.spinnerView startAnimating];
             
             //判断是否是继续
             
-           if ( [_startPauseBtn.titleLabel.text isEqualToString:@"开始"]) {
-               //发送开始蓝牙数据，数据格式
-                [self initSendStartData];
-                NSLog(@"发送开始蓝牙数据，数据格式位%@",_sender);
-                [self SendInputButton:[_sender copy]];
-               //把开始按钮设置位继续；
-               [_startPauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
-            }else{
-                //发送继续蓝牙数据，数据格式
-                NSString *str1 =  [_sender stringByReplacingCharactersInRange:NSMakeRange(2, 1) withString:@"3"];
-                _sender = [str1 mutableCopy];
-                NSLog(@"发送继续蓝牙数据，数据格式位%@",_sender);
-                [self SendInputButton:[_sender copy]];
+                if ( [_startPauseBtn.titleLabel.text isEqualToString:@"开始"]) {
+                    //发送开始蓝牙数据，数据格式
+                    [self initSendStartData];
+                    NSLog(@"发送开始蓝牙数据，数据格式位%@",_sender);
+                    [self SendInputButton:[_sender copy]];
+                    //把开始按钮设置位继续；
+                    [_startPauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
+                }else{
+                    //发送继续蓝牙数据，数据格式
+                    NSString *str1 =  [_sender stringByReplacingCharactersInRange:NSMakeRange(2, 1) withString:@"3"];
+                    _sender = [str1 mutableCopy];
+                    NSLog(@"发送继续蓝牙数据，数据格式位%@",_sender);
+                    [self SendInputButton:[_sender copy]];
+                }
             }
-           
-        } else {
+        else {
             [SVProgressHUD showErrorWithStatus:@"没有找到可控制的蓝牙，确定蓝牙已经连接？"];
-
+            
+        }
+           
         }
         
     }
     
-}
+
 -(void)initSendStartData{
     NSString *str1 = @"E1100011F";
     NSString *str2 = [str1 stringByReplacingCharactersInRange:NSMakeRange(2, 1) withString:@"1"];
@@ -609,9 +618,10 @@
 }
 
 - (IBAction)resetCountDown:(id)sender {
-    [_timer reset];
+    
     
     if(![_timer counting]){
+        [_timer reset];
         [_startPauseBtn setTitle:@"开始" forState:UIControlStateNormal];
         //导航栏右上角参数更改不可用
         self.navigationItem.rightBarButtonItem.enabled =YES;
@@ -624,6 +634,8 @@
      [_resetBtn setEnabled:NO];
      //editParameter开启参数编辑按钮可用
     _editParameter.userInteractionEnabled = YES;
+    //导航栏左上角按钮不可用
+    [_btn setUserInteractionEnabled:YES];
 }
 - (void)timerLabel:(MZTimerLabel*)timerLabel finshedCountDownTimerWithTime:(NSTimeInterval)countTime{
     //圆圈动画结束
@@ -693,38 +705,47 @@
 #pragma mark  蓝牙连接或断开
 - (void) bluetoothConnect{
     if (blead.ble.currentCentralManagerState == bleCentralDelegateStateCentralManagerPoweredOff) {
-        [SVProgressHUD showInfoWithStatus:@"请打开本机设备的蓝牙"];
+        [SVProgressHUD showInfoWithStatus:@"请打开本机的蓝牙设备"];
     }else{
-        if (blead.ble.blePeripheralArray.count > 0) {
-            for (NSInteger i =0; i<[blead.ble.blePeripheralArray count]-1; i++) {
-                
-                _currentPeripheral = [blead.ble.blePeripheralArray objectAtIndex:i];
-                if (_currentPeripheral.activePeripheral.isConnected == NO) {
+        if (_currentPeripheral.connectedFinish == YES) {
+            [blead.ble disconnectPeripheral:_currentPeripheral.activePeripheral];
+            //更改蓝牙图标
+            [_btn setBackgroundImage:[UIImage imageNamed:@"bluetoothOff"] forState:UIControlStateNormal];
+        }else{
+            
+            //寻找开头位YF002的蓝牙名称字段，进行连接
+            for (NSInteger i = 0; i<[blead.ble.blePeripheralArray count]; i++) {
+                blePeripheral *peripheral= [blead.ble.blePeripheralArray objectAtIndex:i];
+                NSString *shotName =[peripheral.nameString substringWithRange:NSMakeRange(0, 5)];
+                if ([shotName isEqualToString:@"YF002"]) {
+                    _currentPeripheral =peripheral;
                     [blead.ble connectPeripheral:_currentPeripheral.activePeripheral];
-                }
-                else{
-                    if (_currentPeripheral.connectedFinish == YES) {
-                        [SVProgressHUD showInfoWithStatus:@"与设备连接成功"];
-                        [_btn setBackgroundImage:[UIImage imageNamed:@"bluetoothOn"] forState:UIControlStateNormal];
-                        break;
-                        //[self.navigationController pushViewController:svc animated:YES];
-                    }
-                    else{
-                        [blead.ble disconnectPeripheral:_currentPeripheral.activePeripheral];
-                    }
+                    // 初始化页面状态
                     
+                    setAutoState = NO;
+                    inputTextField.text = @"xuyg";
+                    [self CBUpdataShowStringBuffer];
+                    
+                    // 注册通知回调
+                    nCBPeripheralStateChange
+                    nCBUpdataShowStringBuffer
+                    
+                    //更改蓝牙图标
+                    [_btn setBackgroundImage:[UIImage imageNamed:@"bluetoothOn"] forState:UIControlStateNormal];
+                    break;
+                }else{
+                [SVProgressHUD showInfoWithStatus:@"没有找到可以使用的设备"];
+                 //蓝牙图标为关
+                 [_btn setBackgroundImage:[UIImage imageNamed:@"bluetoothOff"] forState:UIControlStateNormal];
                 }
-                if (i==[blead.ble.blePeripheralArray count]-1) {
-                    [SVProgressHUD showErrorWithStatus:@"未找到可连接的蓝牙设备"];
-                }
-                //_currentPeripheral.nameString
             }
         }
-        else{
-            NSLog(@"ERROR ROW");
-            [SVProgressHUD showErrorWithStatus:@"未找到可连接的蓝牙设备，请检查"];
-            
-        }
+       
+        
+        
+//        if (_currentPeripheral.activePeripheral.state == CBPeripheralStateConnected) {
+//            [blead.ble connectPeripheral:_currentPeripheral.activePeripheral];
+//        }
     }
    
    
@@ -745,8 +766,117 @@
     animation.fillMode = kCAFillModeForwards;
     return animation;
 }
+
+#pragma mark 蓝牙peripheral发送部分按钮
+
+- (void)SendInputButton:(NSString *)sender {
+    // 手动模式下，才可以发送数据
+    if (_currentPeripheral.connectedFinish == YES) {
+        NSString *inputString = sender;
+        Byte length = inputString.length;
+        if (0 < length && length <= 5) {
+            char index;
+            Byte viewData[5];
+            for (index = 0; index <5; index++) {
+                viewData[index] = 0x00;
+            }
+            NSString *aString;
+            for (index = 0; index < length; index++) {
+                aString = [inputString substringWithRange:NSMakeRange(index, 1)];
+                sscanf([aString cStringUsingEncoding:NSASCIIStringEncoding], "%s", &viewData[index]);
+                if (viewData[index] == 0x00 ) {
+                    viewData[index] = 0x20;
+                }
+            }
+            // 发送数据
+            _currentPeripheral.sendData = [[NSData alloc]initWithBytes:&viewData length:TRANSMIT_05BYTES_DATA_LENGHT];
+        }
+        
+        else if(5 < length && length <= 10){
+            char index;
+            Byte viewData[10];
+            for (index = 0; index <10; index++) {
+                viewData[index] = 0x00;
+            }
+            NSString *aString;
+            for (index = 0; index < length; index++) {
+                aString = [inputString substringWithRange:NSMakeRange(index, 1)];
+                sscanf([aString cStringUsingEncoding:NSASCIIStringEncoding], "%s", &viewData[index]);
+                if (viewData[index] == 0x00 ) {
+                    viewData[index] = 0x20;
+                }
+            }
+            // 发送数据
+            _currentPeripheral.sendData = [[NSData alloc]initWithBytes:&viewData length:TRANSMIT_10BYTES_DATA_LENGHT];
+        }
+        
+        else if(10 < length && length <= 15){
+            char index;
+            Byte viewData[15];
+            for (index = 0; index <15; index++) {
+                viewData[index] = 0x00;
+            }
+            NSString *aString;
+            for (index = 0; index < length; index++) {
+                aString = [inputString substringWithRange:NSMakeRange(index, 1)];
+                sscanf([aString cStringUsingEncoding:NSASCIIStringEncoding], "%s", &viewData[index]);
+                if (viewData[index] == 0x00 ) {
+                    viewData[index] = 0x20;
+                }
+            }
+            // 发送数据
+            _currentPeripheral.sendData = [[NSData alloc]initWithBytes:&viewData length:TRANSMIT_15BYTES_DATA_LENGHT];
+        }
+        
+        else if(15 < length && length <= 20){
+            char index;
+            Byte viewData[21];
+            for (index = 0; index <20; index++) {
+                viewData[index] = 0x00;
+            }
+            NSString *aString;
+            for (index = 0; index < length; index++) {
+                aString = [inputString substringWithRange:NSMakeRange(index, 1)];
+                sscanf([aString cStringUsingEncoding:NSASCIIStringEncoding], "%s", &viewData[index]);
+                if (viewData[index] == 0x00 ) {
+                    viewData[index] = 0x20;
+                }
+            }
+            // 发送数据
+            _currentPeripheral.sendData = [[NSData alloc]initWithBytes:&viewData length:TRANSMIT_20BYTES_DATA_LENGHT];
+        }
+        else{
+            statusLabel.text = @"Error send data";
+        }
+    }else{
+        statusLabel.text = @"设备尚未连接";
+    }
+    
+    
+}
+
 #pragma mark  通知回调函数
+#pragma mark - CBCentral里面的通知回调函数
 -(void)CBCentralStateChange{
+    if (blead.ble.currentCentralManagerState == bleCentralDelegateStateDisconnectPeripheral
+) {
+        _currentPeripheral=nil;
+        [SVProgressHUD showErrorWithStatus:@"与设备断开了连接，请检查"];
+        //重置时间
+        [_timer pause];
+        [_timer reset];
+        [_startPauseBtn setTitle:@"开始" forState:UIControlStateNormal];
+        //导航栏右上角参数更改不可用
+        self.navigationItem.rightBarButtonItem.enabled =YES;
+        //圆圈动画结束
+        [self.spinnerView stopAnimating];
+        //更改蓝牙图标
+        [_btn setBackgroundImage:[UIImage imageNamed:@"bluetoothOff"] forState:UIControlStateNormal];
+        [_btn setUserInteractionEnabled:YES];
+        //editParameter开启参数编辑按钮可用
+        _editParameter.userInteractionEnabled = YES;
+
+    }
     [self CBUpdataShowStringBuffer];
 }
 
@@ -754,24 +884,32 @@
     [self CBUpdataShowStringBuffer];
 }
 
+
+#pragma mark - CBPeripheral里面的注册通知回调通知回调函数
 -(void)CBUpdataShowStringBuffer{
-    txCounterTextField.text = [[NSString alloc]initWithFormat:@"%d",_currentPeripheral.txCounter];
-    rxCounterTextField.text = [[NSString alloc]initWithFormat:@"%d",_currentPeripheral.rxCounter];
-    showStringTextView.text = _currentPeripheral.ShowStringBuffer;
-    statusLabel.text = _currentPeripheral.staticString;
-    
-    // 自动滚动
-    int16_t showTextViewRow = _currentPeripheral.txCounter + _currentPeripheral.rxCounter;
-    
-    float f = 17*showTextViewRow;
-    //最大显示行为200
-    if (showTextViewRow == 200) {
-        [self clearAllButton:nil];
+    if (_currentPeripheral.connectedFinish == YES) {
+        txCounterTextField.text = [[NSString alloc]initWithFormat:@"%d",_currentPeripheral.txCounter];
+        rxCounterTextField.text = [[NSString alloc]initWithFormat:@"%d",_currentPeripheral.rxCounter];
+        showStringTextView.text = _currentPeripheral.ShowStringBuffer;
+        statusLabel.text = _currentPeripheral.staticString;
+        
+        // 自动滚动
+        int16_t showTextViewRow = _currentPeripheral.txCounter + _currentPeripheral.rxCounter;
+        
+        float f = 17*showTextViewRow;
+        if (showTextViewRow == 200) {
+            [self clearAllButton:nil];
+        }
+        
+        if (showTextViewRow > 8) {
+            [showStringTextView setContentOffset:CGPointMake(0, f-130) animated:NO];
+        }
+    }else{
+        [_blePeripheralTableView reloadData];
+        // [self bluetoothConnect];
     }
     
-    if (showTextViewRow > 8) {
-        [showStringTextView setContentOffset:CGPointMake(0, f-130) animated:NO];
-    }
+    
 }
 
 
@@ -843,7 +981,7 @@
         // 显示当前设备子页面
        // svc.currentPeripheral = [blead.ble.blePeripheralArray objectAtIndex:indexPath.row];
         
-        if (_currentPeripheral.activePeripheral.isConnected == NO) {
+        if (!(_currentPeripheral.activePeripheral.state == CBPeripheralStateConnected)) {
             [blead.ble connectPeripheral:_currentPeripheral.activePeripheral];
         }
         else{
@@ -858,125 +996,6 @@
     else{
         NSLog(@"ERROR ROW");
     }
-}
-
-#pragma mark -蓝牙peripheral部分按钮
-
-
-
-- (void)touchBackgroundDownEvent:(UIControl *)sender{}
-- (void)clearAllButton:(UIButton *)sender {
-    // 清空所有显示
-    _currentPeripheral.txCounter = 0;
-    _currentPeripheral.rxCounter = 0;
-    _currentPeripheral.ShowStringBuffer = [[NSString alloc]init];
-    inputTextField.text = [[NSString alloc]init];
-    _currentPeripheral.staticString = statusLabel.text = @"Clear all";
-    [self CBUpdataShowStringBuffer];
-    
-}
-
-- (void)AutoManualSendButton:(UIButton *)sender {
-    // 切换手动发射与自动发射
-    if (setAutoState == NO) {
-        _currentPeripheral.AutoSendData = setAutoState = YES;
-        [autoManualModeButton setTitle:@"Auto Mode" forState:UIControlStateNormal];
-    }
-    else{
-        _currentPeripheral.AutoSendData = setAutoState = NO;
-        [autoManualModeButton setTitle:@"Manual Mode" forState:UIControlStateNormal];
-    }
-}
-
-- (void)SendInputButton:(NSString *)sender {
-    // 手动模式下，才可以发送数据
-     if (_currentPeripheral.connectedFinish == YES) {
-         NSString *inputString = sender;
-         Byte length = inputString.length;
-         if (0 < length && length <= 5) {
-             char index;
-             Byte viewData[5];
-             for (index = 0; index <5; index++) {
-                 viewData[index] = 0x00;
-             }
-             NSString *aString;
-             for (index = 0; index < length; index++) {
-                 aString = [inputString substringWithRange:NSMakeRange(index, 1)];
-                 sscanf([aString cStringUsingEncoding:NSASCIIStringEncoding], "%s", &viewData[index]);
-                 if (viewData[index] == 0x00 ) {
-                     viewData[index] = 0x20;
-                 }
-             }
-             // 发送数据
-             _currentPeripheral.sendData = [[NSData alloc]initWithBytes:&viewData length:TRANSMIT_05BYTES_DATA_LENGHT];
-         }
-         
-         else if(5 < length && length <= 10){
-             char index;
-             Byte viewData[10];
-             for (index = 0; index <10; index++) {
-                 viewData[index] = 0x00;
-             }
-             NSString *aString;
-             for (index = 0; index < length; index++) {
-                 aString = [inputString substringWithRange:NSMakeRange(index, 1)];
-                 sscanf([aString cStringUsingEncoding:NSASCIIStringEncoding], "%s", &viewData[index]);
-                 if (viewData[index] == 0x00 ) {
-                     viewData[index] = 0x20;
-                 }
-             }
-             // 发送数据
-             _currentPeripheral.sendData = [[NSData alloc]initWithBytes:&viewData length:TRANSMIT_10BYTES_DATA_LENGHT];
-         }
-         
-         else if(10 < length && length <= 15){
-             char index;
-             Byte viewData[15];
-             for (index = 0; index <15; index++) {
-                 viewData[index] = 0x00;
-             }
-             NSString *aString;
-             for (index = 0; index < length; index++) {
-                 aString = [inputString substringWithRange:NSMakeRange(index, 1)];
-                 sscanf([aString cStringUsingEncoding:NSASCIIStringEncoding], "%s", &viewData[index]);
-                 if (viewData[index] == 0x00 ) {
-                     viewData[index] = 0x20;
-                 }
-             }
-             // 发送数据
-             _currentPeripheral.sendData = [[NSData alloc]initWithBytes:&viewData length:TRANSMIT_15BYTES_DATA_LENGHT];
-         }
-         
-         else if(15 < length && length <= 20){
-             char index;
-             Byte viewData[21];
-             for (index = 0; index <20; index++) {
-                 viewData[index] = 0x00;
-             }
-             NSString *aString;
-             for (index = 0; index < length; index++) {
-                 aString = [inputString substringWithRange:NSMakeRange(index, 1)];
-                 sscanf([aString cStringUsingEncoding:NSASCIIStringEncoding], "%s", &viewData[index]);
-                 if (viewData[index] == 0x00 ) {
-                     viewData[index] = 0x20;
-                 }
-             }
-             // 发送数据
-             _currentPeripheral.sendData = [[NSData alloc]initWithBytes:&viewData length:TRANSMIT_20BYTES_DATA_LENGHT];
-         }
-         else{
-             statusLabel.text = @"Error send data";
-         }
-     }else{
-     statusLabel.text = @"设备尚未连接";
-     }
-    
-    
-}
-
--(void)backMainViewControllerButton{
-    [self.navigationController popViewControllerAnimated:YES];
-    nPeripheralStateChange
 }
 
 

@@ -383,7 +383,8 @@ NSString *kSend20BytesDataCharateristicUUID             = @"FFE9";
             [self writeValue:_activePeripheral characteristic:_Send20BytesDataCharateristic data:data];
         }
         [self addSendASCIIStringToShowStringBuffer:dataASCII];
-        _staticString = [[NSString alloc]initWithFormat:@"Send:%@",dataASCII];
+        _staticString = [[NSString alloc]initWithFormat:@"已经向蓝牙发送了:%@",dataASCII];
+        NSLog(@"已经向蓝牙发送了:%@",_staticString);
         nUpdataShowStringBuffer
     }
 }

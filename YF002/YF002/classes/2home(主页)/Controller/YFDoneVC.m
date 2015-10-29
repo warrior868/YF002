@@ -86,7 +86,7 @@
     pickerDrugView.pickerViewStyle = AKPickerViewStyle3D;
     pickerDrugView.maskDisabled = true;
     
-    drugTitles = @[@"扶他林",@"布洛芬",@"保泰松",@"其他",];
+    drugTitles = [NSMutableArray arrayWithObjects:@"扶他林",@"布洛芬",@"无",@"保泰松",@"其他", nil];
     [pickerDrugView reloadData];
     [pickerDrugView selectItem:2 animated:NO];
 //2.初始化pickNumberView
@@ -105,7 +105,7 @@
     //	self.pickerView.pickerViewStyle = AKPickerViewStyle3D;
     pickerNumberView.maskDisabled = true;
     
-    numberTitles = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8"];
+    numberTitles = [NSMutableArray arrayWithObjects:@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8", nil];
     [pickerNumberView reloadData];
     [pickerNumberView selectItem:0 animated:NO];
 }

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SliderSwitch.h"
 #import "InfoView.h"
 #import "chatView.h"
 typedef enum{
@@ -25,8 +24,7 @@ typedef enum{
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property(nonatomic,strong) SliderSwitch *slideSwitchH;
 
 @property (nonatomic,strong) NSMutableArray *recordArray;
--(void)loadAreaDicWithCGRect:(CGRect) cgrect;
+//-(void)loadAreaDicWithCGRect:(CGRect) cgrect;
 @end

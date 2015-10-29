@@ -21,14 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if (1) {
-        
-    } else {
+    
         webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0,screenWidth, screenHeight)];
         NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
         [self.view addSubview: webView];
         [webView loadRequest:request];
-    }
+   
     
 }
 

@@ -19,9 +19,6 @@
 @property (nonatomic) blePeripheral *currentPeripheral;
 @property (strong, nonatomic)  UITableView *blePeripheralTableView;
 
-- (void)clearAllButton:(UIButton *)sender;
-- (void)AutoManualSendButton:(UIButton *)sender;
 - (void)SendInputButton:(UIButton *)sender;
-- (void)touchBackgroundDownEvent:(UIControl *)sender;
 
 @end

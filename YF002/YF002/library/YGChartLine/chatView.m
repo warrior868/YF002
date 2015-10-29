@@ -35,11 +35,11 @@
     
     for(int i=0; i<self.lines.count; i++){
         Line* line = [self.lines objectAtIndex:i];
-        if(i!=0 || i!=6 || i!=7){
-           CGContextSetLineWidth(context, 1);
-        }else{
-            CGContextSetLineWidth(context, 1);
-        }
+//        if(i!=0 || i!=6 || i!=7){
+//           CGContextSetLineWidth(context, 1);
+//        }else{
+//            CGContextSetLineWidth(context, 1);
+//        }
         CGContextMoveToPoint(context, line.firstPoint.x, line.firstPoint.y);
         CGContextAddLineToPoint(context, line.secondPoint.x, line.secondPoint.y);
     }

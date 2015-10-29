@@ -1,7 +1,2 @@
 pod 'IQKeyboardManager'
 
-#pod 'FastAnimationWithPOP', path: '../FastAnimationWithPOP'
-
-pod 'FastAnimationWithPOP', :head
-
-pod 'LKAlarmManager', :head

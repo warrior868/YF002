@@ -57,7 +57,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"FFE9";
     else{
         _nameString = @"Error Name";
     }
-    NSString *auuid = [[NSString alloc]initWithFormat:@"%@", _activePeripheral.UUID];
+    NSString *auuid = [[NSString alloc]initWithFormat:@"%@", _activePeripheral.identifier];
     if (auuid.length >= 36) {
         _uuidString = [auuid substringWithRange:NSMakeRange(auuid.length-36, 36)];
         NSLog(@"uuidString:%@",_uuidString);
@@ -107,7 +107,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"FFE9";
 /****************************************************************************/
 // 按UUID进行扫描
 -(void)startPeripheral:(CBPeripheral *)peripheral DiscoverServices:(NSArray *)services{
-    if ([peripheral isEqual:_activePeripheral] && [peripheral isConnected]){
+    if ([peripheral isEqual:_activePeripheral] && peripheral.state ==CBPeripheralStateConnected){
         _activePeripheral = peripheral;
         [_activePeripheral setDelegate:(id<CBPeripheralDelegate>)self];
         [_activePeripheral discoverServices:services];
@@ -279,7 +279,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"FFE9";
         }
     }
     else{
-        NSLog(@"参数更新出错: %d",[error code]);
+        NSLog(@"参数更新出错: %ld",(long)[error code]);
     }
 }
 
@@ -290,7 +290,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"FFE9";
 /******************************************************/
 // 写数据到特征值
 -(void) writeValue:(CBPeripheral *)peripheral characteristic:(CBCharacteristic *)characteristic data:(NSData *)data{
-    if ([peripheral isEqual:_activePeripheral] && [peripheral isConnected])
+    if ([peripheral isEqual:_activePeripheral] && peripheral.state ==CBPeripheralStateConnected)
     {
         if (characteristic != nil) {
             NSLog(@"成功写数据到特征值: %@ 数据:%@\n", characteristic.UUID, data);
@@ -301,7 +301,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"FFE9";
 
 // 从特征值读取数据
 -(void) readValue:(CBPeripheral *)peripheral characteristicUUID:(CBCharacteristic *)characteristic{
-    if ([peripheral isEqual:_activePeripheral] && [peripheral isConnected])
+    if ([peripheral isEqual:_activePeripheral] && peripheral.state ==CBPeripheralStateConnected)
     {
         if (characteristic != nil) {
             NSLog(@"成功从特征值:%@ 读数据\n", characteristic);
@@ -312,7 +312,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"FFE9";
 
 // 发通知到特征值
 -(void) notification:(CBPeripheral *)peripheral characteristicUUID:(CBCharacteristic *)characteristic state:(BOOL)state{
-    if ([peripheral isEqual:_activePeripheral] && [peripheral isConnected])
+    if ([peripheral isEqual:_activePeripheral] && peripheral.state ==CBPeripheralStateConnected)
     {
         if (characteristic != nil) {
             NSLog(@"成功发通知到特征值: %@\n", characteristic);
@@ -414,7 +414,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"FFE9";
 
 -(void)AutoSendDataEvent{
     // 发送数据自动加1
-    if (_activePeripheral.isConnected == YES) {
+    if (_activePeripheral.state ==CBPeripheralStateConnected) {
         testSendCount++;
         NSString *txAccString = [[NSString alloc]initWithFormat:@"%05d", testSendCount];
         NSString *test20ByteASCII = [[NSString alloc]initWithFormat:@"ABCDEFGHIJKLMNO"];

@@ -71,7 +71,7 @@
     _view6.layer.cornerRadius =viewCornerRadius;
     _regsiterBtn.layer.cornerRadius =viewCornerRadius;
     //性别选中
-    _sexChoose.selectedSegmentIndex = 1;
+    _sexChoose.selectedSegmentIndex = 0;
     [_sexChoose addTarget: self
                     action: @selector(controlPressed:)
                 forControlEvents: UIControlEventValueChanged
@@ -97,7 +97,7 @@
 #pragma mark - 性别的选择
 - (void) controlPressed:(id)sender {
     NSInteger selectedSegment = _sexChoose.selectedSegmentIndex;
-   // NSLog(@"Segment %ld selected\n", selectedSegment);
+    NSLog(@"Segment %ld selected\n", (long)selectedSegment);
 }
 
 #pragma mark - 登陆输入验证

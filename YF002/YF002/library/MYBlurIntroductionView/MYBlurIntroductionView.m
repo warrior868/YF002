@@ -63,7 +63,7 @@
         skipStringWidth = ceilf(skipStringWidth);
     }
     else {
-        skipStringWidth = [skipString sizeWithFont:kSkipButtonFont constrainedToSize:CGSizeMake(MAXFLOAT, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping].width;
+//        skipStringWidth = [skipString sizeWithFont:kSkipButtonFont constrainedToSize:CGSizeMake(MAXFLOAT, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping].width;
     }
     
     //Left Skip Button

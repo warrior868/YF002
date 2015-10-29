@@ -16,7 +16,6 @@
 
 #import "MZTimerLabel.h"
 
-#import "STAlertView.h"
 
 #import "MMMaterialDesignSpinner.h"
 #import <QuartzCore/QuartzCore.h>
@@ -898,7 +897,7 @@
         
         float f = 17*showTextViewRow;
         if (showTextViewRow == 200) {
-            [self clearAllButton:nil];
+           
         }
         
         if (showTextViewRow > 8) {

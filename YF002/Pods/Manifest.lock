@@ -1,29 +1,10 @@
 PODS:
-  - FastAnimationWithPOP (HEAD based on 0.0.2):
-    - pop (~> 1.0.5)
-  - FMDB (2.5):
-    - FMDB/standard (= 2.5)
-  - FMDB/common (2.5)
-  - FMDB/standard (2.5):
-    - FMDB/common
   - IQKeyboardManager (3.2.4)
-  - LKAlarmManager (HEAD based on 0.3):
-    - LKDBHelper
-  - LKDBHelper (2.1.3):
-    - FMDB
-  - pop (1.0.7)
 
 DEPENDENCIES:
-  - FastAnimationWithPOP (HEAD)
   - IQKeyboardManager
-  - LKAlarmManager (HEAD)
 
 SPEC CHECKSUMS:
-  FastAnimationWithPOP: a6ec4b6707c3dc4f0b21287337e328c56d16edda
-  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   IQKeyboardManager: 555b1231fefafb21b19278d7cca72986a27b748b
-  LKAlarmManager: b774bbb8fadf2b95a2135a507d2f824037120479
-  LKDBHelper: 64b2c85c6783d453d6db4635a8cfa6c5cc6783ed
-  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
 
 COCOAPODS: 0.38.2

@@ -10,9 +10,8 @@
 #import "YFTabBarViewController.h"
 #import "YFNewfeatureViewController.h"
 
-#import "LKAlarmMamager.h"
 
-@interface YFAppDelegate () <LKAlarmMamagerDelegate>
+@interface YFAppDelegate ()
 
 @end
 @interface YFAppDelegate ()
@@ -91,23 +90,18 @@
 }
 
 
--(void)lk_receiveAlarmEvent:(LKAlarmEvent *)event
-{
-    // UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"接受到通知0！" message:event.title delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-    //[alertView show];
-}
+
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    [[LKAlarmMamager shareManager] handleOpenURL:url];
+    
     
     return YES;
 }
 
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    [[LKAlarmMamager shareManager] didReceiveLocalNotification:notification];
-}
+    }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
